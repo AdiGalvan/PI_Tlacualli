@@ -1,0 +1,21 @@
+/*Degradado de navbar*/
+.custom-bg {
+    background: linear-gradient(to right, #9BD15C, #5D951B);
+}
+/*Separación de elementos del nav*/
+.nav-item{
+    padding-right: 2em;
+}
+/*Imagen abarque todo el div de nav*/
+.navbar-brand{
+    padding: 0;
+}
+/*Color de los iconos*/
+.custom-icons .btn{
+    background-color: white;
+    border-color: white;
+}
+/*Transicion de color cuando se pasa encima de los iconos*/
+.custom-icons .btn:hover {
+    color: black;
+}
