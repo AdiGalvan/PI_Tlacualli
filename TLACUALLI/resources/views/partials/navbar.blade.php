@@ -9,19 +9,19 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">Home</a>
+            <a class="nav-link fs-3 {{request()->routeIs('inicio')?'disabled fw-bolder ':'w_o'}}" aria-current="page" href="/">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">Talleres</a>
+            <a class="nav-link fs-3 {{request()->routeIs('talleres')?'disabled':'w_o'}}" aria-current="page" href="/talleres">Talleres</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">Publicaciones</a>
+            <a class="nav-link fs-3 {{request()->routeIs('publicaciones')?'disabled':'w_o'}}" aria-current="page" href="/publicaciones">Publicaciones</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">Estádisticas</a>
+            <a class="nav-link fs-3 disabled" aria-current="page" href="#">Estádisticas</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">Productos</a>
+            <a class="nav-link fs-3 {{request()->routeIs('tienda')?'disabled ':'w_o'}}" aria-current="page" href="/tienda">Productos</a>
           </li>
         </ul>
         <div class="btn-group custom-icons">

@@ -19,3 +19,8 @@
 .custom-icons .bton:hover {
     color: black;
 }
+
+.nav-link.w_o {
+    color: #ffffff;
+    text-shadow: 1px 1px 0 #323232;
+}

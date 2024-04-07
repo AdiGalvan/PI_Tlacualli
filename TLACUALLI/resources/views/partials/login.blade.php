@@ -18,7 +18,6 @@
         </form>
       </div>
       <div class="modal-footer">
-        <button type="text" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#registrar_usuario">Registrar</button>
         @include('partials.nuevo_usuario')
         <button type="submit" class="btn btn-success" name="iniciar_sesion" id="iniciar_sesion">Login</button>
         <button type="button" class="btn btn-success" name="registro" id="registro">Sign up</button>

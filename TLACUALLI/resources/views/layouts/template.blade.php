@@ -19,7 +19,6 @@
     {{-- Incluir todos los css adicionales que se lleguen a ocupar --}}
     @vite('resources/css/navbar.css')
     
-    
 </head>
 <body>
     {{-- Estructura base: navbar, alertas y el resto del contenido --}}
