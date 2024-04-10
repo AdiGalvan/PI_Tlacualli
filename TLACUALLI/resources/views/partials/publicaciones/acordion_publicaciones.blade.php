@@ -25,7 +25,7 @@
                     <strong>Resumen</strong> 
                     <p>Se puede leer el resumen del documento</p>
                 </div>
-                <button class="btn btn-primary">Acceder al documento</button>
+                <button class="btn btn-outline-primary"><i class="bi bi-file-earmark-pdf"></i> Acceder al documento</button>
             </div>
             
         </div>

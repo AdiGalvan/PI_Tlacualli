@@ -17,13 +17,13 @@
                 <div class="col-5">
                     <div class="input-group mb-3">
                         <input type="text" class="form-control" placeholder="Buscar productos ..." aria-label="Buscar productos" aria-describedby="button-search">
-                        <button class="btn btn-outline-primary" type="button" id="button-search">Buscar</button>
+                        <button class="btn btn-outline-primary" type="button" id="button-search"><i class="bi bi-search"></i> Buscar</button>
                     </div>        
                 </div>
                 <div class="col-5">
                 </div>
                 <div class="col-2 justify-content-end">
-                    <button type="button" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#registrar_producto">Agregar Producto</button>
+                    <button type="button" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#registrar_producto"><i class="bi bi-bag-plus"></i> Agregar Producto</button>
                 </div>
             </div>
             

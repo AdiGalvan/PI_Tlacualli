@@ -19,8 +19,8 @@
       </div>
       <div class="modal-footer">
         @include('partials.nuevo_usuario')
-        <button type="submit" class="btn btn-success" name="iniciar_sesion" id="iniciar_sesion">Login</button>
-        <button type="button" class="btn btn-success" name="registro" id="registro">Sign up</button>
+        <button type="submit" class="btn btn-outline-success" name="iniciar_sesion" id="iniciar_sesion">Login</button>
+        <button type="button" class="btn btn-outline-success" name="registro" id="registro">Sign up</button>
         
     </div>
       
