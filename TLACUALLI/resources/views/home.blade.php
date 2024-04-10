@@ -1,6 +1,7 @@
 @extends('layouts.template')
 @section('titulo','Inicio')
 @section('contenido')
+<<<<<<< HEAD
 
 
 {{-- @include('partials.home.carrousel')  --}} 
@@ -28,6 +29,11 @@
     </div>
 
     @include('partials.home.carrouselCard')
+=======
+<div class="mt-3">
+</div>
+<div class="container mt-3 bg-warning">
+>>>>>>> c14837a (Vistas secundarias)
     
     <div class="row mb-4 mt-5">
         <div class="col-12 text-center">

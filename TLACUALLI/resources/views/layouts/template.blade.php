@@ -18,7 +18,14 @@
     <title>@yield('titulo')</title>
 
     {{-- Incluir todos los css adicionales que se lleguen a ocupar --}}
+<<<<<<< HEAD
     {{-- @vite('resources/css/navbar.css') --}}
+=======
+    @vite('resources/css/navbar.css')
+    @vite('resources/css/images.css')
+    @vite('resources/css/carrusel.css')
+    
+>>>>>>> c14837a (Vistas secundarias)
 </head>
 @include('partials.navbar')
 @include('partials.alertas')    

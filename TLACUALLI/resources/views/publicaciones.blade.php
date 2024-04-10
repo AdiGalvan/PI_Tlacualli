@@ -4,8 +4,9 @@
 
 
 <div class="row mt-3">
-    <div class="col-10">
-        <div id="carouselExampleIndicators" class="carousel slide bg-primary" data-bs-ride="carousel" >
+    <div class="col-10 pt-5 ps-5">
+        <br><br>
+        {{-- <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel" >
             <div class="carousel-inner">
                 <div class="carousel-item active">
                     <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRd1TV6F79DQaHvrNU60Dx1ansavn0RcZq4FJsyNP_4OQ&s" class="d-block mx-auto" alt="Imagen1" style="max-width: 100%;" width="450px"; height="300px">
@@ -22,7 +23,8 @@
                 <span class="carousel-control-next-icon" aria-hidden="true"></span>
                 <span class="visually-hidden">Next</span>
             </button>
-        </div>
+        </div> --}}
+        @include('partials.carrusel_home')
         <div class="row mt-3">
             <div class="col-2">
                 <div class="container sticky-top">
@@ -40,14 +42,14 @@
                     <div class="row">
                         <div class="col-5">
                             <div class="input-group mb-3">
-                                <input type="text" class="form-control" placeholder="Buscar productos ..." aria-label="Buscar productos" aria-describedby="button-search">
-                                <button class="btn btn-outline-primary" type="button" id="button-search">Buscar</button>
+                                <input type="text" class="form-control" placeholder="Buscar publicación ..." aria-label="Buscar productos" aria-describedby="button-search">
+                                <button class="btn btn-outline-primary" type="button" id="button-search"><i class="bi bi-search"></i> Buscar</button>
                             </div>        
                         </div>
                         <div class="col-5">
                         </div>
                         <div class="col-2 justify-content-end">
-                            <button type="button" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#registrar_producto">Agregar Producto</button>
+                        <button type="button" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#registrar_publicacion"><i class="bi bi-file-earmark-text"></i> Registrar publicación</button>
                         </div>
                     </div>
                     
@@ -86,12 +88,10 @@
 
 
     </div>
-    <div class="col-2 bg-primary">
+    <div class="col-2">
         <div class="sticky-top pe-3">
             <br>
             @include('partials.productos.carrusel')
-            <br>
-            @include('partials.publicaciones.carrusel')
             <br>
             @include('partials.talleres.carrusel')
         </div>
@@ -99,5 +99,5 @@
 </div>
 
 
-@include('partials.publicaciones.nueva_publicacion')
+@include('partials.publicaciones.registrar_publicacion')
 @endsection
