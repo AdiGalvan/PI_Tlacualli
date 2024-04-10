@@ -20,10 +20,10 @@
     @vite('resources/css/navbar.css')
     
 </head>
-<body>
+@include('partials.navbar')
+@include('partials.alertas')    
+<body> 
     {{-- Estructura base: navbar, alertas y el resto del contenido --}}
-    @include('partials.navbar')
-    @include('partials.alertas')
     @yield('contenido') 
 </body>
 <footer>
