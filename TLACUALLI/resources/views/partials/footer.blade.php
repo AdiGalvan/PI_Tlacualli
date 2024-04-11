@@ -1,3 +1,4 @@
+<hr class="mt-5">
 <div class="bg-brown mt-2"> 
     <div class="container-fluid">
         <div class="footer-copyright py-3">

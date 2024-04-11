@@ -73,4 +73,3 @@
 
 
 @include('partials.talleres.registrar_taller')
-@endsection

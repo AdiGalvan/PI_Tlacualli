@@ -100,4 +100,3 @@
 
 
 @include('partials.publicaciones.registrar_publicacion')
-@endsection
