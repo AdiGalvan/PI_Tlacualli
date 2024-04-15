@@ -23,3 +23,7 @@ Route::get('/talleres',[show_views::class,'talleres'])->name('talleres');
 Route::get('/registro', function () {
     return view('registro_usuario');
 });
+
+Route::get('/maps', function () {
+    return view('maps');
+});
