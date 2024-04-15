@@ -44,73 +44,73 @@
                     <div class="accordion-item">
                         <h2 class="accordion-header" id="heading7">
                             <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse7" aria-expanded="true" aria-controls="collapse7">
-                                How many free samples can i redeem?
+                                ¿Cuántas muestras gratis puedo canjear?
                             </button>
                         </h2>
                         <div id="collapse7" class="accordion-collapse collapse show" aria-labelledby="heading7" data-bs-parent="#accordionExample3" style="">
                             <div class="accordion-body">
-                                <p>Due to the limited quantity, each member's account is only entitled to 1 unique free sample. You can check out up to 4 free samples in each checkout. We take such matters very seriously and will look into individual cases thoroughly. </p>
-                                <p class="mb-0">We provide digital transformation solutions, enabling companies to make their visions reality. With us at your side, you will find the IT solution to achieve your strategic and financial goals.</p>
-                        </div>
+                                <p>Debido a la cantidad limitada, cada cuenta de miembro solo tiene derecho a 1 muestra gratis única. Puedes seleccionar hasta 4 muestras gratis en cada compra. Tomamos estos asuntos muy en serio y examinaremos cada caso individualmente. </p>
+                                <p class="mb-0">Ofrecemos soluciones de transformación digital, permitiendo a las empresas hacer realidad sus visiones. Con nosotros a tu lado, encontrarás la solución informática para alcanzar tus objetivos estratégicos y financieros.</p>
+                            </div>
                         </div>
                     </div>
                     <div class="accordion-item">
                         <h2 class="accordion-header" id="heading8">
                             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse8" aria-expanded="false" aria-controls="collapse8">
-                                What are the payment methods available?
+                                ¿Cuáles son los métodos de pago disponibles?
                             </button>
                         </h2>
                         <div id="collapse8" class="accordion-collapse collapse" aria-labelledby="heading8" data-bs-parent="#accordionExample3" style="">
                             <div class="accordion-body">
-                                At the moment, we only accept Credit/Debit cards and Paypal payments. Paypal is the easiest way to make payments online. While checking out your order. Be sure to fill in correct details for fast &amp; hassle-free payment processing. A thing that looks beautiful and attractive always grabs eyeballs. The real challenge before companies in today's world is to make their products and services appealing to everyone. It can be the packaging of an item or the design of its website and Applications. 
+                                En este momento, solo aceptamos pagos con tarjeta de crédito/débito y Paypal. Paypal es la forma más fácil de realizar pagos en línea. Al realizar tu pedido, asegúrate de completar los detalles correctos para un procesamiento de pago rápido y sin problemas. Una cosa que se ve hermosa y atractiva siempre llama la atención. El verdadero desafío para las empresas en el mundo actual es hacer que sus productos y servicios sean atractivos para todos. Puede ser el empaque de un artículo o el diseño de su sitio web y aplicaciones.
                             </div>
                         </div>
                     </div>
                     <div class="accordion-item">
                         <h2 class="accordion-header" id="heading9">
                             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse9" aria-expanded="false" aria-controls="collapse9">
-                                Can i pay without a paypal account?
+                                ¿Puedo pagar sin una cuenta de PayPal?
                             </button>
                         </h2>
                         <div id="collapse9" class="accordion-collapse collapse" aria-labelledby="heading9" data-bs-parent="#accordionExample3">
                             <div class="accordion-body">
-                                Yes! It is commonly misunderstood that a Paypal account is needed in order to make payments through Paypal. The truth is you DO NOT need one, although we strongly recommend you sign up to enjoy the added ease of use.
+                                ¡Sí! Es comúnmente malinterpretado que se necesita una cuenta de PayPal para realizar pagos a través de PayPal. La verdad es que NO necesitas una, aunque te recomendamos que te registres para disfrutar de la mayor facilidad de uso.
                             </div>
                         </div>
                     </div>
                     <div class="accordion-item">
                         <h2 class="accordion-header" id="heading10">
                             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse10" aria-expanded="false" aria-controls="collapse10">
-                                How does the 30-day free trial work?
+                                ¿Cómo funciona la prueba gratuita de 30 días?
                             </button>
                         </h2>
                         <div id="collapse10" class="accordion-collapse collapse" aria-labelledby="heading10" data-bs-parent="#accordionExample3">
                             <div class="accordion-body">
-                                Go ahead, kick the tires. You have full access to all the features of wizixo Standard for 30 days. After 30 days you will need to provide a credit card to continue using the Standard features.
+                                Adelante, prueba todo. Tienes acceso completo a todas las funciones de wizixo Standard durante 30 días. Después de 30 días, necesitarás proporcionar una tarjeta de crédito para seguir utilizando las funciones estándar.
                             </div>
                         </div>
                     </div>
                     <div class="accordion-item">
                         <h2 class="accordion-header" id="heading11">
                             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse11" aria-expanded="false" aria-controls="collapse11">
-                                What should I do if I miss my delivery?
+                                ¿Qué debo hacer si pierdo mi entrega?
                             </button>
                         </h2>
                         <div id="collapse11" class="accordion-collapse collapse" aria-labelledby="heading11" data-bs-parent="#accordionExample3" style="">
                             <div class="accordion-body">
-                                We make 3 attempts on 3 continuing business days. In case you miss the delivery, give us a call on (251) 854-6308 or contact us at help@wizixo.com
+                                Realizamos 3 intentos en 3 días laborables consecutivos. En caso de que pierdas la entrega, llámanos al (251) 854-6308 o contáctanos en help@wizixo.com
                             </div>
                         </div>
                     </div>
                     <div class="accordion-item">
                         <h2 class="accordion-header" id="heading12">
                             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse12" aria-expanded="false" aria-controls="collapse12">
-                                How can I get a refund in case I cancel my plan?
+                                ¿Cómo puedo obtener un reembolso en caso de cancelar mi plan?
                             </button>
                         </h2>
                         <div id="collapse12" class="accordion-collapse collapse" aria-labelledby="heading12" data-bs-parent="#accordionExample3">
                             <div class="accordion-body">
-                                The refund is provided as per with our cancellation policy. The refund can be credited to the source of payment (Example: debit card, credit card, net banking).
+                                El reembolso se proporciona según nuestra política de cancelación. El reembolso puede acreditarse a la fuente de pago (Ejemplo: tarjeta de débito, tarjeta de crédito, banca por Internet).
                             </div>
                         </div>
                     </div>
@@ -118,13 +118,14 @@
             </div>
             <div class="col-md-4 mb-5">
                 <div class="widget bg-light p-3 border-0 rounded">
-                    <h4>Have any question?</h4>
-                    <p>If you need to send us mail regarding job opportunities, please write to us at <a class="text-primary" href="mailto:contact@example.com">career@knbh.com</a> for more information.</p> 
-                    <p>or call us <a class="display-8 text-dark primary-hover" href="#">(251) 854-6308</a></p>
+                    <h4>¿Tienes alguna pregunta?</h4>
+                    <p>Si necesitas enviarnos un correo electrónico respecto a oportunidades laborales, escríbenos a <a class="text-primary" href="mailto:contact@example.com">career@knbh.com</a> para obtener más información.</p> 
+                    <p>o llámanos al <a class="display-8 text-dark primary-hover" href="#">(251) 854-6308</a></p>
                 </div>
             </div>
         </div>
     </div>
+    
 
     <div class="row mb-4 mt-5">
         <div class="col-12 text-center">
