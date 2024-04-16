@@ -14,23 +14,23 @@
 
     <div class="mb-3">
       <label class="form-label">Nombre taller</label>
-      <input type="text" class="form-control" id="_nt" name="_nt">
+      <input type="text" class="form-control" id="_nt" name="_nt" required>
     </div>
 
    
     <div class="mb-3">
       <label class="form-label">Descripción</label>
-      <input type="text" class="form-control" id="_descT" name="_descT">
+      <input type="text" class="form-control" id="_descT" name="_descT" required>
     </div>
 
     <div class="mb-3">
       <label class="form-label">Contenido</label>
-      <input type="file" class="form-control" id="_contT" name="_contT">
+      <input type="file" class="form-control" id="_contT" name="_contT" required>
     </div>
 
     <div class="mb-3">
       <label class="form-label">Costo</label>
-      <input type="text" class="form-control" id="_costoT" name="_costoT">
+      <input type="text" class="form-control" id="_costoT" name="_costoT" required>
     </div>
 
 </form>
@@ -40,8 +40,8 @@
       
       <!-- INICIO FOOTER MODAL -->
       <div class="modal-footer">
-      <button type="button" class="btn btn-success">Aceptar</button>
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-outline-success" onclick="showSweetAlertTaller()"><i class="bi bi-check-lg"></i> Agregar</button>
+        <button type="button" class="btn btn-outline-warning" data-bs-dismiss="modal"><i class="bi bi-x-lg"></i> Cancelar</button>
        </div>
       <!-- FIN FOOTER MODAL -->
 
@@ -50,3 +50,40 @@
   </div>
 </div>
 </div>
+
+
+{{-- Script para el SweetAlert de AGREGAR TALLER --}}
+<script>
+  function showSweetAlertTaller() {
+      const swalWithBootstrapButtons = Swal.mixin({
+          customClass: {
+              confirmButton: "btn btn-outline-success",
+              cancelButton: "btn btn-outline-danger me-3" 
+          },
+          buttonsStyling: false
+      });
+      swalWithBootstrapButtons.fire({
+          title: "¿Estás seguro?",
+          text: "¡No podrás revertir esto!",
+          icon: "warning",
+          showCancelButton: true,
+          confirmButtonText: "Sí, agregarlo",
+          cancelButtonText: "No, cancelar",
+          reverseButtons: true
+      }).then((result) => {
+          if (result.isConfirmed) {
+              swalWithBootstrapButtons.fire({
+                  title: "¡Agregado!",
+                  text: "El taller fue agregada correctamente.",
+                  icon: "success"
+              });
+          } else if (result.dismiss === Swal.DismissReason.cancel) {
+              swalWithBootstrapButtons.fire({
+                  title: "Cancelado",
+                  text: "El taller no se agregó :)",
+                  icon: "error"
+              });
+          }
+      });
+  }
+</script>

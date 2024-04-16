@@ -62,10 +62,14 @@
             <div class="col-lg-6 mt-3">
                 <h2>Ubicación</h2>
 <<<<<<< HEAD
+<<<<<<< HEAD
                     <br>    
 =======
                     <br>
 >>>>>>> 5187c31 (Mapa modal)
+=======
+                    <br>    
+>>>>>>> 36bbe86 (Cambios)
                 <div class="container d-flex">
                     
                     <div id="map" style="width: 100%; height: 400px;"></div>   
@@ -164,4 +168,20 @@
 
 
 <!-- Llamar a la función initMap cuando el API de Google Maps esté cargado -->
+<<<<<<< HEAD
 <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyALHaUJgSC86kmMnI1vjUIiEc33-DbxvZY&callback=initMap"></script>
+=======
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyALHaUJgSC86kmMnI1vjUIiEc33-DbxvZY&callback=initMap"></script>
+
+{{-- Script para el SweetAlert de AGREGAR PRODUCTO --}}
+<script>
+    function showSweetAlert_Taller() {
+        Swal.fire({
+            position: "center",
+            icon: "success",
+            title: "Taller Agregado Correctamente!",
+            showConfirmButton: false,
+            timer: 1500
+        });
+    }
+</script>

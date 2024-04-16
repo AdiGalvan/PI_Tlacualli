@@ -19,7 +19,7 @@
   
       <div class="mb-3">
         <label class="form-label">Nombre producto</label>
-        <input type="text" class="form-control" id="_nprod" name="_nprod">
+        <input type="text" class="form-control" id="_nprod" name="_nprod" required>
       </div>
       <div class="mb-3">
         <label for="costo" class="form-label">Imágen</label>
@@ -31,23 +31,23 @@
      
       <div class="mb-3">
         <label class="form-label">Proveedor</label>
-        <input type="text" class="form-control" id="_prov" name="_prov">
+        <input type="text" class="form-control" id="_prov" name="_prov" required>
       </div>
   
       <div class="mb-3">
         <label class="form-label">Descripción</label>
-        <input type="text" class="form-control" id="_descP" name="_descP">
+        <input type="text" class="form-control" id="_descP" name="_descP" required>
       </div>
   
   
       <div class="mb-3">
         <label class="form-label">Costo</label>
-        <input type="text" class="form-control" id="_costoP" name="_costoP">
+        <input type="text" class="form-control" id="_costoP" name="_costoP" required>
       </div>
   
       <div class="mb-3">
         <label class="form-label">Stock</label>
-        <input type="number" class="form-control" id="_stock" name="_stock">
+        <input type="number" class="form-control" id="_stock" name="_stock" required>
       </div>
   
   </form>

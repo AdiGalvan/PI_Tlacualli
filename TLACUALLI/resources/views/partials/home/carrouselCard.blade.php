@@ -6,7 +6,7 @@
                 <div class="row">
                     <div class="col-md-3">
                         <div class="card card-metro overflow-hidden" style="width: 18rem; height: 24rem; border-radius: 22px;"> 
-                            <img src="https://jeffries.com.au/wp-content/uploads/2021/07/JEFFRIES-WINGFIELD08-04-21-SOCIAL-25.jpg" class="card-img-top img-fluid h-100 rounded-top" alt=""> 
+                            <img src="https://jeffries.com.au/wp-content/uploads/2021/07/JEFFRIES-WINGFIELD08-04-21-SOCIAL-25.jpg" class="card-img-top img-fluid h-100 " alt=""> 
                             <div class="card-img-overlay d-flex"> 
                                 <div class="card-text mt-auto mb-5">
                                     <h4><p class="text-white stretched-link text-decoration-none ">¿Por qué es tan importante la composta?</p></h4>

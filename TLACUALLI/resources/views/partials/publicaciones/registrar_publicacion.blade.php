@@ -19,12 +19,12 @@
 
     <div class="mb-3">
       <label class="form-label">Título publicación</label>
-      <input type="text" class="form-control" id="_tp" name="_tp">
+      <input type="text" class="form-control" id="_tp" name="_tp" required>
     </div>
 
     <div class="mb-3">
       <label class="form-label">Tipo de publición</label>
-      <select class="form-select" id="_tipo" name="_tipo">
+      <select class="form-select" id="_tipo" name="_tipo" required>
         <option value="">Artículo</option>
         <option value="">Servicio</option>
         <option value="">Anuncio</option>
@@ -33,12 +33,12 @@
 
     <div class="mb-3">
       <label class="form-label">Descripción</label>
-      <input type="text" class="form-control" id="_des" name="_des">
+      <input type="text" class="form-control" id="_des" name="_des" required>
     </div>
 
     <div class="mb-3">
       <label class="form-label">Contenido</label>
-      <input type="file" class="form-control" id="_cont" name="_cont">
+      <input type="file" class="form-control" id="_cont" name="_cont" required>
     </div>
 
     
@@ -50,8 +50,8 @@
       
       <!-- INICIO FOOTER MODAL -->
       <div class="modal-footer">
-      <button type="button" class="btn btn-success">Aceptar</button>
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-outline-success" onclick="showSweetAlertPublicacion()"><i class="bi bi-check-lg"></i> Agregar</button>
+        <button type="button" class="btn btn-outline-warning" data-bs-dismiss="modal"><i class="bi bi-x-lg"></i> Cancelar</button>
        </div>
       <!-- FIN FOOTER MODAL -->
 
@@ -60,3 +60,39 @@
   </div>
 </div>
 </div>
+
+{{-- Script para el SweetAlert de AGREGAR PUBLICACIÓN --}}
+<script>
+  function showSweetAlertPublicacion() {
+      const swalWithBootstrapButtons = Swal.mixin({
+          customClass: {
+              confirmButton: "btn btn-outline-success",
+              cancelButton: "btn btn-outline-danger me-3" 
+          },
+          buttonsStyling: false
+      });
+      swalWithBootstrapButtons.fire({
+          title: "¿Estás seguro?",
+          text: "¡No podrás revertir esto!",
+          icon: "warning",
+          showCancelButton: true,
+          confirmButtonText: "Sí, agregarla",
+          cancelButtonText: "No, cancelar",
+          reverseButtons: true
+      }).then((result) => {
+          if (result.isConfirmed) {
+              swalWithBootstrapButtons.fire({
+                  title: "¡Agregado!",
+                  text: "La publicación fue agregada correctamente.",
+                  icon: "success"
+              });
+          } else if (result.dismiss === Swal.DismissReason.cancel) {
+              swalWithBootstrapButtons.fire({
+                  title: "Cancelado",
+                  text: "La publicación no se agregó :)",
+                  icon: "error"
+              });
+          }
+      });
+  }
+</script>

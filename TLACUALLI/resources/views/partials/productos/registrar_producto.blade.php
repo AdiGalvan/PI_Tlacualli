@@ -19,29 +19,29 @@
 
     <div class="mb-3">
       <label class="form-label">Nombre producto</label>
-      <input type="text" class="form-control" id="_nprod" name="_nprod">
+      <input type="text" class="form-control" id="_nprod" name="_nprod" required>
     </div>
 
    
     <div class="mb-3">
       <label class="form-label">Proveedor</label>
-      <input type="text" class="form-control" id="_prov" name="_prov">
+      <input type="text" class="form-control" id="_prov" name="_prov" required>
     </div>
 
     <div class="mb-3">
       <label class="form-label">Descripción</label>
-      <input type="text" class="form-control" id="_descP" name="_descP">
+      <input type="text" class="form-control" id="_descP" name="_descP" required>
     </div>
 
 
     <div class="mb-3">
       <label class="form-label">Costo</label>
-      <input type="text" class="form-control" id="_costoP" name="_costoP">
+      <input type="text" class="form-control" id="_costoP" name="_costoP" required>
     </div>
 
     <div class="mb-3">
       <label class="form-label">Stock</label>
-      <input type="number" class="form-control" id="_stock" name="_stock">
+      <input type="number" class="form-control" id="_stock" name="_stock" required>
     </div>
 
 </form>
@@ -51,8 +51,8 @@
       
       <!-- INICIO FOOTER MODAL -->
       <div class="modal-footer">
-      <button type="button" class="btn btn-success">Aceptar</button>
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+      <button type="button" class="btn btn-outline-success"  onclick="showSweetAlert1()"><i class="bi bi-bag-check"></i> Agregar</button>
+        <button type="button" class="btn btn-outline-warning" data-bs-dismiss="modal"><i class="bi bi-x-lg"></i> Cancelar</button>
        </div>
       <!-- FIN FOOTER MODAL -->
 
