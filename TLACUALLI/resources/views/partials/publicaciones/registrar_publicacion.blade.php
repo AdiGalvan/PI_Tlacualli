@@ -25,9 +25,10 @@
     <div class="mb-3">
       <label class="form-label">Tipo de publición</label>
       <select class="form-select" id="_tipo" name="_tipo" required>
-        <option value="">Artículo</option>
-        <option value="">Servicio</option>
-        <option value="">Anuncio</option>
+        <option value="">Selecciona una opcion</option>
+        <option value="1">Artículo</option>
+        <option value="2">Servicio</option>
+        <option value="3">Anuncio</option>
       </select>
     </div> 
 
@@ -41,7 +42,10 @@
       <input type="file" class="form-control" id="_cont" name="_cont" required>
     </div>
 
-    
+    <div class="modal-footer">
+      <button type="button" class="btn btn-outline-success" onclick="validarCampos()"><i class="bi bi-check-lg"></i> Agregar</button>
+      <button type="button" class="btn btn-outline-warning" data-bs-dismiss="modal"><i class="bi bi-x-lg"></i> Cancelar</button>
+     </div>
 
 </form>
 
@@ -49,10 +53,7 @@
 <!-- FIN BODY MODAL -->
       
       <!-- INICIO FOOTER MODAL -->
-      <div class="modal-footer">
-        <button type="button" class="btn btn-outline-success" onclick="showSweetAlertPublicacion()"><i class="bi bi-check-lg"></i> Agregar</button>
-        <button type="button" class="btn btn-outline-warning" data-bs-dismiss="modal"><i class="bi bi-x-lg"></i> Cancelar</button>
-       </div>
+      
       <!-- FIN FOOTER MODAL -->
 
 
@@ -94,5 +95,19 @@
               });
           }
       });
+  }
+</script>
+<script>
+  function validarCampos() {
+      var titulo = document.getElementById('_tp').value;
+      var tipo = document.getElementById('_tipo').value;
+      var descripcion = document.getElementById('_des').value;
+      var contenido = document.getElementById('_cont').value;
+
+      if (titulo === "" || tipo === "" || descripcion === "" || contenido === "") {
+          alert("Por favor, complete todos los campos.");
+      } else {
+          showSweetAlertPublicacion();
+      }
   }
 </script>
