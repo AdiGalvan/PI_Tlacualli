@@ -51,7 +51,7 @@
       
       <!-- INICIO FOOTER MODAL -->
       <div class="modal-footer">
-      <button type="button" class="btn btn-outline-success"  onclick="showSweetAlert1()"><i class="bi bi-bag-check"></i> Agregar</button>
+      <button type="button" class="btn btn-outline-success"  onclick="validarCampos()"><i class="bi bi-bag-check"></i> Agregar</button>
         <button type="button" class="btn btn-outline-warning" data-bs-dismiss="modal"><i class="bi bi-x-lg"></i> Cancelar</button>
        </div>
       <!-- FIN FOOTER MODAL -->
@@ -61,3 +61,21 @@
   </div>
 </div>
 </div>
+
+<script>
+  function validarCampos() {
+      var nombreProducto = document.getElementById('_nprod').value;
+      var proveedor = document.getElementById('_prov').value;
+      var descripcionProducto = document.getElementById('_descP').value;
+      var costoProducto = document.getElementById('_costoP').value;
+      var stock = document.getElementById('_stock').value;
+
+      if (nombreProducto === "" || proveedor === "" || descripcionProducto === "" || costoProducto === "" || stock === "") {
+          alert("Por favor, complete todos los campos.");
+      } else {
+          // Si todos los campos están llenos, puedes ejecutar alguna acción aquí
+          // Por ejemplo, mostrar un SweetAlert o enviar el formulario
+          showSweetAlert1();
+      }
+  }
+</script>

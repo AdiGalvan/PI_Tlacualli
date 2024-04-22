@@ -4,7 +4,7 @@
             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{ $i }}" aria-expanded="false" aria-controls="collapse{{ $i }}">
                 <div class="row">
                     <div class="col-1 ">
-                        <img src="{{ asset('images/PDF.png') }}" alt="Imagen {{ $i }}" class="mr-2" style="max-height: 20px;"> 
+                        <img src="{{ asset('images/pdf.png') }}" alt="" class="mr-2" style="max-height: 20px;"> 
                     </div>
                     <div class="col-8">
                         <strong>Titulo</strong>
