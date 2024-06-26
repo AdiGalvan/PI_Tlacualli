@@ -32,6 +32,10 @@
       <label class="form-label">Costo</label>
       <input type="text" class="form-control" id="_costoT" name="_costoT" required>
     </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-outline-success" onclick="validarCampos()"><i class="bi bi-check-lg"></i> Agregar</button>
+      <button type="button" class="btn btn-outline-warning" data-bs-dismiss="modal"><i class="bi bi-x-lg"></i> Cancelar</button>
+     </div>
 
 </form>
 
@@ -39,10 +43,7 @@
 <!-- FIN BODY MODAL -->
       
       <!-- INICIO FOOTER MODAL -->
-      <div class="modal-footer">
-        <button type="button" class="btn btn-outline-success" onclick="showSweetAlertTaller()"><i class="bi bi-check-lg"></i> Agregar</button>
-        <button type="button" class="btn btn-outline-warning" data-bs-dismiss="modal"><i class="bi bi-x-lg"></i> Cancelar</button>
-       </div>
+      
       <!-- FIN FOOTER MODAL -->
 
 
@@ -85,5 +86,19 @@
               });
           }
       });
+  }
+</script>
+<script>
+  function validarCampos() {
+      var nombreTaller = document.getElementById('_nt').value;
+      var descripcionTaller = document.getElementById('_descT').value;
+      var contenidoTaller = document.getElementById('_contT').value;
+      var costoTaller = document.getElementById('_costoT').value;
+
+      if (nombreTaller === "" || descripcionTaller === "" || contenidoTaller === "" || costoTaller === "") {
+          alert("Por favor, complete todos los campos.");
+      } else {
+          showSweetAlertTaller();
+      }
   }
 </script>
