@@ -93,8 +93,6 @@
             <br>
             @include('partials.productos.carrusel')
             <br>
-            @include('partials.publicaciones.carrusel')
-            <br>
             @include('partials.talleres.carrusel')
         </div>
     </div>
