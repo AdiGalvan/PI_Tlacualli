@@ -21,7 +21,10 @@ class ProductoController extends Controller
         return view('producto.index', compact('productos'))
             ->with('i', (request()->input('page', 1) - 1) * $productos->perPage());
     }
-
+    public function Cards()
+    {
+        return view('producto.productosCards');
+    }
     /**
      * Show the form for creating a new resource.
      */
