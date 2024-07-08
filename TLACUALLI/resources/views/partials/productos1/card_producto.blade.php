@@ -1,42 +1,80 @@
-{{-- Cards de Productos --}}
-<div class="card-body">
+@extends('layouts.app')
 
-            <div class="card h-100 shadow">
-                <a href="#" class="img-wrap">
-                    <img src="https://5.imimg.com/data5/SELLER/Default/2021/11/MY/VT/ZQ/125956067/vermi-compost-5kg-pack-1000x1000.jpg" alt="Producto" class="card-img-top" style="height: 200px; object-fit: cover;">
-                </a>
-                <div class="card-body">
-                    <h5 class="card-title text-center">Bio Abono - Vermin</h5>
-                    <div class="card-body d-flex justify-content-between align-items-center">
-                        <p class="card-text">$249.99</p>
-                        <a class="btn btn-light" href="#" data-bs-toggle="tooltip" data-bs-html="true" aria-label="Compare" onclick="toggleLike(this)">
-                            <i id="heart-icon" class="bi bi-heart"></i>
-                        </a>                                                               
+@section('template_title')
+    {{ $producto->nombre ?? __('Show') . " " . __('Producto') }}
+@endsection
+
+@section('content')
+    <section class="content container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header" style="display: flex; justify-content: space-between; align-items: center;">
+                        <div class="float-left">
+                            <span class="card-title">{{ __('Show') }} Producto</span>
+                        </div>
+                        <div class="float-right">
+                            <a class="btn btn-primary btn-sm" href="{{ route('productos.index') }}"> {{ __('Back') }}</a>
+                        </div>
                     </div>
-                   <div class="mb-3 px-3">
-                        <small class="text-warning">
-                            <i class="bi bi-star-fill"></i>
-                            <i class="bi bi-star-fill"></i>
-                            <i class="bi bi-star-fill"></i>
-                            <i class="bi bi-star-fill"></i>
-                            <i class="bi bi-star-fill"></i>
-                            <i class="bi bi-star-half"></i>
-                        </small>
-                        <span>
-                            <small>4.5</small>
-                        </span>
-                    </div> 
-                    <hr>
-                    <button type="button" class="btn btn-outline-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#productosModal"><i class="bi bi-info-circle"></i> Más información</button>
+
+                    <div class="card-body bg-white">
+                        <div class="card h-100 shadow">
+                            <a href="#" class="img-wrap">
+                                <img src="https://5.imimg.com/data5/SELLER/Default/2021/11/MY/VT/ZQ/125956067/vermi-compost-5kg-pack-1000x1000.jpg" alt="Producto" class="card-img-top" style="height: 200px; object-fit: cover;">
+                            </a>
+                            <div class="card-body">
+                                <h5 class="card-title text-center">{{ $producto->nombre }}</h5>
+                                <div class="card-body d-flex justify-content-between align-items-center">
+                                    <p class="card-text">${{ $producto->costo }}</p>
+                                    <a class="btn btn-light" href="#" data-bs-toggle="tooltip" data-bs-html="true" aria-label="Compare" onclick="toggleLike(this)">
+                                        <i id="heart-icon" class="bi bi-heart"></i>
+                                    </a>                                                               
+                                </div>
+                                <div class="mb-3 px-3">
+                                    <small class="text-warning">
+                                        <i class="bi bi-star-fill"></i>
+                                        <i class="bi bi-star-fill"></i>
+                                        <i class="bi bi-star-fill"></i>
+                                        <i class="bi bi-star-fill"></i>
+                                        <i class="bi bi-star-fill"></i>
+                                        <i class="bi bi-star-half"></i>
+                                    </small>
+                                    <span>
+                                        <small>4.5</small>
+                                    </span>
+                                </div>
+                                 
+                                <hr>
+                                {{-- <button type="button" class="btn btn-outline-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#productosModal"><i class="bi bi-info-circle"></i> Más información</button> --}}
+                                <form action="{{ route('productos.destroy',$producto->id) }}" method="POST">
+                                    <a class="btn btn-sm btn-primary " href="{{ route('productos.show',$producto->id) }}"><i class="bi bi-info-circle"></i> Más información</a>
+                                    <a class="btn btn-sm btn-outline-warning" href="{{ route('productos.edit',$producto->id) }}"><i class="bi bi-pencil-square"></i></a>
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-danger btn-sm"><i class="bi bi-trash3"></i></button>
+                                </form>
+                            </div>
+                        </div>
+                    
+                        </div>
+                        <div class="form-group mb-2 mb20">
+                            <strong>Stock:</strong>
+                            {{ $producto->stock }}
+                        </div>
+                        <div class="form-group mb-2 mb20">
+                            <strong>Estatus:</strong>
+                            {{ $producto->estatus }}
+                        </div>
+                    </div>
                 </div>
             </div>
+        </div>
+    </section>
+@endsection
 
-</div>
 
-
-
-
-{{-- Modal para Info de Producto --}}
+{{-- 
 <div class="modal fade" id="productosModal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-xl">
         <div class="modal-content">
@@ -50,7 +88,6 @@
                     </button>
                 </div>
             <div class="row">
-                    {{-- CARROUSEL DE MODAL DE PRODUCTOS --}}
                     <div class="col-lg-6 mt-3 justify-content-end ">
                         <div class="container d-flex">
                             <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel" style="max-width: 600px;">
@@ -77,7 +114,6 @@
                         <div class="ps-lg-8 mt-6 mt-lg-0">
                             <h2 class="mb-1 h1">Bio Abono - Vermin</h2>
                             <div class="mb-4">
-                                {{-- ESTRELLAS --}}
                                 <small class="text-warning">
                                     <i class="bi bi-star-fill"></i>
                                     <i class="bi bi-star-fill"></i>
@@ -93,7 +129,6 @@
                                 <span class="fw-bold text-dark">$249.99</span>
                                 </div>
                                 <br>
-                                {{-- DESCRIPCIÓN DEL PRODUCTO --}}
                                 <p>Abono Vermicompost es rico en NPK (nitrógeno 23%, potasio 1.85 - 2.25 y fósforo 1.55 - 2.25%) y micronutrientes, microbios beneficiosos para el suelo.</p>
                                 <hr class="my-6">
                                 <div class="mb-4">
@@ -101,7 +136,6 @@
                                 <button type="button" class="btn btn-outline-secondary">500g</button>
                                 <button type="button" class="btn btn-outline-secondary">1kg</button>
                                 </div>
-                                {{-- AGREGAR MÁS PRODUCTOS --}}
                                 <div>
                                     <div class="input-group input-spinner">
                                         <input type="button" value="-" class="button-minus btn btn-sm" data-field="quantity">
@@ -148,4 +182,4 @@
         </div>
     </div>
 </div>
-
+ --}}

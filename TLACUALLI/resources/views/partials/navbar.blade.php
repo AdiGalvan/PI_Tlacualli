@@ -21,7 +21,7 @@
             <a class="nav-link fs-3 disabled" aria-current="page" href="#">Estadísticas</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link fs-3 {{request()->routeIs('tienda')?'disabled ':'w_o'}}" aria-current="page" href="/tienda">Productos</a>
+            <a class="nav-link fs-3 {{request()->routeIs('productos')?'disabled ':'w_o'}}" aria-current="page" href="/productos">Productos</a>
           </li>
         </ul>
         <div class="btn-group custom-icons">
