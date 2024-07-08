@@ -10,7 +10,8 @@
 
 <!-- INICIO BODY MODAL -->
       <div class="modal-body">
-        <form method="" action="">
+        <form method="POST" action="/registroTaller" id=registroTaller enctype="multipart/form-data">
+        @csrf
 
     <div class="mb-3">
       <label class="form-label">Nombre taller</label>
@@ -78,6 +79,7 @@
                   text: "El taller fue agregada correctamente.",
                   icon: "success"
               });
+              document.getElementById('registroTaller').submit();
           } else if (result.dismiss === Swal.DismissReason.cancel) {
               swalWithBootstrapButtons.fire({
                   title: "Cancelado",
@@ -97,6 +99,7 @@
 
       if (nombreTaller === "" || descripcionTaller === "" || contenidoTaller === "" || costoTaller === "") {
           alert("Por favor, complete todos los campos.");
+          event.preventDefault();
       } else {
           showSweetAlertTaller();
       }

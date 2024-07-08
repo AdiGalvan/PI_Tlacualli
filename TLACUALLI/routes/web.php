@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\show_views;
 
+use App\Http\Controllers\PublicacionesController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -27,3 +29,8 @@ Route::get('/registro', function () {
 Route::get('/maps', function () {
     return view('maps');
 });
+
+
+//Publicaciones
+//Creacion de taller
+Route::post('/registroTaller', [PublicacionesController::class, 'store'])->name('tallerStore');
