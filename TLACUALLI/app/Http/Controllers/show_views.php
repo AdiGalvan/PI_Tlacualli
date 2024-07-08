@@ -23,4 +23,8 @@ class show_views extends Controller
         return view('talleres');
     }
 
+    public function servicios(){
+        return view('servicios');
+    }
+
 }
