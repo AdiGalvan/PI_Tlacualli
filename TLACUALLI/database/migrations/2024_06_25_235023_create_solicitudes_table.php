@@ -16,7 +16,7 @@ class CreateSolicitudesTable extends Migration
             $table->foreignId('id_publicacion')->constrained('publicaciones');
             $table->foreignId('id_tipo')->constrained('tipos_solicitudes');
             $table->date('fecha');
-            $table->boolean('estatus');
+            $table->boolean('estatus') -> default(1);
             $table->timestamps();
         });
     }
