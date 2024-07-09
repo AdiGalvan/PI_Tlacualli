@@ -68,7 +68,6 @@
         
                                                     <td>
                                                         <form action="{{ route('productos.destroy',$producto->id) }}" method="POST">
-                                                            <a class="btn btn-sm btn-outline-secondary " href="{{ route('productos.show',$producto->id) }}"><i class="bi bi-info-circle"></i> Más información</a>
                                                             <a class="btn btn-sm btn-outline-warning" href="{{ route('productos.edit',$producto->id) }}"><i class="bi bi-pencil-square"></i></a>
                                                             @csrf
                                                             @method('DELETE')

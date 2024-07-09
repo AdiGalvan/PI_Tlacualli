@@ -28,8 +28,10 @@ Route::get('/maps', function () {
     return view('maps');
 });
 
-Route::get('/productosCards', [ProductoController::class, 'Cards']);
+
+Route::get('/productosCards', [ProductoController::class, 'Cards'])->name('productos.cards');
+/* Route::get('/productosCards', [ProductoController::class, 'Cards']); */
 
 Route::resource('productos', ProductoController::class);
 
-Route::get('/productos/{id}', [ProductoController::class, 'show']);
+/* Route::get('/productos/show', [ProductoController::class, 'show']); */
