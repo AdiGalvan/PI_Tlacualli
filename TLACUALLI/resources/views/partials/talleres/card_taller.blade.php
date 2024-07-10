@@ -130,6 +130,8 @@
 </div>
 </div>
 </div>
+
+
 <!-- Script para inicializar el mapa -->
 <script>
     function initMap() {

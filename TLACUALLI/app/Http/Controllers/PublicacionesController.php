@@ -22,6 +22,16 @@ class PublicacionesController extends Controller
         return view('talleres', compact('publicaciones'));
     }
 
+    public function index_mis_talleres()
+    {
+        //Metodo temporal ya que no hay de momento roles o login
+        //Obtener todas las publicaciones de tipo taller
+        $publicaciones = Publicaciones::where('id_tipo', 2)->with('usuario')->get();
+        
+        //Envia talleres a la vista de talleres
+        return view('mis_talleres', compact('publicaciones'));
+    }
+
     /**
      * Show the form for creating a new resource.
      */

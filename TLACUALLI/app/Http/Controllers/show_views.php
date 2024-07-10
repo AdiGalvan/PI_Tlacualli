@@ -23,4 +23,8 @@ class show_views extends Controller
         return view('talleres');
     }
 
+    public function mis_talleres(){
+        return view('mis_talleres');
+    }
+
 }
