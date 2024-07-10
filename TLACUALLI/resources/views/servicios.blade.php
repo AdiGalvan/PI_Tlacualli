@@ -33,10 +33,9 @@
 
         <div class="mb-3">
           <label class="form-label">Nombre</label>
-         <!--  <input type="text" class="form-control" id="nombre" name="nombre"> -->
-         <select class="form-select" name="nombre" id="nombre" value="{{old('nombre')}}">
+          <select class="form-select" name="nombre" id="nombre">
             @foreach ($opciones as $id => $nombre)
-                <option value="{{ $id }}">{{ $nombre }}</option>
+                <option value="{{ $id }}" {{ old('nombre') == $id ? 'selected' : '' }}>{{ $nombre }}</option>
             @endforeach
         </select>
         <p class= "text-danger fst-italic">{{$errors->first('nombre')}}</p>
@@ -44,9 +43,9 @@
 
         <div class="mb-3">
           <label class="form-label">Proveedor</label>
-          <select class="form-select" name="proveedor" id="proveedor" value="{{old('proveedor')}}">
+          <select class="form-select" name="proveedor" id="proveedor">
             @foreach ($opciones as $id => $nombre)
-                <option value="{{ $id }}">{{ $nombre }}</option>
+                <option value="{{ $id }}" {{ old('proveedor') == $id ? 'selected' : '' }}>{{ $nombre }}</option>
             @endforeach
         </select>
         <p class= "text-danger fst-italic">{{$errors->first('proveedor')}}</p>
@@ -55,27 +54,26 @@
 
         <div class="mb-3">
           <label class="form-label">Descripción</label>
-          <textarea class="form-control" id="descripcion" name="descripcion" rows="2" value="{{old('descripcion')}}"></textarea>
+          <textarea class="form-control" id="descripcion" name="descripcion" rows="2">{{ old('descripcion') }}</textarea>
           <p class= "text-danger fst-italic">{{$errors->first('descripcion')}}</p>
         </div>
 
         
         <div class="mb-3">
           <label class="form-label">Tipo de servicio</label>
-          <select class="form-select" id="t_servicio" name="t_servicio" value="{{old('t_servicio')}}">
+          <select class="form-select" id="t_servicio" name="t_servicio">
            @foreach ($t_servicio as $id => $nombre)
-           <option value="{{ $id }}">{{$nombre}}</option>
+           <option value="{{ $id }}" {{ old('t_servicio') == $id ? 'selected' : '' }}>{{$nombre}}</option>
            @endforeach
           </select>
           <p class= "text-danger fst-italic">{{$errors->first('t_servicio')}}</p>
         </div>
        
         <div class="mb-3">
-          <label class="form-label">Fecha que requiere el servicio </label>
-          <input type="date" class="form-control" id="fecha" name="fecha" value="{{old('fecha')}}">
+          <label class="form-label">Fecha que requiere el servicio</label>
+          <input type="date" class="form-control" id="fecha" name="fecha" value="{{ old('fecha') }}">
           <p class= "text-danger fst-italic">{{$errors->first('fecha')}}</p>
         </div>
-
       
        
         <div class="d-flex justify-content-end mt-3">
