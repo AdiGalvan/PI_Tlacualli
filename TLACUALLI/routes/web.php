@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\LoginController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\show_views;
 
@@ -15,15 +16,17 @@ use App\Http\Controllers\show_views;
 */
 
 
-Route::get('/',[show_views::class,'home'])->name('inicio');
-Route::get('/tienda',[show_views::class,'productos'])->name('tienda');
-Route::get('/publicaciones',[show_views::class,'publicaciones'])->name('publicaciones');
-Route::get('/talleres',[show_views::class,'talleres'])->name('talleres');
+Route::get('/', [show_views::class, 'home'])->name('inicio');
+Route::get('/tienda', [show_views::class, 'productos'])->name('tienda');
+Route::get('/publicaciones', [show_views::class, 'publicaciones'])->name('publicaciones');
+Route::get('/talleres', [show_views::class, 'talleres'])->name('talleres');
 
-Route::get('/registro', function () {
-    return view('registro_usuario');
-});
 
 Route::get('/maps', function () {
     return view('maps');
 });
+
+Route::get('/registrar', [LoginController::class, 'index']);
+Route::post('/registrar', [LoginController::class, 'create']);
+Route::post('/login', [LoginController::class, 'login']);
+Route::post('/logout', [LoginController::class, 'logout']);

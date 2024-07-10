@@ -3,24 +3,29 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use DB;
 
 class show_views extends Controller
 {
 
-    public function home(){
+    public function home()
+    {
+
         return view('home');
     }
 
-    public function productos(){
+    public function productos()
+    {
         return view('productos');
     }
 
-    public function publicaciones(){
+    public function publicaciones()
+    {
         return view('publicaciones');
     }
 
-    public function talleres(){
+    public function talleres()
+    {
         return view('talleres');
     }
-
 }

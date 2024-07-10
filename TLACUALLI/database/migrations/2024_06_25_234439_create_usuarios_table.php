@@ -26,7 +26,7 @@ class CreateUsuariosTable extends Migration
             $table->string('slogan', 255)->nullable();
             $table->string('avatar', 255)->nullable();
             $table->foreignId('id_rol')->nullable()->constrained('roles');
-            $table->boolean('estatus');
+            $table->boolean('estatus')->default(1);
             $table->timestamps();
         });
     }

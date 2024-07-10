@@ -46,3 +46,43 @@
         });
     }
 </script>
+
+@if(session()->has('Confirmacion_login'))
+<script>
+    Swal.fire(
+        'Todo correcto',
+        '{{session('Confirmacion_login')}}',
+        'success'
+    )
+</script>
+@endif
+
+@if(session()->has('Confirmacion_logout'))
+<script>
+    Swal.fire(
+        'Todo correcto',
+        '{{session('Confirmacion_logout')}}',
+        'success'
+    )
+</script>
+@endif
+
+@if(session()->has('Confirmacion_registro'))
+<script>
+    Swal.fire(
+        'Todo correcto',
+        '{{session('Confirmacion_registro')}}',
+        'success'
+    )
+</script>
+@endif
+
+@if(session()->has('Error_login'))
+<script>
+    Swal.fire(
+        'Error',
+        '{{ session('Error_login') }}',
+        'error'
+    )
+</script>
+@endif
