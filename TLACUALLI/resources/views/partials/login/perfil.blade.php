@@ -1,5 +1,5 @@
 @extends('layouts.template')
-@section('titulo','Nuevo usuario')
+@section('titulo','Perfil de Usuario')
 @section('contenido')
 
 <div class="container-sm mt-5">

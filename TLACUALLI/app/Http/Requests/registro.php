@@ -21,7 +21,7 @@ class registro extends FormRequest
      */
     public function rules(): array
     {
-        return [
+        $rules = [
             '_nu' => 'required|max:250',
             '_rol' => 'required',
             '_email' => 'required|email:rfc,dns|max:250',
@@ -34,7 +34,23 @@ class registro extends FormRequest
             '_sx' => 'required',
             '_rfc' => 'max:13',
         ];
+        $this->addConditionalAddressRules($rules, '_mun', '_edo', '_col', '_cp', '_ca', '_ne', '_ni');
+        $this->addConditionalAddressRules($rules, '_mun_fiscal', '_edo_fiscal', '_col_fiscal', '_cp_fiscal', '_ca_fiscal', '_ne_fiscal', '_ni_fiscal');
+        return $rules;
     }
+
+    protected function addConditionalAddressRules(&$rules, $municipio, $estado, $colonia, $cp, $calle, $numExt, $numInt)
+    {
+        if ($this->filled($municipio) || $this->filled($estado) || $this->filled($colonia) || $this->filled($cp) || $this->filled($calle) || $this->filled($numExt) || $this->filled($numInt)) {
+            $rules[$municipio] = 'required';
+            $rules[$estado] = 'required';
+            $rules[$colonia] = 'required';
+            $rules[$cp] = 'required';
+            $rules[$calle] = 'required';
+            $rules[$numExt] = 'required';
+        }
+    }
+
     public function attributes(): array
     {
         return [
