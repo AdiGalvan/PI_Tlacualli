@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Models\Publicaciones;
 use App\Models\Usuarios;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 use Carbon\Carbon;
 
@@ -24,7 +25,7 @@ class PublicacionesController extends Controller
 
     public function index_mis_talleres()
     {
-        //Metodo temporal ya que no hay de momento roles o login
+        //Metodo temporal ya que no hay de momento roles o login, utilizado para mostrar los talleres del usuario
         //Obtener todas las publicaciones de tipo taller
         $publicaciones = Publicaciones::where('id_tipo', 2)->with('usuario')->get();
         
@@ -113,9 +114,18 @@ class PublicacionesController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function physicalDestroy(string $id)
     {
         //
+        $publicacion = Publicaciones::findOrFail($id);
+        if (Storage::exists('/public' . $publicacion->contenido)) {
+            Storage::delete('/public' . $publicacion->contenido);
+        }
+
+        //Eliminar publicación
+        $publicacion->delete();
+
+        return redirect()->back();
     }
 
     // Definición de la relación con el modelo User

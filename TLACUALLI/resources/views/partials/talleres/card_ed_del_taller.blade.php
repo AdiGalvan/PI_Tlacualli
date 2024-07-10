@@ -59,7 +59,7 @@
             </div>
             <div class="row">
                 <div class="col-lg-6 mt-3">
-                    <h2>Ubicación Modal dife</h2>
+                    <h2>Ubicación</h2>
                         <br>    
                     <div class="container d-flex">
                         
@@ -117,18 +117,35 @@
                         </div>
                     </div>
     
-                    <div class="d-flex justify-content-between align-items-center mt-4">
-                        <div class="col-lg-5 col-md-5 col-5 d-grid">
-                            <button type="button" class="btn btn-outline-danger" onclick="eliminarTaller({{ $publicacion->id }})">
-                                <i class="bi bi-trash"></i> Eliminar
-                            </button>
+                    <div class="container mt-4">
+                        <div class="row">
+                            <div class="col-lg-6 col-md-6 col-6">
+                                <!-- Botón "Actualizar información" en una línea separada -->
+                                <button type="button" class="btn btn-outline-success btn-lg btn-block mb-3" data-bs-toggle="modal" data-bs-target="#actualizar_taller">
+                                    <i class="bi bi-pencil-square"></i> Actualizar información
+                                </button>
+                            </div>
                         </div>
-                        <div class="col-lg-5 col-md-5 col-5 d-grid">
-                            <button type="button" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#actualizar_taller">
-                                <i class="bi bi-pencil-square"></i> Actualizar información
-                            </button>
+                        <div class="row">
+                            <div class="col-lg-3 col-md-3 col-3">
+                                <!-- Botón "Eliminar" -->
+                                <form action="{{ route('publicacionesDestroy', $publicacion->id) }}" method="POST" onsubmit="return confirm('¿Estás seguro de que deseas eliminar esta publicación?');">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-outline-danger btn-lg btn-block">
+                                        <i class="bi bi-trash"></i> Eliminar
+                                    </button>
+                                </form>
+                            </div>
+                            <div class="col-lg-3 col-md-3 col-3">
+                                <!-- Botón "Desactivar" -->
+                                <button type="button" class="btn btn-outline-primary btn-lg btn-block" onclick="desactivarTaller({{ $publicacion->id }})">
+                                    <i class="bi bi-x-circle"></i> Desactivar
+                                </button>
+                            </div>
                         </div>
                     </div>
+                    
                 </div>
             </div>
         </div>
@@ -178,3 +195,23 @@
     }
 </script>
 
+<script>
+  // Función para cerrar el modal y eliminar el fondo gris
+  function closeModalAndRemoveBackdrop() {
+    var modalElement = document.getElementById('actualizar_taller');
+    var modalBackdrop = document.querySelector('.modal-backdrop');
+    
+    if (modalElement) {
+      var modalInstance = bootstrap.Modal.getInstance(modalElement);
+      if (modalInstance) {
+        modalInstance.hide();
+      }
+    }
+    
+    document.body.classList.remove('modal-open'); // Elimina la clase modal-open del body
+    
+    if (modalBackdrop) {
+      modalBackdrop.remove(); // Elimina el elemento .modal-backdrop
+    }
+  }
+</script>

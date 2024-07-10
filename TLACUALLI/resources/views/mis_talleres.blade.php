@@ -22,7 +22,7 @@
             <div class="col-5">
             </div>
             <div class="col-2 justify-content-end">
-                <button type="button" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#registrar_taller"><i class="bi bi-file-plus"></i> Agregar taller</button> 
+                <button type="button" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#registrar_taller" ><i class="bi bi-file-plus"></i> Agregar taller</button> 
             </div>
         </div>
         
@@ -76,3 +76,4 @@
 
 @include('partials.talleres.registrar_taller')
 @endsection
+

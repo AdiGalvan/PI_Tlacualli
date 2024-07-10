@@ -35,7 +35,7 @@
     </div>
     <div class="modal-footer">
       <button type="button" class="btn btn-outline-success" onclick="validarCampos()"><i class="bi bi-check-lg"></i> Agregar</button>
-      <button type="button" class="btn btn-outline-warning" data-bs-dismiss="modal"><i class="bi bi-x-lg"></i> Cancelar</button>
+      <button type="button" class="btn btn-outline-warning" data-bs-dismiss="modal" ><i class="bi bi-x-lg"></i> Cancelar</button>
      </div>
 
 </form>
@@ -59,38 +59,43 @@
     <div class="modal-content">
       <div class="modal-header">
         <h1 class="modal-title fs-5" id="exampleModalLabel">Actualización de taller</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onclick="closeModal()"></button>
       </div>
 
-<!-- INICIO BODY MODAL -->
+      <!-- INICIO BODY MODAL -->
       <div class="modal-body">
-        <form method="POST" action="/registroTaller" id=registroTaller enctype="multipart/form-data">
-        @csrf
+        <form method="POST" action="/actualizarTaller" id="actualizarTaller" enctype="multipart/form-data">
+          @csrf
 
-    <div class="mb-3">
-      <label class="form-label">Nombre taller</label>
-      <input type="text" class="form-control" id="_nt" name="_nt" required placeholder="Ingrese el nombre de su taller">
-    </div>
+          <div class="mb-3">
+            <label class="form-label">Nombre taller</label>
+            <input type="text" class="form-control" id="_nt" name="_nt" required placeholder="Ingrese el nombre de su taller">
+          </div>
 
-   
-    <div class="mb-3">
-      <label class="form-label">Descripción</label>
-      <input type="text" class="form-control" id="_descT" name="_descT" required placeholder="Ingrese la descripción de su taller">
-    </div>
+          <div class="mb-3">
+            <label class="form-label">Descripción</label>
+            <input type="text" class="form-control" id="_descT" name="_descT" required placeholder="Ingrese la descripción de su taller">
+          </div>
 
-    <div class="mb-3">
-      <label class="form-label">Contenido (Imagen JPG o PNG)</label>
-      <input type="file" class="form-control" id="_contT" name="_contT" accept="image/jpeg, image/png" required>
-    </div>
+          <div class="mb-3">
+            <label class="form-label">Contenido (Imagen JPG o PNG)</label>
+            <input type="file" class="form-control" id="_contT" name="_contT" accept="image/jpeg, image/png" required>
+          </div>
 
-    <div class="mb-3">
-      <label class="form-label">Costo</label>
-      <input type="number" class="form-control" id="_costoT" name="_costoT" required placeholder="Ingrese el costo de su taller (0 en caso de ser gratuito)">
+          <div class="mb-3">
+            <label class="form-label">Costo</label>
+            <input type="number" class="form-control" id="_costoT" name="_costoT" required placeholder="Ingrese el costo de su taller (0 en caso de ser gratuito)">
+          </div>
+
+          <div class="modal-footer">
+            <button type="button" class="btn btn-outline-success" onclick="validarCampos()"><i class="bi bi-check-lg"></i> Agregar</button>
+            <button type="button" class="btn btn-outline-warning" data-bs-dismiss="modal" ><i class="bi bi-x-lg"></i> Cancelar</button>
+          </div>
+        </form>
+      </div>
     </div>
-    <div class="modal-footer">
-      <button type="button" class="btn btn-outline-success" onclick="validarCampos()"><i class="bi bi-check-lg"></i> Agregar</button>
-      <button type="button" class="btn btn-outline-warning" data-bs-dismiss="modal"><i class="bi bi-x-lg"></i> Cancelar</button>
-     </div>
+  </div>
+</div>
 
 </form>
 
@@ -145,17 +150,17 @@
   }
 </script>
 <script>
-  function validarCampos() {
-      var nombreTaller = document.getElementById('_nt').value;
-      var descripcionTaller = document.getElementById('_descT').value;
-      var contenidoTaller = document.getElementById('_contT').value;
-      var costoTaller = document.getElementById('_costoT').value;
-
-      if (nombreTaller === "" || descripcionTaller === "" || contenidoTaller === "" || costoTaller === "") {
-          alert("Por favor, complete todos los campos.");
-          event.preventDefault();
-      } else {
-          showSweetAlertTaller();
-      }
-  }
+  document.addEventListener('DOMContentLoaded', function() {
+    var modals = document.querySelectorAll('.modal');
+    modals.forEach(function(modal) {
+        modal.addEventListener('hidden.bs.modal', function() {
+            if (document.querySelectorAll('.modal.show').length === 0) {
+                document.body.classList.remove('modal-open');
+                document.querySelectorAll('.modal-backdrop').forEach(function(backdrop) {
+                    backdrop.remove();
+                });
+            }
+        });
+    });
+});
 </script>

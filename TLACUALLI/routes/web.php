@@ -36,3 +36,6 @@ Route::get('/maps', function () {
 //Publicaciones
 //Creacion de taller
 Route::post('/registroTaller', [PublicacionesController::class, 'store'])->name('tallerStore');
+
+//Eliminación de publicaciones
+Route::delete('/publicaciones/{id}', [PublicacionesController::class, 'physicalDestroy'])->name('publicacionesDestroy');
