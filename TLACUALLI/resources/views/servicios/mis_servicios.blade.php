@@ -5,16 +5,17 @@
 <p></p>
 <center><h1>Mis servicios</h1></center>
 <p></p>
-<div class="container mt-3">
+<div class="container mt-3 ">
         <form class="d-flex" role="search">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+        <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Buscar">
         <button class="btn btn-success" type="submit">Buscar</button>
       </form>
 </div>
 
 <div class="container mt-4 d-flex justify-content-end">
-               <button class="btn btn-warning" type="submit">Nueva solicitud</button>
+    <a href="{{ route('servicios.create') }}" class="btn btn-warning">Nueva solicitud</a>
 </div>
+
 
     <body>
       <div class="container mt-3">

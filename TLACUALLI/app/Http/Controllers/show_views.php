@@ -24,7 +24,7 @@ class show_views extends Controller
     }
 
     public function servicios(){
-        return view('servicios.servicios');
+        return view('servicios.mis_servicios');
     }
 
 }

@@ -78,7 +78,7 @@
        
         <div class="d-flex justify-content-end mt-3">
           <button type="submit" class="btn btn-success me-2">Aceptar</button>
-          <a href="/" class="btn btn-secondary">Cancelar</a>
+          <a href="/mis_servicios" class="btn btn-secondary">Cancelar</a>
         </div>
       </form>
       <!-- FIN FORM -->
