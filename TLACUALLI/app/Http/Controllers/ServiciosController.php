@@ -28,7 +28,7 @@ class ServiciosController extends Controller
        
 
     // Tipo de publicación
-    $t_publicacion = DB::table('tipos_publicaciones')->pluck('nombre', 'id');
+    $t_servicio = DB::table('publicaciones')->pluck('descripcion', 'id');
     
 
 
@@ -36,7 +36,7 @@ class ServiciosController extends Controller
    $t_solicitud = DB::table('tipos_solicitudes')->pluck('nombre', 'id');
 
 
-   return view('servicios', compact('opciones','t_publicacion', 't_solicitud'));
+   return view('servicios', compact('opciones','t_servicio', 't_solicitud'));
     }
 
     /**
@@ -48,13 +48,13 @@ class ServiciosController extends Controller
             "id_cliente" => $request->input('nombre'),
             "id_proveedor" => $request->input('proveedor'),
             "descripcion" => $request->input('descripcion'),
-            "id_publicacion" => 1, //quitar del formulario
-            "id_tipo" => 2,  //quitar del formulario y ver como enviarlo automáticamente
+            "id_publicacion" => $request->input('t_servicio'),
+            "id_tipo" => 2,  
             "fecha" => $request->input('fecha'),
             "created_at" => Carbon::now(),
             "updated_at" => Carbon::now(),
         ]);
-    return redirect('/servicios')->with('confirmacion','Tu solicitud llegó al controlador');
+    return redirect('/servicios')->with('confirmacion','Tu solicitud se creó existosamente');
     }
 
     /**

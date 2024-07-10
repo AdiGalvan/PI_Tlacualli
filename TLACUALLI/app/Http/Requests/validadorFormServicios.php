@@ -23,7 +23,6 @@ class validadorFormServicios extends FormRequest
     {
         return [
             //reglas para el formulario de servicios
-          
             'descripcion' => 'required | max: 255',
             'fecha' => 'required|date'
         ];
