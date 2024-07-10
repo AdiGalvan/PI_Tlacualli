@@ -36,11 +36,11 @@
           <tbody>
             @foreach($solicitudes as $solicitud)
             <tr>
-                <td>{{ $solicitud->id }}</td>
-                <td>{{ $solicitud->id_cliente }}</td>
-                <td>{{ $solicitud->id_proveedor }}</td>
+            <td>{{ $solicitud->id }}</td>
+                <td>{{ $solicitud->cliente }}</td>
+                <td>{{ $solicitud->proveedor }}</td>
                 <td>{{ $solicitud->descripcion }}</td>
-                <td>{{ $solicitud->id_publicacion }}</td>
+                <td>{{ $solicitud->tipo_servicio }}</td>
                 <td>{{ $solicitud->fecha }}</td>
                 <td>
                     <button class="btn btn-primary btn-sm">Editar</button>

@@ -37,7 +37,3 @@ Route::get('/maps', function () {
     return view('maps');
 });
 
-
-/*Route::get('/mis_servicios', function () {
-    return view('servicios.mis_servicios');
-});*/

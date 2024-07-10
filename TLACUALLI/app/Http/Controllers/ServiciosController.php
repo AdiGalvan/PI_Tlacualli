@@ -14,11 +14,22 @@ class ServiciosController extends Controller
      * Display a listing of the resource.
      */
     public function index()
-    {
-        $solicitudes = DB::table('solicitudes')->get(); // Obtener todas las solicitudes de la base de datos
-    
-        return view('servicios.mis_servicios', compact('solicitudes'));
-    }
+{
+    $solicitudes = DB::table('solicitudes')
+                    ->join('usuarios as clientes', 'solicitudes.id_cliente', '=', 'clientes.id')
+                    ->join('usuarios as proveedores', 'solicitudes.id_proveedor', '=', 'proveedores.id')
+                    ->join('publicaciones', 'solicitudes.id_publicacion', '=', 'publicaciones.id')
+                    ->select('solicitudes.id', 
+                             'clientes.nombre_usuario as cliente', 
+                             'proveedores.nombre_usuario as proveedor', 
+                             'solicitudes.descripcion', 
+                             'publicaciones.descripcion as tipo_servicio', 
+                             'solicitudes.fecha')
+                    ->get();
+
+    return view('servicios.mis_servicios', compact('solicitudes'));
+}
+
     
 
     /**
