@@ -56,48 +56,45 @@
 <!--INICIO DE MODAL DE ACTUALIZACION-->
 <div class="modal fade" id="actualizar_taller" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalLabel">Actualización de taller</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onclick="closeModal()"></button>
+      <div class="modal-content">
+          <div class="modal-header">
+              <h1 class="modal-title fs-5" id="exampleModalLabel">Actualización de taller</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+              <form method="POST" action="{{ route('actualizarTaller', $publicacion->id) }}" enctype="multipart/form-data">
+                  @csrf
+                  @method('PUT')
+
+                  <div class="mb-3">
+                      <label class="form-label">Nombre taller</label>
+                      <input type="text" class="form-control" id="_nt" name="_nt" required value="{{ $publicacion->nombre }}">
+                  </div>
+
+                  <div class="mb-3">
+                      <label class="form-label">Descripción</label>
+                      <input type="text" class="form-control" id="_descT" name="_descT" required value="{{ $publicacion->descripcion }}">
+                  </div>
+
+                  <div class="mb-3">
+                      <label class="form-label">Contenido (Imagen JPG o PNG)</label>
+                      <input type="file" class="form-control" id="_contT" name="_contT" accept="image/jpeg, image/png">
+                  </div>
+
+                  <div class="mb-3">
+                      <label class="form-label">Costo</label>
+                      <input type="number" class="form-control" id="_costoT" name="_costoT" required value="{{ $publicacion->costo }}">
+                  </div>
+
+                  <div class="modal-footer">
+                      <button type="submit" class="btn btn-outline-success"><i class="bi bi-check-lg"></i> Actualizar</button>
+                      <button type="button" class="btn btn-outline-warning" data-bs-dismiss="modal"><i class="bi bi-x-lg"></i> Cancelar</button>
+                  </div>
+              </form>
+          </div>
       </div>
-
-      <!-- INICIO BODY MODAL -->
-      <div class="modal-body">
-        <form method="POST" action="/actualizarTaller" id="actualizarTaller" enctype="multipart/form-data">
-          @csrf
-
-          <div class="mb-3">
-            <label class="form-label">Nombre taller</label>
-            <input type="text" class="form-control" id="_nt" name="_nt" required placeholder="Ingrese el nombre de su taller">
-          </div>
-
-          <div class="mb-3">
-            <label class="form-label">Descripción</label>
-            <input type="text" class="form-control" id="_descT" name="_descT" required placeholder="Ingrese la descripción de su taller">
-          </div>
-
-          <div class="mb-3">
-            <label class="form-label">Contenido (Imagen JPG o PNG)</label>
-            <input type="file" class="form-control" id="_contT" name="_contT" accept="image/jpeg, image/png" required>
-          </div>
-
-          <div class="mb-3">
-            <label class="form-label">Costo</label>
-            <input type="number" class="form-control" id="_costoT" name="_costoT" required placeholder="Ingrese el costo de su taller (0 en caso de ser gratuito)">
-          </div>
-
-          <div class="modal-footer">
-            <button type="button" class="btn btn-outline-success" onclick="validarCampos()"><i class="bi bi-check-lg"></i> Agregar</button>
-            <button type="button" class="btn btn-outline-warning" data-bs-dismiss="modal" ><i class="bi bi-x-lg"></i> Cancelar</button>
-          </div>
-        </form>
-      </div>
-    </div>
   </div>
 </div>
-
-</form>
 
  
 <!-- FIN BODY MODAL -->

@@ -101,17 +101,46 @@ class PublicacionesController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit($id)
     {
         //
+        $publicacion = Publicaciones::findOrFail($id);
+        return view('editar_taller', compact('publicacion'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, $id)
     {
         //
+        $publicacion = Publicaciones::findOrFail($id);
+
+        // Validaciones
+        $validator = $request->validate([
+            '_descT' => 'required',
+            '_nt' => 'required|max:50',
+            '_contT' => 'nullable|file|max:2048', // Cambiado a nullable para permitir no cambiar el archivo
+            '_costoT' => 'numeric',
+        ]);
+
+        // Actualización de campos
+        $publicacion->descripcion = $validator['_descT'];
+        $publicacion->nombre = $validator['_nt'];
+        $publicacion->costo = $validator['_costoT'];
+
+        // Subir el archivo si se proporciona uno nuevo
+        if ($request->hasFile('_contT')) {
+            $file = $request->file('_contT');
+            $filename = $publicacion->id_usuario . '_2_' . $file->getClientOriginalName();
+            $filePath = $file->storeAs('uploads', $filename, 'public');
+            $publicacion->contenido = $filePath;
+        }
+
+        // Guardar los cambios
+        $publicacion->save();
+
+        return redirect()->back();
     }
 
     /**
@@ -155,4 +184,5 @@ class PublicacionesController extends Controller
     
         return redirect()->back();
     }
+    
 }

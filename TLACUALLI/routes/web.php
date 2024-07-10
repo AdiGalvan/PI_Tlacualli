@@ -45,3 +45,6 @@ Route::put('/desactivarTaller/{id}', [PublicacionesController::class, 'offStatus
 
 //Activar taller
 Route::put('/activarTaller/{id}', [PublicacionesController::class, 'onStatus'])->name('activarTaller');
+
+//Actualizar informacion del taller
+Route::put('/actualizarTaller/{id}', [PublicacionesController::class, 'update'])->name('actualizarTaller');
