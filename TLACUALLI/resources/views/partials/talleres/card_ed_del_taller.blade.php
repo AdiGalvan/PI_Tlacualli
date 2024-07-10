@@ -138,10 +138,27 @@
                                 </form>
                             </div>
                             <div class="col-lg-3 col-md-3 col-3">
-                                <!-- Botón "Desactivar" -->
-                                <button type="button" class="btn btn-outline-primary btn-lg btn-block" onclick="desactivarTaller({{ $publicacion->id }})">
-                                    <i class="bi bi-x-circle"></i> Desactivar
-                                </button>
+                                    {{-- Otras partes de la tarjeta --}}
+                                    
+                                    @if ($publicacion->estatus)
+                                        {{-- Mostrar botón de Desactivar si el estado es true --}}
+                                        <form action="{{ route('desactivarTaller', $publicacion->id) }}" method="POST" onsubmit="return confirm('¿Estás seguro de que deseas desactivar esta publicación?');">
+                                            @csrf
+                                            @method('PUT')
+                                            <button type="submit" class="btn btn-outline-primary btn-lg btn-block">
+                                                <i class="bi bi-x-circle"></i> Desactivar
+                                            </button>
+                                        </form>
+                                    @else
+                                        {{-- Mostrar botón de Activar si el estado es false --}}
+                                        <form action="{{ route('activarTaller', $publicacion->id) }}" method="POST" onsubmit="return confirm('¿Estás seguro de que deseas activar esta publicación?');">
+                                            @csrf
+                                            @method('PUT')
+                                            <button type="submit" class="btn btn-outline-success btn-lg btn-block">
+                                                <i class="bi bi-check-circle"></i> Activar
+                                            </button>
+                                        </form>
+                                    @endif
                             </div>
                         </div>
                     </div>

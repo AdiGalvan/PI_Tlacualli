@@ -33,9 +33,15 @@ Route::get('/maps', function () {
 });
 
 
-//Publicaciones
+//Taller
 //Creacion de taller
 Route::post('/registroTaller', [PublicacionesController::class, 'store'])->name('tallerStore');
 
 //Eliminación de publicaciones
-Route::delete('/publicaciones/{id}', [PublicacionesController::class, 'physicalDestroy'])->name('publicacionesDestroy');
+Route::delete('/borrarTaller/{id}', [PublicacionesController::class, 'physicalDestroy'])->name('publicacionesDestroy');
+
+//Desactivar taller
+Route::put('/desactivarTaller/{id}', [PublicacionesController::class, 'offStatus'])->name('desactivarTaller');
+
+//Activar taller
+Route::put('/activarTaller/{id}', [PublicacionesController::class, 'onStatus'])->name('activarTaller');

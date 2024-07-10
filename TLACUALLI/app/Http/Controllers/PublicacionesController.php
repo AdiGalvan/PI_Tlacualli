@@ -17,7 +17,10 @@ class PublicacionesController extends Controller
     {
         //Metodo temporal ya que no hay de momento roles o login
         //Obtener todas las publicaciones de tipo taller
-        $publicaciones = Publicaciones::where('id_tipo', 2)->with('usuario')->get();
+        $publicaciones = Publicaciones::where('id_tipo', 2)->
+            where('estatus', true)
+            ->with('usuario')
+            ->get();
         
         //Envia talleres a la vista de talleres
         return view('talleres', compact('publicaciones'));
@@ -132,5 +135,24 @@ class PublicacionesController extends Controller
     public function usuario()
     {
         return $this->belongsTo(Usuarios::class, 'id_usuario');
+    }
+
+    //Borrad lógico de taller, desactiva la publicacion 
+    public function offStatus(Request $request, $id)
+    {
+        $publicacion = Publicaciones::findOrFail($id);
+        $publicacion->estatus = false; // Cambia el estado a false
+        $publicacion->save();
+    
+        return redirect()->back();
+    }
+
+    public function onStatus(Request $request, $id)
+    {
+        $publicacion = Publicaciones::findOrFail($id);
+        $publicacion->estatus = true; // Cambia el estado a false
+        $publicacion->save();
+    
+        return redirect()->back();
     }
 }
