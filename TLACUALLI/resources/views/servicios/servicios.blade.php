@@ -12,17 +12,6 @@
 </div>
 @endif
 
-<!-- MENSAJE DE ERROR CON BOOTSTRAP -->
-@if($errors->any())
-@foreach($errors->all() as $error)
-<!-- <div class= "alert alert-danger alert-dismissible fade show" role="alert">
-<strong>{{$error}}</strong>
-<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-</div> -->
-@endforeach
-@endif
-
-
   <div class="card">
     <div class="card-body">
       <center><h3 class="card-title">Solicitud de servicio</h3></center>
@@ -34,6 +23,7 @@
         <div class="mb-3">
           <label class="form-label">Nombre</label>
           <select class="form-select" name="nombre" id="nombre">
+            <option value="" @if (null == old('nombre')) selected @endif>Selecciona una opción</option>
             @foreach ($opciones as $id => $nombre)
                 <option value="{{ $id }}" {{ old('nombre') == $id ? 'selected' : '' }}>{{ $nombre }}</option>
             @endforeach
@@ -44,6 +34,7 @@
         <div class="mb-3">
           <label class="form-label">Proveedor</label>
           <select class="form-select" name="proveedor" id="proveedor">
+          <option value="" @if (null == old('proveedor')) selected @endif>Selecciona una opción</option>
             @foreach ($opciones as $id => $nombre)
                 <option value="{{ $id }}" {{ old('proveedor') == $id ? 'selected' : '' }}>{{ $nombre }}</option>
             @endforeach
@@ -54,7 +45,7 @@
 
         <div class="mb-3">
           <label class="form-label">Descripción</label>
-          <textarea class="form-control" id="descripcion" name="descripcion" rows="2">{{ old('descripcion') }}</textarea>
+          <textarea class="form-control" id="descripcion" name="descripcion" rows="1">{{ old('descripcion') }}</textarea>
           <p class= "text-danger fst-italic">{{$errors->first('descripcion')}}</p>
         </div>
 
@@ -62,6 +53,7 @@
         <div class="mb-3">
           <label class="form-label">Tipo de servicio</label>
           <select class="form-select" id="t_servicio" name="t_servicio">
+          <option value="" @if (null == old('t_servicio')) selected @endif>Selecciona una opción</option>
            @foreach ($t_servicio as $id => $nombre)
            <option value="{{ $id }}" {{ old('t_servicio') == $id ? 'selected' : '' }}>{{$nombre}}</option>
            @endforeach

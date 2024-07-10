@@ -23,8 +23,21 @@ class validadorFormServicios extends FormRequest
     {
         return [
             //reglas para el formulario de servicios
+            'nombre' => 'required',
+            'proveedor' => 'required',
+            't_servicio'=>'required',
             'descripcion' => 'required | max: 255',
             'fecha' => 'required|date'
+        ];
+    }
+
+    public function attributes(): array{
+        return[
+            'nombre' => '"Nombre"',
+            'proveedor' => '"Proveedor"',
+            't_servicio' => '"Tipo de servicio"',
+            'descripcion' => '"Descripción"',
+            'fecha' => '"Fecha"',
         ];
     }
 }

@@ -43,7 +43,8 @@
                 <td>{{ $solicitud->tipo_servicio }}</td>
                 <td>{{ $solicitud->fecha }}</td>
                 <td>
-                    <button class="btn btn-primary btn-sm">Editar</button>
+                <a href="{{ route('servicios.edit', ['id' => $solicitud->id]) }}" class="btn btn-primary">Editar</a>
+                   
                     <button class="btn btn-danger btn-sm">Eliminar</button>
                 </td>
             </tr>

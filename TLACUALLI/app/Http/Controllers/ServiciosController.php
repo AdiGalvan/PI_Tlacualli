@@ -68,7 +68,7 @@ class ServiciosController extends Controller
             "created_at" => Carbon::now(),
             "updated_at" => Carbon::now(),
         ]);
-    return redirect('/servicios')->with('confirmacion','Tu solicitud se creó existosamente');
+    return redirect('/mis_servicios')->with('confirmacion','Tu solicitud se creó existosamente');
     }
 
     /**
@@ -82,18 +82,46 @@ class ServiciosController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit($id)
     {
-        //
+        $solicitud = DB::table('solicitudes')->where('id', $id)->first();
+
+        if (!$solicitud) {
+            abort(404); // Si no se encuentra la solicitud
+        }
+
+        $opciones = DB::table('usuarios')->pluck('nombre_usuario', 'id');
+        $t_servicio = DB::table('publicaciones')->pluck('descripcion', 'id');
+
+        return view('servicios.actualizar_formulario', compact('solicitud', 'opciones', 't_servicio'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
+    public function update(validadorFormServicios $request, $id)
+{
+ 
+    $request->validate([
+        'nombre' => 'required',
+        'proveedor' => 'required',
+        'descripcion' => 'required',
+        't_servicio' => 'required',
+        'fecha' => 'required|date',
+    ]);
+
+    // Actualizar el registro 
+    DB::table('solicitudes')->where('id', $id)->update([
+        "id_cliente" => $request->input('nombre'),
+        "id_proveedor" => $request->input('proveedor'),
+        "descripcion" => $request->input('descripcion'),
+        "id_publicacion" => $request->input('t_servicio'),
+        "fecha" => $request->input('fecha'),
+        "updated_at" => Carbon::now(),
+    ]);
+
+    return redirect('/mis_servicios')->with('confirmacion', 'Actualización realizada con éxito');
+}
 
     /**
      * Remove the specified resource from storage.

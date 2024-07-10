@@ -25,6 +25,9 @@ Route::get('/talleres',[show_views::class,'talleres'])->name('talleres');
 Route::get('/mis_servicios', [ServiciosController::class, 'index'])->name('mis_servicios.index');
 Route::get('/servicios',[ServiciosController::class,'create'])->name('servicios.create');
 Route::post('guardarForm/servicios', [ServiciosController::class, 'store'])->name('servicios.store');
+Route::post('servicios/{id}/confirm', [ServiciosController::class,'update'])->name('servicios.update');
+Route::get('/servicios/{id}/edit', [ServiciosController::class, 'edit'])->name('servicios.edit');
+
 
 //Fin rutas módulo servicios
 
