@@ -14,10 +14,9 @@
       </div>
       <div class="modal-body">
         @if(session()->has('usuario'))
+        <a href=""><button type="button" class="btn btn-outline-secondary" >Ver perfil</button> </a>
         <form method="POST" action="/logout">
           @csrf
-          
-          
         </div>
         <div class="modal-footer">
         <button type="submit" class="btn btn-outline-success" name="cerrar_sesion" id="cerrar_sesion">Cerrar sesión</button>
