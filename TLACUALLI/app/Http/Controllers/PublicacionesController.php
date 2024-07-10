@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Models\Publicaciones;
-
+use App\Models\Usuarios;
 use Illuminate\Http\Request;
 
 use Carbon\Carbon;
@@ -14,7 +14,12 @@ class PublicacionesController extends Controller
      */
     public function index()
     {
-        //
+        //Metodo temporal ya que no hay de momento roles o login
+        //Obtener todas las publicaciones de tipo taller
+        $publicaciones = Publicaciones::where('id_tipo', 2)->with('usuario')->get();
+        
+        //Envia talleres a la vista de talleres
+        return view('talleres', compact('publicaciones'));
     }
 
     /**
@@ -101,5 +106,11 @@ class PublicacionesController extends Controller
     public function destroy(string $id)
     {
         //
+    }
+
+    // Definición de la relación con el modelo User
+    public function usuario()
+    {
+        return $this->belongsTo(Usuarios::class, 'id_usuario');
     }
 }

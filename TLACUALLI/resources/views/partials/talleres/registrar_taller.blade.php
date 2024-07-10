@@ -15,23 +15,23 @@
 
     <div class="mb-3">
       <label class="form-label">Nombre taller</label>
-      <input type="text" class="form-control" id="_nt" name="_nt" required>
+      <input type="text" class="form-control" id="_nt" name="_nt" required placeholder="Ingrese el nombre de su taller">
     </div>
 
    
     <div class="mb-3">
       <label class="form-label">Descripción</label>
-      <input type="text" class="form-control" id="_descT" name="_descT" required>
+      <input type="text" class="form-control" id="_descT" name="_descT" required placeholder="Ingrese la descripción de su taller">
     </div>
 
     <div class="mb-3">
-      <label class="form-label">Contenido</label>
-      <input type="file" class="form-control" id="_contT" name="_contT" required>
+      <label class="form-label">Contenido (Imagen JPG o PNG)</label>
+      <input type="file" class="form-control" id="_contT" name="_contT" accept="image/jpeg, image/png" required>
     </div>
 
     <div class="mb-3">
       <label class="form-label">Costo</label>
-      <input type="text" class="form-control" id="_costoT" name="_costoT" required>
+      <input type="number" class="form-control" id="_costoT" name="_costoT" required placeholder="Ingrese el costo de su taller (0 en caso de ser gratuito)">
     </div>
     <div class="modal-footer">
       <button type="button" class="btn btn-outline-success" onclick="validarCampos()"><i class="bi bi-check-lg"></i> Agregar</button>

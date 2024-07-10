@@ -25,7 +25,7 @@ class Publicaciones extends Model
 
     public function usuario()
     {
-        return $this->hasOne(User::class, 'id', 'id_usuario');
+        return $this->hasOne(Usuarios::class, 'id', 'id_usuario');
     }
 
     public function tipo()
