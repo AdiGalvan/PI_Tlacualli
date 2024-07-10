@@ -36,7 +36,7 @@ class ServiciosController extends Controller
    $t_solicitud = DB::table('tipos_solicitudes')->pluck('nombre', 'id');
 
 
-   return view('servicios', compact('opciones','t_servicio', 't_solicitud'));
+   return view('servicios.servicios', compact('opciones','t_servicio', 't_solicitud'));
     }
 
     /**
