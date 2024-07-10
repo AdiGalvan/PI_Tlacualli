@@ -22,6 +22,7 @@ Route::get('/publicaciones',[show_views::class,'publicaciones'])->name('publicac
 Route::get('/talleres',[show_views::class,'talleres'])->name('talleres');
 
 //Rutas módulo servicios
+Route::get('/mis_servicios', [ServiciosController::class, 'index'])->name('mis_servicios.index');
 Route::get('/servicios',[ServiciosController::class,'create'])->name('servicios.create');
 Route::post('guardarForm/servicios', [ServiciosController::class, 'store'])->name('servicios.store');
 
@@ -37,6 +38,6 @@ Route::get('/maps', function () {
 });
 
 
-Route::get('/mis_servicios', function () {
+/*Route::get('/mis_servicios', function () {
     return view('servicios.mis_servicios');
-});
+});*/

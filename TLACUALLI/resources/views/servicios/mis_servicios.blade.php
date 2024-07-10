@@ -32,25 +32,24 @@
               <th>Acciones</th>
             </tr>
           </thead>
+          
           <tbody>
-           
+            @foreach($solicitudes as $solicitud)
             <tr>
-              <td>1</td>
-              <td>Moser</td>
-              <td>Hagamos Composta</td>
-              <td>Lorem ipsum</td>
-              <td>Solicitud de botes nuevos</td>
-              <td>2024-07-17</td>
-              
-            
-              <td>
-                <button class="btn btn-primary btn-sm">Editar</button>
-                <button class="btn btn-danger btn-sm">Eliminar</button>
-              </td>
+                <td>{{ $solicitud->id }}</td>
+                <td>{{ $solicitud->id_cliente }}</td>
+                <td>{{ $solicitud->id_proveedor }}</td>
+                <td>{{ $solicitud->descripcion }}</td>
+                <td>{{ $solicitud->id_publicacion }}</td>
+                <td>{{ $solicitud->fecha }}</td>
+                <td>
+                    <button class="btn btn-primary btn-sm">Editar</button>
+                    <button class="btn btn-danger btn-sm">Eliminar</button>
+                </td>
             </tr>
-            
-          </tbody>
-        </table>
+            @endforeach
+        </tbody>
+    </table>
       </div>
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
     </body>

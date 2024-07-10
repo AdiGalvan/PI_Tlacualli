@@ -15,8 +15,11 @@ class ServiciosController extends Controller
      */
     public function index()
     {
-        //
+        $solicitudes = DB::table('solicitudes')->get(); // Obtener todas las solicitudes de la base de datos
+    
+        return view('servicios.mis_servicios', compact('solicitudes'));
     }
+    
 
     /**
      * Show the form for creating a new resource.
