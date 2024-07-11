@@ -21,17 +21,14 @@
             <label for="stock" class="form-label">{{ __('Stock') }}</label>
             <input type="text" name="stock" class="form-control @error('stock') is-invalid @enderror" value="{{ old('stock', $producto?->stock) }}" id="stock" placeholder="Stock">
             {!! $errors->first('stock', '<div class="invalid-feedback" role="alert"><strong>:message</strong></div>') !!}
-        </div>
-        <div class="form-group mb-2 mb20">
-            <label for="estatus" class="form-label">{{ __('Estatus') }}</label>
-            <input type="text" name="estatus" class="form-control @error('estatus') is-invalid @enderror" value="{{ old('estatus', $producto?->estatus) }}" id="estatus" placeholder="Estatus">
-            {!! $errors->first('estatus', '<div class="invalid-feedback" role="alert"><strong>:message</strong></div>') !!}
-        </div>
-        <div class="form-group mb-2 mb20">
+        </div>  
+        @if(session()->has('id_usuario'))
+        <div class="form-group mb-2 mb20" hidden>
             <label for="proveedor_id" class="form-label">{{ __('Proveedor Id') }}</label>
-            <input type="text" name="proveedor_id" class="form-control @error('proveedor_id') is-invalid @enderror" value="{{ old('proveedor_id', $producto?->proveedor_id) }}" id="proveedor_id" placeholder="Proveedor Id">
+            <input type="text" name="proveedor_id" class="form-control @error('proveedor_id') is-invalid @enderror" value="{{ session('id_usuario') }}" id="proveedor_id" placeholder="Proveedor Id">
             {!! $errors->first('proveedor_id', '<div class="invalid-feedback" role="alert"><strong>:message</strong></div>') !!}
         </div>
+        @endif
 
     </div>
     <div class="col-md-12 mt20 mt-2">

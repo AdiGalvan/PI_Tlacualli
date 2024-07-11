@@ -16,6 +16,9 @@ class ProductoController extends Controller
      */
     public function index()
     {
+        if (!session()->has('id_usuario')) {
+            return redirect('/');
+        }
         $productos = Producto::paginate();
 
         return view('producto.index', compact('productos'))
@@ -26,6 +29,9 @@ class ProductoController extends Controller
      */
     public function create()
     {
+        if (!session()->has('id_usuario')) {
+            return redirect('/');
+        }
         $producto = new Producto();
         return view('producto.create', compact('producto'));
     }
@@ -35,6 +41,9 @@ class ProductoController extends Controller
      */
     public function store(ProductoRequest $request)
     {
+        if (!session()->has('id_usuario')) {
+            return redirect('/');
+        }
         Producto::create($request->validated());
 
         return redirect()->route('productos.index')
@@ -46,7 +55,7 @@ class ProductoController extends Controller
      */
     public function Cards()
     {
-        $productos = Producto::all(); 
+        $productos = Producto::all();
         return view('producto.productosCards', compact('productos'));
     }
     public function show($id)
@@ -61,6 +70,9 @@ class ProductoController extends Controller
      */
     public function edit($id)
     {
+        if (!session()->has('id_usuario')) {
+            return redirect('/');
+        }
         $producto = Producto::find($id);
 
         return view('producto.edit', compact('producto'));
@@ -71,6 +83,9 @@ class ProductoController extends Controller
      */
     public function update(ProductoRequest $request, Producto $producto)
     {
+        if (!session()->has('id_usuario')) {
+            return redirect('/');
+        }
         $producto->update($request->validated());
 
         return redirect()->route('productos.index')
@@ -79,6 +94,9 @@ class ProductoController extends Controller
 
     public function destroy($id)
     {
+        if (!session()->has('id_usuario')) {
+            return redirect('/');
+        }
         Producto::find($id)->delete();
 
         return redirect()->route('productos.index')

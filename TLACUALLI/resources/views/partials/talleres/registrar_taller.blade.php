@@ -62,18 +62,18 @@
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body">
-              <form method="POST" action="{{ route('actualizarTaller', $publicacion->id) }}" enctype="multipart/form-data">
+              <form method="POST" action="{{ !empty($publicacion->id) ? route('actualizarTaller', $publicacion->id) : '' }}" enctype="multipart/form-data">
                   @csrf
                   @method('PUT')
 
                   <div class="mb-3">
                       <label class="form-label">Nombre taller</label>
-                      <input type="text" class="form-control" id="_nt" name="_nt" required value="{{ $publicacion->nombre }}">
+                      <input type="text" class="form-control" id="_nt" name="_nt" required value="{{ !empty($publicacion->nombre) ?  $publicacion->nombre : '' }}">
                   </div>
 
                   <div class="mb-3">
                       <label class="form-label">Descripción</label>
-                      <input type="text" class="form-control" id="_descT" name="_descT" required value="{{ $publicacion->descripcion }}">
+                      <input type="text" class="form-control" id="_descT" name="_descT" required value="{{ !empty($publicacion->descripcion) ?  $publicacion->descripcion : '' }}">
                   </div>
 
                   <div class="mb-3">
@@ -83,7 +83,7 @@
 
                   <div class="mb-3">
                       <label class="form-label">Costo</label>
-                      <input type="number" class="form-control" id="_costoT" name="_costoT" required value="{{ $publicacion->costo }}">
+                      <input type="number" class="form-control" id="_costoT" name="_costoT" required value="{{ !empty($publicacion->costo) ?  $publicacion->costo : '' }}">
                   </div>
 
                   <div class="modal-footer">

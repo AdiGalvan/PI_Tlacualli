@@ -20,9 +20,28 @@ class CreatePublicacionesTable extends Migration
             $table->foreignId('id_usuario_revision')->nullable()->constrained('usuarios');
             $table->date('fecha_revision')->nullable();
             $table->text('notas')->nullable();
-            $table->boolean('estatus') -> default(1);
+            $table->boolean('estatus')->default(1);
             $table->timestamps();
         });
+
+        DB::table('publicaciones')->insert([
+            [
+                'descripcion' => 'Recolección de residuos orgánicos a domicilio',
+                'nombre' => 'Colectivo nanakatl',
+                'contenido' => 'Lorem ipsum...',
+                'fecha_publicacion' => '2024-07-08',
+                'id_usuario' => 1,
+                'id_tipo' => 3,
+            ],
+            [
+                'descripcion' => 'Solicitud de cubetas',
+                'nombre' => 'Hagamos Composta',
+                'contenido' => 'Lorem ipsum...',
+                'fecha_publicacion' => '2024-12-08',
+                'id_usuario' => 2,
+                'id_tipo' => 3,
+            ]
+        ]);
     }
 
     public function down()

@@ -20,14 +20,9 @@
       <form method="POST" action="{{ route('servicios.store') }}">
         @csrf <!-- Generación del token -->
 
-        <div class="mb-3">
+        <div class="mb-3" hidden>
           <label class="form-label">Nombre</label>
-          <select class="form-select" name="nombre" id="nombre">
-            <option value="" @if (null == old('nombre')) selected @endif>Selecciona una opción</option>
-            @foreach ($opciones as $id => $nombre)
-                <option value="{{ $id }}" {{ old('nombre') == $id ? 'selected' : '' }}>{{ $nombre }}</option>
-            @endforeach
-        </select>
+          <input type="text" name="nombre" class="form-control" value="@if(session()->has('id_usuario')) {{ session('id_usuario') }} @endif" id="nombre" ></input>
         <p class= "text-danger fst-italic">{{$errors->first('nombre')}}</p>
         </div>
 

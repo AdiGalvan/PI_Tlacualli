@@ -39,6 +39,11 @@
             <input type="text" class="form-control" id="_ap" name="_ap" value="{{ old('_ap') }}">
             <p class="text-danger fst-italic">{{ $errors->first('_ap') }}</p>
         </div>
+        <div class="mb-3" id="apellido_m">
+            <label class="form-label">Apellido materno</label>
+            <input type="text" class="form-control" id="_am" name="_am" value="{{ old('_am') }}">
+            <p class="text-danger fst-italic">{{ $errors->first('_am') }}</p>
+        </div>
          <div class="mb-3">
             <label class="form-label">Fecha de nacimiento *</label>
             <input type="date" class="form-control" id="_fn" name="_fn" value="{{ old('_fn') }}">
@@ -59,8 +64,18 @@
     <!-- SEGUNDA COLUMNA -->
     <div class="col-md-6">
         <div class="mb-3">
-            <label class="form-label">Rol *</label>
+            <label class="form-label">Tipo de Persona *</label>
             <select class="form-select" id="_rol" name="_rol" onchange="toggleApellidos(this)">
+                <option value="" @if (null == old('_rol')) selected @endif>Selecciona una opción</option>
+                <option value="1" @if (1 == old('_rol')) selected @endif>Persona Física</option>
+                <option value="2" @if (2 == old('_rol')) selected @endif>Persona Moral</option>
+            </select>
+            <p class="text-danger fst-italic">{{ $errors->first('_rol') }}</p>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Rol *</label>
+            <select class="form-select" id="_rol" name="_rol">
                 <option value="" @if (null == old('_rol')) selected @endif>Selecciona una opción</option>
                 @foreach($roles as $_rol)
                 <option value="{{$_rol->id}}" @if ($_rol->id == old('_rol')) selected @endif>{{$_rol->nombre}}</option>
@@ -69,11 +84,7 @@
             <p class="text-danger fst-italic">{{ $errors->first('_rol') }}</p>
         </div>
         
-        <div class="mb-3" id="apellido_m">
-            <label class="form-label">Apellido materno</label>
-            <input type="text" class="form-control" id="_am" name="_am" value="{{ old('_am') }}">
-            <p class="text-danger fst-italic">{{ $errors->first('_am') }}</p>
-        </div>
+        
         <div class="mb-3">
             <label class="form-label">Contraseña *</label>
             <input type="password" class="form-control" id="_pd" name="_pd">

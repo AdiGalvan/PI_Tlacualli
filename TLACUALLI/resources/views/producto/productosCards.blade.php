@@ -19,9 +19,11 @@
             </div>
             <div class="col-5"></div>
             <div class="col-2 d-flex justify-content-end">
+                @if(session()->has('id_usuario'))
                 <button type="button" class="btn btn-outline-success" onclick="window.location.href='{{ url('/productos') }}'">
                     <i class="bi bi-bag-plus"></i> Productos
                 </button>
+                @endif
             </div>
         </div>
         <div class="row p-2">
