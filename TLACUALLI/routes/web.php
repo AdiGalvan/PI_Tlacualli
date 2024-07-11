@@ -1,8 +1,11 @@
 <?php
 
+use App\Http\Controllers\LoginController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\show_views;
 use App\Http\Controllers\ServiciosController;
+
+use App\Http\Controllers\PublicacionesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,7 +22,10 @@ use App\Http\Controllers\ServiciosController;
 Route::get('/',[show_views::class,'home'])->name('inicio');
 Route::get('/tienda',[show_views::class,'productos'])->name('tienda');
 Route::get('/publicaciones',[show_views::class,'publicaciones'])->name('publicaciones');
-Route::get('/talleres',[show_views::class,'talleres'])->name('talleres');
+Route::get('/talleres',[PublicacionesController::class,'index'])->name('index');
+
+Route::get('/mis_talleres',[PublicacionesController::class,'index_mis_talleres'])->name('mis_talleres');
+
 
 //Rutas módulo servicios
 Route::get('/mis_servicios', [ServiciosController::class, 'index'])->name('mis_servicios.index');
@@ -36,11 +42,34 @@ Route::post('/servicios/{id}/eliminar', [ServiciosController::class, 'softDelete
 //Fin rutas módulo servicios
 
 
-Route::get('/registro', function () {
-    return view('registro_usuario');
-});
-
 Route::get('/maps', function () {
     return view('maps');
 });
+
+
+//Taller
+//Creacion de taller
+Route::post('/registroTaller', [PublicacionesController::class, 'store'])->name('tallerStore');
+
+//Eliminación de publicaciones
+Route::delete('/borrarTaller/{id}', [PublicacionesController::class, 'physicalDestroy'])->name('publicacionesDestroy');
+
+//Desactivar taller
+Route::put('/desactivarTaller/{id}', [PublicacionesController::class, 'offStatus'])->name('desactivarTaller');
+
+//Activar taller
+Route::put('/activarTaller/{id}', [PublicacionesController::class, 'onStatus'])->name('activarTaller');
+
+//Actualizar informacion del taller
+Route::put('/actualizarTaller/{id}', [PublicacionesController::class, 'update'])->name('actualizarTaller');
+
+Route::get('/registrar', [LoginController::class, 'index']);
+Route::post('/registrar', [LoginController::class, 'create']);
+Route::post('/login', [LoginController::class, 'login']);
+Route::post('/logout', [LoginController::class, 'logout']);
+Route::get('/perfil', [LoginController::class, 'show']);
+Route::get('/perfil/editar', [LoginController::class, 'edit']);
+Route::post('/perfil/editar', [LoginController::class, 'update']);
+Route::post('/cambiar_contraseña', [LoginController::class, 'pchange']);
+Route::post('/perfil/eliminar', [LoginController::class, 'destroy']);
 
