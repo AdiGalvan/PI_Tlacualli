@@ -99,9 +99,6 @@
  
 <!-- FIN BODY MODAL -->
       
-      <!-- INICIO FOOTER MODAL -->
-      
-      <!-- FIN FOOTER MODAL -->
 
 
     </div>
@@ -161,3 +158,18 @@
     });
 });
 </script>
+<script>
+  function validarCampos() {
+      var nombreTaller = document.getElementById('_nt').value;
+      var descripcionTaller = document.getElementById('_descT').value;
+      var contenidoTaller = document.getElementById('_contT').value;
+      var costoTaller = document.getElementById('_costoT').value;
+
+      if (nombreTaller === "" || descripcionTaller === "" || contenidoTaller === "" || costoTaller === "") {
+          alert("Por favor, complete todos los campos.");
+      } else {
+          showSweetAlertTaller();
+      }
+  }
+</script>
+

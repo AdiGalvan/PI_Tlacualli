@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\LoginController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\show_views;
 
@@ -24,9 +25,6 @@ Route::get('/talleres',[PublicacionesController::class,'index'])->name('index');
 
 Route::get('/mis_talleres',[PublicacionesController::class,'index_mis_talleres'])->name('mis_talleres');
 
-Route::get('/registro', function () {
-    return view('registro_usuario');
-});
 
 Route::get('/maps', function () {
     return view('maps');
@@ -48,3 +46,14 @@ Route::put('/activarTaller/{id}', [PublicacionesController::class, 'onStatus'])-
 
 //Actualizar informacion del taller
 Route::put('/actualizarTaller/{id}', [PublicacionesController::class, 'update'])->name('actualizarTaller');
+
+Route::get('/registrar', [LoginController::class, 'index']);
+Route::post('/registrar', [LoginController::class, 'create']);
+Route::post('/login', [LoginController::class, 'login']);
+Route::post('/logout', [LoginController::class, 'logout']);
+Route::get('/perfil', [LoginController::class, 'show']);
+Route::get('/perfil/editar', [LoginController::class, 'edit']);
+Route::post('/perfil/editar', [LoginController::class, 'update']);
+Route::post('/cambiar_contraseña', [LoginController::class, 'pchange']);
+Route::post('/perfil/eliminar', [LoginController::class, 'destroy']);
+

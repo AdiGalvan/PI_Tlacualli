@@ -13,6 +13,14 @@ class CreatePaisesTable extends Migration
             $table->string('nombre', 50);
             $table->timestamps();
         });
+
+        DB::table('paises')->insert([
+            [
+                'nombre' => 'México',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+        ]);
     }
 
     public function down()
