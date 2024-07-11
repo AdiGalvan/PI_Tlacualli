@@ -123,6 +123,30 @@ class ServiciosController extends Controller
     return redirect('/mis_servicios')->with('confirmacion', 'Actualización realizada con éxito');
 }
 
+public function editForm($id)
+{
+    $solicitud = DB::table('solicitudes')->where('id', $id)->first();
+
+    if (!$solicitud) {
+        abort(404); // Si no se encuentra la solicitud
+    }
+
+    $opciones = DB::table('usuarios')->pluck('nombre_usuario', 'id');
+    $t_servicio = DB::table('publicaciones')->pluck('descripcion', 'id');
+
+    return view('servicios.eliminar_formulario', compact('solicitud', 'opciones', 't_servicio'));
+}
+
+public function softDelete($id)
+{
+    DB::table('solicitudes')->where('id', $id)->update([
+        'estatus' => 0,
+        'updated_at' => Carbon::now(),
+    ]);
+
+    return redirect('/mis_servicios')->with('confirmacion', 'Registro eliminado exitosamente');
+}
+
     /**
      * Remove the specified resource from storage.
      */

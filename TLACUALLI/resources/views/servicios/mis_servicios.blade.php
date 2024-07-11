@@ -43,10 +43,12 @@
                 <td>{{ $solicitud->tipo_servicio }}</td>
                 <td>{{ $solicitud->fecha }}</td>
                 <td>
-                <a href="{{ route('servicios.edit', ['id' => $solicitud->id]) }}" class="btn btn-primary">Editar</a>
-                   
-                    <button class="btn btn-danger btn-sm">Eliminar</button>
-                </td>
+    <a href="{{ route('servicios.edit', ['id' => $solicitud->id]) }}" class="btn btn-primary">Editar</a>
+    <form action="{{ route('servicios.editForm', ['id' => $solicitud->id]) }}" method="GET" style="display: inline;">
+        @csrf
+        <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
+    </form>
+</td>
             </tr>
             @endforeach
         </tbody>
