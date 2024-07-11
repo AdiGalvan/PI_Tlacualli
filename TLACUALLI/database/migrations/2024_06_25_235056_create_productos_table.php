@@ -8,13 +8,13 @@ class CreateProductosTable extends Migration
 {
     public function up(): void
     {
-       Schema::create('productos', function (Blueprint $table) {
+        Schema::create('productos', function (Blueprint $table) {
             $table->id();
             $table->string('nombre');
             $table->string('descripcion');
             $table->decimal('costo', 8, 2);
             $table->integer('stock');
-            $table->tinyInteger('estatus');
+            $table->tinyInteger('estatus')->default(1);
             $table->integer('proveedor_id');
             $table->timestamps();
         });
