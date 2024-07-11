@@ -20,7 +20,7 @@ class CreatePublicacionesTable extends Migration
             $table->foreignId('id_usuario_revision')->nullable()->constrained('usuarios');
             $table->date('fecha_revision')->nullable();
             $table->text('notas')->nullable();
-            $table->boolean('estatus');
+            $table->boolean('estatus') -> default(1);
             $table->timestamps();
         });
     }
