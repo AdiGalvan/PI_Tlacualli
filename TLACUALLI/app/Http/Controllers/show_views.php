@@ -36,6 +36,10 @@ class show_views extends Controller
         return view('publicaciones', ['usuario' => $this->usuario]);
     }
 
+    public function servicios(){
+        return view('servicios.mis_servicios');
+    }
+
     public function mis_talleres(){
         return view('mis_talleres');
     }

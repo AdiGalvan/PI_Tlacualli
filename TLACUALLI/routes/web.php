@@ -3,6 +3,7 @@
 use App\Http\Controllers\LoginController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\show_views;
+use App\Http\Controllers\ServiciosController;
 
 use App\Http\Controllers\PublicacionesController;
 
@@ -24,6 +25,21 @@ Route::get('/publicaciones',[show_views::class,'publicaciones'])->name('publicac
 Route::get('/talleres',[PublicacionesController::class,'index'])->name('index');
 
 Route::get('/mis_talleres',[PublicacionesController::class,'index_mis_talleres'])->name('mis_talleres');
+
+
+//Rutas módulo servicios
+Route::get('/mis_servicios', [ServiciosController::class, 'index'])->name('mis_servicios.index');
+Route::get('/servicios',[ServiciosController::class,'create'])->name('servicios.create');
+Route::post('guardarForm/servicios', [ServiciosController::class, 'store'])->name('servicios.store');
+Route::post('servicios/{id}/confirm', [ServiciosController::class,'update'])->name('servicios.update');
+Route::get('/servicios/{id}/edit', [ServiciosController::class, 'edit'])->name('servicios.edit');
+Route::get('/mis_servicios/search', [ServiciosController::class, 'search'])->name('servicios.search');
+Route::get('/servicios/{id}/eliminar', [ServiciosController::class, 'editForm'])->name('servicios.editForm'); //mostrar formulario para eliminar
+Route::post('/servicios/{id}/eliminar', [ServiciosController::class, 'softDelete'])->name('servicios.softDelete'); //eliminación lógica
+
+
+
+//Fin rutas módulo servicios
 
 
 Route::get('/maps', function () {

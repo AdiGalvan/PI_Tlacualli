@@ -10,14 +10,22 @@ class CreateRolesTable extends Migration
     {
         Schema::create('roles', function (Blueprint $table) {
             $table->id();
-            $table->string('nombre', 15);
+            $table->string('nombre', 100);
             $table->timestamps();
         });
 
         DB::table('roles')->insert([
-            ['nombre' => 'Persona física'],
-            ['nombre' => 'Persona moral']
+            ['nombre' => 'Usuario'],
+            ['nombre' => 'Restaurante'],
+            ['nombre' => 'Procesador de RO'],
+            ['nombre' => 'Proveedor'],
+            ['nombre' => 'Especialista'],
+            ['nombre' => 'Tallerista'],
+            ['nombre' => 'Administrador'],
+            ['nombre' => 'Productor'],
+            ['nombre' => 'Procesador de RO y Productor']
         ]);
+
     }
 
     public function down()
