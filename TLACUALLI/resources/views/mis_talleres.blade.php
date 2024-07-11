@@ -1,5 +1,5 @@
 @extends('layouts.template')
-@section('titulo','Talleres')
+@section('titulo','Mis_Talleres')
 @section('contenido')
 
 <div class="row mt-5">
@@ -10,7 +10,7 @@
     </div>
     <div class="col-8">  
     
-        <h1 class="text-center">Talleres</h1>
+        <h1 class="text-center">Mis talleres</h1>
         
         <div class="row">
             <div class="col-5">
@@ -22,7 +22,7 @@
             <div class="col-5">
             </div>
             <div class="col-2 justify-content-end">
-                <a href="{{ route('mis_talleres') }}" class="btn btn-outline-success"><i class="bi bi-folder"></i> Mis talleres</a>
+                <button type="button" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#registrar_taller" ><i class="bi bi-file-plus"></i> Agregar taller</button> 
             </div>
         </div>
         
@@ -33,7 +33,7 @@
                 <div class="row p-2">
                     @foreach($chunk as $publicacion)
                         <div class="col-md-6 p-2">
-                            @include('partials.talleres.card_taller', ['publicacion' => $publicacion])
+                            @include('partials.talleres.card_ed_del_taller', ['publicacion' => $publicacion])
                         </div>
                     @endforeach
                 </div>
@@ -76,3 +76,4 @@
 
 @include('partials.talleres.registrar_taller')
 @endsection
+

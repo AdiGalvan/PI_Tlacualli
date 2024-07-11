@@ -13,7 +13,6 @@ class CreatePaisesTable extends Migration
             $table->string('nombre', 50);
             $table->timestamps();
         });
-<<<<<<< HEAD
 
         DB::table('paises')->insert([
             [
@@ -22,8 +21,6 @@ class CreatePaisesTable extends Migration
                 'updated_at' => now(),
             ],
         ]);
-=======
->>>>>>> e981c800a8e316e59f19cbb576e8dda00a3aa1e3
     }
 
     public function down()
