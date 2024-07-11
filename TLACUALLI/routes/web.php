@@ -3,9 +3,12 @@
 use App\Http\Controllers\LoginController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\show_views;
+
 use App\Http\Controllers\ServiciosController;
 
 use App\Http\Controllers\PublicacionesController;
+
+use App\Http\Controllers\ProductoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,7 +23,7 @@ use App\Http\Controllers\PublicacionesController;
 
 
 Route::get('/',[show_views::class,'home'])->name('inicio');
-Route::get('/tienda',[show_views::class,'productos'])->name('tienda');
+/* Route::get('/tienda',[show_views::class,'productos'])->name('tienda'); */
 Route::get('/publicaciones',[show_views::class,'publicaciones'])->name('publicaciones');
 Route::get('/talleres',[PublicacionesController::class,'index'])->name('index');
 
@@ -45,6 +48,7 @@ Route::post('/servicios/{id}/eliminar', [ServiciosController::class, 'softDelete
 Route::get('/maps', function () {
     return view('maps');
 });
+
 
 
 //Taller
@@ -72,4 +76,12 @@ Route::get('/perfil/editar', [LoginController::class, 'edit']);
 Route::post('/perfil/editar', [LoginController::class, 'update']);
 Route::post('/cambiar_contraseña', [LoginController::class, 'pchange']);
 Route::post('/perfil/eliminar', [LoginController::class, 'destroy']);
+
+
+Route::get('/productosCards', [ProductoController::class, 'Cards'])->name('productos.cards');
+/* Route::get('/productosCards', [ProductoController::class, 'Cards']); */
+
+Route::resource('productos', ProductoController::class);
+
+/* Route::get('/productos/show', [ProductoController::class, 'show']); */
 

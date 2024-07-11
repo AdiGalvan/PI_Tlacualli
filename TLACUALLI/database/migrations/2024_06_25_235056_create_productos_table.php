@@ -6,15 +6,16 @@ use Illuminate\Support\Facades\Schema;
 
 class CreateProductosTable extends Migration
 {
-    public function up()
+    public function up(): void
     {
-        Schema::create('productos', function (Blueprint $table) {
+       Schema::create('productos', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('id_proveedor')->constrained('usuarios');
-            $table->string('nombre', 255);
-            $table->float('costo')->nullable();
-            $table->integer('stock')->nullable();
-            $table->boolean('estatus');
+            $table->string('nombre');
+            $table->string('descripcion');
+            $table->decimal('costo', 8, 2);
+            $table->integer('stock');
+            $table->tinyInteger('estatus');
+            $table->integer('proveedor_id');
             $table->timestamps();
         });
     }

@@ -91,7 +91,7 @@
     <div class="col-2">
         <div class="sticky-top pe-3">
             <br>
-            @include('partials.productos.carrusel')
+            @include('partials.productos1.carrusel')
             <br>
             @include('partials.talleres.carrusel')
         </div>

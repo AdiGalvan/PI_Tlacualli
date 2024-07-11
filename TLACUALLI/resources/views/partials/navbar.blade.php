@@ -21,7 +21,7 @@
           <a class="nav-link fs-3 {{request()->routeIs('servicios')?'disabled':'w_o'}}" aria-current="page" href="/mis_servicios">Servicios</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link fs-3 {{request()->routeIs('tienda')?'disabled ':'w_o'}}" aria-current="page" href="/tienda">Productos</a>
+            <a class="nav-link fs-3 {{request()->routeIs('productosCards')?'disabled ':'w_o'}}" aria-current="page" href="/productosCards">Productos</a>
           </li>
         </ul>
         <div class="btn-group custom-icons">
