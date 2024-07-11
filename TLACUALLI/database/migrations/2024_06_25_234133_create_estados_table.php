@@ -11,6 +11,7 @@ class CreateEstadosTable extends Migration
         Schema::create('estados', function (Blueprint $table) {
             $table->id();
             $table->string('nombre', 50);
+<<<<<<< HEAD
             $table->foreignId('id_pais')->constrained('paises')->default(1);
             $table->timestamps();
         });
@@ -49,6 +50,11 @@ class CreateEstadosTable extends Migration
             ['nombre' => 'Yucatán', 'id_pais' => 1],
             ['nombre' => 'Zacatecas', 'id_pais' => 1],
         ]);
+=======
+            $table->foreignId('id_pais')->constrained('paises');
+            $table->timestamps();
+        });
+>>>>>>> e981c800a8e316e59f19cbb576e8dda00a3aa1e3
     }
 
     public function down()
