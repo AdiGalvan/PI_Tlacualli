@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class registro extends FormRequest
+class registrou extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -29,8 +29,6 @@ class registro extends FormRequest
             '_tel' => 'max:10',
             '_ap' => 'max:250',
             '_am' => 'max:250',
-            '_pd' => 'required|max:250',
-            '_pdc' => 'required|max:250|same:_pd',
             '_sx' => 'required',
             '_rfc' => 'max:13',
         ];
@@ -61,8 +59,6 @@ class registro extends FormRequest
             '_tel' => 'Teléfono',
             '_ap' => 'Apellido Paterno',
             '_am' => 'Apellido Materno',
-            '_pd' => 'Contraseña',
-            '_pdc' => 'Confirmación de Contraseña',
             '_sx' => 'Sexo',
             '_rfc' => 'RFC',
         ];

@@ -14,7 +14,7 @@
       </div>
       <div class="modal-body">
         @if(session()->has('usuario'))
-        <a href=""><button type="button" class="btn btn-outline-secondary" >Ver perfil</button> </a>
+        <a href="/perfil"><button type="button" class="btn btn-outline-secondary" >Ver perfil</button> </a>
         <form method="POST" action="/logout">
           @csrf
         </div>

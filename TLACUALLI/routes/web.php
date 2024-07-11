@@ -30,3 +30,8 @@ Route::get('/registrar', [LoginController::class, 'index']);
 Route::post('/registrar', [LoginController::class, 'create']);
 Route::post('/login', [LoginController::class, 'login']);
 Route::post('/logout', [LoginController::class, 'logout']);
+Route::get('/perfil', [LoginController::class, 'show']);
+Route::get('/perfil/editar', [LoginController::class, 'edit']);
+Route::post('/perfil/editar', [LoginController::class, 'update']);
+Route::post('/cambiar_contraseña', [LoginController::class, 'pchange']);
+Route::post('/perfil/eliminar', [LoginController::class, 'destroy']);

@@ -86,3 +86,42 @@
     )
 </script>
 @endif
+
+@if(session()->has('Confirmacion_update'))
+<script>
+    Swal.fire(
+        'Todo correcto',
+        '{{session('Confirmacion_update')}}',
+        'success'
+    )
+</script>
+@endif
+
+@if(session()->has('Error_contraseña'))
+<script>
+    Swal.fire(
+        'Error',
+        '{{ session('Error_contraseña') }}',
+        'error'
+    )
+</script>
+@endif
+
+@if(session()->has('Confirmacion_cambio'))
+<script>
+    Swal.fire(
+        'Todo correcto',
+        '{{session('Confirmacion_cambio')}}',
+        'success'
+    )
+</script>
+@endif
+@if(session()->has('Confirmacion_eliminacion'))
+<script>
+    Swal.fire(
+        'Todo correcto',
+        '{{session('Confirmacion_eliminacion')}}',
+        'success'
+    )
+</script>
+@endif
