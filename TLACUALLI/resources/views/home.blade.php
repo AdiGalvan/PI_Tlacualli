@@ -17,8 +17,14 @@
 
 <div class="container-fluid px-lg-5 mt-5">
     <div class="row mb-4">
+        @auth
+        Autenticado
+        @endauth
+        @guest
+        No autenticado
+        @endguest
         <div class="col-12 text-center">
-            <h2>Publicaciones</h2>
+            <h2>Publicaciones </h2>
         </div>
     </div>
 

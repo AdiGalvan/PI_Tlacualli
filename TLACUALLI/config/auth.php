@@ -32,7 +32,7 @@ return [
     | mechanisms used by this application to persist your user's data.
     |
     | Supported: "session"
-    |
+    |return redirect
     */
 
     'guards' => [
@@ -62,7 +62,7 @@ return [
     'providers' => [
         'users' => [
             'driver' => 'eloquent',
-            'model' => App\Models\User::class,
+            'model' => App\Models\Usuarios::class,
         ],
 
         // 'users' => [

@@ -26,11 +26,26 @@
     @vite('resources/css/images.css')
     @vite('resources/css/carrusel.css')
     @php
+        // $cwd = getcwd();
+        // $cssName = basename(glob($cwd . '/build/assets/*.css')[0], '.css');
+        // $jsName = basename(glob($cwd . '/build/assets/*.js')[0], '.js');
+        // $css = asset('build/assets/' . $cssName . '.css');
+        // $js = asset('build/assets/' . $jsName . '.js');
         $cwd = getcwd();
-        $cssName = basename(glob($cwd . '/build/assets/*.css')[0], '.css');
-        $jsName = basename(glob($cwd . '/build/assets/*.js')[0], '.js');
+    $cssFiles = glob($cwd . '/build/assets/*.css');
+    $jsFiles = glob($cwd . '/build/assets/*.js');
+    
+    if (count($cssFiles) > 0 && count($jsFiles) > 0) {
+        $cssName = basename($cssFiles[0], '.css');
+        $jsName = basename($jsFiles[0], '.js');
         $css = asset('build/assets/' . $cssName . '.css');
         $js = asset('build/assets/' . $jsName . '.js');
+    } else {
+        $css = null;
+        $js = null;
+        // Puedes lanzar una excepción o registrar un error aquí si lo deseas
+        // throw new Exception('No CSS or JS files found in the build/assets directory.');
+    }    
     @endphp
 
     <link rel="stylesheet" href="{{ $css }}" id="css">

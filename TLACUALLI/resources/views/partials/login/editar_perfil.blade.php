@@ -68,7 +68,7 @@
             <label class="form-label">Rol *</label>
             <select class="form-select" id="_rol" name="_rol" onchange="toggleApellidos(this)">
                 <option value="" @if (null == old('_rol')) selected @endif>Selecciona una opción</option>
-                @foreach($roles as $_rol)
+                @foreach($usuario->roles as $_rol)
                 <option value="{{$_rol->id}}" @if ($_rol->id == $usuario -> id_rol ) selected @endif>{{$_rol->nombre}}</option>
                 @endforeach
             </select>
@@ -84,7 +84,7 @@
             <label class="form-label">Sexo *</label>
             <select class="form-select" id="_sx" name="_sx">
                 <option value="" @if (null == old('_sx')) selected @endif>Selecciona una opción</option>
-                @foreach($sexos as $_sx)
+                @foreach($usuario->sexos as $_sx)
                 <option value="{{$_sx->id}}" @if ($_sx->id == $usuario -> id_sexo) selected @endif>{{$_sx->nombre}}</option>
                 @endforeach
             </select>
@@ -116,12 +116,12 @@
       </div>
       <div class="mb-3">
         <label class="form-label">Estado</label>
-        <select  class="form-select" id="_edo" name="_edo">
+        {{-- <select  class="form-select" id="_edo" name="_edo">
           <option value="" @if (!empty($municipio)) selected @endif>Selecciona una opción</option>
-                @foreach($estados as $_edo)
+                @foreach($usuario->estados as $_edo)
                 <option value="{{$_edo->id}}" @if ($_edo->id ==  (!empty($municipio->id_estado) ? $municipio->id_estado : '' ) ) selected @endif>{{$_edo->nombre}}</option>
                 @endforeach
-        </select>
+        </select> --}}
       </div>
     </div>
       <div class="col-md-6">
@@ -161,9 +161,9 @@
                     <label class="form-label" for="_edo_fiscal">Estado</label>
                     <select class="form-select" id="_edo_fiscal" name="_edo_fiscal">
                         <option value="" @if (!empty($municipiof)) selected @endif>Selecciona una opción</option>
-                @foreach($estados as $_edo_fiscal)
+                {{-- @foreach($estados as $_edo_fiscal)
                 <option value="{{$_edo_fiscal->id}}" @if ($_edo_fiscal->id == (!empty($municipiof->id_estado) ? $municipiof->id_estado : '' )) selected @endif>{{$_edo_fiscal->nombre}}</option>
-                @endforeach
+                @endforeach --}}
                     </select>
                 </div>
             </div>

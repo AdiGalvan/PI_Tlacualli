@@ -5,15 +5,15 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        @if(session()->has('usuario'))
-        Bienvenido, {{ session('usuario') }}
+        @auth
+        Bienvenido, {{ Auth::user()->nombre_usuario }}
         @else
         <h5 class="modal-title" id="exampleModalLabel">Iniciar sesión</h5>
-        @endif
+        @endguest
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        @if(session()->has('usuario'))
+        @auth
         <a href="/perfil"><button type="button" class="btn btn-outline-secondary" >Ver perfil</button> </a>
         <form method="POST" action="/logout">
           @csrf
@@ -22,7 +22,8 @@
         <button type="submit" class="btn btn-outline-success" name="cerrar_sesion" id="cerrar_sesion">Cerrar sesión</button>
         </form>
         
-        @else
+        @endauth
+        @guest
         <form method="POST" action="/login">
           @csrf
           <div class="mb-3">
@@ -38,7 +39,7 @@
       <div class="modal-footer">
         <button type="submit" class="btn btn-outline-success" name="iniciar_sesion" id="iniciar_sesion">Iniciar sesión</button>
         </form>
-        @endif
+        @endguest
         <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancelar</button>
         </div>
         

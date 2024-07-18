@@ -12,4 +12,5 @@ class Sexos extends Model
     protected $fillable = [
         'nombre'
     ];
+
 }

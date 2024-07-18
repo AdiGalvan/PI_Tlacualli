@@ -17,6 +17,11 @@ class Direcciones extends Model
 
     public function calles() 
     {
-        return $this->hasOne(Calles::class, 'id', 'id_calle');
+        return $this->hasMany(Calles::class, 'id', 'id_calle');
+    }
+
+    public function usuarios()
+    {
+        return $this->hasOne(usuarios::class, 'id', 'id_usuario');
     }
 }

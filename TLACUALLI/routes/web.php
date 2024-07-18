@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Auth\AuthenticatedSessionController;
+
 use App\Http\Controllers\LoginController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\show_views;
@@ -67,15 +69,24 @@ Route::put('/activarTaller/{id}', [PublicacionesController::class, 'onStatus'])-
 //Actualizar informacion del taller
 Route::put('/actualizarTaller/{id}', [PublicacionesController::class, 'update'])->name('actualizarTaller');
 
+Route::group(['middleware'=>'auth'], function(){
+    Route::get('/perfil', [LoginController::class, 'show']);
+    Route::get('/perfil/editar', [LoginController::class, 'edit']);
+
+});
+
+    Route::post('/login', [LoginController::class, 'login']);
+    Route::post('/logout', [LoginController::class, 'logout']);
+
+    
+
+    Route::post('/perfil/editar', [LoginController::class, 'update']);
+    Route::post('/cambiar_contraseña', [LoginController::class, 'pchange']);
+    Route::post('/perfil/eliminar', [LoginController::class, 'destroy']);
+
+
 Route::get('/registrar', [LoginController::class, 'index']);
 Route::post('/registrar', [LoginController::class, 'create']);
-Route::post('/login', [LoginController::class, 'login']);
-Route::post('/logout', [LoginController::class, 'logout']);
-Route::get('/perfil', [LoginController::class, 'show']);
-Route::get('/perfil/editar', [LoginController::class, 'edit']);
-Route::post('/perfil/editar', [LoginController::class, 'update']);
-Route::post('/cambiar_contraseña', [LoginController::class, 'pchange']);
-Route::post('/perfil/eliminar', [LoginController::class, 'destroy']);
 
 
 Route::get('/productosCards', [ProductoController::class, 'Cards'])->name('productos.cards');
