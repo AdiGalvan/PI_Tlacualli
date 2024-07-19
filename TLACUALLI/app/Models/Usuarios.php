@@ -42,12 +42,16 @@ class Usuarios extends Authenticatable
 
     public function sexos()
     {
-        return $this->hasMany(Sexos::class, 'id', 'id_sexo');
+        return $this->belongsTo(Sexos::class, 'id_sexo');
     }
 
     public function roles()
     {
-        return $this->hasMany(Roles::class, 'id', 'id_rol');
+        return $this->belongsTo(Roles::class, 'id_rol');
+    }
+
+    public function direccionPersonal() {
+        return $this->hasOne(Direcciones::class, 'id', 'id_direccion');
     }
 
     public function getAuthPassword()

@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Usuarios;
+use App\Models\Estados;
+use App\Models\Roles;
+use App\Models\Sexos;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
@@ -64,7 +67,7 @@ class LoginController extends Controller
         $usuarioId = Auth::id();
 
         //Por medio del modelo trae lo relacionado
-        $usuario = Usuarios::with('direcciones', 'sexos', 'roles')->find($usuarioId);
+        $usuario = Usuarios::with('sexos', 'roles')->find($usuarioId);
         return view('partials.login.perfil', compact('usuario'));
     }
 
@@ -74,9 +77,56 @@ class LoginController extends Controller
         $usuarioId = Auth::id();
 
         //Por medio del modelo trae lo relacionado
-        $usuario = Usuarios::with('direcciones', 'sexos', 'roles')->find($usuarioId);
-        return view('partials.login.editar_perfil', compact('usuario'));
+        $usuario = Usuarios::with([
+            'sexos',
+            'roles',
+            'direccionPersonal.calles',
+            'direccionPersonal.colonias',
+            'direccionPersonal.municipios',
+            'direccionPersonal.estados'
+            ])->find($usuarioId);
 
+            $estados = Estados::all();
+            $roles = Roles::all();
+            $sexos = Sexos::all();
+        return view('partials.login.editar_perfil', compact('usuario', 'estados', 'roles', 'sexos'));
+
+    }
+
+    public function update(Request $request)
+    {
+        //Otiene el ID del usuario autenticado
+        $usuarioId = Auth::id();
+        $validatorPersonal = $request->validate([
+            '_nu'       => 'required|string',
+            '_ap'       => 'max:50|string',
+            '_fn'       => 'required|string',
+            '_email'    => 'required|string',
+            //avatar
+            '_tel'      => 'max:10|string',
+            '_rol'      => 'required|numeric|integer',
+            '_am'       => 'max:50|string',
+            '_sx'       => 'required|numeric|integer',
+            '_rfc'      => 'max:13|string'
+        ]);
+
+        $usuario = Usuarios::find($usuarioId);
+
+        if($usuario)
+        {
+            $usuario->nombre = $validatorPersonal['_nu'];
+            $usuario->apellido_paterno = $validatorPersonal['_ap'];
+            $usuario->fecha_nacimiento = $validatorPersonal['_fn'];
+            $usuario->correo = $validatorPersonal['_email'];
+            $usuario->telefono = $validatorPersonal['_tel'];
+            $usuario->id_rol = $validatorPersonal['_rol'];
+            $usuario->apellido_materno = $validatorPersonal['_am'];
+            $usuario->id_sexo = $validatorPersonal['_sx'];
+            $usuario->RFC = strtoupper($validatorPersonal['_rfc']);
+            $usuario->save();
+        }
+
+        return redirect('/perfil')->with('Confirmacion_update', 'Se actualizaron correctamente los datos');
     }
 }
 

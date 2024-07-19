@@ -13,4 +13,8 @@ class Sexos extends Model
         'nombre'
     ];
 
+    public function usuarios() 
+    {
+        return $this->hasMany(Usuarios::class, 'id', 'id_usuarios');
+    }
 }

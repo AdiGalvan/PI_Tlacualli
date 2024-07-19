@@ -59,7 +59,7 @@
                     <div class="col-md-6">
                         <div class="mb-3">
                             <label class="form-label fw-bold">Rol </label>
-                            <p class="" >{{ $usuario->roles->first()->nombre }}</p>
+                            <p class="" >{{ $usuario->roles->nombre }}</p>
                             <p class="text-danger fst-italic">{{ $errors->first('_rol') }}</p>
                         </div>
                         <div class="mb-3" id="apellido_m">
@@ -69,7 +69,7 @@
                         </div>
                         <div class="mb-3">
                             <label class="form-label fw-bold">Sexo </label>
-                            <p class="" >{{ $usuario->sexos->first()->nombre }}</p>
+                            <p class="" >{{ $usuario->sexos->nombre }}</p>
                             <p class="text-danger fst-italic">{{ $errors->first('_sx') }}</p>
                         </div>
                         <div class="mb-3">
