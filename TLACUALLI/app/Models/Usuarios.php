@@ -50,8 +50,16 @@ class Usuarios extends Authenticatable
         return $this->belongsTo(Roles::class, 'id_rol');
     }
 
-    public function direccionPersonal() {
-        return $this->hasOne(Direcciones::class, 'id', 'id_direccion');
+    //Direccion personal
+    public function direccion() 
+    {
+        return $this->hasOne(Direcciones::class, 'id', 'id_direccion_envios');
+    }
+
+    //Direccion fiscal
+    public function direccionF()
+    {
+        return $this->hasOne(Direcciones::class, 'id', 'id_direccion_fiscal');
     }
 
     public function getAuthPassword()

@@ -16,6 +16,6 @@ class Estados extends Model
 
     public function paises()
     {
-        return $this->hasOne(Paises::class, 'id', 'id_pais');
+        return $this->belongsTo(Paises::class, 'id_pais');
     }
 }
