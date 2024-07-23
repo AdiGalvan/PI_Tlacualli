@@ -1,7 +1,6 @@
 @extends('layouts.template')
 @section('titulo','Servicios')
-@section('contenido')
-
+@section('contenido')<link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
 <p></p>
 <center><h1>Mis solicitudes</h1></center>
 <p></p>
@@ -67,6 +66,7 @@
         </tbody>
     </table>
 </div>
-
+<br>
+<br>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
 @endsection
