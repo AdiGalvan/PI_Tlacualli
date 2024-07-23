@@ -9,7 +9,7 @@
         </div>
     </div>
     <div class="col-8">  
-    
+    {{-- @dd($publicaciones) --}}
         <h1 class="text-center">Mis talleres</h1>
         
         <div class="row">

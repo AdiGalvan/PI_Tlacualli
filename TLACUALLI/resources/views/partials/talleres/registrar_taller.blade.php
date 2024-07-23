@@ -54,7 +54,7 @@
 </div>
 
 <!--INICIO DE MODAL DE ACTUALIZACION-->
-<div class="modal fade" id="actualizar_taller" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="actualizar_taller{{ $publicacion->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
           <div class="modal-header">
@@ -68,7 +68,7 @@
 
                   <div class="mb-3">
                       <label class="form-label">Nombre taller</label>
-                      <input type="text" class="form-control" id="_nt" name="_nt" required value="{{ !empty($publicacion->nombre) ?  $publicacion->nombre : '' }}">
+                      <input type="text" class="form-control" id="_nt" name="_nt" required value="{{ !empty($publicacion) ?  $publicacion : '' }}"<>
                   </div>
 
                   <div class="mb-3">
@@ -160,16 +160,23 @@
 </script>
 <script>
   function validarCampos() {
-      var nombreTaller = document.getElementById('_nt').value;
-      var descripcionTaller = document.getElementById('_descT').value;
-      var contenidoTaller = document.getElementById('_contT').value;
-      var costoTaller = document.getElementById('_costoT').value;
+    var nombreTaller = document.getElementById('_nt').value;
+    var descripcionTaller = document.getElementById('_descT').value;
+    var contenidoTaller = document.getElementById('_contT').value.length;
+    var costoTaller = document.getElementById('_costoT').value.length;
 
-      if (nombreTaller === "" || descripcionTaller === "" || contenidoTaller === "" || costoTaller === "") {
-          alert("Por favor, complete todos los campos.");
-      } else {
-          showSweetAlertTaller();
-      }
+    if (nombreTaller === "") {
+      alert("Por favor, ingrese el nombre del taller.");
+    } else if (descripcionTaller === "") {
+      alert("Por favor, ingrese la descripción del taller.");
+    } else if (contenidoTaller === "") {
+      alert("Por favor, suba una imagen para el taller.");
+    } else if (costoTaller === "") {
+      alert("Por favor, ingrese el costo del taller.");
+    } else {
+      showSweetAlertTaller();
+      document.getElementById('registroTaller').submit(); // Envía el formulario si todos los campos están completos
+    }
   }
 </script>
 

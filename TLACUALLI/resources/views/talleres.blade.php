@@ -8,24 +8,27 @@
             @include('partials.talleres.filtros')
         </div>
     </div>
-    <div class="col-8">  
-    
+    {{-- @dd($usuario) --}}
+    <div class="col-8">
+
         <h1 class="text-center">Talleres</h1>
-        
+
         <div class="row">
             <div class="col-5">
                 <div class="input-group mb-3">
                     <input type="text" class="form-control" placeholder="Buscar taller ..." aria-label="Buscar productos" aria-describedby="button-search">
                     <button class="btn btn-outline-primary" type="button" id="button-search"><i class="bi bi-search"></i> Buscar</button>
-                </div>        
+                </div>
             </div>
             <div class="col-5">
             </div>
+            @if ($usuario->roles->id == 6)
             <div class="col-2 justify-content-end">
                 <a href="{{ route('mis_talleres') }}" class="btn btn-outline-success"><i class="bi bi-folder"></i> Mis talleres</a>
             </div>
+            @endif
         </div>
-        
+
         @if($publicaciones->isEmpty())
             <p>No hay talleres disponibles.</p>
         @else
@@ -39,7 +42,7 @@
                 </div>
             @endforeach
         @endif
-        
+
         <div class="row justify-content-center">
             <div class="col-auto">
                 <nav aria-label="Page navigation example">
