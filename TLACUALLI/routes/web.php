@@ -53,15 +53,28 @@ Route::get('/maps', function () {
 
 
 
-//Taller
-
-
+//RUTAS CON AUTENTICACIÓN DE MIDDLEWARE
+//ESTE MIDDLEWARE SIRVE PARA ENCRIPTAR LAS SESIONES ACTIVAS, ASÍ COMO ENCRIPTAR LAS COOKIES
 Route::group(['middleware'=>'auth'], function(){
-    //Autenticacion en parte del perfil
+    //PERFIL PERSONAL
+    //Muestra la información del perfil en sesion
     Route::get('/perfil', [LoginController::class, 'show']);
+
+    //Muestra informacion del perfil en sesion
     Route::get('/perfil/editar', [LoginController::class, 'edit']);
+    
+    //Genera el update de la informacion del perfil
     Route::post('/perfil/editar', [LoginController::class, 'update']);
 
+    //Genera la eliminacion logica del perfil
+    Route::post('/perfil/eliminar', [LoginController::class, 'destroy']);
+    
+    //Cierra la sesion, invalida y renueva token 
+    Route::post('/logout', [LoginController::class, 'logout']);
+
+
+    //-----------------------------------------------------------------------------------//
+    //TALLERES 
     //Autenticación en parte de regstro de taller por usuario autenticado
     Route::get('/mis_talleres',[PublicacionesController::class,'index_mis_talleres'])->name('mis_talleres');
 
@@ -82,13 +95,10 @@ Route::group(['middleware'=>'auth'], function(){
 
 });
 
-    Route::post('/login', [LoginController::class, 'login']);
-    Route::post('/logout', [LoginController::class, 'logout']);
+//RUTAS QUE NO NECESITAN AUTENTICACIÓN
+Route::post('/login', [LoginController::class, 'login']);
 
-    
-
-    Route::post('/cambiar_contraseña', [LoginController::class, 'pchange']);
-    Route::post('/perfil/eliminar', [LoginController::class, 'destroy']);
+Route::post('/cambiar_contraseña', [LoginController::class, 'pchange']);
 
 
 Route::get('/registrar', [LoginController::class, 'index']);
