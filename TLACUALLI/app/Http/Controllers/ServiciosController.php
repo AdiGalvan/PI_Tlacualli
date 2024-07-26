@@ -14,28 +14,33 @@ class ServiciosController extends Controller
      * Display a listing of the resource.
      */
     public function index()
-    {
-        if (!session()->has('id_usuario')) {
-            return redirect('/');
-        }
-        $solicitudes = DB::table('solicitudes')
-            ->join('usuarios as clientes', 'solicitudes.id_cliente', '=', 'clientes.id')
-            ->join('usuarios as proveedores', 'solicitudes.id_proveedor', '=', 'proveedores.id')
-            ->join('publicaciones', 'solicitudes.id_publicacion', '=', 'publicaciones.id')
-            ->select(
-                'solicitudes.id',
-                'clientes.nombre_usuario as cliente',
-                'proveedores.nombre_usuario as proveedor',
-                'solicitudes.descripcion',
-                'publicaciones.descripcion as tipo_servicio',
-                'solicitudes.fecha'
-            )
-            ->where('solicitudes.estatus', 1) // Filtrar por estatus = 1
-            ->orderBy('solicitudes.id', 'asc') // Ordenar por ID de forma ascendente
-            ->get();
-
-        return view('servicios.mis_servicios', compact('solicitudes'));
+{
+    if (!session()->has('id_usuario')) {
+        return redirect('/');
     }
+
+    $solicitudes = DB::table('solicitudes')
+        ->join('usuarios as clientes', 'solicitudes.id_cliente', '=', 'clientes.id')
+        ->join('usuarios as proveedores', 'solicitudes.id_proveedor', '=', 'proveedores.id')
+        ->join('publicaciones', 'solicitudes.id_publicacion', '=', 'publicaciones.id')
+        ->select(
+            'solicitudes.id',
+            'clientes.nombre_usuario as cliente',
+            'proveedores.nombre_usuario as proveedor',
+            'solicitudes.descripcion',
+            'publicaciones.descripcion as tipo_servicio',
+            'solicitudes.fecha'
+        )
+        ->where('solicitudes.estatus', 1) // Filtrar por estatus = 1
+        ->orderBy('solicitudes.id', 'asc') // Ordenar por ID de forma ascendente
+        ->get();
+
+    // Obtener opciones para los selects
+    $opciones = DB::table('usuarios')->pluck('nombre_usuario', 'id');
+    $t_servicio = DB::table('publicaciones')->pluck('descripcion', 'id');
+
+    return view('servicios.mis_servicios', compact('solicitudes', 'opciones', 't_servicio'));
+}
 
     public function search(Request $request)
     {

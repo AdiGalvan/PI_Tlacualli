@@ -17,7 +17,8 @@
     </div>
 
     <div class="mt-4 flex justify-end mx-4 sm:mx-auto">
-        <a href="{{ route('servicios.create') }}" class="bg-gradient-to-r from-green-500 to-green-800 hover:from-green-600 hover:to-green-800 text-white font-sans font-bold px-4 py-2 rounded-md text-lg transition-colors duration-300">Nueva solicitud</a>
+        <!-- Botón para disparar modal <"Nueva Solicitud"-->
+        <button id="openModalNS" class="bg-gradient-to-r from-green-500 to-green-800 hover:from-green-600 hover:to-green-800 text-white font-sans font-bold px-4 py-2 rounded-md text-lg transition-colors duration-300">Nueva solicitud</button>
     </div>
 
     <div class="mt-4 mx-4 sm:mx-auto">
@@ -57,7 +58,6 @@
                         <td class="px-2 py-1 text-sm">{{ $solicitud->tipo_servicio }}</td>
                         <td class="px-2 py-1 text-sm">{{ $solicitud->fecha }}</td>
                         <td class="px-2 py-1">
-
                             <!-- INICIA DIV PARA SECCIÓN DE BOTONES -->
                             <div class="inline-flex space-x-1 items-center">
                                 <!-- Botón Editar -->
@@ -74,19 +74,14 @@
                                     @csrf
                                     <button type="submit" class="bg-gradient-to-r from-yellow-300 to-yellow-500 hover:from-yellow-400 hover:to-yellow-600 text-white font-sans font-bold px-2 py-1 rounded-md text-xs no-underline inline-flex items-center space-x-1 transition-colors duration-300">
                                         <!-- Icono de bote de basura -->
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                            <path d="M4 7h16"></path>
-                                            <path d="M10 11v6"></path>
-                                            <path d="M14 11v6"></path>
-                                            <path d="M5 7h14l1 13H4L5 7z"></path>
-                                            <path d="M8 7V3h8v4"></path>
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="h-4 w-4">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 9l6 6 6-6"></path>
                                         </svg>
                                         <span>Eliminar</span>
                                     </button>
                                 </form>
                             </div>
-                            <!-- Fin sección de botones -->
-
+                            <!-- TERMINA DIV PARA SECCIÓN DE BOTONES -->
                         </td>
                     </tr>
                     @endforeach
@@ -94,6 +89,23 @@
             </table>
         </div>
     </div>
-</div>
+
+    <!-- Modal "Nueva solicitud" -->
+    <div id="modalNS" class="fixed inset-0 bg-gray-800 bg-opacity-75 flex items-center justify-center hidden">
+        <div class="bg-white w-full md:w-3/4 lg:w-1/2 xl:w-1/3 rounded-lg p-6">
+            @include('servicios.modal_nueva_solicitud') <!-- Incluye el formulario >de "Nueva Solicitud" en el modal -->
+            <button id="closeModalNS" class="absolute top-4 right-4 text-gray-600 hover:text-gray-900">
+                <!-- Icono de cerrar -->
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="h-6 w-6">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                </svg>
+            </button>
+        </div>
+    </div>
+<!-- Fin modal "Nueva Solicitud" -->
+
+<!-- Script que controla el modal NS (El script está alojado en la carpeta "public")-->
+<script src="{{ asset('js/modal_nueva_solicitud.js') }}"></script>
+
 
 @endsection
