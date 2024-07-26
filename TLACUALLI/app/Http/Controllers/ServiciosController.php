@@ -25,6 +25,7 @@ class ServiciosController extends Controller
         ->join('publicaciones', 'solicitudes.id_publicacion', '=', 'publicaciones.id')
         ->select(
             'solicitudes.id',
+            'solicitudes.id_cliente as id_cliente',
             'clientes.nombre_usuario as cliente',
             'proveedores.nombre_usuario as proveedor',
             'solicitudes.descripcion',
@@ -38,6 +39,7 @@ class ServiciosController extends Controller
     // Obtener opciones para los selects
     $opciones = DB::table('usuarios')->pluck('nombre_usuario', 'id');
     $t_servicio = DB::table('publicaciones')->pluck('descripcion', 'id');
+    //dd($solicitudes);
 
     return view('servicios.mis_servicios', compact('solicitudes', 'opciones', 't_servicio'));
 }
@@ -162,6 +164,7 @@ class ServiciosController extends Controller
 
         $opciones = DB::table('usuarios')->pluck('nombre_usuario', 'id');
         $t_servicio = DB::table('publicaciones')->pluck('descripcion', 'id');
+      
 
         return view('servicios.actualizar_formulario', compact('solicitud', 'opciones', 't_servicio'));
     }
@@ -202,6 +205,7 @@ class ServiciosController extends Controller
             return redirect('/');
         }
         $solicitud = DB::table('solicitudes')->where('id', $id)->first();
+        
 
         if (!$solicitud) {
             abort(404); // Si no se encuentra la solicitud
