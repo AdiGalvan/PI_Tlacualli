@@ -12,10 +12,18 @@ use Carbon\Carbon;
 
 class PublicacionesController extends Controller
 {
+    //-----------------------RELACIONES DE MODELOS---------------------------//
+     // Definición de la relación con el modelo User
+     public function usuario()
+     {
+         return $this->belongsTo(Usuarios::class, 'id_usuario');
+     }
+ 
+    //----------------------TALLERES------------------------------------------------//
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function talleresIndex()
     {
         //Verifica si el usuario está autenticado, si está autenticado se le habilita la opcion
         // para ir a sus talleres 
@@ -41,13 +49,17 @@ class PublicacionesController extends Controller
         return view('talleres', compact('publicaciones', 'usuario'));
     }
 
-    public function index_mis_talleres()
+    public function misTalleresIndex()
     {
         $usuarioId = Auth::id();
+        $usuario = Usuarios::with('roles')
+            ->find($usuarioId);
+        $idRol = $usuario->roles->id;
         
-        if (Auth::check()){
+        if (Auth::check() and $idRol == 6){
             //Obtiene todos los talleres relacionados a este usuario
             $publicaciones = Publicaciones::where('id_usuario', $usuarioId)
+            ->where('id_tipo', 2)
             ->with('usuario')
             ->get();
             
@@ -56,7 +68,7 @@ class PublicacionesController extends Controller
         }
         else {
             //Si no esta autenticado lo manda al home
-            return redirect('/');
+            abort(404, 'Página no encontrada');
         }   
     }
 
@@ -71,7 +83,7 @@ class PublicacionesController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function tallerStore(Request $request)
     {
         $usuarioId = Auth::id();
         
@@ -98,21 +110,21 @@ class PublicacionesController extends Controller
             }
             
             //Insert de publicación
-            $publicacion = new Publicaciones();
-            $publicacion->descripcion = $validator['_descT'];
-            $publicacion->nombre = $validator['_nt'];
-            $publicacion->contenido = $filePath;
-            $publicacion->fecha_publicacion = Carbon::now()->toDateString();
-            $publicacion->costo = $validator['_costoT'];
-            $publicacion->id_usuario = $usuarioId;
-            $publicacion->id_tipo = 2; //Tipo 2 porque son talleres
-            $publicacion->estatus = false;
-            $publicacion->save();
+            $taller = new Publicaciones();
+            $taller->descripcion = $validator['_descT'];
+            $taller->nombre = $validator['_nt'];
+            $taller->contenido = $filePath;
+            $taller->fecha_publicacion = Carbon::now()->toDateString();
+            $taller->costo = $validator['_costoT'];
+            $taller->id_usuario = $usuarioId;
+            $taller->id_tipo = 2; //Tipo 2 porque son talleres
+            $taller->estatus = false;
+            $taller->save();
 
             return redirect()->back()->with('success', 'Publicación creada exitosamente.');
         }
         else {
-            return redirect('/');
+            abort(404, 'Página no encontrada');        
         }
         
     }
@@ -172,7 +184,7 @@ class PublicacionesController extends Controller
             return redirect()->back();
         }
         else{
-            return redirect('/');
+            abort(404, 'Página no encontrada');
         }   
     }
 
@@ -194,16 +206,11 @@ class PublicacionesController extends Controller
             return redirect()->back();
         }
         else {
-
+            abort(404, 'Página no encontrada');
         }
     }
 
-    // Definición de la relación con el modelo User
-    public function usuario()
-    {
-        return $this->belongsTo(Usuarios::class, 'id_usuario');
-    }
-
+   
     //Borrado lógico de taller, desactiva la publicacion 
     public function offStatus(Request $request, $id)
     {
@@ -213,6 +220,9 @@ class PublicacionesController extends Controller
             $publicacion->save();
         
             return redirect()->back();
+        }
+        else {
+            abort(404, 'Página no encontrada');
         }
     }
 
@@ -226,6 +236,105 @@ class PublicacionesController extends Controller
         
             return redirect()->back();
         }
+        else {
+            abort(404, 'Página no encontrada');
+        }
     }
-    
+
+    //--------------------------PUBLICACIONES------------------------------//
+
+    public function publicacionesIndex()
+    {
+        //Verifica si el usuario está autenticado, si está autenticado se le habilita la opcion
+        // para ir a sus talleres 
+        $usuarioId = Auth::id();
+
+        if (Auth::check()) {
+            $usuario = Usuarios::with('roles')
+            ->find($usuarioId);
+        }
+        else {
+            //Si no está autenticado se crea una clase generica para que pueda visualizar todos los talleres activos
+            $usuario = new \stdClass();
+            $usuario->roles = new \stdClass();
+            $usuario->roles->id = null;
+        }
+        //Busca todas las publicaciones de tipo taller, activas y con los datos del publicador
+        $publicaciones = Publicaciones::where('id_tipo', 1  )
+            ->get()
+            ->map(function ($publicacion){
+                $publicacion->fecha_creacion = Carbon::parse($publicacion->created_at)->format('Y-m-d');
+                return $publicacion;
+            });
+
+        return view('publicaciones', compact('publicaciones', 'usuario'));
+
+    }
+
+    public function misPublicacionesIndex()
+    {
+        $usuarioId = Auth::id();
+        $usuario = Usuarios::with('roles')
+            ->find($usuarioId);
+        $idRol = $usuario->roles->id;
+        
+        if (Auth::check() and $idRol == 5){
+            //Obtiene todos los talleres relacionados a este usuario
+            $publicaciones = Publicaciones::where('id_usuario', $usuarioId)
+            ->where('id_tipo', 1)
+            ->with('usuario')
+            ->get();
+            
+            //Envia talleres a la vista de talleres
+            return view('mis_publicaciones', compact('publicaciones'));
+        }
+        else {
+            abort(404, 'Página no encontrada');
+        }   
+    }
+
+    public function publicacionStore(Request $request)
+    {
+        $usuarioId = Auth::id();
+        
+        if (Auth::check()){
+            //Validaciones
+            $validator = $request->validate([
+                '_des'                  => 'required',
+                '_tp'                   => 'required|max:50',
+                '_cont'                 => 'required|file|max:2048', //Ruta de la imagen
+                '_tipo'                 => 'required|numeric'
+                //'id_usuario_revision'   => 'required',
+                //'fecha_revision'        => 'date',
+            ]);
+
+            //Subir el archivo imagen
+            if ($request->hasFile('_cont')) {
+                $file = $request->file('_cont');
+                
+                $filename = $usuarioId . '_1_' . $file->getClientOriginalName();
+
+                $filePath = $file->storeAs('uploads', $filename, 'public');
+            } else {
+                return redirect()->back()->with('error', 'Error al subir el archivo.');
+            }
+            
+            //Insert de publicación
+            $publicacion = new Publicaciones();
+            $publicacion->descripcion = $validator['_des'];
+            $publicacion->nombre = $validator['_tp'];
+            $publicacion->contenido = $filePath;
+            $publicacion->fecha_publicacion = Carbon::now()->toDateString();
+            $publicacion->id_usuario = $usuarioId;
+            $publicacion->id_tipo =$validator['_tipo'];
+            $publicacion->estatus = false;
+            $publicacion->save();
+
+            return redirect()->back()->with('success', 'Publicación creada exitosamente.');
+        }
+        else {
+            abort(404, 'Página no encontrada');
+        }
+        
+    }
 }

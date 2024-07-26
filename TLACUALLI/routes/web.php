@@ -26,8 +26,14 @@ use App\Http\Controllers\ProductoController;
 
 Route::get('/',[show_views::class,'home'])->name('inicio');
 /* Route::get('/tienda',[show_views::class,'productos'])->name('tienda'); */
-Route::get('/publicaciones',[show_views::class,'publicaciones'])->name('publicaciones');
-Route::get('/talleres',[PublicacionesController::class,'index'])->name('index');
+// Route::get('/publicaciones',[show_views::class,'publicaciones'])->name('publicaciones');
+
+Route::get('/publicaciones',[PublicacionesController::class,'publicacionesIndex'])->name('publicaciones');
+
+
+
+
+Route::get('/talleres',[PublicacionesController::class,'talleresIndex'])->name('index');
 
 
 
@@ -76,10 +82,10 @@ Route::group(['middleware'=>'auth'], function(){
     //-----------------------------------------------------------------------------------//
     //TALLERES 
     //Autenticación en parte de regstro de taller por usuario autenticado
-    Route::get('/mis_talleres',[PublicacionesController::class,'index_mis_talleres'])->name('mis_talleres');
+    Route::get('/mis_talleres',[PublicacionesController::class,'misTalleresIndex'])->name('mis_talleres');
 
     //Creacion de taller
-    Route::post('/registroTaller', [PublicacionesController::class, 'store'])->name('tallerStore');
+    Route::post('/registroTaller', [PublicacionesController::class, 'tallerStore'])->name('tallerStore');
 
     //Eliminación de publicaciones
     Route::delete('/borrarTaller/{id}', [PublicacionesController::class, 'physicalDestroy'])->name('publicacionesDestroy');
@@ -92,6 +98,14 @@ Route::group(['middleware'=>'auth'], function(){
 
     //Actualizar informacion del taller
     Route::put('/actualizarTaller/{id}', [PublicacionesController::class, 'update'])->name('actualizarTaller');
+
+    //-----------------------------------------------------------------------------------//
+    //PUBLICACIONES
+    Route::get('/mis_publicaciones',[PublicacionesController::class,'misPublicacionesIndex'])->name('mis_publicaciones');
+
+    Route::post('/registroPublicacion', [PublicacionesController::class, 'publicacionStore'])->name('publicacionStore');
+
+
 
 });
 

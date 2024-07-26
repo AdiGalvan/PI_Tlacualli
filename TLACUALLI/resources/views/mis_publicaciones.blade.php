@@ -3,7 +3,6 @@
 @section('contenido')
 {{-- @dd($publicaciones) --}}
 
-
 <div class="row mt-3">
     <div class="col-10 pt-5 ps-5">
         <br><br>
@@ -25,7 +24,7 @@
                 <span class="visually-hidden">Next</span>
             </button>
         </div> --}}
-        @include('partials.carrusel_home')
+        {{-- @include('partials.carrusel_home') --}}
         <div class="row mt-3">
             <div class="col-2">
                 <div class="container sticky-top">
@@ -38,10 +37,9 @@
                 
                 <div class="container">
             
-                    <h1 class="text-center">Publicaciones</h1>
+                    <h1 class="text-center">Tus publicaciones</h1>
                     @auth
                     Autenticado
-                    {{ $usuario->roles->id }}
                     @endauth
                     @guest
                     No autenticado
@@ -56,17 +54,14 @@
                         </div>
                         <div class="col-5">
                         </div>
-                        
-                        @if ($usuario->roles->id == 5)
+                        @auth
                         <div class="col-2 justify-content-end">
-                            <a href="{{ route('mis_publicaciones') }}" class="btn btn-outline-success"><i class="bi bi-folder"></i> Mis publicaciones</a>
-                        </div>    
-                        @endif
-                        {{-- <div class="col-2 justify-content-end">
-                            <button type="button" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#registrar_publicacion"><i class="bi bi-file-earmark-text"></i>Mis publicaciones</button>
-                        </div> --}}
-                        
-                        
+                            <button type="button" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#registrar_publicacion"><i class="bi bi-file-earmark-text"></i> Registrar publicación</button>
+                        </div>
+                        @endauth
+                        @guest
+                            
+                        @endguest
                     </div>
                     
                     <div class="row p-2">
