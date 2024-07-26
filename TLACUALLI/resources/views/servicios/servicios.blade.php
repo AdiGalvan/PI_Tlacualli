@@ -67,8 +67,8 @@
       
        
         <div class="flex justify-end mt-3">
-    <button type="submit" class="bg-green-600 hover:bg-green-900 text-white px-4 py-2 rounded-lg mr-2 font-semibold">Aceptar</button>
-    <a href="/mis_servicios" class="bg-gray-600 hover:bg-gray-800 text-white px-4 py-2 rounded-lg font-semibold">Cancelar</a>
+    <button type="submit" class="bg-gradient-to-r from-green-500 to-green-800 hover:from-green-600 hover:to-green-800 text-white px-4 py-2 rounded-lg mr-2 font-semibold">Aceptar</button>
+    <a href="/mis_servicios" class="bg-gradient-to-r from-gray-500 to-gray-800 hover:from-gray-600 hover:to-gray-800 text-white px-4 py-2 rounded-lg font-semibold">Cancelar</a>
 </div>
 
       </form>
