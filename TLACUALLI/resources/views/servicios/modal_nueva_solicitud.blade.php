@@ -1,4 +1,6 @@
 <!-- modal_nueva_solicitud.blade.php -->
+<link href="{{ asset('css/mensajesValidacion.css') }}" rel="stylesheet">
+<script src="{{ asset('js/app.js') }}" defer></script>
 <form id="solicitudForm" method="POST" action="{{ route('servicios.store') }}" class="bg-white w-full rounded-lg p-6">
     @csrf <!-- Generación del token -->
 

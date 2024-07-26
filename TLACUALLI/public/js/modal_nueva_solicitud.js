@@ -76,22 +76,30 @@ document.addEventListener("DOMContentLoaded", function () {
 
     function showError(fieldId, message) {
         const errorElement = document.getElementById(`error-${fieldId}`);
+
+        // Establecer el contenido del mensaje de error
         errorElement.textContent = message;
+
+        // Aplicar la clase de estilo de error
+        errorElement.classList.add("error-message");
+
+        // Opcional: Si quieres agregar alguna clase de error al campo, puedes hacerlo aquí
         const field = document.getElementById(fieldId);
-        field.classList.add("border-red-500");
+        field.classList.add("error-field"); // Puedes definir esta clase si necesitas cambiar el estilo del campo también
     }
 
     function clearErrors() {
         // Limpiar los mensajes de error
-        document.querySelectorAll(".text-red-600").forEach((element) => {
+        document.querySelectorAll(".error-message").forEach((element) => {
             element.textContent = "";
+            element.classList.remove("error-message");
         });
 
-        // Limpiar las clases de error
+        // Opcional: Limpiar las clases de error del campo
         document
             .querySelectorAll(".form-control, .form-select")
             .forEach((element) => {
-                element.classList.remove("border-red-500");
+                element.classList.remove("error-field"); // Solo si usas una clase para el campo
             });
     }
 });

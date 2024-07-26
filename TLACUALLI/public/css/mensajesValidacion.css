@@ -1,0 +1,10 @@
+/* Estilo para el cuadro de error */
+.error-message {
+    background-color: #4a4a4a; /* Gris oscuro */
+    color: white;
+    padding: 8px;
+    border-radius: 4px;
+    margin-top: 4px;
+    display: inline-block;
+    font-size: 0.875rem; /* Tamaño de texto */
+}
