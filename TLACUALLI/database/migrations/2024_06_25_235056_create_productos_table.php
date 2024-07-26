@@ -16,6 +16,7 @@ class CreateProductosTable extends Migration
             $table->integer('stock');
             $table->tinyInteger('estatus')->default(1);
             $table->integer('proveedor_id');
+            $table->string('contenido', 255);
             $table->timestamps();
         });
     }
