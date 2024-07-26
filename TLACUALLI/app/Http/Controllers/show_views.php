@@ -28,7 +28,12 @@ class show_views extends Controller
 
     public function productos()
     {
-        return view('productos', ['usuario' => $this->usuario]);
+        return view('productos');
+    }
+
+    public function mis_productos() 
+    {
+        return view('mis_productos');    
     }
 
     public function publicaciones()
@@ -48,4 +53,5 @@ class show_views extends Controller
     {
         return view('talleres', ['usuario' => $this->usuario]);
     }
+
 }

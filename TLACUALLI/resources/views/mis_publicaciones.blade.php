@@ -103,7 +103,7 @@
     <div class="col-2">
         <div class="sticky-top pe-3">
             <br>
-            @include('partials.productos1.carrusel')
+            @include('partials.productos.carrusel')
             <br>
             @include('partials.talleres.carrusel')
         </div>

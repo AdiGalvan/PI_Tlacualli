@@ -62,6 +62,11 @@ class Usuarios extends Authenticatable
         return $this->hasOne(Direcciones::class, 'id', 'id_direccion_fiscal');
     }
 
+    public function productos()
+    {
+        return $this->belongsTo(Producto::class, 'id');
+    }
+
     public function getAuthPassword()
     {
         return $this->contraseña;

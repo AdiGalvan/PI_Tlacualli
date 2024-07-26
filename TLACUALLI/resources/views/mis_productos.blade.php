@@ -4,9 +4,9 @@
 
 <div class="row mt-5">
     <div class="col-2">
-        <div class="sticky-top">
+        {{-- <div class="sticky-top">
             @include('partials.productos1.filtros')
-        </div>
+        </div> --}}
     </div>
     <div class="col-8">  
         
@@ -23,8 +23,8 @@
                 <div class="col-5">
                 </div>
                 <div class="float-right col-2 justify-content-end">
-                    <a href="{{ route('productos.create') }}" class="btn btn-outline-primary btn-sm float-right"  data-placement="left"><i class="bi bi-bag-plus"></i>  Agregar Producto</a>
-                 </div>
+                    <button type="button" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#registrar_producto"><i class="bi bi-file-earmark-text"></i>Agregar producto</button>
+                </div>
             </div>
                                     
             <div class="container-fluid mt-5">
@@ -81,7 +81,7 @@
                                 </div>
                             </div>
                         </div>
-                        {!! $productos->links() !!}
+                        {{-- {!! $productos->links() !!} --}}
                     </div>
                 </div>
             </div>
@@ -111,7 +111,7 @@
     <div class="col-2">
         <div class="sticky-top pe-3">
             <br>
-            @include('partials.productos1.carrusel')
+            @include('partials.productos.carrusel')
             <br>
             @include('partials.publicaciones.carrusel')
             <br>
@@ -122,6 +122,6 @@
 
 
 
-@include('partials.productos1.registrar_producto')
-@include('partials.productos1.script_productos')
+@include('partials.productos.registrar_producto')
+@include('partials.productos.script_productos')
 @endsection

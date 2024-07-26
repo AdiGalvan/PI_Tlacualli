@@ -105,6 +105,10 @@ Route::group(['middleware'=>'auth'], function(){
 
     Route::post('/registroPublicacion', [PublicacionesController::class, 'publicacionStore'])->name('publicacionStore');
 
+    //-----------------------------------------------------------------------------------//
+    //PRODUCTOS
+    Route::get('/mis_productos', [ProductoController::class, 'misProductosIndex'])->name('mis_productos');
+
 
 
 });
@@ -119,10 +123,11 @@ Route::get('/registrar', [LoginController::class, 'index']);
 Route::post('/registrar', [LoginController::class, 'create']);
 
 
-Route::get('/productosCards', [ProductoController::class, 'Cards'])->name('productos.cards');
+Route::get('/productos', [ProductoController::class, 'index'])->name('productos');
+
 /* Route::get('/productosCards', [ProductoController::class, 'Cards']); */
 
-Route::resource('productos', ProductoController::class);
+// Route::resource('productos', ProductoController::class);
 
 /* Route::get('/productos/show', [ProductoController::class, 'show']); */
 
