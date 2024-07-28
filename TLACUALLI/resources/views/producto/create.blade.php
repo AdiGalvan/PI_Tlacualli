@@ -4,8 +4,13 @@
     {{ __('Create') }} Producto
 @endsection
 
+<<<<<<< Updated upstream
 @section('contenido')
     <section class="content container-fluid mt-5">
+=======
+@section('content')
+    <section class="content container-fluid">
+>>>>>>> Stashed changes
         <div class="row">
             <div class="col-md-12">
 
