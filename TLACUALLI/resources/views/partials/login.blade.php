@@ -40,7 +40,10 @@
         </form>
         @endif
         <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancelar</button>
-      </div>      
+        </div>
+        
+
+      
     </div>
   </div>
 </div>
