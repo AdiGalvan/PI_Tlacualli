@@ -17,11 +17,9 @@
           <li class="nav-item">
             <a class="nav-link fs-3 {{request()->routeIs('publicaciones')?'disabled':'w_o'}}" aria-current="page" href="/publicaciones">Publicaciones</a>
           </li>
-          @if(session()->has('id_usuario'))
           <li class="nav-item">
           <a class="nav-link fs-3 {{request()->routeIs('servicios')?'disabled':'w_o'}}" aria-current="page" href="/mis_servicios">Servicios</a>
           </li>
-          @endif
           <li class="nav-item">
             <a class="nav-link fs-3 {{request()->routeIs('productos')?'disabled ':'w_o'}}" aria-current="page" href="/productos">Productos</a>
           </li>

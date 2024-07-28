@@ -229,19 +229,4 @@ document.getElementById('copy_address').addEventListener('change', function() {
 });
 </script>
 
-<script>
-    function toggleApellidos(select) {
-        var apellidosDiv1 = document.getElementById('apellido_p');
-        var apellidosDiv2 = document.getElementById('apellido_m');
-        var rolValue = select.value;
-
-        if (rolValue === '1') {
-            apellidosDiv1.style.display = 'block'; // Mostrar los apellidos si es persona física
-            apellidosDiv2.style.display = 'block'; // Mostrar los apellidos si es persona física
-        } else {
-            apellidosDiv1.style.display = 'none'; // Ocultar los apellidos en otros casos
-            apellidosDiv2.style.display = 'none'; // Ocultar los apellidos en otros casos
-        }
-    }
-</script>
 @endsection

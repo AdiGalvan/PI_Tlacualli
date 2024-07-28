@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use DB;
+use Illuminate\Support\Facades\Auth;
 
 class show_views extends Controller
 {
@@ -23,6 +24,9 @@ class show_views extends Controller
 
     public function home()
     {
+        /* if (Auth::check()) {
+            dd(Auth::user());
+        } */
         return view('home', ['usuario' => $this->usuario]);
     }
 
@@ -31,9 +35,9 @@ class show_views extends Controller
         return view('productos');
     }
 
-    public function mis_productos() 
+    public function mis_productos()
     {
-        return view('mis_productos');    
+        return view('mis_productos');
     }
 
     public function publicaciones()
@@ -41,11 +45,13 @@ class show_views extends Controller
         return view('publicaciones', ['usuario' => $this->usuario]);
     }
 
-    public function servicios(){
+    public function servicios()
+    {
         return view('servicios.mis_servicios');
     }
 
-    public function mis_talleres(){
+    public function mis_talleres()
+    {
         return view('mis_talleres');
     }
 
@@ -53,5 +59,4 @@ class show_views extends Controller
     {
         return view('talleres', ['usuario' => $this->usuario]);
     }
-
 }

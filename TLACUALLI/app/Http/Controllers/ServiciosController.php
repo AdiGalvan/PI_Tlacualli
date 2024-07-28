@@ -15,9 +15,6 @@ class ServiciosController extends Controller
      */
     public function index()
     {
-        if (!session()->has('id_usuario')) {
-            return redirect('/');
-        }
         $solicitudes = DB::table('solicitudes')
             ->join('usuarios as clientes', 'solicitudes.id_cliente', '=', 'clientes.id')
             ->join('usuarios as proveedores', 'solicitudes.id_proveedor', '=', 'proveedores.id')
@@ -39,9 +36,6 @@ class ServiciosController extends Controller
 
     public function search(Request $request)
     {
-        if (!session()->has('id_usuario')) {
-            return redirect('/');
-        }
         // Obtener los datos de búsqueda del formulario
         $cliente = $request->input('cliente');
         $proveedor = $request->input('proveedor');
@@ -93,9 +87,7 @@ class ServiciosController extends Controller
      */
     public function create()
     {
-        if (!session()->has('id_usuario')) {
-            return redirect('/');
-        }
+
         //Esta opción es la misma para obtener nombre del cliente y del proveedor (se selecciona), se filtarán nombres de acuerdo con el rol
         $opciones = DB::table('usuarios')->pluck('nombre_usuario', 'id');
 
@@ -117,9 +109,6 @@ class ServiciosController extends Controller
      */
     public function store(validadorFormServicios $request)
     {
-        if (!session()->has('id_usuario')) {
-            return redirect('/');
-        }
         DB::table('solicitudes')->insert([
             "id_cliente" => $request->input('nombre'),
             "id_proveedor" => $request->input('proveedor'),
@@ -146,9 +135,6 @@ class ServiciosController extends Controller
      */
     public function edit($id)
     {
-        if (!session()->has('id_usuario')) {
-            return redirect('/');
-        }
         $solicitud = DB::table('solicitudes')->where('id', $id)->first();
 
         if (!$solicitud) {
@@ -166,10 +152,6 @@ class ServiciosController extends Controller
      */
     public function update(validadorFormServicios $request, $id)
     {
-        if (!session()->has('id_usuario')) {
-            return redirect('/');
-        }
-
         $request->validate([
             'nombre' => 'required',
             'proveedor' => 'required',
@@ -193,9 +175,6 @@ class ServiciosController extends Controller
 
     public function editForm($id)
     {
-        if (!session()->has('id_usuario')) {
-            return redirect('/');
-        }
         $solicitud = DB::table('solicitudes')->where('id', $id)->first();
 
         if (!$solicitud) {
@@ -210,9 +189,6 @@ class ServiciosController extends Controller
 
     public function softDelete($id)
     {
-        if (!session()->has('id_usuario')) {
-            return redirect('/');
-        }
         DB::table('solicitudes')->where('id', $id)->update([
             'estatus' => 0,
             'updated_at' => Carbon::now(),
