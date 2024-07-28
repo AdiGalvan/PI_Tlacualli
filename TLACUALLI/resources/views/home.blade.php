@@ -2,11 +2,8 @@
 @section('titulo','Inicio')
 @section('contenido')
 
-{{-- @include('partials.home.carrousel')  --}} 
-{{-- Carrousel o Sección con imagen ↓↓  --}}
 
-
-<div class="row mt-3">
+{{-- <div class="row mt-3">
     <div class="col ms-3 me-3">
         @include('partials.carrusel_home')
     </div>
@@ -121,17 +118,12 @@
     </div>
     
 
-    <div class="row mb-4 mt-5">
+    <div class="row mb-4 mt-5 py-5">
         <div class="col-12 text-center">
             <h2>Aliados</h2>
         </div>
     </div>
     
     @include('partials.home.alidados')
-    
-
-    
-
-    
-
+ --}}
 @endsection
