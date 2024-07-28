@@ -23,9 +23,11 @@
                 <div class="col-5">
                 </div>
                 <div class="col-2 justify-content-end">
-                    <button type="button" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#registrar_producto"><i class="bi bi-bag-plus"></i> Agregar Producto</button>
+                    <button type="button" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#registrar_producto"><i class="bi bi-bag-plus"></i> Agregar </button>
                 </div>
+                
             </div>
+<<<<<<< Updated upstream
             
           {{--   @for ($i = 0; $i < 3; $i++)
             <div class="row p-2">
@@ -108,6 +110,12 @@
                     </div>
                 </div>
             </div>
+=======
+           
+            <div class="col-md-3 p-2">
+                @include('partials.productos.card_producto')
+            </div>   
+>>>>>>> Stashed changes
         
             <div class="row justify-content-center">
                 <div class="col-auto">

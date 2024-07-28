@@ -3,6 +3,7 @@
 use App\Http\Controllers\LoginController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\show_views;
+use App\Http\Controllers\ControllerProductos;
 
 use App\Http\Controllers\ServiciosController;
 
@@ -20,6 +21,8 @@ use App\Http\Controllers\ProductoController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+
+
 
 
 Route::get('/',[show_views::class,'home'])->name('inicio');
@@ -49,6 +52,7 @@ Route::get('/maps', function () {
     return view('maps');
 });
 
+<<<<<<< Updated upstream
 
 
 //Taller
@@ -85,3 +89,20 @@ Route::resource('productos', ProductoController::class);
 
 /* Route::get('/productos/show', [ProductoController::class, 'show']); */
 
+=======
+/* YO PUSE */
+// Rutas para el CRUD de productos
+Route::resource('productos', ControllerProductos::class);
+
+
+
+Route::get('/carrito-compras', function () {
+    return view('carrito_compras');
+})->name('carrito_compras');
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Auth::routes();
+>>>>>>> Stashed changes
