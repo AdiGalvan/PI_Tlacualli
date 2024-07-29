@@ -61,26 +61,58 @@
                             <!-- INICIA DIV PARA SECCIÓN DE BOTONES -->
                             <div class="inline-flex space-x-1 items-center">
                                 <!-- Botón Editar -->
-                                <a href="{{ route('servicios.edit', ['id' => $solicitud->id]) }}" data-modal-target="#modalEditarSolicitud" class="bg-gradient-to-r from-green-500 to-green-800 hover:from-green-600 hover:to-green-800 text-white font-sans font-bold px-2 py-1 rounded-md text-xs no-underline inline-flex items-center space-x-1 transition-colors duration-300">
-            <!-- Icono de editar de heroicons -->
-            <svg data-slot="icon" fill="none" stroke-width="1.5" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" class="h-4 w-4">
-                <path stroke-linecap="round" stroke-linejoin="round" d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L6.832 19.82a4.5 4.5 0 0 1-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 0 1 1.13-1.897L16.863 4.487Zm0 0L19.5 7.125"></path>
-            </svg>
-            <span>Editar</span>
-        </a>
+                                <button id="openModalES{{ $solicitud->id }}" class="bg-gradient-to-r from-green-500 to-green-800 hover:from-green-600 hover:to-green-800 text-white font-sans font-bold px-2 py-1 rounded-md text-xs no-underline inline-flex items-center space-x-1 transition-colors duration-300">
+                                    <!-- Icono de editar de heroicons -->
+                                    <svg data-slot="icon" fill="none" stroke-width="1.5" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" class="h-4 w-4">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L6.832 19.82a4.5 4.5 0 0 1-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 0 1 1.13-1.897L16.863 4.487Zm0 0L19.5 7.125"></path>
+                                    </svg>
+                                    <span>Editar</span>
+                                </button>
+                                <!-- Modal "Editar solicitud" -->
+                                <div id="modalES{{ $solicitud->id }}" class="fixed inset-0 bg-gray-800 bg-opacity-75 flex items-center justify-center hidden">
+                                    <div class="bg-white w-full md:w-3/4 lg:w-1/2 xl:w-1/3 rounded-lg p-6">
+                                        @include('servicios.modal_editar_solicitud') <!-- Incluye el formulario >de "Editar solicitud" en el modal -->
+                                        <button id="closeModalES{{ $solicitud->id }}" class="absolute top-4 right-4 text-gray-600 hover:text-gray-900">
+                                            <!-- Icono de cerrar -->
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="h-6 w-6">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                                            </svg>
+                                        </button>
+                                    </div>
+                                </div>
+                            <!-- Fin modal "Editar Solicitud" -->
 
-
-                                <!-- Botón Eliminar -->
-                                <form action="{{ route('servicios.editForm', ['id' => $solicitud->id]) }}" method="GET" class="inline-block">
-                                    @csrf
-                                    <button type="submit" class="bg-gradient-to-r from-yellow-300 to-yellow-500 hover:from-yellow-400 hover:to-yellow-600 text-white font-sans font-bold px-2 py-1 rounded-md text-xs no-underline inline-flex items-center space-x-1 transition-colors duration-300">
-                                        <!-- Icono de bote de basura -->
-                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="h-4 w-4">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 9l6 6 6-6"></path>
-                                        </svg>
-                                        <span>Eliminar</span>
-                                    </button>
-                                </form>
+                            <!-- Botón Eliminar -->
+                                <button id="openModalElS{{ $solicitud->id }}" class="bg-gradient-to-r from-yellow-300 to-yellow-500 hover:from-yellow-400 hover:to-yellow-600 text-white font-sans font-bold px-2 py-1 rounded-md text-xs no-underline inline-flex items-center space-x-1 transition-colors duration-300">
+                                    <!-- Icono de bote de basura -->
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="h-4 w-4">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 9l6 6 6-6"></path>
+                                    </svg>
+                                    <span>Eliminar</span>
+                                </button>
+                                <!-- Modal "Editar solicitud" -->
+                                <div id="modalElS{{ $solicitud->id }}" class="fixed inset-0 bg-gray-800 bg-opacity-75 flex items-center justify-center hidden">
+                                    <div class="bg-white w-full md:w-3/4 lg:w-1/2 xl:w-1/3 rounded-lg p-6">
+                                        <h1 class="text-green-900 font-sans font-black text-4xl text-center pb-2 mb-4">Eliminar solicitud de servicio</h1>
+                                        ¿Seguro que desea eliminar?{{-- Cambiar mensaje por lo que se requiera --}}
+                                        <link href="{{ asset('css/mensajesValidacion.css') }}" rel="stylesheet">
+                                        <script src="{{ asset('js/app.js') }}" defer></script>
+                                        <form method="POST" action="{{ route('servicios.softDelete', ['id' => $solicitud->id]) }}" class="bg-white w-full rounded-lg p-6">
+                                            @csrf <!-- Generación del token -->
+                                            <div class="flex justify-end mt-3">
+                                                <button type="submit" class="bg-gradient-to-r from-yellow-300 to-yellow-500 hover:from-yellow-400 hover:to-yellow-600 text-white px-4 py-2 rounded-lg mr-2 font-semibold">Aceptar</button>
+                                                <button type="button" id="closeModalElS{{ $solicitud->id }}" class="bg-gradient-to-r from-gray-500 to-gray-800 hover:from-gray-600 hover:to-gray-800 text-white px-4 py-2 rounded-lg font-semibold">Cancelar</button>
+                                            </div>
+                                        </form>
+                                        <button id="closeModalElS{{ $solicitud->id }}" class="absolute top-4 right-4 text-gray-600 hover:text-gray-900">
+                                            <!-- Icono de cerrar -->
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="h-6 w-6">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                                            </svg>
+                                        </button>
+                                    </div>
+                                </div>
+                            <!-- Fin modal "Eliminar Solicitud" -->
                             </div>
                             <!-- TERMINA DIV PARA SECCIÓN DE BOTONES -->
                         </td>
@@ -107,76 +139,7 @@
 <!-- Fin modal "Nueva Solicitud" -->
 
 
-<!-- Modal de Edición de Solicitud -->
-<div id="modalEditarSolicitud" class="fixed inset-0 bg-gray-800 bg-opacity-75 flex items-center justify-center hidden">
-  
-        <!-- Cierre del modal -->
-        <button id="closeModalEditar" class="modal absolute top-4 right-4 text-gray-600 hover:text-gray-900">
-            <!-- Icono de cerrar -->
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="h-6 w-6">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-            </svg>
-        </button>
 
-        <!-- Formulario dentro del modal -->
-        <form method="POST" action="{{ route('servicios.update', ['id' => $solicitud->id]) }}" class="bg-white w-7/12 mx-auto mt-8 rounded-lg p-6 shadow-lg">
-    @csrf <!-- Generación del token -->
-    <h1 class="text-green-900 font-sans font-black text-4xl text-center pb-2 mb-4">Editar solicitud de servicio</h1>
-    
-    
-    <div class="mb-3">
-        <label class="text-green-900">Nombre</label>
-        <select class="form-select" name="nombre" id="nombre">
-            <option value="">Selecciona una opción</option>
-            @foreach ($opciones as $id => $nombre)
-                <option value="{{ $id }}" @if ($solicitud->id_cliente == $id) selected @endif>{{ $nombre }}</option>
-            @endforeach
-        </select>
-        <p class="text-danger fst-italic">{{$errors->first('nombre')}}</p>
-    </div>
-
-    <div class="mb-3">
-        <label class="text-green-900 font-sans font-bold pb-2 text-lg">Proveedor</label>
-        <select class="form-select font-sans font-light focus:outline-none focus:ring-2 focus:ring-green-500" name="proveedor" id="proveedor">
-            <option value="">Selecciona una opción</option>
-            @foreach ($opciones as $id => $nombre)
-                <option value="{{ $id }}" >{{ $nombre }}</option>
-            @endforeach
-        </select>
-        <p class="text-red-600 text-sm font-sans font-bold">{{ $errors->first('proveedor') }}</p>
-    </div>
-
-    <div class="mb-3">
-        <label class="text-green-900 font-sans font-bold pb-2 text-lg">Descripción</label>
-        <textarea class="form-control font-sans font-light focus:outline-none focus:ring-2 focus:ring-green-500" id="descripcion" name="descripcion" rows="1">{{ $solicitud->descripcion }}</textarea>
-        <p class="text-red-600 text-sm font-sans font-bold">{{ $errors->first('descripcion') }}</p>
-    </div>
-
-    <div class="mb-3">
-        <label class="text-green-900 font-sans font-bold pb-2 text-lg">Tipo de servicio</label>
-        <select class="form-select font-sans font-light focus:outline-none focus:ring-2 focus:ring-green-500" id="t_servicio" name="t_servicio">
-            <option value="">Selecciona una opción</option>
-            @foreach ($t_servicio as $id => $nombre)
-                <option value="{{ $id }}" >{{ $nombre }}</option>
-            @endforeach
-        </select>
-        <p class="text-red-600 text-sm font-sans font-bold">{{ $errors->first('t_servicio') }}</p>
-    </div>
-
-    <div class="mb-3">
-        <label class="text-green-900 font-sans font-bold pb-2 text-lg">Fecha que requiere el servicio</label>
-        <input type="date" class="form-control font-sans font-light focus:outline-none focus:ring-2 focus:ring-green-500" id="fecha" name="fecha" value="{{ $solicitud->fecha }}">
-        <p class="text-red-600 text-sm font-sans font-bold">{{ $errors->first('fecha') }}</p>
-    </div>
-
-    <div class="d-flex justify-content-end mt-3">
-        <button type="submit" class="bg-gradient-to-r from-green-500 to-green-800 hover:from-green-600 hover:to-green-800 text-white px-4 py-2 rounded-lg mr-2 font-semibold"">Editar</button>
-        <a href="/mis_servicios" class="bg-gradient-to-r from-gray-500 to-gray-800 hover:from-gray-600 hover:to-gray-800 text-white px-4 py-2 rounded-lg font-semibold">Cancelar</a>
-    </div>
-</form>
-    
-</div>
-<!-- Fin del Modal de Edición de Solicitud -->
 
 
 
@@ -187,6 +150,9 @@
 
 <!-- Script para editar solicitud -->
 <script src="{{ asset('js/modal_editar_solicitud.js') }}"></script>
+
+<!-- Script para eliminar solicitud -->
+<script src="{{ asset('js/modal_eliminar_solicitud.js') }}"></script>
 
 
 
