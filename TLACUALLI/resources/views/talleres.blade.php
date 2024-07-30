@@ -29,9 +29,6 @@
             @endif
         </div>
 
-        @if($publicaciones->isEmpty())
-            <p>No hay talleres disponibles.</p>
-        @else
             @foreach($publicaciones->chunk(2) as $chunk)
                 <div class="row p-2">
                     @foreach($chunk as $publicacion)
@@ -41,7 +38,6 @@
                     @endforeach
                 </div>
             @endforeach
-        @endif
 
         <div class="row justify-content-center">
             <div class="col-auto">
