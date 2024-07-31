@@ -125,6 +125,8 @@ Route::post('/registrar', [LoginController::class, 'create']);
 
 Route::get('/productos', [ProductoController::class, 'index'])->name('productos');
 
+Route::post('/registroProducto', [ProductoController::class, 'store'])->name('productoStore');
+
 /* Route::get('/productosCards', [ProductoController::class, 'Cards']); */
 
 // Route::resource('productos', ProductoController::class);
