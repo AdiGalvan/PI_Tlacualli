@@ -15,8 +15,8 @@
 
 <!-- INICIO BODY MODAL -->
       <div class="modal-body">
-        <form method="" action="">
-
+        <form method="POST" action="/registroPublicacion" id="registroPublicacion" enctype="multipart/form-data">
+          @csrf
     <div class="mb-3">
       <label class="form-label">Título publicación</label>
       <input type="text" class="form-control" id="_tp" name="_tp" required>
@@ -27,8 +27,8 @@
       <select class="form-select" id="_tipo" name="_tipo" required>
         <option value="">Selecciona una opcion</option>
         <option value="1">Artículo</option>
-        <option value="2">Servicio</option>
-        <option value="3">Anuncio</option>
+        <option value="3">Servicio</option>
+        <option value="4">Anuncio</option>
       </select>
     </div> 
 
@@ -39,7 +39,7 @@
 
     <div class="mb-3">
       <label class="form-label">Contenido</label>
-      <input type="file" class="form-control" id="_cont" name="_cont" required>
+      <input type="file" class="form-control" id="_cont" name="_cont" accept=".pdf" required>
     </div>
 
     <div class="modal-footer">
@@ -108,6 +108,8 @@
           alert("Por favor, complete todos los campos.");
       } else {
           showSweetAlertPublicacion();
+          document.getElementById('registroPublicacion').submit(); // Envía el formulario si todos los campos están completos
+
       }
   }
 </script>

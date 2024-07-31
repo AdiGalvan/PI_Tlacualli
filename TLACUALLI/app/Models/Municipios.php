@@ -14,8 +14,8 @@ class Municipios extends Model
         'id_estado'
     ];
 
-    public function estados()
+    public function estado()
     {
-        return $this->hasOne(Estados::class, 'id', 'id_estado');
+        return $this->belongsTo(Estados::class, 'id_estado');
     }
 }

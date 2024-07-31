@@ -1,13 +1,15 @@
 <?php
 
 namespace App\Models;
-
+use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Notifications\Notifiable;
 
-class Usuarios extends Model
+class Usuarios extends Authenticatable
 {
-    use HasFactory;
+    use HasFactory, Notifiable;
+
+    protected $table = 'usuarios';
 
     protected $fillable = [
         'nombre_usuario',
@@ -29,18 +31,44 @@ class Usuarios extends Model
         'id_rol'
     ];
 
+    protected $hiddens = [
+        'contraseña', 'remember_token'
+    ];
+
     public function direcciones()
     {
-        return $this->hasOne(Direcciones::class, 'id', 'id_direccion_envios');
+        return $this->hasOne(Direcciones::class);
     }
 
     public function sexos()
     {
-        return $this->hasOne(Sexos::class, 'id', 'id_sexo');
+        return $this->belongsTo(Sexos::class, 'id_sexo');
     }
 
     public function roles()
     {
-        return $this->hasOne(Roles::class, 'id', 'id_rol');
+        return $this->belongsTo(Roles::class, 'id_rol');
+    }
+
+    //Direccion personal
+    public function direccion() 
+    {
+        return $this->hasOne(Direcciones::class, 'id', 'id_direccion_envios');
+    }
+
+    //Direccion fiscal
+    public function direccionF()
+    {
+        return $this->hasOne(Direcciones::class, 'id', 'id_direccion_fiscal');
+    }
+
+    public function productos()
+    {
+        return $this->belongsTo(Producto::class, 'id');
+    }
+
+    public function getAuthPassword()
+    {
+        return $this->contraseña;
     }
 }

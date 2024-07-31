@@ -14,8 +14,8 @@ class Calles extends Model
         'id_colonia'
     ];
 
-    public function colonias() 
+    public function colonia() 
     {
-        return $this->hasOne(Colonias::class, 'id', 'id_colonia');
+        return $this->belongsTo(Colonias::class, 'id_colonia');
     }
 }

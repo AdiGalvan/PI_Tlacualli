@@ -1,7 +1,6 @@
 @extends('layouts.template')
 @section('titulo','Perfil de Usuario')
 @section('contenido')
-
 <div class="container-sm mt-5">
         <ul class="nav nav-tabs mb-5" id="myTab" role="tablist">
             <li class="nav-item" role="presentation">
@@ -20,7 +19,6 @@
             </li>
         </ul>
         
-
         <!-- Tab panes -->
         <div class="tab-content" id="myTabContent">
             <div class="tab-pane fade show active" id="datos-personales" role="tabpanel" aria-labelledby="datos-personales-tab">
@@ -59,7 +57,7 @@
                     <div class="col-md-6">
                         <div class="mb-3">
                             <label class="form-label fw-bold">Rol </label>
-                            <p class="" >{{ $roles->nombre }}</p>
+                            <p class="" >{{ $usuario->roles->nombre }}</p>
                             <p class="text-danger fst-italic">{{ $errors->first('_rol') }}</p>
                         </div>
                         <div class="mb-3" id="apellido_m">
@@ -69,7 +67,7 @@
                         </div>
                         <div class="mb-3">
                             <label class="form-label fw-bold">Sexo </label>
-                            <p class="" >{{ $sexos->nombre }}</p>
+                            <p class="" >{{ $usuario->sexos->nombre }}</p>
                             <p class="text-danger fst-italic">{{ $errors->first('_sx') }}</p>
                         </div>
                         <div class="mb-3">
@@ -87,33 +85,34 @@
                     <div class="col-md-6">
                         <div class="mb-3">
                             <label class="form-label fw-bold">Calle</label>
-                            <p class="" >{{ !empty($calle->nombre) ? $calle->nombre : '' }}</p>
+                            <p class="" >{{ !empty($usuario->direccion->calle->nombre) ? $usuario->direccion->calle->nombre : '' }}</p>
+                            {{-- @dd($usuario) --}}
                         </div>
                         <div class="mb-3">
-                            <label class="form-label fw-bold">Número interno</label>
-                            <p class="" >{{ !empty($direccion->num_int) ? $direccion->num_int : '' }}</p>
+                            <label class="form-label fw-bold">Número interior</label>
+                            <p class="" >{{ !empty($usuario->direccion->num_int ) ?  $usuario->direccion->num_int  : '' }}</p>
                         </div>
                         <div class="mb-3">
                             <label class="form-label fw-bold">Código Postal</label>
-                            <p class="" >{{ !empty($colonia->CP) ? $colonia->CP : '' }}</p>
+                            <p class="" >{{ !empty($usuario->direccion->calle->colonia->CP) ? $usuario->direccion->calle->colonia->CP : '' }}</p>
                         </div>
                         <div class="mb-3">
                             <label class="form-label fw-bold">Estado</label>
-                            <p class="" >{{ !empty($estado->nombre) ? $estado->nombre : '' }}</p>
+                            <p class="" >{{ !empty($usuario->direccion->calle->colonia->municipio->estado->nombre) ? $usuario->direccion->calle->colonia->municipio->estado->nombre : '' }}</p>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="mb-3">
-                            <label class="form-label fw-bold">Número externo</label>
-                            <p class="" >{{ !empty($direccion->num_ext) ? $direccion->num_ext : '' }}</p>
+                            <label class="form-label fw-bold">Número exterior</label>
+                            <p class="" >{{ !empty($usuario->direccion->num_ext) ? $usuario->direccion->num_ext : '' }}</p>
                         </div>
                         <div class="mb-3">
                             <label class="form-label fw-bold">Colonia</label>
-                            <p class="" >{{ !empty($colonia->nombre) ? $colonia->nombre : '' }}</p>
+                            <p class="" >{{ !empty($usuario->direccion->calle->colonia->nombre) ? $usuario->direccion->calle->colonia->nombre : '' }}</p>
                         </div>
                         <div class="mb-3">
                             <label class="form-label fw-bold">Municipio</label>
-                            <p class="" >{{ !empty($municipio->nombre) ? $municipio->nombre : '' }}</p>
+                            <p class="" >{{ !empty($usuario->direccion->calle->colonia->municipio->nombre) ? $usuario->direccion->calle->colonia->municipio->nombre : '' }}</p>
                         </div>
                     </div>
                 </div>
@@ -126,34 +125,35 @@
                     </div>
                     <div class="col-md-6">
                         <div class="mb-3 fiscal-field">
+                            
                             <label class="form-label fw-bold" for="_ca_fiscal">Calle</label>
-                            <p class="" >{{ !empty($callef->nombre) ? $callef->nombre : '' }}</p>
+                            <p class="" >{{ !empty($usuario->direccionF->calle->nombre) ? $usuario->direccionF->calle->nombre : '' }}</p>
                         </div>
                         <div class="mb-3 fiscal-field">
-                            <label class="form-label fw-bold" for="_ni_fiscal">Número interno</label>
-                            <p class="" >{{ !empty($direccionf->num_int) ? $direccionf->num_int : '' }}</p>
+                            <label class="form-label fw-bold" for="_ni_fiscal">Número interior</label>
+                            <p class="" >{{ !empty($usuario->direccionF->num_int ) ?  $usuario->direccionF->num_int  : '' }}</p>
                         </div>
                         <div class="mb-3 fiscal-field">
                             <label class="form-label fw-bold" for="_cp_fiscal">Código Postal</label>
-                            <p class="" >{{ !empty($coloniaf->CP) ? $coloniaf->CP : '' }}</p>
+                            <p class="" >{{ !empty($usuario->direccionF->calle->colonia->CP) ? $usuario->direccionF->calle->colonia->CP : '' }}</p>
                         </div>
                         <div class="mb-3 fiscal-field">
                             <label class="form-label fw-bold" for="_edo_fiscal">Estado</label>
-                            <p class="" >{{ !empty($estadof->nombre) ? $estadof->nombre : '' }}</p>
+                            <p class="" >{{ !empty($usuario->direccionF->calle->colonia->municipio->estado->nombre) ? $usuario->direccionF->calle->colonia->municipio->estado->nombre : '' }}</p>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="mb-3 fiscal-field">
                             <label class="form-label fw-bold" for="_ne_fiscal">Número externo</label>
-                            <p class="" >{{ !empty($direccionf->num_ext) ? $direccionf->num_ext : '' }}</p>
+                            <p class="" >{{ !empty($usuario->direccionF->num_ext) ? $usuario->direccionF->num_ext : '' }}</p>
                         </div>
                         <div class="mb-3 fiscal-field">
                             <label class="form-label fw-bold" for="_col_fiscal">Colonia</label>
-                            <p class="" >{{ !empty($coloniaf->nombre) ? $coloniaf->nombre : '' }}</p>
+                            <p class="" >{{ !empty($usuario->direccionF->calle->colonia->nombre) ? $usuario->direccionF->calle->colonia->nombre : '' }}</p>
                         </div>
                         <div class="mb-3 fiscal-field">
                             <label class="form-label fw-bold" for="_mun_fiscal">Municipio</label>
-                            <p class="" >{{ !empty($municipiof->nombre) ? $municipiof->nombre : '' }}</p>
+                            <p class="" >{{ !empty($usuario->direccionF->calle->colonia->municipio->nombre) ? $usuario->direccionF->calle->colonia->municipio->nombre : '' }}</p>
                         </div>
                     </div>
                 </div>
@@ -164,6 +164,7 @@
         @include('partials.login.modales_login')
 
 </div>
+{{-- @dd($usuario) --}}
 
 <script>
     document.addEventListener('DOMContentLoaded', function() {

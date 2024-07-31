@@ -15,8 +15,8 @@ class Colonias extends Model
         'id_municipio'
     ];
 
-    public function municipios() 
+    public function municipio() 
     {
-        return $this->hasOne(Municipios::class, 'id', 'id_municipio');
+        return $this->belongsTo(Municipios::class, 'id_municipio');
     }
 }

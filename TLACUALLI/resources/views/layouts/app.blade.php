@@ -20,30 +20,32 @@
     {{-- Titulo dinámico --}}
     <title>@yield('titulo')</title>
 
-    {{-- Incluir todos los css adicionales que se lleguen a ocupar --}}
+        <title>{{ config('app.name', 'Laravel') }}</title>
 
-    @vite('resources/css/navbar.css')
-    @vite('resources/css/images.css')
-    @vite('resources/css/carrusel.css')
-    @php
-        $cwd = getcwd();
-        $cssName = basename(glob($cwd . '/build/assets/*.css')[0], '.css');
-        $jsName = basename(glob($cwd . '/build/assets/*.js')[0], '.js');
-        $css = asset('build/assets/' . $cssName . '.css');
-        $js = asset('build/assets/' . $jsName . '.js');
-    @endphp
+        <!-- Fonts -->
+        <link rel="preconnect" href="https://fonts.bunny.net">
+        <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
 
-    <link rel="stylesheet" href="{{ $css }}" id="css">
-    <script src="{{ $js }}" id="js"></script>
-    
-</head>
-@include('partials.navbar')
-@include('partials.alertas')    
-<body style="background-color: rgb(228, 217, 201)"> 
-    {{-- Estructura base: navbar, alertas y el resto del contenido --}}
-    @yield('contenido') 
-</body>
-<footer>
-    @include('partials.footer')
-</footer>
+        <!-- Scripts -->
+        @vite(['resources/css/app.css', 'resources/js/app.js'])
+    </head>
+    <body class="font-sans antialiased">
+        <div class="min-h-screen bg-gray-100 dark:bg-gray-900">
+            @include('layouts.navigation')
+
+            <!-- Page Heading -->
+            @if (isset($header))
+                <header class="bg-white dark:bg-gray-800 shadow">
+                    <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+                        {{ $header }}
+                    </div>
+                </header>
+            @endif
+
+            <!-- Page Content -->
+            <main>
+                {{ $slot }}
+            </main>
+        </div>
+    </body>
 </html>

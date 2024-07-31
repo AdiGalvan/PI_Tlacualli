@@ -1,7 +1,6 @@
 @extends('layouts.template')
 @section('titulo','Perfil de Usuario')
 @section('contenido')
-
 <div class="container-sm mt-5">
     <form method="POST" action="/perfil/editar">
         @csrf
@@ -85,14 +84,14 @@
             <select class="form-select" id="_sx" name="_sx">
                 <option value="" @if (null == old('_sx')) selected @endif>Selecciona una opción</option>
                 @foreach($sexos as $_sx)
-                <option value="{{$_sx->id}}" @if ($_sx->id == $usuario -> id_sexo) selected @endif>{{$_sx->nombre}}</option>
+                <option value="{{$_sx->id}}" @if ($_sx->id == $usuario->id_sexo) selected @endif>{{$_sx->nombre}}</option>
                 @endforeach
             </select>
             <p class="text-danger fst-italic">{{ $errors->first('_sx') }}</p>
         </div>
         <div class="mb-3">
             <label class="form-label">RFC</label>
-            <input type="text" class="form-control" id="_rfc" name="_rfc" value="{{ old('_rfc') }}">
+            <input type="text" class="form-control" id="_rfc" name="_rfc" value="{{ $usuario -> RFC }}"> 
             <p class="text-danger fst-italic">{{ $errors->first('_rfc') }}</p>
         </div>
     </div> <!-- div final de la segunda columna -->
@@ -104,38 +103,38 @@
     <div class="col-md-6">
       <div class="mb-3">
         <label class="form-label">Calle</label>
-        <input type="text" class="form-control" id="_ca" name="_ca" value="{{ !empty($calle->nombre) ? $calle->nombre : '' }}">
+        <input type="text" class="form-control" id="_ca" name="_ca" value="{{ !empty($usuario->direccion->calle->nombre) ? $usuario->direccion->calle->nombre : '' }}">
       </div>
       <div class="mb-3">
         <label class="form-label">Número interno</label>
-        <input type="text" class="form-control" id="_ni" name="_ni" value="{{ !empty($direccion->num_int) ? $direccion->num_int : '' }}">
+        <input type="text" class="form-control" id="_ni" name="_ni" value="{{ !empty($usuario->direccion->num_int) ? $usuario->direccion->num_int : '' }}">
       </div>
       <div class="mb-3">
         <label class="form-label">Código Postal</label>
-        <input type="text" class="form-control" id="_cp" name="_cp" value="{{ !empty($colonia->CP) ? $colonia->CP : '' }}">
+        <input type="text" class="form-control" id="_cp" name="_cp" value="{{ !empty($usuario->direccion->calle->colonia->CP) ? $usuario->direccion->calle->colonia->CP : '' }}">
       </div>
       <div class="mb-3">
         <label class="form-label">Estado</label>
-        <select  class="form-select" id="_edo" name="_edo">
-          <option value="" @if (!empty($municipio)) selected @endif>Selecciona una opción</option>
-                @foreach($estados as $_edo)
-                <option value="{{$_edo->id}}" @if ($_edo->id ==  (!empty($municipio->id_estado) ? $municipio->id_estado : '' ) ) selected @endif>{{$_edo->nombre}}</option>
-                @endforeach
+        <select class="form-select" id="_edo" name="_edo">
+            <option value="" @if (is_null(old('_edo', $usuario->direccion->calle->colonia->municipio->estado->id ?? null))) selected @endif>Selecciona una opción</option>
+            @foreach($estados as $_edo)
+                <option value="{{ $_edo->id }}" @if ($_edo->id == ($usuario->direccion->calle->colonia->municipio->estado->id ?? '')) selected @endif>{{ $_edo->nombre }}</option>
+            @endforeach
         </select>
       </div>
     </div>
       <div class="col-md-6">
         <div class="mb-3">
         <label class="form-label">Número externo</label>
-        <input type="text" class="form-control" id="_ne" name="_ne" value="{{ !empty($direccion->num_ext) ? $direccion->num_ext : '' }}">
+        <input type="text" class="form-control" id="_ne" name="_ne" value="{{ !empty($usuario->direccion->num_ext) ? $usuario->direccion->num_ext : '' }}">
         </div>
         <div class="mb-3">
         <label class="form-label">Colonia</label>
-        <input type="text" class="form-control" id="_col" name="_col" value="{{ !empty($colonia->nombre) ? $colonia->nombre : '' }}">
+        <input type="text" class="form-control" id="_col" name="_col" value="{{ !empty($usuario->direccion->calle->colonia->nombre) ? $usuario->direccion->calle->colonia->nombre : '' }}">
         </div>
         <div class="mb-3">
         <label class="form-label">Municipio</label>
-        <input type="text" class="form-control" id="_mun" name="_mun" value="{{ !empty($municipio->nombre) ? $municipio->nombre : '' }}">
+        <input type="text" class="form-control" id="_mun" name="_mun" value="{{ !empty($usuario->direccion->calle->colonia->municipio->nombre) ? $usuario->direccion->calle->colonia->municipio->nombre : '' }}">
         </div>
       </div>
       
@@ -147,38 +146,38 @@
             <div class="col-md-6">
                 <div class="mb-3 fiscal-field">
                     <label class="form-label" for="_ca_fiscal">Calle</label>
-                    <input type="text" class="form-control" id="_ca_fiscal" name="_ca_fiscal" value="{{ !empty($callef->nombre) ? $callef->nombre : '' }}">
+                    <input type="text" class="form-control" id="_ca_fiscal" name="_ca_fiscal" value="{{ !empty($usuario->direccionF->calle->nombre) ? $usuario->direccionF->calle->nombre : '' }}">
                 </div>
                 <div class="mb-3 fiscal-field">
                     <label class="form-label" for="_ni_fiscal">Número interno</label>
-                    <input type="text" class="form-control" id="_ni_fiscal" name="_ni_fiscal" value="{{ !empty($direccionf->num_int) ? $direccionf->num_int : '' }}">
+                    <input type="text" class="form-control" id="_ni_fiscal" name="_ni_fiscal" value="{{ !empty($usuario->direccionF->num_int) ? $usuario->direccionF->num_int : '' }}">
                 </div>
                 <div class="mb-3 fiscal-field">
                     <label class="form-label" for="_cp_fiscal">Código Postal</label>
-                    <input type="text" class="form-control" id="_cp_fiscal" name="_cp_fiscal" value="{{ !empty($coloniaf->CP) ? $coloniaf->CP : '' }}">
+                    <input type="text" class="form-control" id="_cp_fiscal" name="_cp_fiscal" value="{{ !empty($usuario->direccionF->calle->colonia->CP) ? $usuario->direccionF->calle->colonia->CP : '' }}">
                 </div>
                 <div class="mb-3 fiscal-field">
                     <label class="form-label" for="_edo_fiscal">Estado</label>
                     <select class="form-select" id="_edo_fiscal" name="_edo_fiscal">
-                        <option value="" @if (!empty($municipiof)) selected @endif>Selecciona una opción</option>
-                @foreach($estados as $_edo_fiscal)
-                <option value="{{$_edo_fiscal->id}}" @if ($_edo_fiscal->id == (!empty($municipiof->id_estado) ? $municipiof->id_estado : '' )) selected @endif>{{$_edo_fiscal->nombre}}</option>
-                @endforeach
+                        <option value="" @if (is_null(old('_edo', $usuario->direccionF->calle->colonia->municipio->estado->id ?? null))) selected @endif>Selecciona una opción</option>
+                        @foreach($estados as $_edo)
+                            <option value="{{ $_edo->id }}" @if ($_edo->id == ($usuario->direccionF->calle->colonia->municipio->estado->id ?? '')) selected @endif>{{ $_edo->nombre }}</option>
+                        @endforeach
                     </select>
                 </div>
             </div>
             <div class="col-md-6">
                 <div class="mb-3 fiscal-field">
                     <label class="form-label" for="_ne_fiscal">Número externo</label>
-                    <input type="text" class="form-control" id="_ne_fiscal" name="_ne_fiscal" value="{{ !empty($direccionf->num_ext) ? $direccionf->num_ext : '' }}">
+                    <input type="text" class="form-control" id="_ne_fiscal" name="_ne_fiscal" value="{{ !empty($usuario->direccionF->num_ext) ? $usuario->direccionF->num_ext : '' }}">
                 </div>
                 <div class="mb-3 fiscal-field">
                     <label class="form-label" for="_col_fiscal">Colonia</label>
-                    <input type="text" class="form-control" id="_col_fiscal" name="_col_fiscal" value="{{ !empty($coloniaf->nombre) ? $coloniaf->nombre : '' }}">
+                    <input type="text" class="form-control" id="_col_fiscal" name="_col_fiscal" value="{{ !empty($usuario->direccionF->calle->colonia->nombre) ? $usuario->direccionF->calle->colonia->nombre : '' }}">
                 </div>
                 <div class="mb-3 fiscal-field">
                     <label class="form-label" for="_mun_fiscal">Municipio</label>
-                    <input type="text" class="form-control" id="_mun_fiscal" name="_mun_fiscal" value="{{ !empty($municipiof->nombre) ? $municipiof->nombre : '' }}">
+                    <input type="text" class="form-control" id="_mun_fiscal" name="_mun_fiscal" value="{{ !empty($usuario->direccionF->calle->colonia->municipio->nombre) ? $usuario->direccionF->calle->colonia->municipio->nombre : '' }}">
                 </div>
             </div>
         </div>
@@ -230,19 +229,4 @@ document.getElementById('copy_address').addEventListener('change', function() {
 });
 </script>
 
-<script>
-    function toggleApellidos(select) {
-        var apellidosDiv1 = document.getElementById('apellido_p');
-        var apellidosDiv2 = document.getElementById('apellido_m');
-        var rolValue = select.value;
-
-        if (rolValue === '1') {
-            apellidosDiv1.style.display = 'block'; // Mostrar los apellidos si es persona física
-            apellidosDiv2.style.display = 'block'; // Mostrar los apellidos si es persona física
-        } else {
-            apellidosDiv1.style.display = 'none'; // Ocultar los apellidos en otros casos
-            apellidosDiv2.style.display = 'none'; // Ocultar los apellidos en otros casos
-        }
-    }
-</script>
 @endsection

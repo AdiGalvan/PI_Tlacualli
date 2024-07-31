@@ -12,4 +12,9 @@ class Sexos extends Model
     protected $fillable = [
         'nombre'
     ];
+
+    public function usuarios() 
+    {
+        return $this->hasMany(Usuarios::class, 'id', 'id_usuarios');
+    }
 }

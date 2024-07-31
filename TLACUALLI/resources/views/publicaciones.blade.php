@@ -1,6 +1,7 @@
 {{-- @extends('layouts.template')
 @section('titulo','Publicaciones')
 @section('contenido')
+{{-- @dd($publicaciones) --}}
 
 
 <div class="row mt-3">
@@ -26,9 +27,10 @@
                     </div>
                     
                     <div class="row p-2">
-                        @for ($i = 1; $i <= 10; $i++)
-                            @include('partials.publicaciones.acordion_publicaciones')
-                        @endfor
+                        @foreach ($publicaciones as $index => $publicacion)
+                            @include('partials.publicaciones.acordion_publicaciones', ['publicacion' => $publicacion, 'index' => $loop->index + 1])
+                        @endforeach
+                            
                     </div>
                     
 
@@ -63,7 +65,7 @@
     <div class="col-2">
         <div class="sticky-top pe-3">
             <br>
-            @include('partials.productos1.carrusel')
+            @include('partials.productos.carrusel')
             <br>
             @include('partials.talleres.carrusel')
         </div>

@@ -60,7 +60,7 @@
                                 </div>
                             </div>
                         </div>
-                        {!! $productos->links() !!}
+                        {{-- {!! $productos->links() !!} --}}
                     </div>
                 </div>
             </div>

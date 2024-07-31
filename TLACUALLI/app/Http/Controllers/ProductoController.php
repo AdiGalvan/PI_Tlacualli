@@ -3,7 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Producto;
-use App\Http\Requests\ProductoRequest;
+use App\Models\Usuarios;
+use Illuminate\Http\Request;
+
+use Illuminate\Support\Facades\Auth;
+use Carbon\Carbon;
 
 /**
  * Class ProductoController
@@ -11,53 +15,124 @@ use App\Http\Requests\ProductoRequest;
  */
 class ProductoController extends Controller
 {
+    public function usuario()
+    {
+        return $this->belongsTo(Usuarios::class, 'id_usuario');
+    }
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        if (!session()->has('id_usuario')) {
-            return redirect('/');
-        }
-        $productos = Producto::paginate();
+        $usuarioId = Auth::id();
 
-        return view('producto.index', compact('productos'))
-            ->with('i', (request()->input('page', 1) - 1) * $productos->perPage());
+        if (Auth::check()) {
+            $usuario = Usuarios::with('roles')
+            ->find($usuarioId);
+        }
+        else {
+            //Si no está autenticado se crea una clase generica para que pueda visualizar todos los talleres activos
+            $usuario = new \stdClass();
+            $usuario->roles = new \stdClass();
+            $usuario->roles->id = null;
+        }
+
+        $productos = Producto::where('estatus', 1)
+            ->get();
+
+        return view('productos', compact('productos', 'usuario'));
+        // $productos = Producto::paginate();
+
+        // return view('producto.index', compact('productos'))
+        //     ->with('i', (request()->input('page', 1) - 1) * $productos->perPage());
+
+        
     }
+
+    public function misProductosIndex() 
+    {
+        $usuarioId = Auth::id();
+        $usuario = Usuarios::with('roles')
+            ->find($usuarioId);
+        $idRol = $usuario->roles->id;  
+
+        if (Auth::check() and $idRol == 8){
+            //Obtiene todos los talleres relacionados a este usuario
+            $productos = Producto::where('proveedor_id', $usuarioId)
+            ->with('usuario')
+            ->get();
+            
+            //Envia talleres a la vista de talleres
+            return view('mis_productos', compact('productos'));
+        }
+        else{
+             //Si no esta autenticado lo manda al home
+             abort(404, 'Página no encontrada');
+        }
+    }
+
     /**
      * Show the form for creating a new resource.
      */
     public function create()
     {
-        if (!session()->has('id_usuario')) {
-            return redirect('/');
-        }
-        $producto = new Producto();
-        return view('producto.create', compact('producto'));
+        
+        // $producto = new Producto();
+        // return view('producto.create', compact('producto'));
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(ProductoRequest $request)
+    public function store(Request $request)
     {
-        if (!session()->has('id_usuario')) {
-            return redirect('/');
+        $usuarioId = Auth::id();
+
+        if(Auth::check()){
+            $validator = $request->validate([
+                '_np'       => 'required',
+                '_descP'    => 'required',
+                '_costoP'   => 'required|numeric',
+                '_stockP'   => 'required|numeric',
+                '_contP'    => 'required|file|max:2048',
+            ]);
+
+            // Insert de productos
+            $producto = new Producto();
+            $producto->nombre = $validator['_np'];
+            $producto->descripcion = $validator['_descP'];
+            $producto->costo = $validator['_costoP'];
+            $producto->stock = $validator['_stockP'];
+            $producto->estatus = 1;
+            $producto->proveedor_id = $usuarioId;
+
+            if ($request->hasFile('_contP')) {
+                $file = $request->file('_contP');
+                $filename = $usuarioId . 'imagenproducto' . $producto->id . '.' . $file->getClientOriginalExtension();
+                $filePath = $file->storeAs('uploads', $filename, 'public');
+
+                // Actualizar la publicación con la ruta del archivo
+                $producto->contenido = $filePath;
+                $producto->save();
+            } else {
+                // Si falla la subida, eliminar la publicación creada
+                $producto->delete();
+                return redirect()->back()->with('success', 'Error al subir el producto.');
+            }
+
+        return redirect()->back()->with('success', 'Prodcuto creado exitosamente.');
+        } else {
+            abort(404, 'Página no encontrada');
         }
-        Producto::create($request->validated());
-
-        return redirect()->route('productos.index')
-            ->with('success', 'Producto creado exitosamente!');
     }
-
     /**
      * Display the specified resource.
      */
-    public function Cards()
-    {
-        $productos = Producto::all();
-        return view('producto.productosCards', compact('productos'));
-    }
+    // public function Cards()
+    // {
+    //     $productos = Producto::all();
+    //     return view('producto.productosCards', compact('productos'));
+    // }
     public function show($id)
     {
         $producto = Producto::find($id);
@@ -70,9 +145,7 @@ class ProductoController extends Controller
      */
     public function edit($id)
     {
-        if (!session()->has('id_usuario')) {
-            return redirect('/');
-        }
+        
         $producto = Producto::find($id);
 
         return view('producto.edit', compact('producto'));
@@ -81,7 +154,7 @@ class ProductoController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(ProductoRequest $request, Producto $producto)
+    public function update(Request $request, Producto $producto)
     {
         if (!session()->has('id_usuario')) {
             return redirect('/');
