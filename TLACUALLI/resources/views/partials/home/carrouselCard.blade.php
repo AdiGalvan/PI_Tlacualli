@@ -129,24 +129,25 @@
 
 
 
-<div id="indicators-carousel" class="relative" data-carousel="static">
+<div id="indicators-carousel" class="relative" data-carousel="slide" >
     <div class="relative overflow-hidden">
-        <div class="flex w-full h-screen bg-yellow-100 mt-5">
+        <div class="flex w-full h-screen "> <!-- bg-gradient-to-r from-yellow-300 to-yellow-500 mt-5" style="background-image: url('/images/fondo1.jpg');-->
             <div class="container mx-auto px-4">
                 <div class="mb-4 mt-5">
                     <div class="w-full text-center">
-                        <h2 class="text-4xl font-black text-yellow-500 dark:text-white font-sans mt-5">Publicaciones</h2>
+                        <h2 class="text-4xl font-black text-yellow-400 dark:text-white font-sans mt-5">Publicaciones</h2>
                     </div>
+                        <p class="text-xl font-thin text-gray-500 text-center dark:text-white font-sans mt-3">¿Te gustaría aprender más acerca del compostaje? Puedes ir a nuestra sección de publicaciones</p>
                 </div>
                 <div class="flex overflow-x-auto space-x-4">
                     <div class="flex-none w-96 p-2">
-                        <div class="bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-                            <img class="w-full h-48 object-cover rounded" src="https://th.bing.com/th/id/R.408040277c5345b64babdfb36ebc139b?rik=dnGt2MvOugEUlQ&riu=http%3a%2f%2fedibleoklahomacity.ediblecommunities.com%2fsites%2fdefault%2ffiles%2fstyles%2fariticle_portrait__322x483_%2fpublic%2fimages%2farticle%2farticle_details%2fcomposting-101-2.jpg%3fitok%3dD5L-kwiW&ehk=dAbRvO9rQ4S%2b3zq1D8Iylyf%2b4zm%2bmBFtOQcp4PKOdWQ%3d&risl=&pid=ImgRaw&r=0" alt="">
+                        <div class="bg-white border border-gray-700 rounded-lg shadow-2xl dark:bg-gray-800 dark:border-gray-800">
+                            <img class="w-full h-48 object-cover  rounded-t-lg" src="https://th.bing.com/th/id/R.408040277c5345b64babdfb36ebc139b?rik=dnGt2MvOugEUlQ&riu=http%3a%2f%2fedibleoklahomacity.ediblecommunities.com%2fsites%2fdefault%2ffiles%2fstyles%2fariticle_portrait__322x483_%2fpublic%2fimages%2farticle%2farticle_details%2fcomposting-101-2.jpg%3fitok%3dD5L-kwiW&ehk=dAbRvO9rQ4S%2b3zq1D8Iylyf%2b4zm%2bmBFtOQcp4PKOdWQ%3d&risl=&pid=ImgRaw&r=0" alt="">
                             <div class="p-5">
                                 <a href="#">
-                                    <h5 class="mb-2 text-xl font-bold tracking-tight text-gray-900 dark:text-white">¿Por qué es tan importante la composta?</h5>
+                                <h5 class="mb-2 text-xl font-black font-sans text-yellow-400 no-underline">¿Por qué es tan importante la composta?</h5>
                                 </a>
-                                <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Sirve como abono para plantas, jardines y áreas verdes</p>
+                                <p class="mb-3 font-sans text-sm text-black">Sirve como abono para plantas, jardines y áreas verdes</p>
                                 <!-- <a href="#" class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-green-700 rounded-lg hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
                                     Más información
                                     <svg class="rtl:rotate-180 w-3.5 h-3.5 ml-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
@@ -157,27 +158,25 @@
                         </div>
                     </div>
                     <div class="flex-none w-96 p-2">
-                        <div class="bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-                            <img class="w-full h-48 object-cover rounded" src="https://i.pinimg.com/originals/3e/05/54/3e055474dfce8db2b727bd2d254eba4b.jpg" alt=""> 
-
+                        <div class="bg-white border border-gray-200 rounded-lg shadow-2xl dark:bg-gray-800 dark:border-gray-700">
+                            <img class="w-full h-48 object-cover  rounded-t-lg" src="https://i.pinimg.com/originals/3e/05/54/3e055474dfce8db2b727bd2d254eba4b.jpg" alt=""> 
                             <div class="p-5">
                                 <a href="#">
-                                    <h5 class="mb-2 text-xl font-bold tracking-tight text-gray-900 dark:text-white">¿Por qué es tan importante la composta?</h5>
+                                    <h5 class="mb-2 text-xl font-black font-sans text-green-900 no-underline">¿Por qué es tan importante la composta?</h5>
                                 </a>
-                                <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Sirve como abono para plantas, jardines y áreas verdes</p>
-                                
+                                <p class="mb-3 font-sans text-sm text-black">Sirve como abono para plantas, jardines y áreas verdes</p>
                             </div>
                         </div>
                     </div>
                     <div class="flex-none w-96 p-2">
                         <div class="bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
                             <!-- <img class="w-full h-48 object-cover rounded" src="https://th.bing.com/th/id/R.408040277c5345b64babdfb36ebc139b?rik=dnGt2MvOugEUlQ&riu=http%3a%2f%2fedibleoklahomacity.ediblecommunities.com%2fsites%2fdefault%2ffiles%2fstyles%2fariticle_portrait__322x483_%2fpublic%2fimages%2farticle%2farticle_details%2fcomposting-101-2.jpg%3fitok%3dD5L-kwiW&ehk=dAbRvO9rQ4S%2b3zq1D8Iylyf%2b4zm%2bmBFtOQcp4PKOdWQ%3d&risl=&pid=ImgRaw&r=0" alt=""> -->
-                            <img class="w-full h-48 object-cover rounded" src="https://verdecora.es/blog/wp-content/uploads/2014/11/tierras-plantas-verdecora.jpg" alt=""> 
+                            <img class="w-full h-48 object-cover  rounded-t-lg" src="https://verdecora.es/blog/wp-content/uploads/2014/11/tierras-plantas-verdecora.jpg" alt=""> 
                             <div class="p-5">
                                 <a href="#">
-                                    <h5 class="mb-2 text-xl font-bold tracking-tight text-gray-900 dark:text-white">¿Por qué es tan importante la composta?</h5>
+                                <h5 class="mb-2 text-xl font-black font-sans text-green-900 no-underline">¿Por qué es tan importante la composta?</h5>
                                 </a>
-                                <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Sirve como abono para plantas, jardines y áreas verdes</p>
+                                <p class="mb-3 font-sans text-sm text-black">Sirve como abono para plantas, jardines y áreas verdes</p>
                                 <!-- <a href="#" class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-green-700 rounded-lg hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
                                     Más información
                                     <svg class="rtl:rotate-180 w-3.5 h-3.5 ml-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
@@ -188,7 +187,7 @@
                         </div>
                     </div>
                 </div>
-                <a href="#" class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-green-700 rounded-lg hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800 mt-3">
+                <a href="#" class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-gradient-to-r from-green-500 to-green-800 rounded-lg hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800 mt-3">
                     Más publicaciones
                     <svg class="rtl:rotate-180 w-3.5 h-3.5 ml-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
