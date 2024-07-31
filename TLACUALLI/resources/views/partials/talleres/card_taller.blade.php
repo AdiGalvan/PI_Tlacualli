@@ -1,3 +1,7 @@
+<link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet"> 
+
+<link href="https://cdn.jsdelivr.net/npm/flowbite@2.4.1/dist/flowbite.min.css" rel="stylesheet" />
+
 {{-- tarjeta de talleres --}}
 <div class="card-body">
     <div class="card h-100 shadow" style="width: 80%;">
@@ -174,3 +178,4 @@
     }
 </script>
 
+<script src="https://cdn.jsdelivr.net/npm/flowbite@2.4.1/dist/flowbite.min.js"></script>

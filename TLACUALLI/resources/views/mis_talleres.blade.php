@@ -2,6 +2,10 @@
 @section('titulo','Mis_Talleres')
 @section('contenido')
 
+<link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet"> 
+
+<link href="https://cdn.jsdelivr.net/npm/flowbite@2.4.1/dist/flowbite.min.css" rel="stylesheet" />
+
 <div class="row mt-5">
     <div class="col-2">
         <div class="sticky-top">
@@ -75,5 +79,8 @@
 </div>
 
 @include('partials.talleres.registrar_taller')
+
+
 @endsection
 
+<script src="https://cdn.jsdelivr.net/npm/flowbite@2.4.1/dist/flowbite.min.js"></script>

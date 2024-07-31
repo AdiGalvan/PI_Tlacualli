@@ -1,3 +1,4 @@
+
 {{-- tarjeta de talleres --}}
 <div class="card-body">
     <div class="card h-100 shadow" style="width: 80%;">
@@ -121,8 +122,8 @@
                         <div class="row">
                             <div class="col-lg-6 col-md-6 col-6">
                                 <!-- Botón "Actualizar información" en una línea separada -->
-                                <button type="button" class="btn btn-outline-success btn-lg btn-block mb-3" data-bs-toggle="modal" data-bs-target="#actualizar_taller">
-                                    <i class="bi bi-pencil-square"></i> Actualizar información
+                                <button type="button" class="bg-gradient-to-r from-green-500 to-green-800 hover:from-green-600 hover:to-green-800 text-white px-4 py-2 rounded-lg mr-2 font-semibold" data-modal-toggle="modal" data-modal-target="actualizar_taller">
+                                     Actualizar información
                                 </button>
                             </div>
                         </div>
@@ -232,3 +233,6 @@
     }
   }
 </script>
+
+
+
