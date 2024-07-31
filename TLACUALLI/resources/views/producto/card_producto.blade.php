@@ -1,6 +1,6 @@
 <div class="card h-100 shadow">
     <a href="#" class="img-wrap">
-        <img src="https://5.imimg.com/data5/SELLER/Default/2021/11/MY/VT/ZQ/125956067/vermi-compost-5kg-pack-1000x1000.jpg" alt="Producto" class="card-img-top" style="height: 200px; object-fit: cover;">
+        <img src="{{ asset('storage/' . $producto->contenido) }}" alt="" class="card-img-top" style="height: 200px; object-fit: fit;">
     </a>
     <div class="card-body">
         <h5 class="card-title text-center">{{ $producto->nombre }}</h5>
@@ -49,7 +49,7 @@
                             <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel" style="max-width: 800px;">
                                 <div class="carousel-inner">
                                     <div class="carousel-item active">
-                                        <img src="https://arcencohogar.vtexassets.com/arquivos/ids/287615/1231849.jpg?v=637651663702500000" class="d-block w-100" alt="Imagen1">
+                                        <img src="{{ asset('storage/' . $producto->contenido) }}" alt="" class="card-img-top" style="height: 200px; object-fit: fit;">
                                     </div>
                                 </div>
                                 <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
