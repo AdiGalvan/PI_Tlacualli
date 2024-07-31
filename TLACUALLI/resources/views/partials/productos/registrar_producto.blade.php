@@ -7,44 +7,37 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <form method="POST" action="/registroProducto" id=registroProducto enctype="multipart/form-data">
-        @csrf
-
-    <div class="mb-3">
-      <label class="form-label">Nombre del producto</label>
-      <input type="text" class="form-control" id="_np" name="_np" required>
-    </div>
-
-    <div class="mb-3">
-      <label class="form-label">Descripción</label>
-      <input type="text" class="form-control" id="_descP" name="_descP" required>
-    </div>
-
-    <div class="mb-3">
-      <label class="form-label">Costo unitario</label>
-      <input type="number" class="form-control" id="_costoP" name="_costoP" required>
-    </div>
-
-    <div class="mb-3">
-      <label class="form-label">Stock</label>
-      <input type="number" class="form-control" id="_stockP" name="_stockP" required>
-    </div>
-
-    <div class="mb-3">
-      <label class="form-label">Contenido (Imagen JPG o PNG)</label>
-      <input type="file" class="form-control" id="_contP" name="_contP" accept="image/jpeg, image/png" required>
-    </div>
-
-    <div class="modal-footer">
-      <button type="button" class="btn btn-outline-success" onclick="validarCampos()"><i class="bi bi-check-lg"></i> Agregar</button>
-      <button type="button" class="btn btn-outline-warning" data-bs-dismiss="modal" ><i class="bi bi-x-lg"></i> Cancelar</button>
-     </div>
-
-</form>
+        <form method="POST" action="/registroProducto" id="registroProducto" enctype="multipart/form-data">
+          @csrf
+          <div class="mb-3">
+            <label class="form-label">Nombre del producto</label>
+            <input type="text" class="form-control" id="_np" name="_np" required>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Descripción</label>
+            <input type="text" class="form-control" id="_descP" name="_descP" required>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Costo unitario</label>
+            <input type="number" class="form-control" id="_costoP" name="_costoP" required>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Stock</label>
+            <input type="number" class="form-control" id="_stockP" name="_stockP" required>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Contenido (Imagen JPG o PNG)</label>
+            <input type="file" class="form-control" id="_contP" name="_contP" accept="image/jpeg, image/png" required>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-outline-success" onclick="validarCampos()"><i class="bi bi-check-lg"></i> Agregar</button>
+            <button type="button" class="btn btn-outline-warning" data-bs-dismiss="modal"><i class="bi bi-x-lg"></i> Cancelar</button>
+          </div>
+        </form>
+      </div>
     </div>
   </div>
 </div>
-
 
 {{-- Script para el SweetAlert de AGREGAR TALLER --}}
 <script>
@@ -68,14 +61,14 @@
           if (result.isConfirmed) {
               swalWithBootstrapButtons.fire({
                   title: "¡Agregado!",
-                  text: "El taller fue agregada correctamente.",
+                  text: "El producto fue agregado correctamente.",
                   icon: "success"
               });
-              document.getElementById('registroProdcuto').submit();
+              document.getElementById('registroProducto').submit();
           } else if (result.dismiss === Swal.DismissReason.cancel) {
               swalWithBootstrapButtons.fire({
                   title: "Cancelado",
-                  text: "El taller no se agregó :)",
+                  text: "El producto no se agregó :)",
                   icon: "error"
               });
           }
@@ -101,25 +94,22 @@
   function validarCampos() {
     var nombreProducto = document.getElementById('_np').value;
     var descripcionProducto = document.getElementById('_descP').value;
-    var contenidoProducto = document.getElementById('_contP').value.length;
-    var costoProducto = document.getElementById('_costoP').value.length;
-    var stockProducto = document.getElementById('_stockP').value
+    var contenidoProducto = document.getElementById('_contP').files.length;
+    var costoProducto = document.getElementById('_costoP').value;
+    var stockProducto = document.getElementById('_stockP').value;
 
     if (nombreProducto === "") {
       alert("Por favor, ingrese el nombre.");
     } else if (descripcionProducto === "") {
       alert("Por favor, ingrese la descripción.");
-    } else if (contenidoProducto === "") {
+    } else if (contenidoProducto === 0) {
       alert("Por favor, suba una imagen.");
     } else if (costoProducto === "") {
       alert("Por favor, ingrese el costo.");
     } else if (stockProducto === "") {
       alert("Por favor, ingrese el stock.");
-     else {
+    } else {
       showSweetAlertTaller();
-      document.getElementById('registroProducto').submit(); // Envía el formulario si todos los campos están completos
-      }
     }
   }
 </script>
-

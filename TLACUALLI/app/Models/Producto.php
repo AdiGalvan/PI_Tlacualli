@@ -2,35 +2,13 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-/**
- * Class Producto
- *
- * @property $id
- * @property $nombre
- * @property $descripcion
- * @property $costo
- * @property $stock
- * @property $estatus
- * @property $proveedor_id
- * @property $created_at
- * @property $updated_at
- *
- * @package App
- * @mixin \Illuminate\Database\Eloquent\Builder
- */
 class Producto extends Model
 {
-    
+    use HasFactory;
 
-    protected $perPage = 20;
-
-    /**
-     * Attributes that should be mass-assignable.
-     *
-     * @var array
-     */
     protected $fillable = [
         'nombre', 
         'descripcion', 
@@ -40,6 +18,11 @@ class Producto extends Model
         'estatus', 
         'proveedor_id'
     ];
+
+    public function usuario()
+    {
+        return $this->hasOne(Usuarios::class, 'id', 'id_usuario');
+    }
 
 
 

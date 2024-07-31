@@ -90,12 +90,41 @@ class ProductoController extends Controller
 
         if(Auth::check()){
             $validator = $request->validate([
-                'np'    => 'required',
-                ''
+                '_np'       => 'required',
+                '_descP'    => 'required',
+                '_costoP'   => 'required|numeric',
+                '_stockP'   => 'required|numeric',
+                '_contP'    => 'required|file|max:2048',
             ]);
+
+            // Insert de productos
+            $producto = new Producto();
+            $producto->nombre = $validator['_np'];
+            $producto->descripcion = $validator['_descP'];
+            $producto->costo = $validator['_costoP'];
+            $producto->stock = $validator['_stockP'];
+            $producto->estatus = 1;
+            $producto->proveedor_id = $usuarioId;
+
+            if ($request->hasFile('_contP')) {
+                $file = $request->file('_contP');
+                $filename = $usuarioId . 'imagenproducto' . $producto->id . '.' . $file->getClientOriginalExtension();
+                $filePath = $file->storeAs('uploads', $filename, 'public');
+
+                // Actualizar la publicación con la ruta del archivo
+                $producto->contenido = $filePath;
+                $producto->save();
+            } else {
+                // Si falla la subida, eliminar la publicación creada
+                $producto->delete();
+                return redirect()->back()->with('success', 'Error al subir el producto.');
+            }
+
+        return redirect()->back()->with('success', 'Prodcuto creado exitosamente.');
+        } else {
+            abort(404, 'Página no encontrada');
         }
     }
-
     /**
      * Display the specified resource.
      */
