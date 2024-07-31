@@ -1,4 +1,4 @@
-"{{-- @extends('layouts.template')
+{{-- @extends('layouts.template')
 @section('titulo','Productos')
 @section('contenido')
 
@@ -201,4 +201,4 @@
     </div>
 </div>
 @include('partials.productos1.script_productos')
-@endsection"
+@endsection
