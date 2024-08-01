@@ -202,12 +202,19 @@ class ProductoController extends Controller
 
     public function destroy($id)
     {
-        if (!session()->has('id_usuario')) {
-            return redirect('/');
-        }
-        Producto::find($id)->delete();
+        
+    }
 
-        return redirect()->route('productos.index')
-            ->with('success', 'Producto eliminado de manera exitosa');
+    public function offStatus($id)
+    {
+        if(Auth::check()){
+            $producto = Producto::findOrFail($id);
+            $producto->estatus = 0;
+            $producto->save();
+
+            return redirect()->back();
+        } else {
+            abort(400, 'Producto no encontrado');
+        }
     }
 }
