@@ -111,6 +111,10 @@ Route::group(['middleware' => 'auth'], function () {
     //-----------------------------------------------------------------------------------//
     //PRODUCTOS
     Route::get('/mis_productos', [ProductoController::class, 'misProductosIndex'])->name('mis_productos');
+
+    Route::post('/registroProducto', [ProductoController::class, 'store'])->name('productoStore');
+
+    Route::put('/actualizarProducto/{id}', [ProductoController::class, 'update'])->name('actualizarProducto');
 });
 
 //RUTAS QUE NO NECESITAN AUTENTICACIÓN
@@ -125,7 +129,6 @@ Route::post('/registrar', [LoginController::class, 'create']);
 
 Route::get('/productos', [ProductoController::class, 'index'])->name('productos');
 
-Route::post('/registroProducto', [ProductoController::class, 'store'])->name('productoStore');
 
 /* Route::get('/productosCards', [ProductoController::class, 'Cards']); */
 

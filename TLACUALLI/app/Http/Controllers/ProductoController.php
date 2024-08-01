@@ -120,7 +120,7 @@ class ProductoController extends Controller
                 return redirect()->back()->with('success', 'Error al subir el producto.');
             }
 
-        return redirect()->back()->with('success', 'Prodcuto creado exitosamente.');
+        return redirect()->back()->with('success', 'Producto creado exitosamente.');
         } else {
             abort(404, 'Página no encontrada');
         }
@@ -154,15 +154,50 @@ class ProductoController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Producto $producto)
+    public function update(Request $request, $id)
     {
-        if (!session()->has('id_usuario')) {
-            return redirect('/');
-        }
-        $producto->update($request->validated());
+        $usuarioId = Auth::id();
 
-        return redirect()->route('productos.index')
-            ->with('success', 'Producto editado correctamente!');
+        if(Auth::check()){
+            // Busca y valida los datos y existencia de dicho producto
+            $producto = Producto::findOrFail($id);
+
+            // Validaciones
+            $validator = $request->validate([
+                '_np'       => 'required',
+                '_descP'    => 'required',
+                '_costoP'   => 'required|numeric',
+                '_stockP'   => 'required|numeric',               
+            ]);
+
+            // Actualización de campos
+            $producto->nombre = $validator['_np'];
+            $producto->descripcion = $validator['_descP'];
+            $producto->costo = $validator['_costoP'];
+            $producto->stock = $validator['_stockP'];
+
+            if ($request->hasFile('_contP')) {
+                $file = $request->file('_contP');
+                $filename = $usuarioId . 'imagenproducto' . $producto->id . '.' . $file->getClientOriginalExtension();
+                $filePath = $file->storeAs('uploads', $filename, 'public');
+
+                // Actualizar la publicación con la ruta del archivo
+                $producto->contenido = $filePath;
+                $producto->save();
+            } else {
+                $usuario = Usuarios::with('productos')
+                    ->find($usuarioId);
+                $imagen = $usuario->productos->contenido;
+                // Mantener la imagen existente si no se sube una nueva
+                $producto->contenido = $imagen;
+                // dd($producto);
+                $producto->save();
+
+            }
+        return redirect()->back()->with('success', 'Producto actualizado exitosamente.');
+        } else {
+            abort(404, 'Página no encontrada');
+        }
     }
 
     public function destroy($id)

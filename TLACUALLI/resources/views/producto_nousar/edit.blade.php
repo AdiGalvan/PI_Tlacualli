@@ -11,11 +11,11 @@
 
                 <div class="card card-default">
                     <div class="card-header">
-                        <span class="card-title">{{ __('Update') }} Producto</span>
+                        <span class="card-title"> Producto</span>
                     </div>
                     <div class="card-body bg-white">
-                        <form method="POST" action="{{ route('productos.update', $producto->id) }}"  role="form" enctype="multipart/form-data">
-                            {{ method_field('PATCH') }}
+                        <form method="POST" action=""  role="form" enctype="multipart/form-data">
+                            
                             @csrf
 
                             @include('producto.form')

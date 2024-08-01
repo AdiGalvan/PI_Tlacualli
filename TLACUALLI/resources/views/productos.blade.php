@@ -28,7 +28,7 @@
         <div class="row p-2">
             @foreach($productos as $producto)
                 <div class="col-md-3 p-2">
-                    @include('producto.card_producto', ['producto' => $producto])
+                    @include('partials.productos.card_producto', ['producto' => $producto])
                 </div>
             @endforeach
         </div>
@@ -46,4 +46,5 @@
 </div>
 
 @include('partials.productos.script_productos')
+@include('partials.productos.registrar_producto')
 @endsection
