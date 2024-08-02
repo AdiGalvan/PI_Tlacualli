@@ -3,10 +3,10 @@
 @section('contenido')
 
 <p></p>
-<center><h1>Mis solicitudes</h1></center>
+<center><h1>Mis servicios</h1></center>
 <p></p>
 <div class="container mt-3">
-    <form class="d-flex" role="search" action="{{ route('servicios.search') }}" method="GET">
+    <form class="d-flex" role="search" action="" method="GET">
         <input class="form-control me-2" type="text" name="cliente" placeholder="Buscar por Cliente" aria-label="Buscar">
         <input class="form-control me-2" type="text" name="proveedor" placeholder="Buscar por Proveedor" aria-label="Buscar">
         <input class="form-control me-2" type="date" name="fecha" placeholder="Buscar por Fecha" aria-label="Buscar">
@@ -15,7 +15,7 @@
 </div>
 
 <div class="container mt-4 d-flex justify-content-end">
-    <a href="{{ route('servicios.create') }}" class="btn btn-warning">Nueva solicitud</a>
+    <a href="" class="btn btn-warning">Registrar servicio</a>
 </div>
 
 <div class="container mt-3">

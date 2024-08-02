@@ -2,8 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Publicaciones;
+use App\Models\Usuarios;
+
 use Illuminate\Http\Request;
 use App\Http\Requests\validadorFormServicios;
+
+use Illuminate\Support\Facades\Auth;
+
 
 use Carbon\carbon;
 use Illuminate\Support\Facades\DB;
@@ -14,6 +20,33 @@ class ServiciosController extends Controller
      * Display a listing of the resource.
      */
     public function index()
+    {
+        $usuarioId = Auth::id();
+
+        if (Auth::check()) {
+            $usuario = Usuarios::with('roles')
+                ->find($usuarioId);
+        } else {
+            //Si no está autenticado se crea una clase generica para que pueda visualizar todos los talleres activos
+            $usuario = new \stdClass();
+            $usuario->roles = new \stdClass();
+            $usuario->roles->id = null;
+        }
+        //Busca todas las publicaciones de tipo taller, activas y con los datos del publicador
+        $solicitudes = Publicaciones::where('id_tipo', 3)
+            ->where('estatus', true)
+            ->with('usuario')
+            ->get();
+
+        return view('servicios.servicios', compact('solicitudes'));
+    }
+
+    public function indexMisServicios()
+    {
+        
+    }
+
+    public function misServiciosSolicitados()
     {
         $solicitudes = DB::table('solicitudes')
             ->join('usuarios as clientes', 'solicitudes.id_cliente', '=', 'clientes.id')

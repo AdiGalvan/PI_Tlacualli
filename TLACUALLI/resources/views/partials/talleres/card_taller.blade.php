@@ -34,7 +34,7 @@
             <hr>
             <p class="card-text text-center">{{ $publicacion->nombre }}</p>
             <div class="d-flex justify-content-center">
-                <button type="button" class="btn btn-outline-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#productosModal{{ $publicacion->id }}"><i class="bi bi-info-circle"></i> Más información</button>
+                <button type="button" class="btn btn-outline-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#publicacionModal{{ $publicacion->id }}"><i class="bi bi-info-circle"></i> Más información</button>
             </div>
         </div>
     </div>
@@ -45,7 +45,7 @@
 
 {{-- Modal para infromacion de taller --}}
 
-<div class="modal fade" id="productosModal{{ $publicacion->id }}" tabindex="-1" aria-hidden="true">
+<div class="modal fade" id="publicacionModal{{ $publicacion->id }}" tabindex="-1" aria-hidden="true">
 <div class="modal-dialog modal-dialog-centered modal-xl">
 <div class="modal-content">
     <div class="modal-body p-8">
