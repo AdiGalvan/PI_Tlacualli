@@ -1,7 +1,7 @@
 @extends('layouts.template')
 @section('titulo','Perfil de Usuario')
 @section('contenido')
-<div class="container-sm mt-5">
+<div class="container-sm mt-5 bg-white rounded-lg shadow-lg pb-4 pt-2 ps-3 pr-2">
     <form method="POST" action="/perfil/editar">
         @csrf
         <!-- Nav tabs -->
@@ -29,70 +29,70 @@
     <!-- PRIMERA COLUMNA -->
     <div class="col-md-6">
         <div class="mb-3">
-            <label class="form-label">Nombre *</label>
-            <input type="text" class="form-control" id="_nu" name="_nu" value="{{ $usuario -> nombre }}">
-            <p class="text-danger fst-italic">{{ $errors->first('_nu') }}</p>
+            <label class="text-green-900 font-sans font-bold pb-2 text-lg">Nombre *</label>
+            <input type="text" class="font-sans font-light text-base px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-400 w-full" id="_nu" name="_nu" value="{{ $usuario -> nombre }}">
+            <p class="text-red-600 font-sans font-bold mt-1">{{ $errors->first('_nu') }}</p>
         </div>
         <div class="mb-3" id="apellido_p">
-            <label class="form-label">Apellido paterno</label>
-            <input type="text" class="form-control" id="_ap" name="_ap" value="{{ $usuario -> apellido_paterno }}">
-            <p class="text-danger fst-italic">{{ $errors->first('_ap') }}</p>
+            <label class="text-green-900 font-sans font-bold pb-2 text-lg">Apellido paterno</label>
+            <input type="text" class="font-sans font-light text-base px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-400 w-full" id="_ap" name="_ap" value="{{ $usuario -> apellido_paterno }}">
+            <p class="text-red-600 font-sans font-bold mt-1">{{ $errors->first('_ap') }}</p>
         </div>
          <div class="mb-3">
-            <label class="form-label">Fecha de nacimiento *</label>
-            <input type="date" class="form-control" id="_fn" name="_fn" value="{{ $usuario -> fecha_nacimiento }}">
-            <p class="text-danger fst-italic">{{ $errors->first('_fn') }}</p>
+            <label class="text-green-900 font-sans font-bold pb-2 text-lg">Fecha de nacimiento *</label>
+            <input type="date" class="font-sans font-light text-base px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-400 w-full" id="_fn" name="_fn" value="{{ $usuario -> fecha_nacimiento }}">
+            <p class="text-red-600 font-sans font-bold mt-1">{{ $errors->first('_fn') }}</p>
         </div>
         <div class="mb-3">
-            <label class="form-label">Correo *</label>
-            <input type="email" class="form-control" id="_email" name="_email" value="{{ $usuario -> correo }}">
-            <p class="text-danger fst-italic">{{ $errors->first('_email') }}</p>
+            <label class="text-green-900 font-sans font-bold pb-2 text-lg">Correo *</label>
+            <input type="email" class="font-sans font-light text-base px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-400 w-full" id="_email" name="_email" value="{{ $usuario -> correo }}">
+            <p class="text-red-600 font-sans font-bold mt-1">{{ $errors->first('_email') }}</p>
         </div>
-        <div class="mb-3">
-            <label class="form-label">Avatar</label>
-            <input type="file" class="form-control" id="_av" name="_av" disabled>
-            <p class="text-danger fst-italic">{{ $errors->first('_av') }}</p>
+        <div class="mb-3" hidden>
+            <label class="text-green-900 font-sans font-bold pb-2 text-lg">Avatar</label>
+            <input type="file" class="font-sans font-light text-base px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-400 w-full" id="_av" name="_av" disabled>
+            <p class="text-red-600 font-sans font-bold mt-1">{{ $errors->first('_av') }}</p>
         </div>
        
         <div class="mb-3">
-            <label class="form-label">Teléfono</label>
-            <input type="text" class="form-control" id="_tel" name="_tel" value="{{ $usuario -> telefono }}">
-            <p class="text-danger fst-italic">{{ $errors->first('_tel') }}</p>
+            <label class="text-green-900 font-sans font-bold pb-2 text-lg">Teléfono</label>
+            <input type="text" class="font-sans font-light text-base px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-400 w-full" id="_tel" name="_tel" value="{{ $usuario -> telefono }}">
+            <p class="text-red-600 font-sans font-bold mt-1">{{ $errors->first('_tel') }}</p>
         </div>
     </div> <!-- div final de la primera columna -->
 
     <!-- SEGUNDA COLUMNA -->
     <div class="col-md-6">
         <div class="mb-3">
-            <label class="form-label">Rol *</label>
-            <select class="form-select" id="_rol" name="_rol" onchange="toggleApellidos(this)">
+            <label class="text-green-900 font-sans font-bold pb-2 text-lg">Rol *</label>
+            <select class="font-sans font-light text-base px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-400 w-full" id="_rol" name="_rol" onchange="toggleApellidos(this)">
                 <option value="" @if (null == old('_rol')) selected @endif>Selecciona una opción</option>
                 @foreach($roles as $_rol)
                 <option value="{{$_rol->id}}" @if ($_rol->id == $usuario -> id_rol ) selected @endif>{{$_rol->nombre}}</option>
                 @endforeach
             </select>
-            <p class="text-danger fst-italic">{{ $errors->first('_rol') }}</p>
+            <p class="text-red-600 font-sans font-bold mt-1">{{ $errors->first('_rol') }}</p>
         </div>
         
         <div class="mb-3" id="apellido_m">
-            <label class="form-label">Apellido materno</label>
-            <input type="text" class="form-control" id="_am" name="_am" value="{{ $usuario -> apellido_materno }}">
-            <p class="text-danger fst-italic">{{ $errors->first('_am') }}</p>
+            <label class="text-green-900 font-sans font-bold pb-2 text-lg">Apellido materno</label>
+            <input type="text" class="font-sans font-light text-base px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-400 w-full" id="_am" name="_am" value="{{ $usuario -> apellido_materno }}">
+            <p class="text-red-600 font-sans font-bold mt-1">{{ $errors->first('_am') }}</p>
         </div>
         <div class="mb-3">
-            <label class="form-label">Sexo *</label>
-            <select class="form-select" id="_sx" name="_sx">
+            <label class="text-green-900 font-sans font-bold pb-2 text-lg">Sexo *</label>
+            <select class="font-sans font-light text-base px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-400 w-full" id="_sx" name="_sx">
                 <option value="" @if (null == old('_sx')) selected @endif>Selecciona una opción</option>
                 @foreach($sexos as $_sx)
                 <option value="{{$_sx->id}}" @if ($_sx->id == $usuario->id_sexo) selected @endif>{{$_sx->nombre}}</option>
                 @endforeach
             </select>
-            <p class="text-danger fst-italic">{{ $errors->first('_sx') }}</p>
+            <p class="text-red-600 font-sans font-bold mt-1">{{ $errors->first('_sx') }}</p>
         </div>
         <div class="mb-3">
-            <label class="form-label">RFC</label>
-            <input type="text" class="form-control" id="_rfc" name="_rfc" value="{{ $usuario -> RFC }}"> 
-            <p class="text-danger fst-italic">{{ $errors->first('_rfc') }}</p>
+            <label class="text-green-900 font-sans font-bold pb-2 text-lg">RFC</label>
+            <input type="text" class="font-sans font-light text-base px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-400 w-full" id="_rfc" name="_rfc" value="{{ $usuario -> RFC }}"> 
+            <p class="text-red-600 font-sans font-bold mt-1">{{ $errors->first('_rfc') }}</p>
         </div>
     </div> <!-- div final de la segunda columna -->
 </div>
@@ -102,20 +102,20 @@
                 <div class="row">
     <div class="col-md-6">
       <div class="mb-3">
-        <label class="form-label">Calle</label>
-        <input type="text" class="form-control" id="_ca" name="_ca" value="{{ !empty($usuario->direccion->calle->nombre) ? $usuario->direccion->calle->nombre : '' }}">
+        <label class="text-green-900 font-sans font-bold pb-2 text-lg">Calle</label>
+        <input type="text" class="font-sans font-light text-base px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-400 w-full" id="_ca" name="_ca" value="{{ !empty($usuario->direccion->calle->nombre) ? $usuario->direccion->calle->nombre : '' }}">
       </div>
       <div class="mb-3">
-        <label class="form-label">Número interno</label>
-        <input type="text" class="form-control" id="_ni" name="_ni" value="{{ !empty($usuario->direccion->num_int) ? $usuario->direccion->num_int : '' }}">
+        <label class="text-green-900 font-sans font-bold pb-2 text-lg">Número interno</label>
+        <input type="text" class="font-sans font-light text-base px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-400 w-full" id="_ni" name="_ni" value="{{ !empty($usuario->direccion->num_int) ? $usuario->direccion->num_int : '' }}">
       </div>
       <div class="mb-3">
-        <label class="form-label">Código Postal</label>
-        <input type="text" class="form-control" id="_cp" name="_cp" value="{{ !empty($usuario->direccion->calle->colonia->CP) ? $usuario->direccion->calle->colonia->CP : '' }}">
+        <label class="text-green-900 font-sans font-bold pb-2 text-lg">Código Postal</label>
+        <input type="text" class="font-sans font-light text-base px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-400 w-full" id="_cp" name="_cp" value="{{ !empty($usuario->direccion->calle->colonia->CP) ? $usuario->direccion->calle->colonia->CP : '' }}">
       </div>
       <div class="mb-3">
-        <label class="form-label">Estado</label>
-        <select class="form-select" id="_edo" name="_edo">
+        <label class="text-green-900 font-sans font-bold pb-2 text-lg">Estado</label>
+        <select class="font-sans font-light text-base px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-400 w-full" id="_edo" name="_edo">
             <option value="" @if (is_null(old('_edo', $usuario->direccion->calle->colonia->municipio->estado->id ?? null))) selected @endif>Selecciona una opción</option>
             @foreach($estados as $_edo)
                 <option value="{{ $_edo->id }}" @if ($_edo->id == ($usuario->direccion->calle->colonia->municipio->estado->id ?? '')) selected @endif>{{ $_edo->nombre }}</option>
@@ -125,16 +125,16 @@
     </div>
       <div class="col-md-6">
         <div class="mb-3">
-        <label class="form-label">Número externo</label>
-        <input type="text" class="form-control" id="_ne" name="_ne" value="{{ !empty($usuario->direccion->num_ext) ? $usuario->direccion->num_ext : '' }}">
+        <label class="text-green-900 font-sans font-bold pb-2 text-lg">Número externo</label>
+        <input type="text" class="font-sans font-light text-base px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-400 w-full" id="_ne" name="_ne" value="{{ !empty($usuario->direccion->num_ext) ? $usuario->direccion->num_ext : '' }}">
         </div>
         <div class="mb-3">
-        <label class="form-label">Colonia</label>
-        <input type="text" class="form-control" id="_col" name="_col" value="{{ !empty($usuario->direccion->calle->colonia->nombre) ? $usuario->direccion->calle->colonia->nombre : '' }}">
+        <label class="text-green-900 font-sans font-bold pb-2 text-lg">Colonia</label>
+        <input type="text" class="font-sans font-light text-base px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-400 w-full" id="_col" name="_col" value="{{ !empty($usuario->direccion->calle->colonia->nombre) ? $usuario->direccion->calle->colonia->nombre : '' }}">
         </div>
         <div class="mb-3">
-        <label class="form-label">Municipio</label>
-        <input type="text" class="form-control" id="_mun" name="_mun" value="{{ !empty($usuario->direccion->calle->colonia->municipio->nombre) ? $usuario->direccion->calle->colonia->municipio->nombre : '' }}">
+        <label class="text-green-900 font-sans font-bold pb-2 text-lg">Municipio</label>
+        <input type="text" class="font-sans font-light text-base px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-400 w-full" id="_mun" name="_mun" value="{{ !empty($usuario->direccion->calle->colonia->municipio->nombre) ? $usuario->direccion->calle->colonia->municipio->nombre : '' }}">
         </div>
       </div>
       
@@ -145,20 +145,20 @@
                 <div class="row">
             <div class="col-md-6">
                 <div class="mb-3 fiscal-field">
-                    <label class="form-label" for="_ca_fiscal">Calle</label>
-                    <input type="text" class="form-control" id="_ca_fiscal" name="_ca_fiscal" value="{{ !empty($usuario->direccionF->calle->nombre) ? $usuario->direccionF->calle->nombre : '' }}">
+                    <label class="text-green-900 font-sans font-bold pb-2 text-lg" for="_ca_fiscal">Calle</label>
+                    <input type="text" class="font-sans font-light text-base px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-400 w-full" id="_ca_fiscal" name="_ca_fiscal" value="{{ !empty($usuario->direccionF->calle->nombre) ? $usuario->direccionF->calle->nombre : '' }}">
                 </div>
                 <div class="mb-3 fiscal-field">
-                    <label class="form-label" for="_ni_fiscal">Número interno</label>
-                    <input type="text" class="form-control" id="_ni_fiscal" name="_ni_fiscal" value="{{ !empty($usuario->direccionF->num_int) ? $usuario->direccionF->num_int : '' }}">
+                    <label class="text-green-900 font-sans font-bold pb-2 text-lg" for="_ni_fiscal">Número interno</label>
+                    <input type="text" class="font-sans font-light text-base px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-400 w-full" id="_ni_fiscal" name="_ni_fiscal" value="{{ !empty($usuario->direccionF->num_int) ? $usuario->direccionF->num_int : '' }}">
                 </div>
                 <div class="mb-3 fiscal-field">
-                    <label class="form-label" for="_cp_fiscal">Código Postal</label>
-                    <input type="text" class="form-control" id="_cp_fiscal" name="_cp_fiscal" value="{{ !empty($usuario->direccionF->calle->colonia->CP) ? $usuario->direccionF->calle->colonia->CP : '' }}">
+                    <label class="text-green-900 font-sans font-bold pb-2 text-lg" for="_cp_fiscal">Código Postal</label>
+                    <input type="text" class="font-sans font-light text-base px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-400 w-full" id="_cp_fiscal" name="_cp_fiscal" value="{{ !empty($usuario->direccionF->calle->colonia->CP) ? $usuario->direccionF->calle->colonia->CP : '' }}">
                 </div>
                 <div class="mb-3 fiscal-field">
-                    <label class="form-label" for="_edo_fiscal">Estado</label>
-                    <select class="form-select" id="_edo_fiscal" name="_edo_fiscal">
+                    <label class="text-green-900 font-sans font-bold pb-2 text-lg" for="_edo_fiscal">Estado</label>
+                    <select class="font-sans font-light text-base px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-400 w-full" id="_edo_fiscal" name="_edo_fiscal">
                         <option value="" @if (is_null(old('_edo', $usuario->direccionF->calle->colonia->municipio->estado->id ?? null))) selected @endif>Selecciona una opción</option>
                         @foreach($estados as $_edo)
                             <option value="{{ $_edo->id }}" @if ($_edo->id == ($usuario->direccionF->calle->colonia->municipio->estado->id ?? '')) selected @endif>{{ $_edo->nombre }}</option>
@@ -168,24 +168,26 @@
             </div>
             <div class="col-md-6">
                 <div class="mb-3 fiscal-field">
-                    <label class="form-label" for="_ne_fiscal">Número externo</label>
-                    <input type="text" class="form-control" id="_ne_fiscal" name="_ne_fiscal" value="{{ !empty($usuario->direccionF->num_ext) ? $usuario->direccionF->num_ext : '' }}">
+                    <label class="text-green-900 font-sans font-bold pb-2 text-lg" for="_ne_fiscal">Número externo</label>
+                    <input type="text" class="font-sans font-light text-base px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-400 w-full" id="_ne_fiscal" name="_ne_fiscal" value="{{ !empty($usuario->direccionF->num_ext) ? $usuario->direccionF->num_ext : '' }}">
                 </div>
                 <div class="mb-3 fiscal-field">
-                    <label class="form-label" for="_col_fiscal">Colonia</label>
-                    <input type="text" class="form-control" id="_col_fiscal" name="_col_fiscal" value="{{ !empty($usuario->direccionF->calle->colonia->nombre) ? $usuario->direccionF->calle->colonia->nombre : '' }}">
+                    <label class="text-green-900 font-sans font-bold pb-2 text-lg" for="_col_fiscal">Colonia</label>
+                    <input type="text" class="font-sans font-light text-base px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-400 w-full" id="_col_fiscal" name="_col_fiscal" value="{{ !empty($usuario->direccionF->calle->colonia->nombre) ? $usuario->direccionF->calle->colonia->nombre : '' }}">
                 </div>
                 <div class="mb-3 fiscal-field">
-                    <label class="form-label" for="_mun_fiscal">Municipio</label>
-                    <input type="text" class="form-control" id="_mun_fiscal" name="_mun_fiscal" value="{{ !empty($usuario->direccionF->calle->colonia->municipio->nombre) ? $usuario->direccionF->calle->colonia->municipio->nombre : '' }}">
+                    <label class="text-green-900 font-sans font-bold pb-2 text-lg" for="_mun_fiscal">Municipio</label>
+                    <input type="text" class="font-sans font-light text-base px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-400 w-full" id="_mun_fiscal" name="_mun_fiscal" value="{{ !empty($usuario->direccionF->calle->colonia->municipio->nombre) ? $usuario->direccionF->calle->colonia->municipio->nombre : '' }}">
                 </div>
             </div>
         </div>
             </div>
         </div>
 
-        <button type="submit" class="btn btn-success">Aceptar</button>
-        <a href="/perfil" class="btn btn-secondary">Cancelar</a>
+        <div class="flex justify-end pr-4">
+        <button type="submit" class="bg-gradient-to-r from-green-500 to-green-800 hover:from-green-600 hover:to-green-800 text-white px-4 py-2 rounded-lg mr-2 font-semibold font-sans">Aceptar</button>
+        <a href="/perfil" class="bg-gradient-to-r from-gray-500 to-gray-800 hover:from-gray-600 hover:to-gray-800 text-white px-4 py-2 rounded-lg mr-2 font-semibold font-sans">Cancelar</a>
+        </div>
     </form>
 </div>
 

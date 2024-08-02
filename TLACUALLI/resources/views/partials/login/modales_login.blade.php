@@ -2,10 +2,12 @@
 <div class="modal fade" id="cambio_contraseña" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
-      <div class="modal-header">
-        <h1 class="text-green-900 font-sans font-black text-4xl text-center" id="exampleModalLabel">Cambiar contraseña</h1>
+      <!-- modal header -->
+      <div class="flex justify-center pt-4 pb-2">
+        <h1 class="text-green-900 font-sans font-black text-2xl text-center" id="exampleModalLabel">Cambiar contraseña</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
+
       <div class="modal-body">
         <form method="POST" action="/cambiar_contraseña">
           @csrf
@@ -44,12 +46,13 @@
 <div class="modal fade" id="eliminar_perfil" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
-      <div class="modal-header">
-        <h1 class="text-green-900 font-sans font-black text-4xl text-center" id="exampleModalLabel">Eliminar perfil</h1>
+      <!-- modal header -->
+      <div class="flex justify-center pt-4 pb-2">
+        <h1 class="text-green-900 font-sans font-black text-2xl text-center" id="exampleModalLabel">Eliminar perfil</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <p class="font-sans font-light text-2xl">¿Estás seguro de querer eliminar tu cuenta?</p>
+        <p class="font-sans font-normal text-lg text-center">¿Estás seguro de querer eliminar tu cuenta?</p>
       </div>
       <div class="modal-footer">
         <form method="POST" action="/perfil/eliminar">

@@ -2,7 +2,7 @@
 @section('titulo','Nuevo usuario')
 @section('contenido')
 
-<div class="container-sm mt-5">
+<div class="container-sm mt-5 bg-white rounded-lg shadow-lg pb-3 pt-2 ps-2">
     <form method="POST" action="/registrar">
         @csrf
 
@@ -23,93 +23,98 @@
 
 
         <!-- Tab panes -->
-        <div class="tab-content" id="myTabContent">
+        <div class="tab-content ms-2" id="myTabContent">
             <div class="tab-pane fade show active" id="datos-personales" role="tabpanel" aria-labelledby="datos-personales-tab">
                 <!-- Datos Personales -->
                 <div class="row">
+
+                <div class="d-flex align-items-center pb-4">
+                <h2 class="mr-3 font-sans font-bold text-2xl text-green-900">Datos Personales</h2>
+                <div class="flex-grow-1 border-top border-secondary" style="margin-left: 20px;"></div>
+            </div>
     <!-- PRIMERA COLUMNA -->
     <div class="col-md-6">
         <div class="mb-3">
-            <label class="form-label">Nombre *</label>
-            <input type="text" class="form-control" id="_nu" name="_nu" value="{{ old('_nu') }}">
-            <p class="text-danger fst-italic">{{ $errors->first('_nu') }}</p>
+            <label class="text-green-900 font-sans font-bold pb-2 text-lg">Nombre *</label>
+            <input type="text" class="font-sans font-light text-base px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-400 w-full" id="_nu" name="_nu" value="{{ old('_nu') }}">
+            <p class="text-red-600 font-sans font-bold mt-1">{{ $errors->first('_nu') }}</p>
         </div>
         <div class="mb-3" id="apellido_p">
-            <label class="form-label">Apellido paterno</label>
-            <input type="text" class="form-control" id="_ap" name="_ap" value="{{ old('_ap') }}">
-            <p class="text-danger fst-italic">{{ $errors->first('_ap') }}</p>
+            <label class="text-green-900 font-sans font-bold pb-2 text-lg">Apellido paterno</label>
+            <input type="text" class="font-sans font-light text-base px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-400 w-full" id="_ap" name="_ap" value="{{ old('_ap') }}">
+            <p class="text-red-600 font-sans font-bold mt-1">{{ $errors->first('_ap') }}</p>
         </div>
         <div class="mb-3" id="apellido_m">
-            <label class="form-label">Apellido materno</label>
-            <input type="text" class="form-control" id="_am" name="_am" value="{{ old('_am') }}">
-            <p class="text-danger fst-italic">{{ $errors->first('_am') }}</p>
+            <label class="text-green-900 font-sans font-bold pb-2 text-lg">Apellido materno</label>
+            <input type="text" class="font-sans font-light text-base px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-400 w-full" id="_am" name="_am" value="{{ old('_am') }}">
+            <p class="text-red-600 font-sans font-bold mt-1">{{ $errors->first('_am') }}</p>
         </div>
          <div class="mb-3">
-            <label class="form-label">Fecha de nacimiento *</label>
-            <input type="date" class="form-control" id="_fn" name="_fn" value="{{ old('_fn') }}">
-            <p class="text-danger fst-italic">{{ $errors->first('_fn') }}</p>
+            <label class="text-green-900 font-sans font-bold pb-2 text-lg">Fecha de nacimiento *</label>
+            <input type="date" class="font-sans font-light text-base px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-400 w-full" id="_fn" name="_fn" value="{{ old('_fn') }}">
+            <p class="text-red-600 font-sans font-bold mt-1">{{ $errors->first('_fn') }}</p>
         </div>
         <div class="mb-3">
-            <label class="form-label">Correo *</label>
-            <input type="email" class="form-control" id="_email" name="_email" value="{{ old('_email') }}">
-            <p class="text-danger fst-italic">{{ $errors->first('_email') }}</p>
+            <label class="text-green-900 font-sans font-bold pb-2 text-lg">Correo *</label>
+            <input type="email" class="font-sans font-light text-base px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-400 w-full" id="_email" name="_email" value="{{ old('_email') }}">
+            <p class="text-red-600 font-sans font-bold mt-1">{{ $errors->first('_email') }}</p>
         </div>       
         <div class="mb-3">
-            <label class="form-label">Teléfono</label>
-            <input type="text" class="form-control" id="_tel" name="_tel" value="{{ old('_tel') }}">
-            <p class="text-danger fst-italic">{{ $errors->first('_tel') }}</p>
+            <label class="text-green-900 font-sans font-bold pb-2 text-lg">Teléfono</label>
+            <input type="text" class="font-sans font-light text-base px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-400 w-full" id="_tel" name="_tel" value="{{ old('_tel') }}">
+            <p class="text-red-600 font-sans font-bold mt-1">{{ $errors->first('_tel') }}</p>
         </div>
     </div> <!-- div final de la primera columna -->
 
     <!-- SEGUNDA COLUMNA -->
     <div class="col-md-6">
         <div class="mb-3">
-            <label class="form-label">Tipo de Persona *</label>
-            <select class="form-select" id="_rol" name="_rol" onchange="toggleApellidos(this)">
+            <label class="text-green-900 font-sans font-bold pb-2 text-lg">Tipo de Persona *</label>
+            <select class="font-sans font-light text-base px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-400 w-full" id="_rol" name="_rol" onchange="toggleApellidos(this)">
                 <option value="" @if (null == old('_rol')) selected @endif>Selecciona una opción</option>
                 <option value="1" @if (1 == old('_rol')) selected @endif>Persona Física</option>
                 <option value="2" @if (2 == old('_rol')) selected @endif>Persona Moral</option>
             </select>
-            <p class="text-danger fst-italic">{{ $errors->first('_rol') }}</p>
+            <p class="text-red-600 font-sans font-bold mt-1">{{ $errors->first('_rol') }}</p>
         </div>
 
         <div class="mb-3">
-            <label class="form-label">Rol *</label>
-            <select class="form-select" id="_rol" name="_rol">
+            <label class="text-green-900 font-sans font-bold pb-2 text-lg">Rol *</label>
+            <select class="font-sans font-light text-base px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-400 w-full" id="_rol" name="_rol">
                 <option value="" @if (null == old('_rol')) selected @endif>Selecciona una opción</option>
                 @foreach($roles as $_rol)
                 <option value="{{$_rol->id}}" @if ($_rol->id == old('_rol')) selected @endif>{{$_rol->nombre}}</option>
                 @endforeach
             </select>
-            <p class="text-danger fst-italic">{{ $errors->first('_rol') }}</p>
+            <p class="text-red-600 font-sans font-bold mt-1">{{ $errors->first('_rol') }}</p>
         </div>
         
         
         <div class="mb-3">
-            <label class="form-label">Contraseña *</label>
-            <input type="password" class="form-control" id="_pd" name="_pd">
-            <p class="text-danger fst-italic">{{ $errors->first('_pd') }}</p>
+            <label class="text-green-900 font-sans font-bold pb-2 text-lg">Contraseña *</label>
+            <input type="password" class="font-sans font-light text-base px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-400 w-full" id="_pd" name="_pd">
+            <p class="text-red-600 font-sans font-bold mt-1">{{ $errors->first('_pd') }}</p>
         </div>
         
         <div class="mb-3">
-            <label class="form-label">Confirmar contraseña *</label>
-            <input type="password" class="form-control" id="_pdc" name="_pdc">
-            <p class="text-danger fst-italic">{{ $errors->first('_pdc') }}</p>
+            <label class="text-green-900 font-sans font-bold pb-2 text-lg">Confirmar contraseña *</label>
+            <input type="password" class="font-sans font-light text-base px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-400 w-full" id="_pdc" name="_pdc">
+            <p class="text-red-600 font-sans font-bold mt-1">{{ $errors->first('_pdc') }}</p>
         </div>
         <div class="mb-3">
-            <label class="form-label">Sexo *</label>
-            <select class="form-select" id="_sx" name="_sx">
+            <label class="text-green-900 font-sans font-bold pb-2 text-lg">Sexo *</label>
+            <select class="font-sans font-light text-base px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-400 w-full" id="_sx" name="_sx">
                 <option value="" @if (null == old('_sx')) selected @endif>Selecciona una opción</option>
                 @foreach($sexos as $_sx)
                 <option value="{{$_sx->id}}" @if ($_sx->id == old('_sx')) selected @endif>{{$_sx->nombre}}</option>
                 @endforeach
             </select>
-            <p class="text-danger fst-italic">{{ $errors->first('_sx') }}</p>
+            <p class="text-red-600 font-sans font-bold mt-1">{{ $errors->first('_sx') }}</p>
         </div>
         <div class="mb-3">
-            <label class="form-label">RFC</label>
-            <input type="text" class="form-control" id="_rfc" name="_rfc" value="{{ old('_rfc') }}">
-            <p class="text-danger fst-italic">{{ $errors->first('_rfc') }}</p>
+            <label class="text-green-900 font-sans font-bold pb-2 text-lg">RFC</label>
+            <input type="text" class="font-sans font-light text-base px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-400 w-full" id="_rfc" name="_rfc" value="{{ old('_rfc') }}">
+            <p class="text-red-600 font-sans font-bold mt-1">{{ $errors->first('_rfc') }}</p>
         </div>
     </div> <!-- div final de la segunda columna -->
 </div>
@@ -117,26 +122,26 @@
             <div class="tab-pane fade" id="direccion-personal" role="tabpanel" aria-labelledby="direccion-personal-tab">
                 <!-- Dirección Personal -->
                 <div class="row">
-    <div class="d-flex align-items-center">
-            <h2 class="mr-3">Dirección Personal</h2>
+    <div class="d-flex align-items-center pb-4">
+            <h2 class="mr-3 font-sans font-bold text-green-900 text-2xl pb-2">Dirección Personal</h2>
             <div class="flex-grow-1 border-top border-secondary" style="margin-left: 20px;"></div>
     </div>
     <div class="col-md-6">
       <div class="mb-3">
-        <label class="form-label">Calle</label>
-        <input type="text" class="form-control" id="_ca" name="_ca" value="{{ old('_ca') }}">
+        <label class="text-green-900 font-sans font-bold pb-2 text-lg">Calle</label>
+        <input type="text" class="font-sans font-light text-base px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-400 w-full" id="_ca" name="_ca" value="{{ old('_ca') }}">
       </div>
       <div class="mb-3">
-        <label class="form-label">Número interno</label>
-        <input type="text" class="form-control" id="_ni" name="_ni" value="{{ old('_ni') }}">
+        <label class="text-green-900 font-sans font-bold pb-2 text-lg">Número interno</label>
+        <input type="text" class="font-sans font-light text-base px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-400 w-full" id="_ni" name="_ni" value="{{ old('_ni') }}">
       </div>
       <div class="mb-3">
-        <label class="form-label">Código Postal</label>
-        <input type="text" class="form-control" id="_cp" name="_cp" value="{{ old('_cp') }}">
+        <label class="text-green-900 font-sans font-bold pb-2 text-lg">Código Postal</label>
+        <input type="text" class="font-sans font-light text-base px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-400 w-full" id="_cp" name="_cp" value="{{ old('_cp') }}">
       </div>
       <div class="mb-3">
-        <label class="form-label">Estado</label>
-        <select  class="form-select" id="_edo" name="_edo">
+        <label class="text-green-900 font-sans font-bold pb-2 text-lg">Estado</label>
+        <select  class="font-sans font-light text-base px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-400 w-full" id="_edo" name="_edo">
           <option value="" @if (null == old('_edo')) selected @endif>Selecciona una opción</option>
                 @foreach($estados as $_edo)
                 <option value="{{$_edo->id}}" @if ($_edo->id == old('_edo')) selected @endif>{{$_edo->nombre}}</option>
@@ -146,16 +151,16 @@
     </div>
       <div class="col-md-6">
         <div class="mb-3">
-        <label class="form-label">Número externo</label>
-        <input type="text" class="form-control" id="_ne" name="_ne" value="{{ old('_ne') }}">
+        <label class="text-green-900 font-sans font-bold pb-2 text-lg">Número externo</label>
+        <input type="text" class="font-sans font-light text-base px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-400 w-full" id="_ne" name="_ne" value="{{ old('_ne') }}">
         </div>
         <div class="mb-3">
-        <label class="form-label">Colonia</label>
-        <input type="text" class="form-control" id="_col" name="_col" value="{{ old('_col') }}">
+        <label class="text-green-900 font-sans font-bold pb-2 text-lg">Colonia</label>
+        <input type="text" class="font-sans font-light text-base px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-400 w-full" id="_col" name="_col" value="{{ old('_col') }}">
         </div>
         <div class="mb-3">
-        <label class="form-label">Municipio</label>
-        <input type="text" class="form-control" id="_mun" name="_mun" value="{{ old('_mun') }}">
+        <label class="text-green-900 font-sans font-bold pb-2 text-lg">Municipio</label>
+        <input type="text" class="font-sans font-light text-base px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-400 w-full" id="_mun" name="_mun" value="{{ old('_mun') }}">
         </div>
       </div>
       
@@ -165,12 +170,14 @@
                 <!-- Dirección Fiscal -->
                 <div class="row">
             <div class="d-flex align-items-center">
-                <h2 class="mr-3">Dirección Fiscal</h2>
+                <h2 class="mr-3 font-sans font-bold text-2xl text-green-900">Dirección Fiscal</h2>
                 <div class="flex-grow-1 border-top border-secondary" style="margin-left: 20px;"></div>
             </div>
+           
             <div class="col-md-12">
                 <div class="form-check mb-3">
                     <input class="form-check-input" type="checkbox" id="copy_address" name="copy_address" value="1">
+                    
                     <label class="form-check-label" for="copy_address">
                         Usar la misma dirección personal
                     </label>
@@ -178,20 +185,20 @@
             </div>
             <div class="col-md-6">
                 <div class="mb-3 fiscal-field">
-                    <label class="form-label" for="_ca_fiscal">Calle</label>
-                    <input type="text" class="form-control" id="_ca_fiscal" name="_ca_fiscal" value="{{ old('_ca_fiscal') }}">
+                    <label class="text-green-900 font-sans font-bold pb-2 text-lg" for="_ca_fiscal">Calle</label>
+                    <input type="text" class="font-sans font-light text-base px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-400 w-full" id="_ca_fiscal" name="_ca_fiscal" value="{{ old('_ca_fiscal') }}">
                 </div>
                 <div class="mb-3 fiscal-field">
-                    <label class="form-label" for="_ni_fiscal">Número interno</label>
-                    <input type="text" class="form-control" id="_ni_fiscal" name="_ni_fiscal" value="{{ old('_ni_fiscal') }}">
+                    <label class="text-green-900 font-sans font-bold pb-2 text-lg" for="_ni_fiscal">Número interno</label>
+                    <input type="text" class="font-sans font-light text-base px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-400 w-full" id="_ni_fiscal" name="_ni_fiscal" value="{{ old('_ni_fiscal') }}">
                 </div>
                 <div class="mb-3 fiscal-field">
-                    <label class="form-label" for="_cp_fiscal">Código Postal</label>
-                    <input type="text" class="form-control" id="_cp_fiscal" name="_cp_fiscal" value="{{ old('_cp_fiscal') }}">
+                    <label class="text-green-900 font-sans font-bold pb-2 text-lg" for="_cp_fiscal">Código Postal</label>
+                    <input type="text" class="font-sans font-light text-base px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-400 w-full" id="_cp_fiscal" name="_cp_fiscal" value="{{ old('_cp_fiscal') }}">
                 </div>
                 <div class="mb-3 fiscal-field">
-                    <label class="form-label" for="_edo_fiscal">Estado</label>
-                    <select class="form-select" id="_edo_fiscal" name="_edo_fiscal">
+                    <label class="text-green-900 font-sans font-bold pb-2 text-lg" for="_edo_fiscal">Estado</label>
+                    <select class="font-sans font-light text-base px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-400 w-full" id="_edo_fiscal" name="_edo_fiscal">
                         <option value="" @if (null == old('_edo_fiscal')) selected @endif>Selecciona una opción</option>
                 @foreach($estados as $_edo_fiscal)
                 <option value="{{$_edo_fiscal->id}}" @if ($_edo_fiscal->id == old('_edo_fiscal')) selected @endif>{{$_edo_fiscal->nombre}}</option>
@@ -201,24 +208,27 @@
             </div>
             <div class="col-md-6">
                 <div class="mb-3 fiscal-field">
-                    <label class="form-label" for="_ne_fiscal">Número externo</label>
-                    <input type="text" class="form-control" id="_ne_fiscal" name="_ne_fiscal" value="{{ old('_ne_fiscal') }}">
+                    <label class="text-green-900 font-sans font-bold pb-2 text-lg" for="_ne_fiscal">Número externo</label>
+                    <input type="text" class="font-sans font-light text-base px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-400 w-full" id="_ne_fiscal" name="_ne_fiscal" value="{{ old('_ne_fiscal') }}">
                 </div>
                 <div class="mb-3 fiscal-field">
-                    <label class="form-label" for="_col_fiscal">Colonia</label>
-                    <input type="text" class="form-control" id="_col_fiscal" name="_col_fiscal" value="{{ old('_col_fiscal') }}">
+                    <label class="text-green-900 font-sans font-bold pb-2 text-lg" for="_col_fiscal">Colonia</label>
+                    <input type="text" class="font-sans font-light text-base px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-400 w-full" id="_col_fiscal" name="_col_fiscal" value="{{ old('_col_fiscal') }}">
                 </div>
                 <div class="mb-3 fiscal-field">
-                    <label class="form-label" for="_mun_fiscal">Municipio</label>
-                    <input type="text" class="form-control" id="_mun_fiscal" name="_mun_fiscal" value="{{ old('_mun_fiscal') }}">
+                    <label class="text-green-900 font-sans font-bold pb-2 text-lg" for="_mun_fiscal">Municipio</label>
+                    <input type="text" class="font-sans font-light text-base px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-400 w-full" id="_mun_fiscal" name="_mun_fiscal" value="{{ old('_mun_fiscal') }}">
                 </div>
             </div>
         </div>
             </div>
         </div>
 
-        <button type="submit" class="btn btn-success">Aceptar</button>
-        <a href="/" class="btn btn-secondary">Cancelar</a>
+        <div class="flex justify-end pb-4 pt-4">
+        <button type="submit" class="bg-gradient-to-r from-green-500 to-green-800 hover:from-green-600 hover:to-green-800 text-white px-4 py-2 rounded-lg mr-2 font-semibold font-sans">Aceptar</button>
+        <a href="/" class="bg-gradient-to-r from-gray-500 to-gray-800 hover:from-gray-600 hover:to-gray-800 text-white px-4 py-2 rounded-lg mr-2 font-semibold font-sans">Cancelar</a>
+        </div>
+
     </form>
 </div>
 

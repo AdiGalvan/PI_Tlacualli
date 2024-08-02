@@ -53,7 +53,11 @@
         <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">Tlacualli</span>
     </a>
     <div class="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
+    @auth
+    <button type="button" class="text-white bg-green-800 hover:bg-green-900 focus:ring-4 focus:outline-none focus:ring-green-700 font-medium rounded-lg text-sm px-4 py-2 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" data-bs-toggle="modal" data-bs-target="#login">{{Auth::user()->nombre_usuario}}</button>
+        @else
       <button type="button" class="text-white bg-green-800 hover:bg-green-900 focus:ring-4 focus:outline-none focus:ring-green-700 font-medium rounded-lg text-sm px-4 py-2 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" data-bs-toggle="modal" data-bs-target="#login">Iniciar Sesión</button>
+     @endguest
       @include('partials.login')
     </div>
     <div class="hidden w-full md:block md:w-auto" id="navbar-default">
