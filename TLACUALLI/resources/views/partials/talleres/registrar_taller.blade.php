@@ -30,11 +30,11 @@
     </div>
 
     <div class="mb-3">
-      <label class="form-label">Costo</label>
+      <label class="form-label">Costos</label>
       <input type="number" class="form-control" id="_costoT" name="_costoT" required placeholder="Ingrese el costo de su taller (0 en caso de ser gratuito)">
     </div>
     <div class="modal-footer">
-      <button type="button" class="btn btn-outline-success" onclick="validarCampos()"><i class="bi bi-check-lg"></i> Agregar</button>
+      <button type="submit" class="btn btn-outline-success" onclick="validarCampos()"><i class="bi bi-check-lg"></i> Agregar</button>
       <button type="button" class="btn btn-outline-warning" data-bs-dismiss="modal" ><i class="bi bi-x-lg"></i> Cancelar</button>
      </div>
 
@@ -84,7 +84,7 @@
                       </div>
 
                       <div class="mb-3">
-                          <label class="form-label">Costo</label>
+                          <label class="form-label">Costos</label>
                           <input type="number" class="form-control" id="_costoT" name="_costoT" required value="{{ !empty($publicacion->costo) ?  $publicacion->costo : '' }}">
                       </div>
 

@@ -38,12 +38,12 @@
     </div>
 
     <div class="mb-3">
-      <label class="form-label">Contenido</label>
+      <label class="form-label">Contenidos</label>
       <input type="file" class="form-control" id="_cont" name="_cont" accept=".pdf" required>
     </div>
 
     <div class="modal-footer">
-      <button type="button" class="btn btn-outline-success" onclick="validarCampos()"><i class="bi bi-check-lg"></i> Agregar</button>
+      <button type="submit" class="btn btn-outline-success" onclick="validarCampos()"><i class="bi bi-check-lg"></i> Agregar</button>
       <button type="button" class="btn btn-outline-warning" data-bs-dismiss="modal"><i class="bi bi-x-lg"></i> Cancelar</button>
      </div>
 

@@ -30,7 +30,7 @@
             <input type="file" class="form-control" id="_contP" name="_contP" accept="image/jpeg, image/png" required>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-outline-success" onclick="validarCampos()"><i class="bi bi-check-lg"></i> Agregar</button>
+            <button type="submit" class="btn btn-outline-success" onclick="validarCampos()"><i class="bi bi-check-lg"></i> Agregar</button>
             <button type="button" class="btn btn-outline-warning" data-bs-dismiss="modal"><i class="bi bi-x-lg"></i> Cancelar</button>
           </div>
         </form>

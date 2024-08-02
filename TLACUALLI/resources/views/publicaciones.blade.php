@@ -1,112 +1,45 @@
 @extends('layouts.template')
-@section('titulo','Publicaciones')
+@section('titulo', 'Publicaciones')
 @section('contenido')
-{{-- @dd($publicaciones) --}}
 
-
-<div class="row mt-3">
-    <div class="col-10 pt-5 ps-5">
-        <br><br>
-        {{-- <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel" >
-            <div class="carousel-inner">
-                <div class="carousel-item active">
-                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRd1TV6F79DQaHvrNU60Dx1ansavn0RcZq4FJsyNP_4OQ&s" class="d-block mx-auto" alt="Imagen1" style="max-width: 100%;" width="450px"; height="300px">
-                </div>
-                <div class="carousel-item">
-                    <img src="https://abono.in/wp-content/uploads/2022/04/2-Bags-With-Content.jpg" class="d-block mx-auto" alt="Imagen2" style="max-width: 100%;" width="450px"; height="300px">
-                </div>
-            </div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Previous</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Next</span>
-            </button>
-        </div> --}}
-        @include('partials.carrusel_home')
-        <div class="row mt-3">
-            <div class="col-2">
-                <div class="container sticky-top">
-                    <div class="sticky-top">
-                        @include('partials.publicaciones.filtros')
-                    </div>
-                </div>
-            </div>
-            <div class="col-10">
-                
+<div class="flex flex-wrap mt-3">
+    <div class="w-10/12 pt-5 px-5">
+        @include('partials.publicaciones.carruselPrincipal')
+        <div class="mt-3">
+            <div class="w-full">
                 <div class="container">
-            
-                    <h1 class="text-center">Publicaciones</h1>
-                    @auth
+                    <h2 class="mb-6 text-3xl text-center font-semibold text-dark uppercase dark:text-white mt-5 w-full">Publicaciones</h2>
+                     @auth
                     Autenticado
                     {{ $usuario->roles->id }}
                     @endauth
                     @guest
                     No autenticado
                     @endguest
-                
-                    <div class="row">
-                        <div class="col-5">
-                            <div class="input-group mb-3">
-                                <input type="text" class="form-control" placeholder="Buscar publicación ..." aria-label="Buscar productos" aria-describedby="button-search">
-                                <button class="btn btn-outline-primary" type="button" id="button-search"><i class="bi bi-search"></i> Buscar</button>
-                            </div>        
+                    <div class="flex flex-wrap mb-4 justify-end px-5">
+                        <div class="w-full flex items-center space-x-4 justify-end">
+                            <div class="w-full max-w-lg">
+                                @include('partials.publicaciones.buscar')
+                            </div>
+                            @if ($usuario->roles->id == 5)
+                                <a href="{{ route('mis_publicaciones') }}" class="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"> Mis publicaciones</a>
+                          
+                            @endif
                         </div>
-                        <div class="col-5">
-                        </div>
-                        
-                        @if ($usuario->roles->id == 5)
-                        <div class="col-2 justify-content-end">
-                            <a href="{{ route('mis_publicaciones') }}" class="btn btn-outline-success"><i class="bi bi-folder"></i> Mis publicaciones</a>
-                        </div>    
-                        @endif
-                        {{-- <div class="col-2 justify-content-end">
-                            <button type="button" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#registrar_publicacion"><i class="bi bi-file-earmark-text"></i>Mis publicaciones</button>
-                        </div> --}}
-                        
-                        
                     </div>
-                    
-                    <div class="row p-2">
+                    <div class="p-2">
                         @foreach ($publicaciones as $index => $publicacion)
                             @include('partials.publicaciones.acordion_publicaciones', ['publicacion' => $publicacion, 'index' => $loop->index + 1])
                         @endforeach
                             
                     </div>
-                    
-
-                
-                    <div class="row justify-content-center">
-                        <div class="col-auto">
-                            <nav aria-label="Page navigation example">
-                                <ul class="pagination">
-                                    <li class="page-item">
-                                        <a class="page-link" href="#" aria-label="Previous">
-                                            <span aria-hidden="true">&laquo;</span>
-                                        </a>
-                                    </li>
-                                    <li class="page-item"><a class="page-link" href="#">1</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                    <li class="page-item">
-                                        <a class="page-link" href="#" aria-label="Next">
-                                            <span aria-hidden="true">&raquo;</span>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </nav>
-                        </div>
-                    </div>
+                    @include('partials.publicaciones.paginacion')
                 </div>
             </div>
         </div>
-
-
     </div>
-    <div class="col-2">
-        <div class="sticky-top pe-3">
+    <div class="w-2/12">
+        <div class="sticky top-0 pe-3">
             <br>
             @include('partials.productos.carrusel')
             <br>
@@ -116,5 +49,8 @@
 </div>
 
 
+
 @include('partials.publicaciones.registrar_publicacion')
 @endsection
+
+
