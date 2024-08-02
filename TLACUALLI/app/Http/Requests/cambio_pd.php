@@ -27,4 +27,13 @@ class cambio_pd extends FormRequest
             '_pdnc' => 'required|max:250',
         ];
     }
+
+    public function attributes(): array{
+        return[
+            '_pda' => '',
+            '_pdn' => '',
+            '_pdnc' => '',
+          
+        ];
+    }
 }
