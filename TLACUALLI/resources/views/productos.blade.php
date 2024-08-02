@@ -104,7 +104,7 @@
                             <div class="flex flex-wrap -mx-2 mb-4">
                                 @foreach($chunk as $producto)
                                     <div class="w-full sm:w-1/2 md:w-1/3 p-2">
-                                        @include('producto.card_producto', ['producto' => $producto])
+                                        @include('partials.productos.card_producto', ['producto' => $producto])
                                     </div>
                                 @endforeach
                             </div>
