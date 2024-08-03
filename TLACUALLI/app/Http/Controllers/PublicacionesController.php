@@ -119,10 +119,10 @@ class PublicacionesController extends Controller
             } else {
                 // Si falla la subida, eliminar la publicación creada
                 $taller->delete();
-                return redirect()->back()->with('success', 'Error al subir el archivo.');
+                return redirect()->back()->with('error', 'Error al subir el archivo.');
             }
 
-            return redirect()->back()->with('success', 'Publicación creada exitosamente.');
+            return redirect()->back()->with('success', 'Taller creada exitosamente.');
         } else {
             abort(404, 'Página no encontrada');
         }
@@ -186,7 +186,7 @@ class PublicacionesController extends Controller
             // Guardar los cambios
             $publicacion->save();
 
-            return redirect()->back()->with('success', 'Publicación actualizada exitosamente.');
+            return redirect()->back()->with('update', 'Taller actualizada exitosamente.');
         } else {
             abort(404, 'Página no encontrada');
         }
@@ -222,7 +222,7 @@ class PublicacionesController extends Controller
             $publicacion->estatus = false; // Cambia el estado a false
             $publicacion->save();
 
-            return redirect()->back();
+            return redirect()->back()->with('off', 'Taller desactivado exitosamente.');
         } else {
             abort(404, 'Página no encontrada');
         }
@@ -236,7 +236,7 @@ class PublicacionesController extends Controller
             $publicacion->estatus = true; // Cambia el estado a false
             $publicacion->save();
 
-            return redirect()->back();
+            return redirect()->back()->with('on', 'Taller activado exitosamente.');
         } else {
             abort(404, 'Página no encontrada');
         }

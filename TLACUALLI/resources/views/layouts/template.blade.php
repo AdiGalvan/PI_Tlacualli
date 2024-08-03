@@ -40,6 +40,10 @@
     {{-- ÍCONOS DE FONT AWESOME --}}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"> 
 
+    {{-- Para notificaciones de notyf --}}
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
 
     {{-- Mapa --}}
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyALHaUJgSC86kmMnI1vjUIiEc33-DbxvZY"></script>
@@ -80,12 +84,17 @@
 </head>
 <section class="bg-gray-200 dark:bg-yellow-100">
 @include('partials.navbar')
-@include('partials.alertas')   
+   
 <!-- rgb(228, 217, 201)  -->
 
 <body style="background-color: rgb(255, 255, 255)">
     {{-- Estructura base: navbar, alertas y el resto del contenido --}}
     @yield('contenido') 
+
+    {{-- Notificacion de notyf --}}
+    <script src="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.js"></script>
+    @include('partials.alertas')
+
 </body>
 <footer>
     @include('partials.footer')

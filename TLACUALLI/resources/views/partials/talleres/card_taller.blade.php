@@ -79,18 +79,6 @@
 <!-- Llamar a la función initMap cuando el API de Google Maps esté cargado -->
 <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyALHaUJgSC86kmMnI1vjUIiEc33-DbxvZY&callback=initMap"></script>
 
-{{-- Script para el SweetAlert de AGREGAR PRODUCTO --}}
-<script>
-    function showSweetAlert_Taller() {
-        Swal.fire({
-            position: "center",
-            icon: "success",
-            title: "Taller Agregado Correctamente!",
-            showConfirmButton: false,
-            timer: 1500
-        });
-    }
-</script>
 
 
 

@@ -190,7 +190,7 @@ class ProductoController extends Controller
                 // dd($producto);
                 $producto->save();
             }
-            return redirect()->back()->with('success', 'Producto actualizado exitosamente.');
+            return redirect()->back()->with('update', 'Producto actualizado exitosamente.');
         } else {
             abort(404, 'Página no encontrada');
         }
@@ -207,7 +207,7 @@ class ProductoController extends Controller
             $producto->estatus = 0;
             $producto->save();
 
-            return redirect()->back();
+            return redirect()->back()->with('off', 'Producto desactivado exitosamente.');
         } else {
             abort(400, 'Producto no encontrado');
         }
@@ -220,7 +220,7 @@ class ProductoController extends Controller
             $producto->estatus = 1;
             $producto->save();
 
-            return redirect()->back();
+            return redirect()->back()->with('on', 'Producto activado exitosamente.');
         } else {
             abort(400, 'Producto no encontrado');
         }

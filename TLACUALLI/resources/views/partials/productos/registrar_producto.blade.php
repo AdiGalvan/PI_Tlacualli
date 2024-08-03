@@ -139,42 +139,6 @@
   </div>
 </div>
 
-{{-- Script para el SweetAlert de AGREGAR TALLER --}}
-<script>
-  function showSweetAlertTaller() {
-      const swalWithBootstrapButtons = Swal.mixin({
-          customClass: {
-              confirmButton: "btn btn-outline-success",
-              cancelButton: "btn btn-outline-danger me-3" 
-          },
-          buttonsStyling: false
-      });
-      swalWithBootstrapButtons.fire({
-          title: "¿Estás seguro?",
-          text: "¡No podrás revertir esto!",
-          icon: "warning",
-          showCancelButton: true,
-          confirmButtonText: "Sí, agregarlo",
-          cancelButtonText: "No, cancelar",
-          reverseButtons: true
-      }).then((result) => {
-          if (result.isConfirmed) {
-              swalWithBootstrapButtons.fire({
-                  title: "¡Agregado!",
-                  text: "El producto fue agregado correctamente.",
-                  icon: "success"
-              });
-              document.getElementById('registroProducto').submit();
-          } else if (result.dismiss === Swal.DismissReason.cancel) {
-              swalWithBootstrapButtons.fire({
-                  title: "Cancelado",
-                  text: "El producto no se agregó :)",
-                  icon: "error"
-              });
-          }
-      });
-  }
-</script>
 <script>
   document.addEventListener('DOMContentLoaded', function() {
     var modals = document.querySelectorAll('.modal');

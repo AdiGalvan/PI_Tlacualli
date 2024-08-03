@@ -77,41 +77,6 @@
 </div>
 </div>
 
-{{-- Script para el SweetAlert de AGREGAR PUBLICACIÓN --}}
-<script>
-  function showSweetAlertPublicacion() {
-      const swalWithBootstrapButtons = Swal.mixin({
-          customClass: {
-              confirmButton: "btn btn-outline-success",
-              cancelButton: "btn btn-outline-danger me-3" 
-          },
-          buttonsStyling: false
-      });
-      swalWithBootstrapButtons.fire({
-          title: "¿Estás seguro?",
-          text: "¡No podrás revertir esto!",
-          icon: "warning",
-          showCancelButton: true,
-          confirmButtonText: "Sí, agregarla",
-          cancelButtonText: "No, cancelar",
-          reverseButtons: true
-      }).then((result) => {
-          if (result.isConfirmed) {
-              swalWithBootstrapButtons.fire({
-                  title: "¡Agregado!",
-                  text: "La publicación fue agregada correctamente.",
-                  icon: "success"
-              });
-          } else if (result.dismiss === Swal.DismissReason.cancel) {
-              swalWithBootstrapButtons.fire({
-                  title: "Cancelado",
-                  text: "La publicación no se agregó :)",
-                  icon: "error"
-              });
-          }
-      });
-  }
-</script>
 <script>
   function validarCampos() {
       var titulo = document.getElementById('_tp').value;
