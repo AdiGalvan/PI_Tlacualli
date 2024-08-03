@@ -117,9 +117,12 @@
                                     <p><span class="text-dark font-sans">Precio: $ {{ $publicacion->costo }}</span></p>
                                 </div>
                                 <div class="flex-shrink-0 px-5">
-                                    <button data-modal-hide="default-modal" type="button" onclick="showSweetAlert()" class="bg-gradient-to-r from-green-500 to-green-800 text-white font-sans font-bold px-4 py-2 rounded-md text-md">
-                                        Agregar
-                                    </button>
+                                    <form action="{{ route('taller.registrar', $publicacion->id) }}" method="POST">
+                                         @csrf
+                                        <button data-modal-hide="default-modal" type="submit" onclick="showSweetAlert()" class="bg-gradient-to-r from-green-500 to-green-800 text-white font-sans font-bold px-4 py-2 rounded-md text-md">
+                                            Agregar
+                                        </button>
+                                    </form>
                                 </div>
                             </div>
                         </div>

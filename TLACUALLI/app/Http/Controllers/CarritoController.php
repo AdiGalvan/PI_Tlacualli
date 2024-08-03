@@ -7,6 +7,8 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\OrdenVenta;
 use App\Models\RelacionProductoOrden;
 use App\Models\Producto;
+use App\Models\RelacionUsuarioTaller;
+use App\Models\Publicaciones;
 
 class CarritoController extends Controller
 {
@@ -145,16 +147,59 @@ class CarritoController extends Controller
             ->where('estatus', 1)
             ->where('conclusion', 1)
             ->first();
-
-        if (!$ordenVenta) {
-            return redirect()->back()->with('error', 'No hay orden de venta activa.');
+        $talleresEnCarrito = RelacionUsuarioTaller::where('id_cliente', Auth::id())
+            ->where('estatus', 1)
+            ->get();
+        if ($ordenVenta) {
+            $ordenVenta->update([
+                'estatus' => 0
+            ]);
+        }
+        foreach ($talleresEnCarrito as $taller) {
+            $taller->update(['estatus' => 0]);
         }
 
-        // Actualizar el estado y la conclusión de la orden
-        $ordenVenta->update([
-            'estatus' => 0
+        return redirect()->back()->with('success', 'Orden de compra confirmada exitosamente.');
+    }
+
+
+    public function registrarTaller($id_publicacion)
+    {
+        // Verificar si el usuario está autenticado
+        if (!Auth::check()) {
+            return redirect()->back()->with('error', 'Debe estar autenticado para registrar un taller.');
+        }
+
+        // Verificar si la publicación existe y está activa
+        $publicacion = Publicaciones::find($id_publicacion);
+
+        if (!$publicacion || $publicacion->estatus != 1) {
+            return redirect()->back()->with('error', 'Publicación no encontrada o inactiva.');
+        }
+
+        // Crear la relación entre el usuario y la publicación
+        RelacionUsuarioTaller::create([
+            'id_cliente' => Auth::id(),
+            'id_publicacion' => $id_publicacion
         ]);
 
-        return redirect()->back()->with('success', 'Orden de compra confirmada exitosamente.');
+        return redirect()->back()->with('cartadd', 'Taller agregado exitosamente.');
+    }
+
+    public function eliminarTaller($id_publicacion)
+    {
+        // Verificar si la relación existe
+        $relacion = RelacionUsuarioTaller::where('id_cliente', Auth::id())
+            ->where('id_publicacion', $id_publicacion)
+            ->first();
+
+        if (!$relacion) {
+            return redirect()->back()->with('error', 'No se encontró la relación para el taller.');
+        }
+
+        // Eliminar la relación
+        $relacion->delete();
+
+        return redirect()->back()->with('cartremove', 'Taller eliminado exitosamente.');
     }
 }

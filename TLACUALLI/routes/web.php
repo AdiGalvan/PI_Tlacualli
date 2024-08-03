@@ -131,6 +131,10 @@ Route::group(['middleware' => 'auth'], function () {
     Route::delete('/carrito/eliminar/{id_producto}', [CarritoController::class, 'eliminarDelCarrito'])->name('carrito.eliminar');
     // Ruta para confirmar orde de compra
     Route::post('/carrito/confirmar', [CarritoController::class, 'confirmarOrden'])->name('carrito.confirmar');
+    // Ruta para agregar taller al carrito
+    Route::post('/taller/{id_publicacion}', [CarritoController::class, 'registrarTaller'])->name('taller.registrar');
+    // Ruta para eliminar taller del carrito
+    Route::delete('/taller/{id_publicacion}', [CarritoController::class, 'eliminarTaller'])->name('taller.eliminar');
 });
 
 //RUTAS QUE NO NECESITAN AUTENTICACIÓN
