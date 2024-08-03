@@ -151,7 +151,7 @@
 
 <div class="grid grid-cols-1">
     <div class="w-full mx-auto">
-        @include('partials.carrusel_home')
+        @include('partials.home.carrusel_home')
     </div>
 </div>
 
@@ -185,12 +185,12 @@
     @include('partials.home.contacto')
     
 
-    <div class="row mb-4 mt-5">
+  {{--   <div class="row mb-4 mt-5">
         <div class="col-12 text-center">
             <h2>Aliados</h2>
         </div>
     </div>
-
+ --}}
     
     @include('partials.home.alidados')
     

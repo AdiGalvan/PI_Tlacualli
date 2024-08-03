@@ -139,7 +139,7 @@
             </button>
         </div>
         @else
-            <div class="px-5 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+            <div class="px-5 ">
                 @foreach ($publicaciones as $index => $publicacion)
                         <div class="p-2">
                             @include('partials.publicaciones.acordion_publicaciones', ['publicacion' => $publicacion, 'index' => $loop->index + 1])

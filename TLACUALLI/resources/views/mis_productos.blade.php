@@ -77,7 +77,7 @@
                             </div>
                         </div>
                     </div>
-                    {{-- {!! $productos->links() !!} --}}
+                     {!! $productos->links() !!} 
                 </div>
             </div>
         </div>
@@ -134,13 +134,13 @@
 @section('titulo','TablaProductos')
 @section('contenido')
 
-<div class="row mt-5">
+{{-- <div class="md:container md:mx-auto mb-36">
     <div class="flex items-center justify-center mb-6 space-x-4">
-        <h2 class="text-3xl font-semibold text-dark uppercase dark:text-white">Tabla Productos</h2>
+        <h2 class="text-3xl font-semibold font-sans text-dark uppercase dark:text-white">Tabla Productos</h2>
     </div>
     <div class="flex justify-end space-x-4 px-5 mb-6">
-        <button type="button" class="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800" onclick="window.location.href='{{ url('/productos') }}'">Regresar</button>
-        <button type="button" class="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"data-bs-toggle="modal" data-bs-target="#registrar_producto">Agregar producto</button> 
+        <button type="button" class="bg-gradient-to-r from-green-500 to-green-800 text-white font-sans font-bold px-4 py-2 rounded-md text-md" onclick="window.location.href='{{ url('/productos') }}'">Regresar</button>
+        <button type="button" class="bg-gradient-to-r from-green-500 to-green-800 text-white font-sans font-bold px-4 py-2 rounded-md text-md" data-bs-toggle="modal" data-bs-target="#registrar_producto">Agregar producto</button> 
 
     </div>
             <div class="container-fluid mt-5">
@@ -176,7 +176,7 @@
                                                             @csrf
                                                             @method('DELETE')
                                                             <button type="submit" class="btn btn-outline-danger btn-sm"><i class="bi bi-trash3"></i></button>
-                                                        </form> --}}
+                                                        </form> 
                                                     </td>
                                                 </tr>
                                             @endforeach
@@ -194,4 +194,56 @@
 @include('partials.productos.registrar_producto')
 @include('partials.productos.script_productos')
 @endsection
- 
+  --}}
+
+<div class="md:container md:mx-auto mb-30 mt-5"> <!-- CONTAINER TABLE -->
+    <div class="flex items-center justify-center mb-6 space-x-4">
+        <h2 class="text-3xl font-semibold font-sans text-dark uppercase dark:text-white">Tabla Productos</h2>
+    </div>
+    <div class="flex justify-end space-x-4 px-5 mb-6">
+        <button type="button" class="bg-gradient-to-r from-green-500 to-green-800 text-white font-sans font-bold px-4 py-2 rounded-md text-md" onclick="window.location.href='{{ url('/productos') }}'">Regresar</button>
+        <button type="button" class="bg-gradient-to-r from-green-500 to-green-800 text-white font-sans font-bold px-4 py-2 rounded-md text-md" data-bs-toggle="modal" data-bs-target="#registrar_producto">Agregar producto</button> 
+
+    </div>
+        <table class="min-w-full bg-white shadow-1xl rounded-lg overflow-hidden font-sans">
+            <thead class="bg-green-900 text-white ">
+                <tr>
+                    <th class="px-6 py-3 text-left text-1xl">ID</th>
+                    <th class="px-6 py-3 text-left text-1xl">Nombre</th>
+                    <th class="px-6 py-3 text-left text-1xl">Descripción</th>
+                    <th class="px-6 py-3 text-left text-1xl flex justify-center">Costo</th>
+                    <th class="px-6 py-3 text-left text-1xl ">Stock</th>
+                    <th class="px-6 py-3 text-left text-1xl">Status</th>
+                    <th class="px-6 py-3 text-left text-1xl flex justify-center">Acciones</th>
+                </tr>
+            </thead>
+
+            <tbody class="divide-y divide-gray-500 shadow-md">
+               @foreach ($productos as $producto)
+                <tr>
+                    <td class="px-6 py-4 text-base font-black">{{ $producto->id }}</td>
+                    <td class="px-6 py-4 text-base font-semibold">{{ $producto->nombre }}</td>
+                    <td class="px-6 py-4 text-base font-semibold">{{ $producto->descripcion }}</td>
+                    <td class="px-6 py-4 text-base font-semibold">{{ $producto->costo }}</td>
+                    <td class="px-6 py-4 text-base font-semibold">{{ $producto->stock }}</td>
+                    <td class="px-6 py-4 text-base font-semibold">{{ $producto->estatus }}</td>
+                    <td class="px-6 py-4">
+                        {{-- <div class="inline-flex space-x-2 items-center">
+                            <a href="{{ route('servicios.edit', ['id' => $solicitud->id]) }}" class="bg-gradient-to-r from-yellow-300 to-yellow-500 hover:bg-green-400 text-white font-sans font-bold px-4 py-2 rounded-md no-underline">
+                                Editar
+                            </a>
+                            <form action="{{ route('servicios.editForm', ['id' => $solicitud->id]) }}" method="GET" class="inline-block">
+                                @csrf
+                                <button type="submit" class="bg-gradient-to-r from-red-400 to-red-600 hover:bg-yellow-500 text-white font-sans font-bold px-3 py-2 rounded-md no-underline">
+                                    Eliminar
+                                </button>
+                            </form>
+                        </div> --}}
+                    </td>
+                </tr>
+                @endforeach
+            </tbody>
+        </table>
+    </div>   
+</div> <!-- DIV CONTAINER TABLE -->
+@endsection

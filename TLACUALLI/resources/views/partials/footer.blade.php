@@ -8,14 +8,14 @@
           <div class="mb-6 md:mb-0">
               <a href="/" class="flex items-center">
                 <img src="{{ asset('images/TlacualliLogo.png') }}" alt="Tlacualli" width="45" height="45">
-                  <span class="self-center text-2xl font-semibold whitespace-nowrap text-white px-2"> Tlacualli</span>
+                  <span class="self-center text-2xl font-semibold font-sans whitespace-nowrap text-white px-2"> Tlacualli</span>
               </a>
-              <div class="text-white text-justify mt-3">
+              <div class="text-white font-sans text-justify mt-3">
                 <p>Somos un equipo comprometido con la sostenibilidad ambiental y el manejo responsable de los recursos.</p>
                 <p>Únete a nosotros para crear un futuro más verde y consciente.</p>
               </div>
           </div>
-          <div class="grid grid-cols-2 gap-8 sm:gap-6 sm:grid-cols-3">
+          <div class="grid grid-cols-2 gap-8 sm:gap-6 sm:grid-cols-3 font-sans">
               <div>
                   <h2 class="mb-6 text-sm font-semibold text-white uppercase dark:text-white">Explorar</h2>
                   <ul class="text-white dark:text-gray-400 font-medium">
@@ -53,7 +53,7 @@
       </div>
       <hr class="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8" />
       <div class="sm:flex sm:items-center sm:justify-between">
-          <span class="text-sm text-white sm:text-center dark:text-gray-400">© 2023 <a href="https://flowbite.com/" class="hover:underline">Tlacualli™</a>. Todos los derechos reservados.
+          <span class="text-sm text-white font-sans sm:text-center dark:text-gray-400">© 2023 <a href="https://flowbite.com/" class="hover:underline">Tlacualli™</a>. Todos los derechos reservados.
           </span>
           <div class="flex mt-4 sm:justify-center sm:mt-0">
               <a href="#" class="text-white hover:text-gray-900 dark:hover:text-white">
