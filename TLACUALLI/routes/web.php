@@ -12,6 +12,8 @@ use App\Http\Controllers\PublicacionesController;
 
 use App\Http\Controllers\ProductoController;
 
+use App\Http\Controllers\CarritoController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -121,6 +123,10 @@ Route::group(['middleware' => 'auth'], function () {
     Route::put('/desactivarProducto/{id}', [ProductoController::class, 'offStatus'])->name('desactivarProducto');
 
     Route::put('/activarProducto/{id}', [ProductoController::class, 'onStatus'])->name('activarProducto');
+
+    //----------------------------------------------------------------------------------//
+    // Ruta para agregar un producto al carrito
+    Route::post('/carrito/agregar/{id_producto}', [CarritoController::class, 'agregarAlCarrito'])->name('carrito.agregar');
 });
 
 //RUTAS QUE NO NECESITAN AUTENTICACIÓN

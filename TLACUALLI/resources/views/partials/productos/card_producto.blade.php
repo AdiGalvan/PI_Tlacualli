@@ -267,19 +267,24 @@
                               <button type="button" class="btn btn-outline-secondary">500g</button>
                               <button type="button" class="btn btn-outline-secondary">1kg</button>
                           </div> --}}
-                          <div>
-                              <div class="input-group input-spinner">
-                                  <input type="button" value="-" class="button-minus btn btn-sm" data-field="quantity">
-                                  <input type="number" step="1" max="10" value="1" name="quantity" class="quantity-field form-control-sm form-input">
-                                  <input type="button" value="+" class="button-plus btn btn-sm" data-field="quantity">
-                              </div>
-                          </div>
-                          <div class="mt-3 row justify-content-start g-2 align-items-center">
-                              <div class="col-lg-4 col-md-5 col-6 d-grid">
-                                  <div class="flex items-center p-4 md:p-5 border-t border-gray-200 rounded-b dark:border-gray-600">
-                                      <button data-modal-hide="default-modal" type="button"  onclick="showSweetAlert()" class="bg-gradient-to-r from-green-500 to-green-800 text-white font-sans font-bold px-4 py-2 rounded-md text-md">Agregar</button>
-                                  </div>
-                              </div>
+                          {{-- Form para agregaar producto --}}
+                          <form action="/carrito/agregar/{{ $producto->id }}" method="POST">
+                                @csrf <!-- Añade un token CSRF para la seguridad -->
+                                
+                                <div class="input-group input-spinner">
+                                    <input type="button" value="-" class="button-minus btn btn-sm" data-field="quantity">
+                                    <input type="number" step="1" min="1" max="{{ $producto->stock }}" value="1" name="cantidad" class="quantity-field form-control-sm form-input">
+                                    <input type="button" value="+" class="button-plus btn btn-sm" data-field="quantity">
+                                </div>
+                                
+                                <div class="mt-3 row justify-content-start g-2 align-items-center">
+                                    <div class="col-lg-4 col-md-5 col-6 d-grid">
+                                        <div class="flex items-center p-4 md:p-5 border-t border-gray-200 rounded-b dark:border-gray-600">
+                                            <button type="submit" class="bg-gradient-to-r from-green-500 to-green-800 text-white font-sans font-bold px-4 py-2 rounded-md text-md">Agregar</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
                               {{-- <div class="col-md-4 col-5" style="margin-left: 100px;">
                                   <svg class="w-[35px] h-[35px] text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
                                       <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12.01 6.001C6.5 1 1 8 5.782 13.001L12.011 20l6.23-7C23 8 17.5 1 12.01 6.002Z"/>
@@ -289,9 +294,9 @@
                                   </a>
                               </div> --}}
                           </div>
-                          <hr class="my-6">
+                          <hr class="my-6" >
                           <div>
-                              <table class="table table-borderless">
+                              <table class="table table-borderless" hidden>
                                   <tbody>
                                       <tr>
                                           <td>Código del Producto:</td>

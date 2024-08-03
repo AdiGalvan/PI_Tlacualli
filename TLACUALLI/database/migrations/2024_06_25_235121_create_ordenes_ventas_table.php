@@ -13,7 +13,8 @@ class CreateOrdenesVentasTable extends Migration
             $table->foreignId('id_cliente')->constrained('usuarios');
             $table->float('total')->nullable();
             $table->date('fecha')->nullable();
-            $table->boolean('estatus');
+            $table->boolean('estatus')->default(1);
+            $table->boolean('conclusion')->default(1);
             $table->timestamps();
         });
     }

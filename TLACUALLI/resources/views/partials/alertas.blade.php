@@ -19,6 +19,7 @@
         'on' => 'on',
         'off' => 'off',
         'update' => 'update',
+        'cartadd'=>'cartadd',
     ];
 @endphp
 
@@ -132,6 +133,16 @@
                                 className: 'material-icons notyf__icon-custom',
                                 tagName: 'i',
                                 text: 'published_with_changes'
+                            }
+                        },
+                        {
+                            type: 'cartadd',
+                            className: 'notyf__toast--custom',
+                            background: colors_notyf.success,
+                            icon: {
+                                className: 'material-icons notyf__icon-custom',
+                                tagName: 'i',
+                                text: 'add_shopping_cart'
                             }
                         }
                     ]

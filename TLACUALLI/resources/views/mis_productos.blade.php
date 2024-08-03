@@ -232,7 +232,7 @@
                             <button type="button" class="btn btn-outline-success btn-lg btn-block mb-3" data-bs-toggle="modal" data-bs-target="#actualizar_producto{{ $producto->id }}">
                                 <i class="bi bi-pencil-square"></i> Actualizar información
                             </button>
-                            @include('partials.productos.registrar_producto', ['producto' => $producto])
+                            @include('partials.productos.registrar_producto', ['producto' => $producto ?? new stdClass()])
                             @if ($producto->estatus)
                                 {{-- Mostrar botón de Desactivar si el estado es true --}}
                                 <button type="button" class="bg-gradient-to-r from-gray-500 to-gray-800 hover:from-gray-600 hover:to-gray-800 text-white px-4 py-2 rounded-lg mr-2 font-semibold font-sans" data-bs-toggle="modal" data-bs-target="#desactivar_producto{{ $producto->id }}">Desactivar taller</button>
@@ -248,6 +248,6 @@
         </table>
     </div>   
 </div> <!-- DIV CONTAINER TABLE -->
-@include('partials.productos.registrar_producto')
+@include('partials.productos.registrar_producto', ['producto' => $producto ?? new stdClass()])
 @include('partials.productos.script_productos')
 @endsection
