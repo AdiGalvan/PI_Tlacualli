@@ -23,11 +23,11 @@
       <input type="text" class="font-sans font-light px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 w-full" id="_tp" name="_tp" required>
     </div>
 
-    <div class="mb-3">
+    <div class="mb-3" hidden>
       <label class="text-green-900 font-sans font-bold pb-2 text-base">Tipo de publición</label>
       <select class="font-sans font-light px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 w-full" id="_tipo" name="_tipo" required>
         <option value="">Selecciona una opcion</option>
-        <option value="1">Artículo</option>
+        <option value="1" selected>Artículo</option>
         <option value="3">Servicio</option>
         <option value="4">Anuncio</option>
       </select>

@@ -43,6 +43,7 @@ class PublicacionesController extends Controller
         $publicaciones = Publicaciones::where('id_tipo', 2)
             ->where('estatus', true)
             ->with('usuario')
+            ->orderBy('created_at', 'desc')
             ->get();
         //Envia talleres a la vista de talleres
         return view('talleres', compact('publicaciones', 'usuario'));
@@ -60,6 +61,7 @@ class PublicacionesController extends Controller
             $publicaciones = Publicaciones::where('id_usuario', $usuarioId)
                 ->where('id_tipo', 2)
                 ->with('usuario')
+                ->orderBy('created_at', 'desc')
                 ->get();
             //Envia talleres a la vista de talleres
             return view('mis_talleres', compact('publicaciones'));
@@ -259,6 +261,8 @@ class PublicacionesController extends Controller
         }
         //Busca todas las publicaciones de tipo taller, activas y con los datos del publicador
         $publicaciones = Publicaciones::where('id_tipo', 1)
+            ->where('estatus', 1)
+            ->orderBy('created_at', 'desc')
             ->get()
             ->map(function ($publicacion) {
                 $publicacion->fecha_creacion = Carbon::parse($publicacion->created_at)->format('Y-m-d');
@@ -280,6 +284,7 @@ class PublicacionesController extends Controller
             $publicaciones = Publicaciones::where('id_usuario', $usuarioId)
                 ->where('id_tipo', 1)
                 ->with('usuario')
+                ->orderBy('created_at', 'desc')
                 ->get();
 
             //Envia talleres a la vista de talleres
@@ -308,7 +313,7 @@ class PublicacionesController extends Controller
             if ($request->hasFile('_cont')) {
                 $file = $request->file('_cont');
 
-                $filename = $usuarioId . '_1_' . $file->getClientOriginalName();
+                $filename = $usuarioId . '_1_articulo_' . $validator['_tp'];
 
                 $filePath = $file->storeAs('uploads', $filename, 'public');
             } else {
@@ -323,7 +328,7 @@ class PublicacionesController extends Controller
             $publicacion->fecha_publicacion = Carbon::now()->toDateString();
             $publicacion->id_usuario = $usuarioId;
             $publicacion->id_tipo = $validator['_tipo'];
-            $publicacion->estatus = false;
+            $publicacion->estatus = true;
             $publicacion->save();
 
             return redirect()->back()->with('success', 'Publicación creada exitosamente.');

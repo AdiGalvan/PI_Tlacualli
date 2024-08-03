@@ -228,17 +228,19 @@
                     <td class="px-6 py-4 text-base font-semibold">{{ $producto->stock }}</td>
                     <td class="px-6 py-4 text-base font-semibold">{{ $producto->estatus }}</td>
                     <td class="px-6 py-4">
-                        {{-- <div class="inline-flex space-x-2 items-center">
-                            <a href="{{ route('servicios.edit', ['id' => $solicitud->id]) }}" class="bg-gradient-to-r from-yellow-300 to-yellow-500 hover:bg-green-400 text-white font-sans font-bold px-4 py-2 rounded-md no-underline">
-                                Editar
-                            </a>
-                            <form action="{{ route('servicios.editForm', ['id' => $solicitud->id]) }}" method="GET" class="inline-block">
-                                @csrf
-                                <button type="submit" class="bg-gradient-to-r from-red-400 to-red-600 hover:bg-yellow-500 text-white font-sans font-bold px-3 py-2 rounded-md no-underline">
-                                    Eliminar
-                                </button>
-                            </form>
-                        </div> --}}
+                        <div class="inline-flex space-x-2 items-center">
+                            <button type="button" class="btn btn-outline-success btn-lg btn-block mb-3" data-bs-toggle="modal" data-bs-target="#actualizar_producto{{ $producto->id }}">
+                                <i class="bi bi-pencil-square"></i> Actualizar información
+                            </button>
+                            @include('partials.productos.registrar_producto', ['producto' => $producto])
+                            @if ($producto->estatus)
+                                {{-- Mostrar botón de Desactivar si el estado es true --}}
+                                <button type="button" class="bg-gradient-to-r from-gray-500 to-gray-800 hover:from-gray-600 hover:to-gray-800 text-white px-4 py-2 rounded-lg mr-2 font-semibold font-sans" data-bs-toggle="modal" data-bs-target="#desactivar_producto{{ $producto->id }}">Desactivar taller</button>
+                            @else
+                                {{-- Mostrar botón de Activar si el estado es false --}}
+                                <button type="button" class="bg-gradient-to-r from-gray-500 to-gray-800 hover:from-gray-600 hover:to-gray-800 text-white px-4 py-2 rounded-lg mr-2 font-semibold font-sans" data-bs-toggle="modal" data-bs-target="#activar_producto{{ $producto->id }}">Activar taller</button>
+                            @endif
+                        </div>
                     </td>
                 </tr>
                 @endforeach
@@ -246,4 +248,6 @@
         </table>
     </div>   
 </div> <!-- DIV CONTAINER TABLE -->
+@include('partials.productos.registrar_producto')
+@include('partials.productos.script_productos')
 @endsection

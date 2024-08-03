@@ -119,6 +119,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::put('/actualizarProducto/{id}', [ProductoController::class, 'update'])->name('actualizarProducto');
 
     Route::put('/desactivarProducto/{id}', [ProductoController::class, 'offStatus'])->name('desactivarProducto');
+
+    Route::put('/activarProducto/{id}', [ProductoController::class, 'onStatus'])->name('activarProducto');
 });
 
 //RUTAS QUE NO NECESITAN AUTENTICACIÓN

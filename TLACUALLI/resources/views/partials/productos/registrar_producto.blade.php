@@ -91,6 +91,54 @@
   </div>
 </div>
 
+<!--INICIO DE MODAL DE Desactivacion-->
+  <div class="modal fade" id="desactivar_producto{{ $producto->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <!-- modal header -->
+      <div class="flex justify-center pt-4 pb-2">
+        <h1 class="text-green-900 font-sans font-black text-2xl text-center" id="exampleModalLabel">Desactivar producto: {{ $producto->nombre }}</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p class="font-sans font-normal text-lg text-center">¿Estás seguro de querer desactivar este producto?</p>
+      </div>
+      <div class="modal-footer">
+        <form method="POST" action="{{ route('desactivarProducto', $producto->id) }}">
+          @csrf
+          @method('PUT')
+          <button type="submit" class="bg-gradient-to-r from-green-500 to-green-800 hover:from-green-600 hover:to-green-800 text-white px-4 py-2 rounded-lg mr-2 font-semibold">Desactivar</button>
+        </form>
+        <button type="button" class="bg-gradient-to-r from-gray-500 to-gray-800 hover:from-gray-600 hover:to-gray-800 text-white px-4 py-2 rounded-lg mr-2 font-semibold" data-bs-dismiss="modal">Cancelar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--INICIO DE MODAL DE Activacion-->
+  <div class="modal fade" id="activar_producto{{ $producto->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <!-- modal header -->
+      <div class="flex justify-center pt-4 pb-2">
+        <h1 class="text-green-900 font-sans font-black text-2xl text-center" id="exampleModalLabel">Activar producto: {{ $producto->nombre }}</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p class="font-sans font-normal text-lg text-center">¿Estás seguro de querer activar este producto?</p>
+      </div>
+      <div class="modal-footer">
+        <form method="POST" action="{{ route('activarProducto', $producto->id) }}">
+          @csrf
+          @method('PUT')
+          <button type="submit" class="bg-gradient-to-r from-green-500 to-green-800 hover:from-green-600 hover:to-green-800 text-white px-4 py-2 rounded-lg mr-2 font-semibold">Activar</button>
+        </form>
+        <button type="button" class="bg-gradient-to-r from-gray-500 to-gray-800 hover:from-gray-600 hover:to-gray-800 text-white px-4 py-2 rounded-lg mr-2 font-semibold" data-bs-dismiss="modal">Cancelar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 {{-- Script para el SweetAlert de AGREGAR TALLER --}}
 <script>
   function showSweetAlertTaller() {

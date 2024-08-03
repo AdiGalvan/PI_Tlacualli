@@ -60,7 +60,6 @@ class ProductoController extends Controller
             $productos = Producto::where('proveedor_id', $usuarioId)
                 ->with('usuario')
                 ->get();
-
             //Envia talleres a la vista de talleres
             return view('mis_productos', compact('productos'));
         } else {
@@ -206,6 +205,19 @@ class ProductoController extends Controller
         if (Auth::check()) {
             $producto = Producto::findOrFail($id);
             $producto->estatus = 0;
+            $producto->save();
+
+            return redirect()->back();
+        } else {
+            abort(400, 'Producto no encontrado');
+        }
+    }
+
+    public function onStatus($id)
+    {
+        if (Auth::check()) {
+            $producto = Producto::findOrFail($id);
+            $producto->estatus = 1;
             $producto->save();
 
             return redirect()->back();

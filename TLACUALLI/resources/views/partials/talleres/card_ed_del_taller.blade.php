@@ -139,6 +139,8 @@
                                         </div>
                                         <div class="row">
                                             <div class="col-lg-3 col-md-3 col-3">
+
+                                                
                                                 <!-- Botón "Eliminar" -->
                                                 <form action="{{ route('publicacionesDestroy', $publicacion->id) }}" method="POST" onsubmit="return confirm('¿Estás seguro de que deseas eliminar esta publicación?');">
                                                     @csrf
@@ -153,22 +155,10 @@
                                                     
                                                     @if ($publicacion->estatus)
                                                         {{-- Mostrar botón de Desactivar si el estado es true --}}
-                                                        <form action="{{ route('desactivarTaller', $publicacion->id) }}" method="POST" onsubmit="return confirm('¿Estás seguro de que deseas desactivar esta publicación?');">
-                                                            @csrf
-                                                            @method('PUT')
-                                                            <button type="submit" class="btn btn-outline-primary btn-lg btn-block">
-                                                                <i class="bi bi-x-circle"></i> Desactivar
-                                                            </button>
-                                                        </form>
+                                                        <button type="button" class="bg-gradient-to-r from-gray-500 to-gray-800 hover:from-gray-600 hover:to-gray-800 text-white px-4 py-2 rounded-lg mr-2 font-semibold font-sans" data-bs-toggle="modal" data-bs-target="#desactivar_taller{{ $publicacion->id }}">Desactivar taller</button>
                                                     @else
                                                         {{-- Mostrar botón de Activar si el estado es false --}}
-                                                        <form action="{{ route('activarTaller', $publicacion->id) }}" method="POST" onsubmit="return confirm('¿Estás seguro de que deseas activar esta publicación?');">
-                                                            @csrf
-                                                            @method('PUT')
-                                                            <button type="submit" class="btn btn-outline-success btn-lg btn-block">
-                                                                <i class="bi bi-check-circle"></i> Activar
-                                                            </button>
-                                                        </form>
+                                                        <button type="button" class="bg-gradient-to-r from-gray-500 to-gray-800 hover:from-gray-600 hover:to-gray-800 text-white px-4 py-2 rounded-lg mr-2 font-semibold font-sans" data-bs-toggle="modal" data-bs-target="#activar_taller{{ $publicacion->id }}">Activar taller</button>
                                                     @endif
                                             </div>
                                         </div>
@@ -186,7 +176,7 @@
 
 {{-- Modal para infromacion de taller --}}
 
-<div class="modal fade" id="ed_delTallerModal{{ $publicacion->id }}" tabindex="-1" aria-hidden="true">
+{{-- <div class="modal fade" id="ed_delTallerModal{{ $publicacion->id }}" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-xl">
     <div class="modal-content">
         <div class="modal-body p-8">
@@ -240,7 +230,7 @@
                                 <li>79 recursos descargables</li>
                                 <li>Acceso en dispositivos móviles y TV</li>
                                 <li>Certificado de finalización</li>
-                            </ul> --}}
+                            </ul> 
                     </div>
                     <div class="mt-4">
                         <h5>Descripción del taller</h5>
@@ -254,7 +244,7 @@
                             <h2 class="h2 me-3">
                                 ${{ $publicacion->costo }}
                             </h3>
-                            {{-- <s><span class="text-muted line-through me-3">490MX$</span></s> --}}
+                            {{-- <s><span class="text-muted line-through me-3">490MX$</span></s> 
                         </div>
                     </div>
     
@@ -279,10 +269,10 @@
                                 </form>
                             </div>
                             <div class="col-lg-3 col-md-3 col-3">
-                                    {{-- Otras partes de la tarjeta --}}
+                                    {{-- Otras partes de la tarjeta 
                                     
                                     @if ($publicacion->estatus)
-                                        {{-- Mostrar botón de Desactivar si el estado es true --}}
+                                        {{-- Mostrar botón de Desactivar si el estado es true 
                                         <form action="{{ route('desactivarTaller', $publicacion->id) }}" method="POST" onsubmit="return confirm('¿Estás seguro de que deseas desactivar esta publicación?');">
                                             @csrf
                                             @method('PUT')
@@ -291,7 +281,7 @@
                                             </button>
                                         </form>
                                     @else
-                                        {{-- Mostrar botón de Activar si el estado es false --}}
+                                        {{-- Mostrar botón de Activar si el estado es false 
                                         <form action="{{ route('activarTaller', $publicacion->id) }}" method="POST" onsubmit="return confirm('¿Estás seguro de que deseas activar esta publicación?');">
                                             @csrf
                                             @method('PUT')
@@ -309,7 +299,7 @@
         </div>
     </div>
     </div>
-    </div>
+    </div> --}}
 
     <!--INICIO DE MODAL DE ACTUALIZACION-->
 <div class="modal fade" id="actualizar_taller{{ $publicacion->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -361,6 +351,54 @@
         </div>
     </div>
   </div>
+
+  <!--INICIO DE MODAL DE Desactivacion-->
+  <div class="modal fade" id="desactivar_taller{{ $publicacion->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <!-- modal header -->
+      <div class="flex justify-center pt-4 pb-2">
+        <h1 class="text-green-900 font-sans font-black text-2xl text-center" id="exampleModalLabel">Desactivar taller: {{ $publicacion->nombre }}</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p class="font-sans font-normal text-lg text-center">¿Estás seguro de querer desactivar este taller?</p>
+      </div>
+      <div class="modal-footer">
+        <form method="POST" action="{{ route('desactivarTaller', $publicacion->id) }}">
+          @csrf
+          @method('PUT')
+          <button type="submit" class="bg-gradient-to-r from-green-500 to-green-800 hover:from-green-600 hover:to-green-800 text-white px-4 py-2 rounded-lg mr-2 font-semibold">Desactivar</button>
+        </form>
+        <button type="button" class="bg-gradient-to-r from-gray-500 to-gray-800 hover:from-gray-600 hover:to-gray-800 text-white px-4 py-2 rounded-lg mr-2 font-semibold" data-bs-dismiss="modal">Cancelar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--INICIO DE MODAL DE Activacion-->
+  <div class="modal fade" id="activar_taller{{ $publicacion->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <!-- modal header -->
+      <div class="flex justify-center pt-4 pb-2">
+        <h1 class="text-green-900 font-sans font-black text-2xl text-center" id="exampleModalLabel">Activar taller: {{ $publicacion->nombre }}</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p class="font-sans font-normal text-lg text-center">¿Estás seguro de querer activar este taller?</p>
+      </div>
+      <div class="modal-footer">
+        <form method="POST" action="{{ route('activarTaller', $publicacion->id) }}">
+          @csrf
+          @method('PUT')
+          <button type="submit" class="bg-gradient-to-r from-green-500 to-green-800 hover:from-green-600 hover:to-green-800 text-white px-4 py-2 rounded-lg mr-2 font-semibold">Activar</button>
+        </form>
+        <button type="button" class="bg-gradient-to-r from-gray-500 to-gray-800 hover:from-gray-600 hover:to-gray-800 text-white px-4 py-2 rounded-lg mr-2 font-semibold" data-bs-dismiss="modal">Cancelar</button>
+      </div>
+    </div>
+  </div>
+</div>
   
     
     
