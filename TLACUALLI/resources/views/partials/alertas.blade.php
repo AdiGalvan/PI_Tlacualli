@@ -19,7 +19,9 @@
         'on' => 'on',
         'off' => 'off',
         'update' => 'update',
+        //notificaciones de carrito
         'cartadd'=>'cartadd',
+        'cartremove'=>'cartremove',
     ];
 @endphp
 
@@ -143,6 +145,16 @@
                                 className: 'material-icons notyf__icon-custom',
                                 tagName: 'i',
                                 text: 'add_shopping_cart'
+                            }
+                        },
+                        {
+                            type: 'cartremove',
+                            className: 'notyf__toast--custom',
+                            background: colors_notyf.success,
+                            icon: {
+                                className: 'material-icons notyf__icon-custom',
+                                tagName: 'i',
+                                text: 'remove_shopping_cart'
                             }
                         }
                     ]

@@ -21,6 +21,7 @@ class OrdenVenta extends Model
 
     public function productos()
     {
-        return $this->hasMany(RelacionProductoOrden::class, 'id_orden', 'id');
+        return $this->belongsToMany(Producto::class, 'relacion_producto_orden', 'id_orden', 'id_producto')
+            ->withPivot('cantidad', 'subtotal');
     }
 }

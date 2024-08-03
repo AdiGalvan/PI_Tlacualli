@@ -59,7 +59,7 @@
       <button type="button" class="text-white bg-green-800 hover:bg-green-900 focus:ring-4 focus:outline-none focus:ring-green-700 font-medium rounded-lg text-sm px-4 py-2 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" data-bs-toggle="modal" data-bs-target="#login">Iniciar Sesión</button>
      @endguest
     @include('partials.login')
-    @include('partials.carrito.dropdown_carrito')
+    <x-cart-dropdown />
     </div>
     <div class="hidden w-full md:block md:w-auto" id="navbar-default">
       <ul class="font-medium flex flex-col p-4 md:p-0 bg-gray-50 md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:bg-transparent dark:bg-gray-800 md:dark:bg-gray-900">

@@ -296,7 +296,7 @@
                           </div>
                           <hr class="my-6" >
                           <div>
-                              <table class="table table-borderless" hidden>
+                              <table class="table table-borderless">
                                   <tbody>
                                       <tr>
                                           <td>Código del Producto:</td>

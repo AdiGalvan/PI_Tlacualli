@@ -15,7 +15,8 @@ class RelacionProductoOrden extends Model
         'id_orden',
         'id_producto',
         'cantidad',
-        'subtotal'
+        'subtotal',
+        'conclusion' // Agrega el nuevo campo conclusion
     ];
 
     public function producto()

@@ -71,7 +71,7 @@ class CarritoController extends Controller
             ]);
 
             // Actualizar el total de la orden
-            $total = $ordenVenta->productos->sum('subtotal') - $relacion->subtotal + $nuevoSubtotal;
+            $total_real = $ordenVenta->productos->sum('subtotal') - $relacion->subtotal + $nuevoSubtotal;
         } else {
             // Calcular el subtotal para un nuevo producto
             $subtotal = $producto->costo * $cantidadSolicitada;
@@ -85,15 +85,76 @@ class CarritoController extends Controller
             ]);
 
             // Actualizar el total de la orden
-            $total = $ordenVenta->productos->sum('subtotal') + $subtotal;
+            $total_real = $ordenVenta->productos->sum('subtotal') + $subtotal;
         }
 
         // Actualizar el total de la orden
-        $ordenVenta->update(['total' => $total]);
+        $ordenVenta->update(['total' => $total_real]);
 
         // Actualizar el stock del producto
         $producto->update(['stock' => $producto->stock - $cantidadSolicitada]);
 
         return redirect()->back()->with('cartadd', 'Producto agregado al carrito exitosamente.');
+    }
+
+    public function eliminarDelCarrito($id_producto)
+    {
+        // Obtener la orden de venta activa del cliente
+        $ordenVenta = OrdenVenta::where('id_cliente', Auth::id())
+            ->where('estatus', 1)
+            ->where('conclusion', 1)
+            ->first();
+
+        if (!$ordenVenta) {
+            return redirect()->back()->with('error', 'No hay orden de venta activa.');
+        }
+
+        // Obtener la relación producto-orden
+        $relacion = RelacionProductoOrden::where('id_orden', $ordenVenta->id)
+            ->where('id_producto', $id_producto)
+            ->first();
+
+        if (!$relacion) {
+            return redirect()->back()->with('error', 'Producto no encontrado en el carrito.');
+        }
+
+        // Obtener el producto
+        $producto = Producto::find($id_producto);
+
+        if (!$producto) {
+            return redirect()->back()->with('error', 'Producto no encontrado.');
+        }
+
+        // Restituir el stock del producto
+        $producto->update(['stock' => $producto->stock + $relacion->cantidad]);
+
+        // Eliminar la relación producto-orden
+        $relacion->delete();
+
+        // Actualizar el total de la orden
+        $total_real = $ordenVenta->productos->sum('subtotal');
+        $ordenVenta->update(['total' => $total_real]);
+
+        return redirect()->back()->with('cartremove', 'Producto eliminado del carrito exitosamente.');
+    }
+
+    public function confirmarOrden()
+    {
+        // Obtener la orden de venta activa del cliente
+        $ordenVenta = OrdenVenta::where('id_cliente', Auth::id())
+            ->where('estatus', 1)
+            ->where('conclusion', 1)
+            ->first();
+
+        if (!$ordenVenta) {
+            return redirect()->back()->with('error', 'No hay orden de venta activa.');
+        }
+
+        // Actualizar el estado y la conclusión de la orden
+        $ordenVenta->update([
+            'estatus' => 0
+        ]);
+
+        return redirect()->back()->with('success', 'Orden de compra confirmada exitosamente.');
     }
 }
