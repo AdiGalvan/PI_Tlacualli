@@ -8,8 +8,9 @@
 <div class="modal fade" id="registrar_publicacion" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
-      <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalLabel">Nueva publicación</h1>
+      <!-- modal header -->
+      <div class="flex justify-center pt-4 pb-2">
+        <h1 class="text-green-900 font-sans font-black text-2xl text-center" id="exampleModalLabel">Nueva publicación</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
 
@@ -18,13 +19,13 @@
         <form method="POST" action="/registroPublicacion" id="registroPublicacion" enctype="multipart/form-data">
           @csrf
     <div class="mb-3">
-      <label class="form-label">Título publicación</label>
-      <input type="text" class="form-control" id="_tp" name="_tp" required>
+      <label class="text-green-900 font-sans font-bold pb-2 text-base">Título publicación</label>
+      <input type="text" class="font-sans font-light px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 w-full" id="_tp" name="_tp" required>
     </div>
 
     <div class="mb-3">
-      <label class="form-label">Tipo de publición</label>
-      <select class="form-select" id="_tipo" name="_tipo" required>
+      <label class="text-green-900 font-sans font-bold pb-2 text-base">Tipo de publición</label>
+      <select class="font-sans font-light px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 w-full" id="_tipo" name="_tipo" required>
         <option value="">Selecciona una opcion</option>
         <option value="1">Artículo</option>
         <option value="3">Servicio</option>
@@ -33,18 +34,32 @@
     </div> 
 
     <div class="mb-3">
-      <label class="form-label">Descripción</label>
-      <input type="text" class="form-control" id="_des" name="_des" required>
+      <label class="text-green-900 font-sans font-bold pb-2 text-base">Descripción</label>
+      <input type="text" class="font-sans font-light px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 w-full" id="_des" name="_des" required>
     </div>
 
+    <!--  INPUT FILE -->
     <div class="mb-3">
-      <label class="form-label">Contenidos</label>
-      <input type="file" class="form-control" id="_cont" name="_cont" accept=".pdf" required>
-    </div>
+  <label class="text-green-900 font-sans font-bold pb-2 text-base" for="_cont">Contenidos</label>
+<p>
+  <!-- Input de archivo oculto -->
+  <input type="file" id="_cont" name="_cont" accept=".pdf" class="hidden" onchange="updateFileName()">
+
+  <!-- Botón personalizado -->
+  <label for="_cont" class="text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700">
+    Examinar
+  </label>
+
+  <!-- Nombre del archivo seleccionado   -->
+  <span id="fileName" class="ml-4 text-gray-700 font-sans font-light">Ningún archivo seleccionado</span>
+</div>
+
+<!-- FIN INPUT FILE -->
 
     <div class="modal-footer">
-      <button type="submit" class="btn btn-outline-success" onclick="validarCampos()"><i class="bi bi-check-lg"></i> Agregar</button>
-      <button type="button" class="btn btn-outline-warning" data-bs-dismiss="modal"><i class="bi bi-x-lg"></i> Cancelar</button>
+      <button type="submit" class="bg-gradient-to-r from-green-500 to-green-800 hover:from-green-600 hover:to-green-800 text-white px-4 py-2 rounded-lg mr-2 font-semibold font-sans"
+      onclick="validarCampos()"><i class="bi bi-check-lg"></i> Agregar</button>
+      <button type="button" class="bg-gradient-to-r from-gray-500 to-gray-800 hover:from-gray-600 hover:to-gray-800 text-white px-4 py-2 rounded-lg mr-2 font-semibold font-sans" data-bs-dismiss="modal" data-bs-dismiss="modal"><i class="bi bi-x-lg"></i> Cancelar</button>
      </div>
 
 </form>
@@ -113,3 +128,13 @@
       }
   }
 </script>
+
+<!-- SCRIPT INPUT FILE -->
+<script>
+  function updateFileName() {
+    const input = document.getElementById('_cont');
+    const fileName = document.getElementById('fileName');
+    fileName.textContent = input.files.length > 0 ? input.files[0].name : 'Ningún archivo seleccionado';
+  }
+</script>
+<!-- FIN SCRIPT INPUT FILE -->
