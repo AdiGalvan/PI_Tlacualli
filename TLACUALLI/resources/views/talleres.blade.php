@@ -84,16 +84,16 @@
 @section('contenido')
 
 <div class="flex flex-wrap justify-center">
-    <h2 class="mb-6 text-3xl text-center font-semibold text-dark uppercase dark:text-white mt-5 w-full">Talleres</h2>
+    <h2 class="mb-6 text-3xl text-center font-semibold font-sans text-dark uppercase dark:text-white mt-5 w-full">Talleres</h2>
     <div class="w-full lg:w-10/12">
         <div class="flex flex-wrap mb-4 justify-end px-5 mt-3">
             <div class="w-full flex items-center space-x-4 justify-end px-5">
                 <div class="w-full max-w-lg">
-                    @include('partials.talleres.buscar')
+                    {{-- @include('partials.talleres.buscar') --}}
                 </div>
                 @if ($usuario->roles->id == 6)
                 <div class="col-2 justify-content-end">
-                    <a href="{{ route('mis_talleres') }}" class="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">Mis talleres</a>
+                    <a href="{{ route('mis_talleres') }}" class="bg-gradient-to-r from-green-500 to-green-800 text-white font-sans font-bold px-4 py-2 rounded-md text-md">Mis talleres</a>
                 </div>
                 @endif
             </div>
@@ -101,12 +101,12 @@
         <div class="grid grid-cols-1 lg:grid-cols-4 gap-2">
             <div class="lg:col-span-1 w-full p-2">
                 <div class="sticky top-0 p-3">
-                    <h2 class="text-lg text-center font-semibold text-dark uppercase dark:text-white w-full">Promociones </h2>
+                    <h2 class="text-lg text-center font-semibold font-sans text-dark uppercase dark:text-white w-full">Talleres </h2>
                     @include('partials.productos.carrusel')
                     <br>
-                    @include('partials.publicaciones.carrusel')
+                   {{--  @include('partials.publicaciones.carrusel') --}}
                     <br>
-                    @include('partials.talleres.carrusel')
+                    {{-- @include('partials.talleres.carrusel') --}}
                 </div>
             </div>
             <div class="lg:col-span-3 w-full p-5">
@@ -156,3 +156,5 @@
 </div>
 @include('partials.productos.script_productos')
 @endsection
+
+

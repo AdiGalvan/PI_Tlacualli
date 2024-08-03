@@ -28,9 +28,8 @@ class ProductoController extends Controller
 
         if (Auth::check()) {
             $usuario = Usuarios::with('roles')
-            ->find($usuarioId);
-        }
-        else {
+                ->find($usuarioId);
+        } else {
             //Si no está autenticado se crea una clase generica para que pueda visualizar todos los talleres activos
             $usuario = new \stdClass();
             $usuario->roles = new \stdClass();
@@ -46,28 +45,27 @@ class ProductoController extends Controller
         // return view('producto.index', compact('productos'))
         //     ->with('i', (request()->input('page', 1) - 1) * $productos->perPage());
 
-        
+
     }
 
-    public function misProductosIndex() 
+    public function misProductosIndex()
     {
         $usuarioId = Auth::id();
         $usuario = Usuarios::with('roles')
             ->find($usuarioId);
-        $idRol = $usuario->roles->id;  
+        $idRol = $usuario->roles->id;
 
-        if (Auth::check() and $idRol == 8){
+        if (Auth::check() and $idRol == 8) {
             //Obtiene todos los talleres relacionados a este usuario
             $productos = Producto::where('proveedor_id', $usuarioId)
-            ->with('usuario')
-            ->get();
-            
+                ->with('usuario')
+                ->get();
+
             //Envia talleres a la vista de talleres
             return view('mis_productos', compact('productos'));
-        }
-        else{
-             //Si no esta autenticado lo manda al home
-             abort(404, 'Página no encontrada');
+        } else {
+            //Si no esta autenticado lo manda al home
+            abort(404, 'Página no encontrada');
         }
     }
 
@@ -76,7 +74,7 @@ class ProductoController extends Controller
      */
     public function create()
     {
-        
+
         // $producto = new Producto();
         // return view('producto.create', compact('producto'));
     }
@@ -88,7 +86,7 @@ class ProductoController extends Controller
     {
         $usuarioId = Auth::id();
 
-        if(Auth::check()){
+        if (Auth::check()) {
             $validator = $request->validate([
                 '_np'       => 'required',
                 '_descP'    => 'required',
@@ -120,7 +118,7 @@ class ProductoController extends Controller
                 return redirect()->back()->with('success', 'Error al subir el producto.');
             }
 
-        return redirect()->back()->with('success', 'Producto creado exitosamente.');
+            return redirect()->back()->with('success', 'Producto creado exitosamente.');
         } else {
             abort(404, 'Página no encontrada');
         }
@@ -145,7 +143,7 @@ class ProductoController extends Controller
      */
     public function edit($id)
     {
-        
+
         $producto = Producto::find($id);
 
         return view('producto.edit', compact('producto'));
@@ -158,7 +156,7 @@ class ProductoController extends Controller
     {
         $usuarioId = Auth::id();
 
-        if(Auth::check()){
+        if (Auth::check()) {
             // Busca y valida los datos y existencia de dicho producto
             $producto = Producto::findOrFail($id);
 
@@ -167,7 +165,7 @@ class ProductoController extends Controller
                 '_np'       => 'required',
                 '_descP'    => 'required',
                 '_costoP'   => 'required|numeric',
-                '_stockP'   => 'required|numeric',               
+                '_stockP'   => 'required|numeric',
             ]);
 
             // Actualización de campos
@@ -192,9 +190,8 @@ class ProductoController extends Controller
                 $producto->contenido = $imagen;
                 // dd($producto);
                 $producto->save();
-
             }
-        return redirect()->back()->with('success', 'Producto actualizado exitosamente.');
+            return redirect()->back()->with('success', 'Producto actualizado exitosamente.');
         } else {
             abort(404, 'Página no encontrada');
         }
@@ -202,12 +199,11 @@ class ProductoController extends Controller
 
     public function destroy($id)
     {
-        
     }
 
     public function offStatus($id)
     {
-        if(Auth::check()){
+        if (Auth::check()) {
             $producto = Producto::findOrFail($id);
             $producto->estatus = 0;
             $producto->save();
