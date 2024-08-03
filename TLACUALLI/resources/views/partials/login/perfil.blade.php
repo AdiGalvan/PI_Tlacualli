@@ -1,7 +1,7 @@
 @extends('layouts.template')
 @section('titulo','Perfil de Usuario')
 @section('contenido')
-<div class="container-sm mt-5">
+<div class="container-sm mt-5 bg-white rounded-lg pt-3 pb-4 shadow-lg">
         <ul class="nav nav-tabs mb-5" id="myTab" role="tablist">
             <li class="nav-item" role="presentation">
                 <button class="nav-link active text-uppercase fw-bold bg-success text-light" id="datos-personales-tab" data-bs-toggle="tab" data-bs-target="#datos-personales" type="button" role="tab" aria-controls="datos-personales" aria-selected="true">Datos Personales</button>
@@ -12,68 +12,69 @@
             <li class="nav-item" role="presentation">
                 <button class="nav-link text-uppercase fw-bold text-muted" id="direccion-fiscal-tab" data-bs-toggle="tab" data-bs-target="#direccion-fiscal" type="button" role="tab" aria-controls="direccion-fiscal" aria-selected="false">Dirección Fiscal</button>
             </li>
-            <li>
-                <div class="text-end mb-3">
-                <a href="/perfil/editar" class="btn btn-primary">Editar Información</a>
+            <li class="ml-auto">
+                <div class="flex justify-end">
+        <a href="/perfil/editar" class="bg-gradient-to-r from-green-500 to-green-700 hover:from-green-600 hover:to-green-700 text-white px-4 py-2 rounded-lg mr-4 pr-4 font-semibold">Editar Información</a>
+                
                 </div>
             </li>
         </ul>
         
         <!-- Tab panes -->
-        <div class="tab-content" id="myTabContent">
+        <div class="tab-content ps-10 pb-6" id="myTabContent">
             <div class="tab-pane fade show active" id="datos-personales" role="tabpanel" aria-labelledby="datos-personales-tab">
                 <!-- Datos Personales -->
                 <div class="row">
                     <!-- PRIMERA COLUMNA -->
                     <div class="col-md-6">
                         <div class="mb-3">
-                            <label class="form-label fw-bold">Nombre </label>
-                            <p class="" >{{ $usuario->nombre }}</p>
-                            <p class="text-danger fst-italic">{{ $errors->first('_nu') }}</p>
+                            <label class="text-green-900 font-sans font-bold pb-2 text-lg">Nombre </label>
+                            <p class="border-b border-gray-300 pb-2 font-sans font-light text-lg" >{{ $usuario->nombre }}</p>
+                            <p class="text-red-600 font-sans font-bold mt-1">{{ $errors->first('_nu') }}</p>
                         </div>
                         <div class="mb-3" id="apellido_p">
-                            <label class="form-label fw-bold">Apellido paterno</label>
-                            <p class="" >{{ $usuario->apellido_paterno }}</p>
-                            <p class="text-danger fst-italic">{{ $errors->first('_ap') }}</p>
+                            <label class="text-green-900 font-sans font-bold pb-2 text-lg">Apellido paterno</label>
+                            <p class="border-b border-gray-300 pb-2 font-sans font-light text-lg" >{{ $usuario->apellido_paterno }}</p>
+                            <p class="text-red-600 font-sans font-bold mt-1">{{ $errors->first('_ap') }}</p>
                         </div>
                         <div class="mb-3">
-                            <label class="form-label fw-bold">Fecha de nacimiento </label>
-                            <p class="" >{{ $usuario->fecha_nacimiento }}</p>
-                            <p class="text-danger fst-italic">{{ $errors->first('_fn') }}</p>
+                            <label class="text-green-900 font-sans font-bold pb-2 text-lg">Fecha de nacimiento </label>
+                            <p class="border-b border-gray-300 pb-2 font-sans font-light text-lg" >{{ $usuario->fecha_nacimiento }}</p>
+                            <p class="text-red-600 font-sans font-bold mt-1">{{ $errors->first('_fn') }}</p>
                         </div>
                         <div class="mb-3">
-                            <label class="form-label fw-bold">Correo </label>
-                            <p class="" >{{ $usuario->correo }}</p>
-                            <p class="text-danger fst-italic">{{ $errors->first('_email') }}</p>
+                            <label class="text-green-900 font-sans font-bold pb-2 text-lg">Correo </label>
+                            <p class="border-b border-gray-300 pb-2 font-sans font-light text-lg" >{{ $usuario->correo }}</p>
+                            <p class="text-red-600 font-sans font-bold mt-1">{{ $errors->first('_email') }}</p>
                         </div>
                         <div class="mb-3">
-                            <label class="form-label fw-bold">Teléfono</label>
-                            <p class="" >{{ $usuario->telefono }}</p>
-                            <p class="text-danger fst-italic">{{ $errors->first('_tel') }}</p>
+                            <label class="text-green-900 font-sans font-bold pb-2 text-lg">Teléfono</label>
+                            <p class="border-b border-gray-300 pb-2 font-sans font-light text-lg" >{{ $usuario->telefono }}</p>
+                            <p class="text-red-600 font-sans font-bold mt-1">{{ $errors->first('_tel') }}</p>
                         </div>
                     </div> <!-- div final de la primera columna -->
 
                     <!-- SEGUNDA COLUMNA -->
                     <div class="col-md-6">
                         <div class="mb-3">
-                            <label class="form-label fw-bold">Rol </label>
-                            <p class="" >{{ $usuario->roles->nombre }}</p>
-                            <p class="text-danger fst-italic">{{ $errors->first('_rol') }}</p>
+                            <label class="text-green-900 font-sans font-bold pb-2 text-lg">Rol </label>
+                            <p class="border-b border-gray-300 pb-2 font-sans font-light text-lg" >{{ $usuario->roles->nombre }}</p>
+                            <p class="text-red-600 font-sans font-bold mt-1">{{ $errors->first('_rol') }}</p>
                         </div>
                         <div class="mb-3" id="apellido_m">
-                            <label class="form-label fw-bold">Apellido materno</label>
-                            <p class="" >{{ $usuario->apellido_materno }}</p>
-                            <p class="text-danger fst-italic">{{ $errors->first('_am') }}</p>
+                            <label class="text-green-900 font-sans font-bold pb-2 text-lg">Apellido materno</label>
+                            <p class="border-b border-gray-300 pb-2 font-sans font-light text-lg" >{{ $usuario->apellido_materno }}</p>
+                            <p class="text-red-600 font-sans font-bold mt-1">{{ $errors->first('_am') }}</p>
                         </div>
                         <div class="mb-3">
-                            <label class="form-label fw-bold">Sexo </label>
-                            <p class="" >{{ $usuario->sexos->nombre }}</p>
-                            <p class="text-danger fst-italic">{{ $errors->first('_sx') }}</p>
+                            <label class="text-green-900 font-sans font-bold pb-2 text-lg">Sexo </label>
+                            <p class="border-b border-gray-300 pb-2 font-sans font-light text-lg" >{{ $usuario->sexos->nombre }}</p>
+                            <p class="text-red-600 font-sans font-bold mt-1">{{ $errors->first('_sx') }}</p>
                         </div>
                         <div class="mb-3">
-                            <label class="form-label fw-bold">RFC</label>
-                            <p class="" >{{ $usuario->RFC }}</p>
-                            <p class="text-danger fst-italic">{{ $errors->first('_rfc') }}</p>
+                            <label class="text-green-900 font-sans font-bold pb-2 text-lg">RFC</label>
+                            <p class="border-b border-gray-300 pb-2 font-sans font-light text-lg" >{{ $usuario->RFC }}</p>
+                            <p class="text-red-600 font-sans font-bold mt-1">{{ $errors->first('_rfc') }}</p>
                         </div>
                     </div> <!-- div final de la segunda columna -->
                 </div>
@@ -84,35 +85,35 @@
                     @include('partials.login.errores_login_d')
                     <div class="col-md-6">
                         <div class="mb-3">
-                            <label class="form-label fw-bold">Calle</label>
-                            <p class="" >{{ !empty($usuario->direccion->calle->nombre) ? $usuario->direccion->calle->nombre : '' }}</p>
+                            <label class="text-green-900 font-sans font-bold pb-2 text-lg">Calle</label>
+                            <p class="border-b border-gray-300 pb-2 font-sans font-light text-lg" >{{ !empty($usuario->direccion->calle->nombre) ? $usuario->direccion->calle->nombre : '' }}</p>
                             {{-- @dd($usuario) --}}
                         </div>
                         <div class="mb-3">
-                            <label class="form-label fw-bold">Número interior</label>
-                            <p class="" >{{ !empty($usuario->direccion->num_int ) ?  $usuario->direccion->num_int  : '' }}</p>
+                            <label class="text-green-900 font-sans font-bold pb-2 text-lg">Número interior</label>
+                            <p class="border-b border-gray-300 pb-2 font-sans font-light text-lg" >{{ !empty($usuario->direccion->num_int ) ?  $usuario->direccion->num_int  : '' }}</p>
                         </div>
                         <div class="mb-3">
-                            <label class="form-label fw-bold">Código Postal</label>
-                            <p class="" >{{ !empty($usuario->direccion->calle->colonia->CP) ? $usuario->direccion->calle->colonia->CP : '' }}</p>
+                            <label class="text-green-900 font-sans font-bold pb-2 text-lg">Código Postal</label>
+                            <p class="border-b border-gray-300 pb-2 font-sans font-light text-lg" >{{ !empty($usuario->direccion->calle->colonia->CP) ? $usuario->direccion->calle->colonia->CP : '' }}</p>
                         </div>
                         <div class="mb-3">
-                            <label class="form-label fw-bold">Estado</label>
-                            <p class="" >{{ !empty($usuario->direccion->calle->colonia->municipio->estado->nombre) ? $usuario->direccion->calle->colonia->municipio->estado->nombre : '' }}</p>
+                            <label class="text-green-900 font-sans font-bold pb-2 text-lg">Estado</label>
+                            <p class="border-b border-gray-300 pb-2 font-sans font-light text-lg" >{{ !empty($usuario->direccion->calle->colonia->municipio->estado->nombre) ? $usuario->direccion->calle->colonia->municipio->estado->nombre : '' }}</p>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="mb-3">
-                            <label class="form-label fw-bold">Número exterior</label>
-                            <p class="" >{{ !empty($usuario->direccion->num_ext) ? $usuario->direccion->num_ext : '' }}</p>
+                            <label class="text-green-900 font-sans font-bold pb-2 text-lg">Número exterior</label>
+                            <p class="border-b border-gray-300 pb-2 font-sans font-light text-lg" >{{ !empty($usuario->direccion->num_ext) ? $usuario->direccion->num_ext : '' }}</p>
                         </div>
                         <div class="mb-3">
-                            <label class="form-label fw-bold">Colonia</label>
-                            <p class="" >{{ !empty($usuario->direccion->calle->colonia->nombre) ? $usuario->direccion->calle->colonia->nombre : '' }}</p>
+                            <label class="text-green-900 font-sans font-bold pb-2 text-lg">Colonia</label>
+                            <p class="border-b border-gray-300 pb-2 font-sans font-light text-lg" >{{ !empty($usuario->direccion->calle->colonia->nombre) ? $usuario->direccion->calle->colonia->nombre : '' }}</p>
                         </div>
                         <div class="mb-3">
-                            <label class="form-label fw-bold">Municipio</label>
-                            <p class="" >{{ !empty($usuario->direccion->calle->colonia->municipio->nombre) ? $usuario->direccion->calle->colonia->municipio->nombre : '' }}</p>
+                            <label class="text-green-900 font-sans font-bold pb-2 text-lg">Municipio</label>
+                            <p class="border-b border-gray-300 pb-2 font-sans font-light text-lg" >{{ !empty($usuario->direccion->calle->colonia->municipio->nombre) ? $usuario->direccion->calle->colonia->municipio->nombre : '' }}</p>
                         </div>
                     </div>
                 </div>
@@ -126,41 +127,47 @@
                     <div class="col-md-6">
                         <div class="mb-3 fiscal-field">
                             
-                            <label class="form-label fw-bold" for="_ca_fiscal">Calle</label>
-                            <p class="" >{{ !empty($usuario->direccionF->calle->nombre) ? $usuario->direccionF->calle->nombre : '' }}</p>
+                            <label class="text-green-900 font-sans font-bold pb-2 text-lg" for="_ca_fiscal">Calle</label>
+                            <p class="border-b border-gray-300 pb-2 font-sans font-light text-lg" >{{ !empty($usuario->direccionF->calle->nombre) ? $usuario->direccionF->calle->nombre : '' }}</p>
                         </div>
                         <div class="mb-3 fiscal-field">
-                            <label class="form-label fw-bold" for="_ni_fiscal">Número interior</label>
-                            <p class="" >{{ !empty($usuario->direccionF->num_int ) ?  $usuario->direccionF->num_int  : '' }}</p>
+                            <label class="text-green-900 font-sans font-bold pb-2 text-lg" for="_ni_fiscal">Número interior</label>
+                            <p class="border-b border-gray-300 pb-2 font-sans font-light text-lg" >{{ !empty($usuario->direccionF->num_int ) ?  $usuario->direccionF->num_int  : '' }}</p>
                         </div>
                         <div class="mb-3 fiscal-field">
-                            <label class="form-label fw-bold" for="_cp_fiscal">Código Postal</label>
-                            <p class="" >{{ !empty($usuario->direccionF->calle->colonia->CP) ? $usuario->direccionF->calle->colonia->CP : '' }}</p>
+                            <label class="text-green-900 font-sans font-bold pb-2 text-lg" for="_cp_fiscal">Código Postal</label>
+                            <p class="border-b border-gray-300 pb-2 font-sans font-light text-lg" >{{ !empty($usuario->direccionF->calle->colonia->CP) ? $usuario->direccionF->calle->colonia->CP : '' }}</p>
                         </div>
                         <div class="mb-3 fiscal-field">
-                            <label class="form-label fw-bold" for="_edo_fiscal">Estado</label>
-                            <p class="" >{{ !empty($usuario->direccionF->calle->colonia->municipio->estado->nombre) ? $usuario->direccionF->calle->colonia->municipio->estado->nombre : '' }}</p>
+                            <label class="text-green-900 font-sans font-bold pb-2 text-lg" for="_edo_fiscal">Estado</label>
+                            <p class="bborder-b border-gray-300 pb-2 font-sans font-light text-lg" >{{ !empty($usuario->direccionF->calle->colonia->municipio->estado->nombre) ? $usuario->direccionF->calle->colonia->municipio->estado->nombre : '' }}</p>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="mb-3 fiscal-field">
-                            <label class="form-label fw-bold" for="_ne_fiscal">Número externo</label>
-                            <p class="" >{{ !empty($usuario->direccionF->num_ext) ? $usuario->direccionF->num_ext : '' }}</p>
+                            <label class="text-green-900 font-sans font-bold pb-2 text-lg" for="_ne_fiscal">Número externo</label>
+                            <p class="bborder-b border-gray-300 pb-2 font-sans font-light text-lg" >{{ !empty($usuario->direccionF->num_ext) ? $usuario->direccionF->num_ext : '' }}</p>
                         </div>
                         <div class="mb-3 fiscal-field">
-                            <label class="form-label fw-bold" for="_col_fiscal">Colonia</label>
-                            <p class="" >{{ !empty($usuario->direccionF->calle->colonia->nombre) ? $usuario->direccionF->calle->colonia->nombre : '' }}</p>
+                            <label class="text-green-900 font-sans font-bold pb-2 text-lg" for="_col_fiscal">Colonia</label>
+                            <p class="border-b border-gray-300 pb-2 font-sans font-light text-lg" >{{ !empty($usuario->direccionF->calle->colonia->nombre) ? $usuario->direccionF->calle->colonia->nombre : '' }}</p>
                         </div>
                         <div class="mb-3 fiscal-field">
-                            <label class="form-label fw-bold" for="_mun_fiscal">Municipio</label>
-                            <p class="" >{{ !empty($usuario->direccionF->calle->colonia->municipio->nombre) ? $usuario->direccionF->calle->colonia->municipio->nombre : '' }}</p>
+                            <label class="text-green-900 font-sans font-bold pb-2 text-lg" for="_mun_fiscal">Municipio</label>
+                            <p class="border-b border-gray-300 pb-2 font-sans font-light text-lg" >{{ !empty($usuario->direccionF->calle->colonia->municipio->nombre) ? $usuario->direccionF->calle->colonia->municipio->nombre : '' }}</p>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#cambio_contraseña">Cambiar contraseña</button>
-        <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#eliminar_perfil">Eliminar cuenta</button>
+
+        
+
+        <div class="flex justify-end pr-4">
+        <button type="button" class="bg-gradient-to-r from-green-500 to-green-800 hover:from-green-600 hover:to-green-800 text-white px-4 py-2 rounded-lg mr-2 font-semibold font-sans" data-bs-toggle="modal" data-bs-target="#cambio_contraseña">Cambiar contraseña</button>
+        <button type="button" class="bg-gradient-to-r from-gray-500 to-gray-800 hover:from-gray-600 hover:to-gray-800 text-white px-4 py-2 rounded-lg mr-2 font-semibold font-sans" data-bs-toggle="modal" data-bs-target="#eliminar_perfil">Eliminar cuenta</button>
+        </div>
+
         @include('partials.login.modales_login')
 
 </div>
