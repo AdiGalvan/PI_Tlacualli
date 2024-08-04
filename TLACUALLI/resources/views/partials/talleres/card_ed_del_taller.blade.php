@@ -132,7 +132,7 @@
                                         <div class="row">
                                             <div class="col-lg-6 col-md-6 col-6">
                                                 <!-- Botón "Actualizar información" en una línea separada -->
-                                                <button type="button" class="btn btn-outline-success btn-lg btn-block mb-3" data-bs-toggle="modal" data-bs-target="#actualizar_taller{{ $publicacion->id }}">
+                                                <button type="button" class="bg-gradient-to-r from-green-500 to-green-800 hover:from-green-600 hover:to-green-800 text-white px-4 py-2 rounded-lg mr-2 font-semibold font-sans" data-bs-toggle="modal" data-bs-target="#actualizar_taller{{ $publicacion->id }}">
                                                     <i class="bi bi-pencil-square"></i> Actualizar información
                                                 </button>
                                             </div>
@@ -305,8 +305,9 @@
 <div class="modal fade" id="actualizar_taller{{ $publicacion->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
-            <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">Actualización de taller</h1>
+            <!-- modal header -->
+            <div class="flex justify-center pt-4 pb-2">
+                <h1 class="text-green-900 font-sans font-black text-2xl text-center" id="exampleModalLabel">Actualización de taller</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
@@ -315,17 +316,17 @@
                     @method('PUT')
   
                     <div class="mb-3">
-                        <label class="form-label">Nombre taller</label>
-                        <input type="text" class="form-control" id="_nt" name="_nt" required value="{{ !empty($publicacion->nombre) ?  $publicacion->nombre : '' }}"<>
+                        <label class="text-green-900 font-sans font-bold pb-2 text-base">Nombre taller</label>
+                        <input type="text" class="font-sans font-light px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 w-full" id="_nt" name="_nt" required value="{{ !empty($publicacion->nombre) ?  $publicacion->nombre : '' }}"<>
                     </div>
   
                     <div class="mb-3">
-                        <label class="form-label">Descripción</label>
-                        <input type="text" class="form-control" id="_descT" name="_descT" required value="{{ !empty($publicacion->descripcion) ?  $publicacion->descripcion : '' }}">
+                        <label class="text-green-900 font-sans font-bold pb-2 text-base">Descripción</label>
+                        <input type="text" class="font-sans font-light px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 w-full" id="_descT" name="_descT" required value="{{ !empty($publicacion->descripcion) ?  $publicacion->descripcion : '' }}">
                     </div>
   
                     <div class="mb-3">
-                        <label class="form-label">Contenido (Imagen JPG o PNG)</label>
+                        <label class="text-green-900 font-sans font-bold pb-2 text-base">Contenido (Imagen JPG o PNG)</label>
                         <!-- Mostrar la imagen actual -->
                         @if (!empty($publicacion->contenido))
                             <div class="mb-3">
@@ -333,17 +334,17 @@
                             </div>
                         @endif
                         <!-- Campo para subir una nueva imagen -->
-                        <input type="file" class="form-control" id="_contT" name="_contT" accept="image/jpeg, image/png">
+                        <input type="file" class="font-sans font-light px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 w-full" id="_contT" name="_contT" accept="image/jpeg, image/png">
                     </div>
   
                     <div class="mb-3">
-                        <label class="form-label">Costo</label>
-                        <input type="number" class="form-control" id="_costoT" name="_costoT" required value="{{ !empty($publicacion->costo) ?  $publicacion->costo : '' }}">
+                        <label class="text-green-900 font-sans font-bold pb-2 text-base">Costo</label>
+                        <input type="number" class="font-sans font-light px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 w-full" id="_costoT" name="_costoT" required value="{{ !empty($publicacion->costo) ?  $publicacion->costo : '' }}">
                     </div>
   
                     <div class="modal-footer">
-                        <button type="submit" class="btn btn-outline-success"><i class="bi bi-check-lg"></i> Actualizar</button>
-                        <button type="button" class="btn btn-outline-warning" data-bs-dismiss="modal"><i class="bi bi-x-lg"></i> Cancelar</button>
+                        <button type="submit" class="bg-gradient-to-r from-green-500 to-green-800 hover:from-green-600 hover:to-green-800 text-white px-4 py-2 rounded-lg mr-2 font-semibold font-sans"><i class="bi bi-check-lg"></i> Actualizar</button>
+                        <button type="button" class="bg-gradient-to-r from-gray-500 to-gray-800 hover:from-gray-600 hover:to-gray-800 text-white px-4 py-2 rounded-lg mr-2 font-semibold font-sans" data-bs-dismiss="modal"><i class="bi bi-x-lg"></i> Cancelar</button>
                     </div>
                 </form>
             </div>

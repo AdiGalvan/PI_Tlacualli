@@ -93,6 +93,12 @@ class PublicacionesController extends Controller
                 '_nt' => 'required|max:50',
                 '_contT' => 'required|file|max:2048', // Ruta de la imagen
                 '_costoT' => 'numeric',
+            ],
+            [
+                '_descT' => 'El campo de descripción es obligatorio.',
+                '_nt' => 'El campo de nombre es obligatorio.',
+                '_contT' => 'El campo de archivo es obligatorio.',
+                '_costoT' => 'El campo de costo es obligatorio.',
             ]);
 
             // Insert de publicación para obtener el ID
@@ -122,7 +128,7 @@ class PublicacionesController extends Controller
                 return redirect()->back()->with('error', 'Error al subir el archivo.');
             }
 
-            return redirect()->back()->with('success', 'Taller creada exitosamente.');
+            return redirect()->back()->with('success', 'Taller creado exitosamente.');
         } else {
             abort(404, 'Página no encontrada');
         }
@@ -186,7 +192,7 @@ class PublicacionesController extends Controller
             // Guardar los cambios
             $publicacion->save();
 
-            return redirect()->back()->with('update', 'Taller actualizada exitosamente.');
+            return redirect()->back()->with('update', 'Taller actualizado exitosamente.');
         } else {
             abort(404, 'Página no encontrada');
         }
