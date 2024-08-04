@@ -18,7 +18,7 @@
             <a class="nav-link fs-3 {{request()->routeIs('publicaciones')?'disabled':'w_o'}}" aria-current="page" href="/publicaciones">Publicaciones</a>
           </li>
           <li class="nav-item">
-          <a class="nav-link fs-3 {{request()->routeIs('servicios')?'disabled':'w_o'}}" aria-current="page" href="/mis_servicios">Servicios</a>
+          <a class="nav-link fs-3 {{request()->routeIs('servicios')?'disabled':'w_o'}}" aria-current="page" href="/servicios">Servicios</a>
           </li>
           <li class="nav-item">
             <a class="nav-link fs-3 {{request()->routeIs('productos')?'disabled ':'w_o'}}" aria-current="page" href="/productos">Productos</a>

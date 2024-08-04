@@ -3,7 +3,8 @@
 @section('contenido')
 
 <p></p>
-<center><h1>Mis servicios</h1></center>
+{{-- @dd($servicios) --}}
+<center><h1>Servicios</h1></center>
 <p></p>
 <div class="container mt-3">
     <form class="d-flex" role="search" action="" method="GET">
@@ -15,8 +16,26 @@
 </div>
 
 <div class="container mt-4 d-flex justify-content-end">
-    <a href="" class="btn btn-warning">Registrar servicio</a>
+    {{-- Contenedor para los botones --}}
+    <div class="d-flex gap-2">
+
+        @if ($usuario->roles->id == 3)
+            {{-- Son los servicios que yo como procesador de residuos publico y puedo dar al publico --}}
+            <a href="{{ route('mis_servicios') }}" class="btn btn-warning">Mis servicios</a> 
+
+            {{-- Son las solicitudes que me han hecho otros usuarios a mis servicios como procesador de residuos --}}
+            <a href="" class="btn btn-warning">Solicitudes</a>
+        @endif
+        @if ($usuario->roles->id != 3 && $usuario->roles->id != null)
+            {{-- Son las solicitudes que yo como usuario le he hecho a los procesadores de residuos, por ejemplo --}}
+            <a href="{{ route('mis_solicitudes') }}" class="btn btn-warning">Mis servicios solicitados</a>            
+        @endif
+
+    </div>
 </div>
+
+{{ $usuario->roles->id}}
+
 
 <div class="container mt-3">
     @if(session()->has('noResults'))
@@ -36,31 +55,31 @@
     <table class="table table-striped">
         <thead>
             <tr>
-                <th>ID</th>
-                <th>Cliente</th>
-                <th>Proveedor</th>
+                <th>Nombre</th>
                 <th>Descripción</th>
-                <th>Tipos de servicio</th>
+                <th>Proveedor</th>
+                {{-- <th>Tipos de servicio</th> --}}
+                <th>Costo</th>
                 <th>Fecha</th>
                 <th>Acciones</th>
             </tr>
         </thead>
         
         <tbody>
-            @foreach($solicitudes as $solicitud)
+            @foreach($servicios as $servicio)
+            {{-- @dd($servicio->usuario) --}}
             <tr>
-                <td>{{ $solicitud->id }}</td>
-                <td>{{ $solicitud->cliente }}</td>
-                <td>{{ $solicitud->proveedor }}</td>
-                <td>{{ $solicitud->descripcion }}</td>
-                <td>{{ $solicitud->tipo_servicio }}</td>
-                <td>{{ $solicitud->fecha }}</td>
+                <td>{{ $servicio->nombre }}</td>
+                <td>{{ $servicio->descripcion }}</td>
+                <td>{{ $servicio->usuario->nombre_usuario }}</td>
+                @if ($servicio->costo)
+                    <td>${{ $servicio->costo }}</td>
+                @else 
+                    <td>Gratuito</td>   
+                @endif
+                <td>{{ $servicio->fecha_publicacion }}</td>
                 <td>
-                    <a href="{{ route('servicios.edit', ['id' => $solicitud->id]) }}" class="btn btn-primary">Editar</a>
-                    <form action="{{ route('servicios.editForm', ['id' => $solicitud->id]) }}" method="GET" style="display: inline;">
-                        @csrf
-                        <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
-                    </form>
+                    <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#servicioModal{{ $servicio->id }}">Detalles</button>
                 </td>
             </tr>
             @endforeach
@@ -69,4 +88,7 @@
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
+
+@include('partials.servicios.modal_servicio')
+
 @endsection

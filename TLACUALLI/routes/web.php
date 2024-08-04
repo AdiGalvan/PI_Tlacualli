@@ -16,6 +16,8 @@ use App\Http\Controllers\CarritoController;
 
 use App\Http\Controllers\NotificacionesController;
 
+use App\Http\Controllers\SolicitudesController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -44,7 +46,7 @@ Route::get('/talleres', [PublicacionesController::class, 'talleresIndex'])->name
 
 //Rutas módulo servicios
 Route::get('/servicios', [ServiciosController::class, 'index'])->name('servicios');
-Route::get('/mis_servicios', [ServiciosController::class, 'indexMisServicios'])->name('mis_Servicios');
+
 // Route::get('/mis_servicios', [ServiciosController::class, 'index'])->name('mis_servicios.index');
 // Route::get('/servicios', [ServiciosController::class, 'create'])->name('servicios.create');
 // Route::post('guardarForm/servicios', [ServiciosController::class, 'store'])->name('servicios.store');
@@ -125,7 +127,6 @@ Route::group(['middleware' => 'auth'], function () {
     Route::put('/desactivarProducto/{id}', [ProductoController::class, 'offStatus'])->name('desactivarProducto');
 
     Route::put('/activarProducto/{id}', [ProductoController::class, 'onStatus'])->name('activarProducto');
-
     //----------------------------------------------------------------------------------//
     // Ruta para agregar un producto al carrito
     Route::post('/carrito/agregar/{id_producto}', [CarritoController::class, 'agregarAlCarrito'])->name('carrito.agregar');
@@ -142,6 +143,22 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/notificaciones', [NotificacionesController::class, 'index'])->name('notificaciones');
     Route::put('/concluir-orden/{id}/{id2}', [NotificacionesController::class, 'concluir_producto'])->name('concluirOrden');
     Route::put('/concluir-taller/{id}', [NotificacionesController::class, 'concluir_taller'])->name('concluirRelacion');
+    //-------------------------------------------------------------------------------------//
+    //SERVICIOS
+
+    Route::get('/mis_servicios', [ServiciosController::class, 'indexMisServicios'])->name('mis_servicios');
+
+    Route::post('/registroServicio', [ServiciosController::class, 'store'])->name('registroServicios');
+
+    Route::put('/actualizarServicio/{id}', [ServiciosController::class, 'update'])->name('actualizarServicio');
+
+    Route::put('/desactivarServicio/{id}', [ServiciosController::class, 'offStatus'])->name('desactivarServicio');
+
+    //-------------------------------------------------------------------------------------//
+    //SOLICITUDES
+    Route::get('/mis_solicitudes', [SolicitudesController::class, 'indexMisSolicitudes'])->name('mis_solicitudes');
+
+    Route::post('/registrarSolicitud', [SolicitudesController::class, 'store'])->name('registroSolicitud');
 });
 
 //RUTAS QUE NO NECESITAN AUTENTICACIÓN

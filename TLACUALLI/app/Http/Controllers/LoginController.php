@@ -10,6 +10,7 @@ use App\Models\Direcciones;
 use App\Models\Calles;
 use App\Models\Colonias;
 use App\Models\Municipios;
+use App\Models\Publicaciones;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
@@ -25,6 +26,10 @@ use Carbon\Carbon;
 
 class LoginController extends Controller
 {
+    public function publicaciones()
+    {
+        return $this->hasMany(Publicaciones::class, 'usuario_id'); // Asegúrate de que 'usuario_id' es la columna correcta en la tabla publicaciones
+    }
     public function index()
     {
         $sexos = DB::table('sexos')->get();
