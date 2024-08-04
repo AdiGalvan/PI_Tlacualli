@@ -8,7 +8,7 @@
 <div class="container mt-3">
     <form class="d-flex" role="search" action="" method="GET">
         <input class="form-control me-2" type="text" name="cliente" placeholder="Buscar por Cliente" aria-label="Buscar">
-        <input class="form-control me-2" type="text" name="proveedor" placeholder="Buscar por Proveedor" aria-label="Buscar">
+        {{-- <input class="form-control me-2" type="text" name="proveedor" placeholder="Buscar por Proveedor" aria-label="Buscar"> --}}
         <input class="form-control me-2" type="date" name="fecha" placeholder="Buscar por Fecha" aria-label="Buscar">
         <button class="btn btn-success" type="submit">Buscar</button>
     </form>
@@ -38,29 +38,40 @@
             <tr>
                 <th>ID</th>
                 <th>Clientes</th>
+                <th>Nombre</th>
                 <th>Descripción</th>
-                <th>Tipos de servicio</th>
+                {{-- <th>Tipos de servicio</th> --}}
+                <th>Costo</th>
                 <th>Fecha</th>
                 <th>Acciones</th>
             </tr>
         </thead>
         
         <tbody>
-            @foreach($solicitudes as $solicitud)
+            @foreach($servicios as $servicio)
             <tr>
-                <td>{{ $solicitud->id }}</td>
-                <td>{{ $solicitud->cliente }}</td>
-                <td>{{ $solicitud->descripcion }}</td>
-                <td>{{ $solicitud->tipo_servicio }}</td>
-                <td>{{ $solicitud->fecha }}</td>
+                <td>{{ $servicio->id }}</td>
+                <td>{{ $servicio->cliente }}</td>
+                <td>{{ $servicio->nombre }}</td>
+                <td>{{ $servicio->descripcion }}</td>
                 <td>
-                     <a href="{{-- {{ route('servicios.edit', ['id' => $solicitud->id]) }}--}}" class="btn btn-primary">Editar</a> 
-                    <form action="{{--{{ route('servicios.editForm', ['id' => $solicitud->id]) }}--}}" method="GET" style="display: inline;">
+                    @if ( $servicio->costo == 0 )
+                        Gratuito
+                    @else
+                        ${{ $servicio->costo }}
+                    @endif
+                </td>
+                <td>{{ $servicio->fecha_publicacion }}</td>
+                <td>
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#actualizar_servicio{{ $servicio->id }}">Editar</button> 
+                    <form action="{{ route('desactivarServicio', $servicio->id) }}" method="POST" style="display: inline;">
                         @csrf
+                        @method ('PUT')
                         <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
                     </form>
                 </td>
             </tr>
+            @include('partials.servicios.registrar_servicio', ['servicio' => $servicio])
             @endforeach
         </tbody>
     </table>

@@ -9,13 +9,18 @@ use Illuminate\Http\Request;
 use App\Http\Requests\validadorFormServicios;
 
 use Illuminate\Support\Facades\Auth;
-
+use Illuminate\Support\Facades\Storage;
 
 use Carbon\carbon;
+use Illuminate\Support\Carbon as SupportCarbon;
 use Illuminate\Support\Facades\DB;
 
 class ServiciosController extends Controller
 {
+    public function usuario()
+    {
+        return $this->belongsTo(Usuarios::class, 'id_usuario');
+    }
     /**
      * Display a listing of the resource.
      */
@@ -55,12 +60,12 @@ class ServiciosController extends Controller
             $usuario->roles->id = null;
         }
         //Busca todas las publicaciones de tipo taller, activas y con los datos del publicador
-        $solicitudes = Publicaciones::where('id_tipo', 3)
+        $servicios = Publicaciones::where('id_tipo', 3)
             ->where('estatus', true)
             ->with('usuario')
             ->get();
 
-        return view('partials.servicios.mis_servicios', compact('solicitudes'));   
+        return view('partials.servicios.mis_servicios', compact('servicios'));   
     }
 
     public function misServiciosSolicitados()
@@ -189,10 +194,10 @@ class ServiciosController extends Controller
 
             // Insertar el servicio
             $servicio = new Publicaciones();
-            $servicio->nombre = $request->_ns;
-            $servicio->descripcion = $request->_descS;
-            $servicio->costo = $request->_costoS;
-            $servicio->notas = $request->_notaS;
+            $servicio->nombre = $validator['_ns'];
+            $servicio->descripcion = $validator['_descS'];
+            $servicio->costo = $validator['_costoS'];
+            $servicio->notas = $validator['_notaS'];
             $servicio->fecha_publicacion = Carbon::now()->toDateString();
             $servicio->id_usuario = $usuarioId;
             $servicio->id_tipo = 3;
@@ -247,53 +252,112 @@ class ServiciosController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(validadorFormServicios $request, $id)
-    {
-        $request->validate([
-            'nombre' => 'required',
-            'proveedor' => 'required',
-            'descripcion' => 'required',
-            't_servicio' => 'required',
-            'fecha' => 'required|date',
+    // public function update(validadorFormServicios $request, $id)
+    // {
+    //     $request->validate([
+    //         'nombre' => 'required',
+    //         'proveedor' => 'required',
+    //         'descripcion' => 'required',
+    //         't_servicio' => 'required',
+    //         'fecha' => 'required|date',
+    //     ]);
+
+    //     // Actualizar el registro 
+    //     DB::table('solicitudes')->where('id', $id)->update([
+    //         "id_cliente" => $request->input('nombre'),
+    //         "id_proveedor" => $request->input('proveedor'),
+    //         "descripcion" => $request->input('descripcion'),
+    //         "id_publicacion" => $request->input('t_servicio'),
+    //         "fecha" => $request->input('fecha'),
+    //         "updated_at" => Carbon::now(),
+    //     ]);
+
+    //     return redirect('/mis_servicios')->with('confirmacion', 'Actualización realizada con éxito');
+    // }
+    public function update(Request $request, $id)
+{
+    if (Auth::check()) {
+        // Busca los datos del servicio
+        $servicio = Publicaciones::findOrFail($id);
+
+        // Validaciones
+        $validator = $request->validate([
+            '_ns'       => 'required',
+            '_descS'    => 'required',
+            '_costoS'   => 'required|numeric',
+            '_notaS'    => 'nullable',
+            '_contS'    => 'nullable',
         ]);
 
-        // Actualizar el registro 
-        DB::table('solicitudes')->where('id', $id)->update([
-            "id_cliente" => $request->input('nombre'),
-            "id_proveedor" => $request->input('proveedor'),
-            "descripcion" => $request->input('descripcion'),
-            "id_publicacion" => $request->input('t_servicio'),
-            "fecha" => $request->input('fecha'),
-            "updated_at" => Carbon::now(),
-        ]);
+        $servicio->nombre = $validator['_ns'];
+        $servicio->descripcion = $validator['_descS'];
+        $servicio->costo = $validator['_costoS'];
+        $servicio->notas = $validator['_notaS'];
+        $servicio->update_at = Carbon::now()->toDateString();
 
-        return redirect('/mis_servicios')->with('confirmacion', 'Actualización realizada con éxito');
-    }
+        // Subir el archivo si se proporciona uno nuevo
+        if ($request->hasFile('_contS')) {
+            $file = $request->file('_contS');
+            $filename = $servicio->id_usuario . '_2_imagenservicio_' . $servicio->id . '.' . $file->getClientOriginalExtension();
+            $filePath = $file->storeAs('uploads', $filename, 'public');
 
-    public function editForm($id)
-    {
-        $solicitud = DB::table('solicitudes')->where('id', $id)->first();
+            // Borra la imagen antigua si existe
+            if ($servicio->contenido) {
+                Storage::disk('public')->delete($servicio->contenido);
+            }
 
-        if (!$solicitud) {
-            abort(404); // Si no se encuentra la solicitud
+            $servicio->contenido = $filePath;
+        } else {
+            // Mantener la imagen antigua si no se subió una nueva
+            $servicio->contenido = $request->input('_contS');
         }
 
-        $opciones = DB::table('usuarios')->pluck('nombre_usuario', 'id');
-        $t_servicio = DB::table('publicaciones')->pluck('descripcion', 'id');
+        $servicio->save();
 
-        return view('servicios.eliminar_formulario', compact('solicitud', 'opciones', 't_servicio'));
+        return redirect()->back()->with('success', 'Servicio actualizado exitosamente.');
+    } else {
+        abort(404, 'Página no encontrada');
     }
+}
 
-    public function softDelete($id)
+
+    // public function editForm($id)
+    // {
+    //     $solicitud = DB::table('solicitudes')->where('id', $id)->first();
+
+    //     if (!$solicitud) {
+    //         abort(404); // Si no se encuentra la solicitud
+    //     }
+
+    //     $opciones = DB::table('usuarios')->pluck('nombre_usuario', 'id');
+    //     $t_servicio = DB::table('publicaciones')->pluck('descripcion', 'id');
+
+    //     return view('servicios.eliminar_formulario', compact('solicitud', 'opciones', 't_servicio'));
+    // }
+
+    // public function softDelete($id)
+    // {
+    //     DB::table('solicitudes')->where('id', $id)->update([
+    //         'estatus' => 0,
+    //         'updated_at' => Carbon::now(),
+    //     ]);
+
+    //     return redirect('/mis_servicios')->with('confirmacion', 'Registro eliminado exitosamente');
+    // }
+
+    public function offStatus($id)
     {
-        DB::table('solicitudes')->where('id', $id)->update([
-            'estatus' => 0,
-            'updated_at' => Carbon::now(),
-        ]);
+        if(Auth::check()){
+            $servicio = Publicaciones::findOrFail($id);
+            $servicio->estatus = 0;
+            $servicio->updated_at = Carbon::now();
+            $servicio->save();
 
-        return redirect('/mis_servicios')->with('confirmacion', 'Registro eliminado exitosamente');
+            return redirect()->back();
+        } else {
+            abort(400, 'Servicio no encontrado');
+        }
     }
-
     /**
      * Remove the specified resource from storage.
      */

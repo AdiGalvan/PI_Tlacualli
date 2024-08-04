@@ -122,10 +122,14 @@ Route::group(['middleware' => 'auth'], function () {
 
     //-------------------------------------------------------------------------------------//
     //SERVICIOS
-    
+
     Route::get('/mis_servicios', [ServiciosController::class, 'indexMisServicios'])->name('mis_servicios');
     
     Route::post('/registroServicio', [ServiciosController::class, 'store'])->name('registroServicios');
+
+    Route::put('/actualizarServicio/{id}', [ServiciosController::class, 'update'])->name('actualizarServicio');
+
+    Route::put('/desactivarServicio/{id}', [ServiciosController::class, 'offStatus'])->name('desactivarServicio');
 });
 
 //RUTAS QUE NO NECESITAN AUTENTICACIÓN

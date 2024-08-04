@@ -71,4 +71,9 @@ class Usuarios extends Authenticatable
     {
         return $this->contraseña;
     }
+
+    public function publicaciones()
+    {
+        return $this->hasMany(Publicaciones::class, 'id_usuario');
+    }
 }
