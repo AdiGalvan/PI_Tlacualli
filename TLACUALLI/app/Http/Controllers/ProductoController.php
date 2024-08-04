@@ -55,7 +55,7 @@ class ProductoController extends Controller
             ->find($usuarioId);
         $idRol = $usuario->roles->id;
 
-        if (Auth::check() and $idRol == 8) {
+        if (Auth::check() and $idRol == 8 || $idRol == 3 || $idRol == 9) {
             //Obtiene todos los talleres relacionados a este usuario
             $productos = Producto::where('proveedor_id', $usuarioId)
                 ->with('usuario')

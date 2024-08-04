@@ -19,7 +19,7 @@
     {{-- Contenedor para los botones --}}
     <div class="d-flex gap-2">
 
-        @if ($usuario->roles->id == 3)
+        @if ($usuario->roles->id == 8 || $usuario->roles->id == 3 || $usuario->roles->id == 9)
             {{-- Son los servicios que yo como procesador de residuos publico y puedo dar al publico --}}
             <a href="{{ route('mis_servicios') }}" class="btn btn-warning">Mis servicios</a> 
 

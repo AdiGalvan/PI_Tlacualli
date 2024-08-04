@@ -62,7 +62,7 @@
                 <div class="w-full max-w-lg">
                     {{-- @include('partials.productos.buscar') --}}
                 </div>
-            @if ($usuario->roles->id == 8)
+            @if ($usuario->roles->id == 8 || $usuario->roles->id == 3 || $usuario->roles->id == 9)
                 <div class="float-right col-2 justify-content-end">
                     <a href="{{ route('mis_productos') }}" class="bg-gradient-to-r from-green-500 to-green-800 text-white font-sans font-bold px-4 py-2 rounded-md text-md"> Mis productos</a>            
                 </div>    

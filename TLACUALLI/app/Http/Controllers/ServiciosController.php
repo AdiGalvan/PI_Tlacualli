@@ -49,16 +49,10 @@ class ServiciosController extends Controller
     public function indexMisServicios()
     {
         $usuarioId = Auth::id();
-
-        if (Auth::check()) {
-            $usuario = Usuarios::with('roles')
+        $usuario = Usuarios::with('roles')
                 ->find($usuarioId);
-        } else {
-            //Si no está autenticado se crea una clase generica para que pueda visualizar todos los talleres activos
-            $usuario = new \stdClass();
-            $usuario->roles = new \stdClass();
-            $usuario->roles->id = null;
-        }
+        if (Auth::check() and $idRol == 8 || $idRol == 3 || $idRol == 9) {
+
         //Busca todas las publicaciones de tipo taller, activas y con los datos del publicador
         $servicios = Publicaciones::where('id_tipo', 3)
             ->where('estatus', true)
@@ -67,28 +61,32 @@ class ServiciosController extends Controller
             ->get();
 
         return view('partials.servicios.mis_servicios', compact('servicios'));
+        } else {
+            //Si no esta autenticado lo manda al home
+            abort(404, 'Página no encontrada');
+        }
     }
 
-    public function misServiciosSolicitados()
-    {
-        $solicitudes = DB::table('solicitudes')
-            ->join('usuarios as clientes', 'solicitudes.id_cliente', '=', 'clientes.id')
-            ->join('usuarios as proveedores', 'solicitudes.id_proveedor', '=', 'proveedores.id')
-            ->join('publicaciones', 'solicitudes.id_publicacion', '=', 'publicaciones.id')
-            ->select(
-                'solicitudes.id',
-                'clientes.nombre_usuario as cliente',
-                'proveedores.nombre_usuario as proveedor',
-                'solicitudes.descripcion',
-                'publicaciones.descripcion as tipo_servicio',
-                'solicitudes.fecha'
-            )
-            ->where('solicitudes.estatus', 1) // Filtrar por estatus = 1
-            ->orderBy('solicitudes.id', 'asc') // Ordenar por ID de forma ascendente
-            ->get();
+    // public function misServiciosSolicitados()
+    // {
+    //     $solicitudes = DB::table('solicitudes')
+    //         ->join('usuarios as clientes', 'solicitudes.id_cliente', '=', 'clientes.id')
+    //         ->join('usuarios as proveedores', 'solicitudes.id_proveedor', '=', 'proveedores.id')
+    //         ->join('publicaciones', 'solicitudes.id_publicacion', '=', 'publicaciones.id')
+    //         ->select(
+    //             'solicitudes.id',
+    //             'clientes.nombre_usuario as cliente',
+    //             'proveedores.nombre_usuario as proveedor',
+    //             'solicitudes.descripcion',
+    //             'publicaciones.descripcion as tipo_servicio',
+    //             'solicitudes.fecha'
+    //         )
+    //         ->where('solicitudes.estatus', 1) // Filtrar por estatus = 1
+    //         ->orderBy('solicitudes.id', 'asc') // Ordenar por ID de forma ascendente
+    //         ->get();
 
-        return view('servicios.mis_servicios', compact('solicitudes'));
-    }
+    //     return view('servicios.mis_servicios', compact('solicitudes'));
+    // }
 
     public function search(Request $request)
     {
@@ -141,24 +139,24 @@ class ServiciosController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
-    {
+    // public function create()
+    // {
 
-        //Esta opción es la misma para obtener nombre del cliente y del proveedor (se selecciona), se filtarán nombres de acuerdo con el rol
-        $opciones = DB::table('usuarios')->pluck('nombre_usuario', 'id');
-
-
-        // Tipo de publicación
-        $t_servicio = DB::table('publicaciones')->pluck('descripcion', 'id');
+    //     //Esta opción es la misma para obtener nombre del cliente y del proveedor (se selecciona), se filtarán nombres de acuerdo con el rol
+    //     $opciones = DB::table('usuarios')->pluck('nombre_usuario', 'id');
 
 
+    //     // Tipo de publicación
+    //     $t_servicio = DB::table('publicaciones')->pluck('descripcion', 'id');
 
-        //Tipo de solicitud
-        $t_solicitud = DB::table('tipos_solicitudes')->pluck('nombre', 'id');
 
 
-        return view('servicios.servicios', compact('opciones', 't_servicio', 't_solicitud'));
-    }
+    //     //Tipo de solicitud
+    //     $t_solicitud = DB::table('tipos_solicitudes')->pluck('nombre', 'id');
+
+
+    //     return view('servicios.servicios', compact('opciones', 't_servicio', 't_solicitud'));
+    // }
 
     /**
      * Store a newly created resource in storage (inserts).
