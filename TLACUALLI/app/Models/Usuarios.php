@@ -76,4 +76,9 @@ class Usuarios extends Authenticatable
     {
         return $this->hasMany(Publicaciones::class, 'id_usuario');
     }
+
+    public function solicitudesComoProveedor()
+    {
+        return $this->hasMany(Solicitudes::class, 'id_proveedor');
+    }
 }

@@ -56,9 +56,9 @@
                                 <hr class="my-6">
                                 <div class="mt-3 row justify-content-start g-2 align-items-center">
                                     <div class="col-lg-4 col-md-5 col-6 d-grid">
-                                        <button type="button" class="btn btn-outline-success" onclick="showSweetAlert()">
-                                            <i class="bi bi-cart-check"></i> Solicitar servicio
-                                        </button>
+                                            <button type="button" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#solicitarServicioModal{{ $servicio->id }}">
+                                                <i class="bi bi-cart-check"></i> Solicitar servicio 
+                                            </button>
                                     </div>
                                     <div class="col-md-4 col-5">
                                         <a class="btn btn-light" href="#" data-bs-toggle="tooltip" data-bs-html="true" aria-label="Compare" onclick="toggleLike(this)">
@@ -92,4 +92,70 @@
         </div>
     </div>
 </div>
+
+{{-- Modal pequeño para solicitar servicio --}}
+<div class="modal fade" id="solicitarServicioModal{{ $servicio->id }}" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Solicitar Servicio</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>¿Está seguro que desea solicitar este servicio?</p>
+                <p><strong>Servicio:</strong> {{ $servicio->nombre }}</p>
+                <p><strong>Costo:</strong> 
+                    @if ($servicio->costo)
+                        $ {{ $servicio->costo }}
+                    @else
+                        Gratuito
+                    @endif
+                </p>
+                <form action="{{ route('registroSolicitud', ['servicio_id' => $servicio->id, 'proveedor_id' => $servicio->usuario->id] ) }}" method="POST" style="display: inline;">
+                    @csrf
+                    <div class="mb-3">
+                        <label class="form-label">Descripción</label>
+                        <input type="text" class="form-control" id="_descS" name="_descS" required placeholder="Añada una descripción detallada de los días, periodos o detalles importantes de su servicio a solicitar">
+                    </div>
+            </div>
+            <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="submit" class="btn btn-success" onclick="confirmarSolicitud({{ $servicio->id }})">Confirmar Solicitud</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
 @endforeach
+
+<script>
+    function confirmarSolicitud(event) {
+        // Obtener el valor del campo de descripción
+        var descripcion = document.getElementById('_descS').value;
+    
+        // Verificar si el campo de descripción está vacío
+        if (descripcion.trim() === '') {
+            alert('Por favor, complete la descripción antes de confirmar la solicitud.');
+            event.preventDefault(); // Prevenir el envío del formulario
+            return;
+        }
+    
+        // Si el campo de descripción está lleno, permitir el envío del formulario
+        console.log('Solicitud confirmada con descripción:', descripcion);
+        // Aquí puedes añadir lógica adicional, como cerrar el modal
+    }
+    
+    // Agregar evento para validar el formulario antes de enviarlo
+    document.addEventListener('DOMContentLoaded', function () {
+        var form = document.querySelector('form'); // Selecciona el formulario
+        form.addEventListener('submit', confirmarSolicitud); // Añade el evento submit
+    });
+    
+    // Agregar evento para recargar la página cuando se cierra el modal de solicitud
+    document.addEventListener('hidden.bs.modal', function (event) {
+        if (event.target.id.startsWith('solicitarServicioModal')) {
+            location.reload();
+        }
+    }, false);
+    </script>
+    

@@ -12,6 +12,8 @@ use App\Http\Controllers\PublicacionesController;
 
 use App\Http\Controllers\ProductoController;
 
+use App\Http\Controllers\SolicitudesController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -130,6 +132,12 @@ Route::group(['middleware' => 'auth'], function () {
     Route::put('/actualizarServicio/{id}', [ServiciosController::class, 'update'])->name('actualizarServicio');
 
     Route::put('/desactivarServicio/{id}', [ServiciosController::class, 'offStatus'])->name('desactivarServicio');
+
+    //-------------------------------------------------------------------------------------//
+    //SOLICITUDES
+    Route::get('/mis_solicitudes', [SolicitudesController::class, 'indexMisSolicitudes'])->name('mis_solicitudes');
+
+    Route::post('/registrarSolicitud', [SolicitudesController::class, 'store'])->name('registroSolicitud');
 });
 
 //RUTAS QUE NO NECESITAN AUTENTICACIÓN

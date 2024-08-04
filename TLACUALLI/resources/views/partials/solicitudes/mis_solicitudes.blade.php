@@ -1,10 +1,9 @@
 @extends('layouts.template')
-@section('titulo','Servicios')
+@section('titulo','Mis solicitudes')
 @section('contenido')
 
 <p></p>
-{{-- @dd($servicios) --}}
-<center><h1>Servicios</h1></center>
+<center><h1>Mis solicitudes</h1></center>
 <p></p>
 <div class="container mt-3">
     <form class="d-flex" role="search" action="" method="GET">
@@ -16,26 +15,11 @@
 </div>
 
 <div class="container mt-4 d-flex justify-content-end">
-    {{-- Contenedor para los botones --}}
-    <div class="d-flex gap-2">
-
-        @if ($usuario->roles->id == 3)
-            {{-- Son los servicios que yo como procesador de residuos publico y puedo dar al publico --}}
-            <a href="{{ route('mis_servicios') }}" class="btn btn-warning">Mis servicios</a> 
-
-            {{-- Son las solicitudes que me han hecho otros usuarios a mis servicios como procesador de residuos --}}
-            <a href="" class="btn btn-warning">Solicitudes</a>
-        @endif
-        @if ($usuario->roles->id != 3 && $usuario->roles->id != null)
-            {{-- Son las solicitudes que yo como usuario le he hecho a los procesadores de residuos, por ejemplo --}}
-            <a href="{{ route('mis_solicitudes') }}" class="btn btn-warning">Mis servicios solicitados</a>            
-        @endif
-
-    </div>
+    {{-- <div class="d-flex gap-2">
+        <a href="{{ route('mis_solicitudes') }}" class="btn btn-warning">Mis solicitudes</a> 
+        <a href="" class="btn btn-warning">Solicitudes</a>
+    </div> --}}
 </div>
-
-{{ $usuario->roles->id}}
-
 
 <div class="container mt-3">
     @if(session()->has('noResults'))
@@ -58,28 +42,28 @@
                 <th>Nombre</th>
                 <th>Descripción</th>
                 <th>Proveedor</th>
-                {{-- <th>Tipos de servicio</th> --}}
                 <th>Costo</th>
-                <th>Fecha</th>
+                <th>Fecha de publicación</th>
+                <th>Fecha de solicitud</th>
                 <th>Acciones</th>
             </tr>
         </thead>
         
         <tbody>
-            @foreach($servicios as $servicio)
-            {{-- @dd($servicio->usuario) --}}
+            @foreach($solicitudes as $solicitud)
             <tr>
-                <td>{{ $servicio->nombre }}</td>
-                <td>{{ $servicio->descripcion }}</td>
-                <td>{{ $servicio->usuario->nombre_usuario }}</td>
-                @if ($servicio->costo)
-                    <td>${{ $servicio->costo }}</td>
+                <td>{{ $solicitud->servicio->nombre }}</td>
+                <td>{{ $solicitud->servicio->descripcion }}</td>
+                <td>{{ $solicitud->proveedor->nombre_usuario }}</td>
+                @if ($solicitud->servicio->costo)
+                    <td>${{ $solicitud->servicio->costo }}</td>
                 @else 
                     <td>Gratuito</td>   
                 @endif
-                <td>{{ $servicio->fecha_publicacion }}</td>
+                <td>{{ $solicitud->servicio->created_at }}</td>
+                <td>{{ $solicitud->fecha }}</td>
                 <td>
-                    <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#servicioModal{{ $servicio->id }}">Detalles</button>
+                    <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#miSolicitudModal{{ $solicitud->id }}">Detalles</button>
                 </td>
             </tr>
             @endforeach
@@ -87,8 +71,6 @@
     </table>
 </div>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
-
-@include('partials.servicios.modal_servicio')
+@include('partials.solicitudes.modal_mi_solicitud')
 
 @endsection

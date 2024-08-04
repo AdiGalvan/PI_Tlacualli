@@ -32,4 +32,9 @@ class Publicaciones extends Model
     {
         return $this->hasOne(TiposPublicaciones::class, 'id', 'id_tipo');
     }
+
+    public function proveedor()
+    {
+        return $this->belongsTo(Usuarios::class, 'id_usuario');
+    }
 }
