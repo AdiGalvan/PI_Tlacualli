@@ -22,6 +22,11 @@ class OrdenVenta extends Model
     public function productos()
     {
         return $this->belongsToMany(Producto::class, 'relacion_producto_orden', 'id_orden', 'id_producto')
-            ->withPivot('cantidad', 'subtotal');
+            ->withPivot('id', 'cantidad', 'subtotal');
+    }
+
+    public function usuario()
+    {
+        return $this->belongsTo(Usuarios::class, 'id_cliente');
     }
 }

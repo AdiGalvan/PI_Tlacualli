@@ -14,6 +14,8 @@ use App\Http\Controllers\ProductoController;
 
 use App\Http\Controllers\CarritoController;
 
+use App\Http\Controllers\NotificacionesController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -135,6 +137,11 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/taller/{id_publicacion}', [CarritoController::class, 'registrarTaller'])->name('taller.registrar');
     // Ruta para eliminar taller del carrito
     Route::delete('/taller/{id_publicacion}', [CarritoController::class, 'eliminarTaller'])->name('taller.eliminar');
+
+    // Ruta para ver notificaciones
+    Route::get('/notificaciones', [NotificacionesController::class, 'index'])->name('notificaciones');
+    Route::put('/concluir-orden/{id}/{id2}', [NotificacionesController::class, 'concluir_producto'])->name('concluirOrden');
+    Route::put('/concluir-taller/{id}', [NotificacionesController::class, 'concluir_taller'])->name('concluirRelacion');
 });
 
 //RUTAS QUE NO NECESITAN AUTENTICACIÓN
@@ -148,6 +155,9 @@ Route::post('/registrar', [LoginController::class, 'create']);
 
 
 Route::get('/productos', [ProductoController::class, 'index'])->name('productos');
+
+
+
 
 
 /* Route::get('/productosCards', [ProductoController::class, 'Cards']); */
