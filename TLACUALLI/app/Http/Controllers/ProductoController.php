@@ -92,6 +92,14 @@ class ProductoController extends Controller
                 '_costoP'   => 'required|numeric',
                 '_stockP'   => 'required|numeric',
                 '_contP'    => 'required|file|max:2048',
+            ],
+            [
+                '_np' => 'El campo de nombre es obligatorio',
+                '_descP' => 'El campo de descripción es obligatorio',
+                '_costoP' => 'El campo de costo es obligatorio',
+                '_stockP' => 'El campo de stock es obligatorio',
+                '_contP' => 'El campo de imagen es obligatorio',
+               
             ]);
 
             // Insert de productos
