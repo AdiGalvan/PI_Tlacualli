@@ -22,14 +22,16 @@ class SolicitudesController extends Controller
         $usuarioId = Auth::id();
 
         if (Auth::check()) {
-            $solicitudes = Solicitudes::where('id_cliente', $usuarioId)
+            $mis_solicitudes = Solicitudes::where('id_cliente', $usuarioId)
                 ->with(['proveedor', 'servicio']) // Asegúrate de que esta relación está bien definida en el modelo Solicitud
                 ->get();
-            return view('partials.solicitudes.mis_solicitudes', compact('solicitudes'));
+
+            // $mis_inscritos = 
+            return view('notificaciones.index', compact('mis_solicitudes'));
         }
     }
 
-    public function store(Request $request)
+    public function storeServicio(Request $request)
     {
         $usuarioId = Auth::id();
 
@@ -48,7 +50,30 @@ class SolicitudesController extends Controller
             $solicitud->id_publicacion = $servicioId;
             $solicitud->id_tipo = 2;
             $solicitud->fecha = Carbon::now();
-            $solicitud->estatus = 0;
+            $solicitud->estatus = 1;
+            $solicitud->save();
+            return redirect()->back()->with('success', 'Servicio solicitado exitosamente.');
+        } else {
+            abort(404, 'Página no encontrada');
+        }
+    }
+
+    public function storeTaller(Request $request)
+    {
+        $usuarioId = Auth::id();
+
+        if (Auth::check()) {
+            $tallerId = $request->input('taller_id');
+            $talleristaId = $request->input('tallerista_id');
+
+            $solicitud = new Solicitudes();
+            $solicitud->id_cliente = $usuarioId;
+            $solicitud->id_proveedor = $talleristaId;
+            $solicitud->descripcion = 'Taller';
+            $solicitud->id_publicacion = $tallerId;
+            $solicitud->id_tipo = 1;
+            $solicitud->fecha = Carbon::now();
+            $solicitud->estatus = 1;
             $solicitud->save();
             return redirect()->back()->with('success', 'Servicio solicitado exitosamente.');
         } else {

@@ -2,7 +2,7 @@
 @extends('layouts.template')
 @section('titulo','Mis_Talleres')
 @section('contenido')
-
+{{-- @dd($mis_solicitudes) --}}
 <div class="container mt-">
     <h2 class="mb-6 text-3xl text-center font-semibold font-sans text-dark uppercase dark:text-white mt-5 w-full">Productos Ordenados</h2>
         @if(!$mis_ordenes->isEmpty())

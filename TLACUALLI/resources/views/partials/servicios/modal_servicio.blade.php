@@ -111,7 +111,7 @@
                         Gratuito
                     @endif
                 </p>
-                <form action="{{ route('registroSolicitud', ['servicio_id' => $servicio->id, 'proveedor_id' => $servicio->usuario->id] ) }}" method="POST" style="display: inline;">
+                <form action="{{ route('solicitarServicio', ['servicio_id' => $servicio->id, 'proveedor_id' => $servicio->usuario->id] ) }}" method="POST" style="display: inline;">
                     @csrf
                     <div class="mb-3">
                         <label class="form-label">Descripción</label>

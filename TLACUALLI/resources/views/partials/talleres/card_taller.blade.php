@@ -117,7 +117,7 @@
                                     <p><span class="text-dark font-sans">Precio: $ {{ $publicacion->costo }}</span></p>
                                 </div>
                                 <div class="flex-shrink-0 px-5">
-                                    <form action="{{ route('taller.registrar', $publicacion->id) }}" method="POST">
+                                    <form action="{{ route('solicitarTaller', ['taller_id' => $publicacion->id, 'tallerista_id' =>  $publicacion->usuario->id]) }}" method="POST">
                                          @csrf
                                         <button data-modal-hide="default-modal" type="submit" onclick="showSweetAlert()" class="bg-gradient-to-r from-green-500 to-green-800 text-white font-sans font-bold px-4 py-2 rounded-md text-md">
                                             Agregar
