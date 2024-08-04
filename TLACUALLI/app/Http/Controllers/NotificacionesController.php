@@ -4,9 +4,13 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+
 use App\Models\OrdenVenta;
 use App\Models\RelacionUsuarioTaller;
 use App\Models\RelacionProductoOrden;
+use App\Models\Solicitudes;
+use App\Models\Usuarios;
+use Carbon\Carbon;
 
 class NotificacionesController extends Controller
 {
@@ -33,7 +37,14 @@ class NotificacionesController extends Controller
             }, 'cliente']) // Eager load publicación y cliente
             ->get();
 
-        return view('notificaciones.index', ['mis_ordenes' => $mis_ordenes, 'mis_inscritos' => $mis_inscritos]);
+        $mis_solicitudes = Solicitudes::where('id_proveedor', Auth::id())
+            ->where('estatus', 0)
+            ->where('conclusion', 1)
+            ->with(['cliente', 'servicio']) // Asegúrate de que esta relación está bien definida en el modelo Solicitud
+            ->get();
+
+
+        return view('notificaciones.index', ['mis_ordenes' => $mis_ordenes, 'mis_inscritos' => $mis_inscritos, 'mis_solicitudes' => $mis_solicitudes]);
     }
 
     public function concluir_producto($id, $id2)
@@ -65,5 +76,17 @@ class NotificacionesController extends Controller
         }
 
         return redirect()->back()->with('success', 'Registro actualizado.');
+    }
+    public function concluir_servicio($id)
+    {
+        // Encuentra el registro en relacion_usuario_taller
+        $solicitud = Solicitudes::findOrFail($id);
+
+        // Actualiza el campo `conclusion` de 1 a 0
+        if ($solicitud->conclusion == 1) {
+            $solicitud->update(['conclusion' => 0]);
+        }
+
+        return redirect()->back()->with('success', 'Solicitud actualizado.');
     }
 }

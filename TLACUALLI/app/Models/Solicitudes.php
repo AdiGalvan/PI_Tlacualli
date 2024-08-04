@@ -16,7 +16,8 @@ class Solicitudes extends Model
         'id_publicacion',
         'id_tipo',
         'fecha',
-        'estatus'
+        'estatus',
+        'conclusion'
     ];
 
     public function tipo()
@@ -26,7 +27,7 @@ class Solicitudes extends Model
 
     public function cliente()
     {
-        return $this->hasOne(Usuarios::class, 'id', 'id_usuario');
+        return $this->hasOne(Usuarios::class, 'id', 'id_cliente');
     }
 
     public function proveedor()

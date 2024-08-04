@@ -12,19 +12,19 @@ use Carbon\Carbon;
 class SolicitudesController extends Controller
 {
     //
-    public function index() 
+    public function index()
     {
         return view('partials.solicitudes.mis_solicitudes');
     }
 
-    public function indexMisSolicitudes() 
+    public function indexMisSolicitudes()
     {
         $usuarioId = Auth::id();
 
-        if(Auth::check()){
+        if (Auth::check()) {
             $solicitudes = Solicitudes::where('id_cliente', $usuarioId)
-            ->with(['proveedor', 'servicio']) // Asegúrate de que esta relación está bien definida en el modelo Solicitud
-            ->get();
+                ->with(['proveedor', 'servicio']) // Asegúrate de que esta relación está bien definida en el modelo Solicitud
+                ->get();
             return view('partials.solicitudes.mis_solicitudes', compact('solicitudes'));
         }
     }
@@ -33,7 +33,7 @@ class SolicitudesController extends Controller
     {
         $usuarioId = Auth::id();
 
-        if(Auth::check()){
+        if (Auth::check()) {
             $validator = $request->validate([
                 '_descS'       => 'required',
             ]);
@@ -48,11 +48,11 @@ class SolicitudesController extends Controller
             $solicitud->id_publicacion = $servicioId;
             $solicitud->id_tipo = 2;
             $solicitud->fecha = Carbon::now();
-            $solicitud->estatus = 1;
+            $solicitud->estatus = 0;
             $solicitud->save();
             return redirect()->back()->with('success', 'Servicio solicitado exitosamente.');
         } else {
             abort(404, 'Página no encontrada');
         }
-    } 
+    }
 }

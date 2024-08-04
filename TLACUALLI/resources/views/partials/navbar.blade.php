@@ -73,13 +73,13 @@
           <a href="publicaciones" class="{{request()->routeIs('publicaciones')?'disabled':'w_o'}} font-semibold font-sans text-lg block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-green-700 md:p-0 dark:text-white md:dark:hover:text-green-900 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Publicaciones</a>
         </li>
         <li>
-          <a href="mis_servicios" class="{{request()->routeIs('servicios')?'disabled':'w_o'}} font-semibold font-sans text-lg block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-green-700 md:p-0 dark:text-white md:dark:hover:text-green-900 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Servicios</a>
+          <a href="servicios" class="{{request()->routeIs('servicios')?'disabled':'w_o'}} font-semibold font-sans text-lg block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-green-700 md:p-0 dark:text-white md:dark:hover:text-green-900 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Servicios</a>
         </li>
         <li>
           <a {{-- aria-current="page"  --}}href="/productos" class="{{request()->routeIs('productos')?'disabled ':'w_o'}} font-semibold font-sans text-lg block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-green-700 md:p-0 dark:text-white md:dark:hover:text-green-900 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Productos</a>
         </li>
         <li>
-          <a href="#" class="{{request()->routeIs('#')?'disabled ':'w_o'}} font-semibold font-sans text-lg block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-green-700 md:p-0 dark:text-white md:dark:hover:text-green-900 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Solicitudes</a>
+          <a href="notificaciones" class="{{request()->routeIs('#')?'disabled ':'w_o'}} font-semibold font-sans text-lg block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-green-700 md:p-0 dark:text-white md:dark:hover:text-green-900 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Solicitudes</a>
         </li>
       </ul>
     </div>

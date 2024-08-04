@@ -143,6 +143,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/notificaciones', [NotificacionesController::class, 'index'])->name('notificaciones');
     Route::put('/concluir-orden/{id}/{id2}', [NotificacionesController::class, 'concluir_producto'])->name('concluirOrden');
     Route::put('/concluir-taller/{id}', [NotificacionesController::class, 'concluir_taller'])->name('concluirRelacion');
+    Route::put('/concluir-solicitud/{id}', [NotificacionesController::class, 'concluir_servicio'])->name('concluirServicio');
     //-------------------------------------------------------------------------------------//
     //SERVICIOS
 
