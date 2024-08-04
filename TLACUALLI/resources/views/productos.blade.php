@@ -55,7 +55,7 @@
 @section('contenido')
 
 <div class="flex flex-wrap justify-center">
-    <h2 class="mb-6 text-3xl text-center font-semibold font-sans text-dark uppercase dark:text-white mt-5 w-full">Productos</h2>
+    <h2 class="mb-6 text-green-900 font-sans font-black text-4xl text-center mt-5 w-full">Productos</h2>
     <div class="w-full lg:w-10/12">
         <div class="flex flex-wrap mb-4 justify-end px-5 mt-3">
             <div class="w-full flex items-center space-x-4 justify-end px-5">

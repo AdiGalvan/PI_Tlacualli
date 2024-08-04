@@ -2,36 +2,56 @@
 <div class="modal fade" id="registrar_producto" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
-      <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalLabel">Nuevo producto</h1>
+      <!-- modal header -->
+      <div class="flex justify-center pt-4 pb-2">
+        <h1 class="text-green-900 font-sans font-black text-2xl text-center" id="exampleModalLabel">Nuevo producto</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
         <form method="POST" action="/registroProducto" id="registroProducto" enctype="multipart/form-data">
           @csrf
           <div class="mb-3">
-            <label class="form-label">Nombre del producto</label>
-            <input type="text" class="form-control" id="_np" name="_np" required>
+            <label class="text-green-900 font-sans font-bold pb-2 text-base">Nombre del producto</label>
+            <input type="text" class="font-sans font-light px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 w-full" id="_np" name="_np" value="{{ old('_np') }}">
+            <p class="text-red-600 font-sans font-bold mt-1">{{ $errors->first('_np') }}</p>
           </div>
           <div class="mb-3">
-            <label class="form-label">Descripción</label>
-            <input type="text" class="form-control" id="_descP" name="_descP" required>
+            <label class="text-green-900 font-sans font-bold pb-2 text-base">Descripción</label>
+            <input type="text" class="font-sans font-light px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 w-full" id="_descP" name="_descP" value="{{ old('_descP') }}">
+            <p class="text-red-600 font-sans font-bold mt-1">{{ $errors->first('_descP') }}</p>
           </div>
           <div class="mb-3">
-            <label class="form-label">Costo unitario</label>
-            <input type="number" class="form-control" id="_costoP" name="_costoP" required>
+            <label class="text-green-900 font-sans font-bold pb-2 text-base">Costo unitario</label>
+            <input type="number" class="font-sans font-light px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 w-full" id="_costoP" name="_costoP" value="{{ old('_costoP') }}">
+            <p class="text-red-600 font-sans font-bold mt-1">{{ $errors->first('_costoP') }}</p>
           </div>
           <div class="mb-3">
-            <label class="form-label">Stock</label>
-            <input type="number" class="form-control" id="_stockP" name="_stockP" required>
+            <label class="text-green-900 font-sans font-bold pb-2 text-base">Stock</label>
+            <input type="number" class="font-sans font-light px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 w-full" id="_stockP" name="_stockP" value="{{ old('_stockP') }}">
+            <p class="text-red-600 font-sans font-bold mt-1">{{ $errors->first('_stockP') }}</p>
           </div>
-          <div class="mb-3">
-            <label class="form-label">Contenido (Imagen JPG o PNG)</label>
-            <input type="file" class="form-control" id="_contP" name="_contP" accept="image/jpeg, image/png" required>
-          </div>
+       
+   <!-- INPUT FILE -->
+   <div class="mb-3">
+  <label class="text-green-900 font-sans font-bold pb-2 text-base">Contenido (Imagen JPG o PNG)</label>
+  
+  <!-- Input de archivo oculto -->
+  <input type="file" id="fileInput" name="_contP" accept="image/jpeg, image/png" class="hidden" onchange="updateFileName()" value="{{ old('_contP') }}">
+  <br>
+  <!-- Botón personalizado que activa el input oculto -->
+  <label for="fileInput" class="text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700 cursor-pointer">
+    Examinar
+  </label>
+  
+  <!-- Nombre del archivo seleccionado -->
+  <span id="fileName" class="ml-4 text-gray-700 font-sans font-light">Ningún archivo seleccionado</span>
+</div>
+<p class="text-red-600 font-sans font-bold mt-1">{{ $errors->first('_contP') }}</p>
+<!-- FIN INPUT FILE -->
+
           <div class="modal-footer">
-            <button type="submit" class="btn btn-outline-success" onclick="validarCampos()"><i class="bi bi-check-lg"></i> Agregar</button>
-            <button type="button" class="btn btn-outline-warning" data-bs-dismiss="modal"><i class="bi bi-x-lg"></i> Cancelar</button>
+            <button type="submit" class="bg-gradient-to-r from-green-500 to-green-800 hover:from-green-600 hover:to-green-800 text-white px-4 py-2 rounded-lg mr-2 font-semibold font-sans" onclick="validarCampos()"><i class="bi bi-check-lg"></i> Agregar</button>
+            <button type="button" class="bg-gradient-to-r from-gray-500 to-gray-800 hover:from-gray-600 hover:to-gray-800 text-white px-4 py-2 rounded-lg mr-2 font-semibold font-sans" data-bs-dismiss="modal"><i class="bi bi-x-lg"></i> Cancelar</button>
           </div>
         </form>
       </div>
@@ -46,8 +66,9 @@
 <div class="modal fade" id="actualizar_producto{{ $producto->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
-      <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalLabel">Actualizar producto</h1>
+      <!-- modal header -->
+      <div class="flex justify-center pt-4 pb-2">
+        <h1 class="text-green-900 font-sans font-black text-2xl text-center" id="exampleModalLabel">Actualizar producto</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
@@ -55,23 +76,27 @@
           @csrf
           @method('PUT')
           <div class="mb-3">
-            <label class="form-label">Nombre del producto</label>
-            <input type="text" class="form-control" id="_np" name="_np" required value="{{ !empty($producto->nombre) ?  $producto->nombre : '' }}">
+            <label class="text-green-900 font-sans font-bold pb-2 text-base">Nombre del producto</label>
+            <input type="text" class="font-sans font-light px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 w-full" id="_np" name="_np"  value="{{ !empty($producto->nombre) ?  $producto->nombre : '' }}">
+            <p class="text-red-600 font-sans font-bold mt-1">{{ $errors->first('_np') }}</p>
           </div>
           <div class="mb-3">
-            <label class="form-label">Descripción</label>
-            <input type="text" class="form-control" id="_descP" name="_descP" required value="{{ !empty($producto->descripcion) ?  $producto->descripcion : '' }}">
+            <label class="text-green-900 font-sans font-bold pb-2 text-base">Descripción</label>
+            <input type="text" class="font-sans font-light px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 w-full" id="_descP" name="_descP"  value="{{ !empty($producto->descripcion) ?  $producto->descripcion : '' }}">
+            <p class="text-red-600 font-sans font-bold mt-1">{{ $errors->first('_descP') }}</p>
           </div>
           <div class="mb-3">
-            <label class="form-label">Costo unitario</label>
-            <input type="number" class="form-control" id="_costoP" name="_costoP" required value="{{ !empty($producto->costo) ?  $producto->costo : '' }}">
+            <label class="text-green-900 font-sans font-bold pb-2 text-base">Costo unitario</label>
+            <input type="number" class="font-sans font-light px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 w-full" id="_costoP" name="_costoP"  value="{{ !empty($producto->costo) ?  $producto->costo : '' }}">
+            <p class="text-red-600 font-sans font-bold mt-1">{{ $errors->first('_costoP') }}</p>
           </div>
           <div class="mb-3">
-            <label class="form-label">Stock</label>
-            <input type="number" class="form-control" id="_stockP" name="_stockP" required value="{{ !empty($producto->stock) ?  $producto->stock : '' }}">
+            <label class="text-green-900 font-sans font-bold pb-2 text-base">Stock</label>
+            <input type="number" class="font-sans font-light px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 w-full" id="_stockP" name="_stockP"  value="{{ !empty($producto->stock) ?  $producto->stock : '' }}">
+            <p class="text-red-600 font-sans font-bold mt-1">{{ $errors->first('_stockP') }}</p>
           </div>
           <div class="mb-3">
-            <label class="form-label">Contenido (Imagen JPG o PNG)</label>
+            <label class="text-green-900 font-sans font-bold pb-2 text-base">Contenido (Imagen JPG o PNG)</label>
             <!-- Mostrar la imagen actual -->
             @if (!empty($producto->contenido))
               <div class="mb-3">
@@ -81,11 +106,12 @@
               <input type="hidden" name="_contP" value="{{ $producto->contenido }}">
             @endif
             <!-- Campo para subir una nueva imagen -->
-            <input type="file" class="form-control" id="_contP" name="_contP" accept="image/jpeg, image/png">
+            <input type="file" class="font-sans font-light px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 w-full" id="_contP" name="_contP" accept="image/jpeg, image/png">
+            <p class="text-red-600 font-sans font-bold mt-1">{{ $errors->first('_contP') }}</p>
           </div>
           <div class="modal-footer">
-            <button type="submit" class="btn btn-outline-success" ><i class="bi bi-check-lg"></i> Agregar</button>
-            <button type="button" class="btn btn-outline-warning" data-bs-dismiss="modal"><i class="bi bi-x-lg"></i> Cancelar</button>
+            <button type="submit" class="bg-gradient-to-r from-green-500 to-green-800 hover:from-green-600 hover:to-green-800 text-white px-4 py-2 rounded-lg mr-2 font-semibold font-sans" ><i class="bi bi-check-lg"></i> Agregar</button>
+            <button type="button" class="bg-gradient-to-r from-gray-500 to-gray-800 hover:from-gray-600 hover:to-gray-800 text-white px-4 py-2 rounded-lg mr-2 font-semibold font-sans" data-bs-dismiss="modal"><i class="bi bi-x-lg"></i> Cancelar</button>
           </div>
         </form>
       </div>
@@ -180,3 +206,17 @@
     }
   }
 </script>
+
+ <!-- script input file -->
+ <script>
+  function updateFileName() {
+    var fileInput = document.getElementById('fileInput');
+    var fileNameSpan = document.getElementById('fileName');
+    if (fileInput.files.length > 0) {
+      fileNameSpan.textContent = fileInput.files[0].name;
+    } else {
+      fileNameSpan.textContent = 'Ningún archivo seleccionado';
+    }
+  }
+</script>
+ <!-- script input file -->
