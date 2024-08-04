@@ -51,6 +51,7 @@ class ServiciosController extends Controller
         $usuarioId = Auth::id();
         $usuario = Usuarios::with('roles')
                 ->find($usuarioId);
+        $idRol = $usuario->roles->id;
         if (Auth::check() and $idRol == 8 || $idRol == 3 || $idRol == 9) {
 
         //Busca todas las publicaciones de tipo taller, activas y con los datos del publicador
