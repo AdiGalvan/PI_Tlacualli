@@ -52,6 +52,7 @@
 
             @forelse($carrito_talleres as $c_taller)
                 <tr>
+                    
                     <td class="px-4 py-2">
                         <img class="w-12 h-12 object-cover rounded" src="{{ asset('storage/' . $c_taller->publicacion->contenido) }}" alt="{{ $c_taller->nombre }}">
                     </td>
@@ -59,7 +60,7 @@
                     <td colspan=""></td>
                     <td class="px-4 py-2 text-sm text-gray-900 dark:text-gray-200">${{ number_format($c_taller->publicacion->costo, 2) }}</td>
                     <td>
-                        <form action="{{ route('taller.eliminar', $c_taller->publicacion->id) }}" method="POST">
+                        <form action="{{ route('taller.eliminar', $c_taller->id) }}" method="POST">
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">

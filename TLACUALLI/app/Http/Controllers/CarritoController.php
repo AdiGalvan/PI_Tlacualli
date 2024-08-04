@@ -14,6 +14,7 @@ class CarritoController extends Controller
 {
     public function agregarAlCarrito(Request $request, $id_producto)
     {
+
         // Validar la cantidad recibida
         $request->validate([
             'cantidad' => 'required|integer|min:1'
@@ -59,13 +60,16 @@ class CarritoController extends Controller
             // Si el producto ya está en la orden, actualizar la cantidad y subtotal
             $nuevaCantidad = $relacion->cantidad + $cantidadSolicitada;
 
-            if ($nuevaCantidad > $producto->stock) {
+            if ($cantidadSolicitada > $producto->stock) {
                 return redirect()->back()->with('error', 'Cantidad total solicitada excede el stock disponible');
             }
-
             // Calcular el nuevo subtotal
             $nuevoSubtotal = $producto->costo * $nuevaCantidad;
+            $total_subtotales = $ordenVenta->productos->sum(function ($producto) {
+                return $producto->pivot->subtotal;
+            });
 
+            $total_real = $total_subtotales - $relacion->subtotal + $nuevoSubtotal;
             // Actualizar la relación
             $relacion->update([
                 'cantidad' => $nuevaCantidad,
@@ -73,11 +77,15 @@ class CarritoController extends Controller
             ]);
 
             // Actualizar el total de la orden
-            $total_real = $ordenVenta->productos->sum('subtotal') - $relacion->subtotal + $nuevoSubtotal;
+
         } else {
             // Calcular el subtotal para un nuevo producto
             $subtotal = $producto->costo * $cantidadSolicitada;
 
+
+            $total_subtotales = $ordenVenta->productos->sum(function ($producto) {
+                return $producto->pivot->subtotal;
+            });
             // Crear una nueva relación
             RelacionProductoOrden::create([
                 'id_orden' => $ordenVenta->id,
@@ -86,8 +94,9 @@ class CarritoController extends Controller
                 'subtotal' => $subtotal
             ]);
 
+
             // Actualizar el total de la orden
-            $total_real = $ordenVenta->productos->sum('subtotal') + $subtotal;
+            $total_real = $total_subtotales + $subtotal;
         }
 
         // Actualizar el total de la orden
@@ -134,8 +143,10 @@ class CarritoController extends Controller
         $relacion->delete();
 
         // Actualizar el total de la orden
-        $total_real = $ordenVenta->productos->sum('subtotal');
-        $ordenVenta->update(['total' => $total_real]);
+        $total_subtotales = $ordenVenta->productos->sum(function ($producto) {
+            return $producto->pivot->subtotal;
+        });
+        $ordenVenta->update(['total' => $total_subtotales]);
 
         return redirect()->back()->with('cartremove', 'Producto eliminado del carrito exitosamente.');
     }
@@ -190,9 +201,8 @@ class CarritoController extends Controller
     {
         // Verificar si la relación existe
         $relacion = RelacionUsuarioTaller::where('id_cliente', Auth::id())
-            ->where('id_publicacion', $id_publicacion)
+            ->where('id', $id_publicacion)
             ->first();
-
         if (!$relacion) {
             return redirect()->back()->with('error', 'No se encontró la relación para el taller.');
         }
