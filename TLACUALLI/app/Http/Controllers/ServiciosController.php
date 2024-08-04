@@ -33,17 +33,34 @@ class ServiciosController extends Controller
             $usuario->roles->id = null;
         }
         //Busca todas las publicaciones de tipo taller, activas y con los datos del publicador
+        $servicios = Publicaciones::where('id_tipo', 3)
+            ->where('estatus', true)
+            ->with('usuario')
+            ->get();
+
+        return view('partials.servicios.servicios', compact('servicios', 'usuario'));
+    }
+
+    public function indexMisServicios()
+    {
+        $usuarioId = Auth::id();
+
+        if (Auth::check()) {
+            $usuario = Usuarios::with('roles')
+                ->find($usuarioId);
+        } else {
+            //Si no está autenticado se crea una clase generica para que pueda visualizar todos los talleres activos
+            $usuario = new \stdClass();
+            $usuario->roles = new \stdClass();
+            $usuario->roles->id = null;
+        }
+        //Busca todas las publicaciones de tipo taller, activas y con los datos del publicador
         $solicitudes = Publicaciones::where('id_tipo', 3)
             ->where('estatus', true)
             ->with('usuario')
             ->get();
 
-        return view('servicios.servicios', compact('solicitudes'));
-    }
-
-    public function indexMisServicios()
-    {
-        
+        return view('partials.servicios.mis_servicios', compact('solicitudes'));   
     }
 
     public function misServiciosSolicitados()
@@ -140,21 +157,68 @@ class ServiciosController extends Controller
     /**
      * Store a newly created resource in storage (inserts).
      */
-    public function store(validadorFormServicios $request)
-    {
-        DB::table('solicitudes')->insert([
-            "id_cliente" => $request->input('nombre'),
-            "id_proveedor" => $request->input('proveedor'),
-            "descripcion" => $request->input('descripcion'),
-            "id_publicacion" => $request->input('t_servicio'),
-            "id_tipo" => 2,
-            "fecha" => $request->input('fecha'),
-            "created_at" => Carbon::now(),
-            "updated_at" => Carbon::now(),
-        ]);
-        return redirect('/mis_servicios')->with('confirmacion', 'Tu solicitud se creó existosamente');
-    }
+    // public function store(validadorFormServicios $request)
+    // {
+    //     DB::table('solicitudes')->insert([
+    //         "id_cliente" => $request->input('nombre'),
+    //         "id_proveedor" => $request->input('proveedor'),
+    //         "descripcion" => $request->input('descripcion'),
+    //         "id_publicacion" => $request->input('t_servicio'),
+    //         "id_tipo" => 2,
+    //         "fecha" => $request->input('fecha'),
+    //         "created_at" => Carbon::now(),
+    //         "updated_at" => Carbon::now(),
+    //     ]);
+    //     return redirect('/mis_servicios')->with('confirmacion', 'Tu solicitud se creó existosamente');
+    // }
 
+
+    public function store(Request $request)
+    {
+        $usuarioId = Auth::id();
+
+        if (Auth::check()) {
+        // Validaciones
+            $validator = $request->validate([
+                '_ns'       => 'required',
+                '_descS'    => 'required',
+                '_costoS'   => 'required|numeric',
+                '_notaS'    => 'required',
+                '_contS'    => 'required|file|max:2048',
+            ]);
+
+            // Insertar el servicio
+            $servicio = new Publicaciones();
+            $servicio->nombre = $request->_ns;
+            $servicio->descripcion = $request->_descS;
+            $servicio->costo = $request->_costoS;
+            $servicio->notas = $request->_notaS;
+            $servicio->fecha_publicacion = Carbon::now()->toDateString();
+            $servicio->id_usuario = $usuarioId;
+            $servicio->id_tipo = 3;
+            $servicio->estatus = true;
+            $servicio->contenido = '';
+            $servicio->save(); // Guardar primero para obtener el ID
+
+            if ($request->hasFile('_contS')) {
+                $file = $request->file('_contS');
+                $filename = $usuarioId . '_3_imagenservicio_' . $servicio->id . '.' . $file->getClientOriginalExtension();
+                $filePath = $file->storeAs('uploads', $filename, 'public');
+    
+                // Actualizar la publicación con la ruta del archivo
+                $servicio->contenido = $filePath;
+                $servicio->save(); // Guardar nuevamente para actualizar la ruta
+            } else {
+                // Si falla la subida, eliminar la publicación creada
+                $servicio->delete();
+                return redirect()->back()->with('success', 'Error al subir el archivo.');
+            }
+
+        return redirect()->back()->with('success', 'Servicio creada exitosamente.');
+        } else {
+            abort(404, 'Página no encontrada');
+        }
+    }
     /**
      * Display the specified resource.
      */

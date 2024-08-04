@@ -3,8 +3,7 @@
 @section('contenido')
 
 <p></p>
-{{-- @dd($servicios) --}}
-<center><h1>Servicios</h1></center>
+<center><h1>Mis servicios</h1></center>
 <p></p>
 <div class="container mt-3">
     <form class="d-flex" role="search" action="" method="GET">
@@ -16,7 +15,7 @@
 </div>
 
 <div class="container mt-4 d-flex justify-content-end">
-    <a href="" class="btn btn-warning">Nueva solicitud</a>
+    <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#registrar_servicio">Registrar servicio</button>
 </div>
 
 <div class="container mt-3">
@@ -38,8 +37,7 @@
         <thead>
             <tr>
                 <th>ID</th>
-                <th>Cliente</th>
-                <th>Proveedor</th>
+                <th>Clientes</th>
                 <th>Descripción</th>
                 <th>Tipos de servicio</th>
                 <th>Fecha</th>
@@ -52,13 +50,12 @@
             <tr>
                 <td>{{ $solicitud->id }}</td>
                 <td>{{ $solicitud->cliente }}</td>
-                <td>{{ $solicitud->proveedor }}</td>
                 <td>{{ $solicitud->descripcion }}</td>
                 <td>{{ $solicitud->tipo_servicio }}</td>
                 <td>{{ $solicitud->fecha }}</td>
                 <td>
-                    <a href="{{--{{ route('servicios.edit', ['id' => $solicitud->id]) }} --}}" class="btn btn-primary">Editar</a>
-                    <form action="{{--{{ route('servicios.editForm', ['id' => $solicitud->id]) }} --}}" method="GET" style="display: inline;">
+                     <a href="{{-- {{ route('servicios.edit', ['id' => $solicitud->id]) }}--}}" class="btn btn-primary">Editar</a> 
+                    <form action="{{--{{ route('servicios.editForm', ['id' => $solicitud->id]) }}--}}" method="GET" style="display: inline;">
                         @csrf
                         <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
                     </form>
@@ -70,4 +67,8 @@
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
+
+@include('partials.servicios.registrar_servicio')
 @endsection
+
+

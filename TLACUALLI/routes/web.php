@@ -40,7 +40,7 @@ Route::get('/talleres', [PublicacionesController::class, 'talleresIndex'])->name
 
 //Rutas módulo servicios
 Route::get('/servicios', [ServiciosController::class, 'index'])->name('servicios');
-Route::get('/mis_servicios', [ServiciosController::class, 'indexMisServicios'])->name('mis_Servicios');
+
 // Route::get('/mis_servicios', [ServiciosController::class, 'index'])->name('mis_servicios.index');
 // Route::get('/servicios', [ServiciosController::class, 'create'])->name('servicios.create');
 // Route::post('guardarForm/servicios', [ServiciosController::class, 'store'])->name('servicios.store');
@@ -119,6 +119,13 @@ Route::group(['middleware' => 'auth'], function () {
     Route::put('/actualizarProducto/{id}', [ProductoController::class, 'update'])->name('actualizarProducto');
 
     Route::put('/desactivarProducto/{id}', [ProductoController::class, 'offStatus'])->name('desactivarProducto');
+
+    //-------------------------------------------------------------------------------------//
+    //SERVICIOS
+    
+    Route::get('/mis_servicios', [ServiciosController::class, 'indexMisServicios'])->name('mis_servicios');
+    
+    Route::post('/registroServicio', [ServiciosController::class, 'store'])->name('registroServicios');
 });
 
 //RUTAS QUE NO NECESITAN AUTENTICACIÓN
