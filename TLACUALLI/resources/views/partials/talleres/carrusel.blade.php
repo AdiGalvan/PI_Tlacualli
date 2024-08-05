@@ -19,7 +19,7 @@
         </div>
         <!-- Item 5 -->
         <div class="hidden duration-700 ease-in-out" data-carousel-item>
-            <img src="https://th.bing.com/th/id/OIP.inTumEZpt4LNYcRHWiDIawHaJQ?rs=1&pid=ImgDetMain" class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
+            <img src="https://th.bing.com/th/id/OIP.inTumEZpt4LNYcRHWiDIawHaJQ?rs=1&pid=ImgDetMain" class="rounded-lg absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
         </div>
     </div>
 </div>

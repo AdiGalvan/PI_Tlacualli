@@ -1,5 +1,5 @@
 
- {{-- Ejemplo de card producto en Taildwin --}}
+ {{-- Ejemplo de card TALLER en Taildwin --}}
 <div class="max-w-lg mx-auto bg-white border border-gray-200 rounded-lg shadow-lg dark:bg-gray-800 dark:border-gray-700">
     <a href="#">
         <img src="{{ asset('storage/' . $publicacion->contenido) }}" alt="" class="card-img-top rounded-t-lg " style="height: 200px; object-fit: fit;">
