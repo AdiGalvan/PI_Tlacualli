@@ -76,6 +76,8 @@
                 {{-- <a class="btn btn-light" href="#" data-bs-toggle="tooltip" data-bs-html="true" aria-label="Compare" onclick="toggleLike(this)">
                     <i id="heart-icon" class="bi bi-heart"></i>
                 </a> --}}
+        </div>
+        <div class="flex items-center justify-between mt-2 px-2">
             <span class="text-md font-bold font-sans text-gray-900 dark:text-white">$ {{ $publicacion->costo }}</span>
             <svg class="w-[35px] h-[35px] text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12.01 6.001C6.5 1 1 8 5.782 13.001L12.011 20l6.23-7C23 8 17.5 1 12.01 6.002Z"/>
@@ -121,47 +123,30 @@
                     <p class="font-sans h4"><span>Descipción:</span> {{ $publicacion->descripcion }}</p>
                     <div class="ps-lg-8 mt-6 mt-lg-0">
                         <div class="mb-4">
-                          <hr class="my-6">
-                           <div class="h5">
-                                    <p><span class="text-dark font-sans">Precio: $ {{ $publicacion->costo }}</span></p>
-                                </div>
-
+                            <hr class="my-6">
+                            <div class="h5 mt-5">
+                                <p><span class="text-dark font-sans">Precio: $ {{ $publicacion->costo }}</span></p>
+                            </div>
                             <div class="flex items-center justify-between">
-                                <div class="flex-shrink-0 px-5 mt-5">
-                                      <div class="container mt-4">
+                                <div class="flex-shrink-0 px-2 mt-3">
+                                      <div class="container mt-2">
                                         <div class="row">
-                                            <div class="col-lg-6 col-md-6 col-6">
+                                            <div class="col-lg-4 col-md-4 col-6">
                                                 <!-- Botón "Actualizar información" en una línea separada -->
-                                                <button type="button" class="bg-gradient-to-r from-green-500 to-green-800 hover:from-green-600 hover:to-green-800 text-white px-4 py-2 rounded-lg mr-2 font-semibold font-sans" data-bs-toggle="modal" data-bs-target="#actualizar_taller{{ $publicacion->id }}">
+                                                <button type="button" class="bg-gradient-to-r from-green-500 to-green-800 hover:from-green-600 hover:to-green-800 text-white px-4 py-2 rounded-lg font-semibold font-sans" data-bs-toggle="modal" data-bs-target="#actualizar_taller{{ $publicacion->id }}">
                                                     <i class="bi bi-pencil-square"></i> Actualizar información
                                                 </button>
                                             </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-lg-3 col-md-3 col-3">
-
-                                                
-                                                <!-- Botón "Eliminar" -->
-                                                <form action="{{ route('publicacionesDestroy', $publicacion->id) }}" method="POST" onsubmit="return confirm('¿Estás seguro de que deseas eliminar esta publicación?');">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button type="submit" class="btn btn-outline-danger btn-lg btn-block">
-                                                        <i class="bi bi-trash"></i> Eliminar
-                                                    </button>
-                                                </form>
+                                            <div class="col-lg-4 col-md-4 col-6">
+                                                @if ($publicacion->estatus)
+                                                    {{-- Mostrar botón de Desactivar si el estado es true --}}
+                                                    <button type="button" class="me-2 bg-gradient-to-r from-gray-500 to-gray-800 hover:from-gray-600 hover:to-gray-800 text-white px-4 py-2 rounded-lg font-semibold font-sans" data-bs-toggle="modal" data-bs-target="#desactivar_taller{{ $publicacion->id }}">Desactivar taller</button>
+                                                @else
+                                                    {{-- Mostrar botón de Activar si el estado es false --}}
+                                                    <button type="button" class="me-4 bg-gradient-to-r from-gray-500 to-gray-800 hover:from-gray-600 hover:to-gray-800 text-white px-4 py-2 rounded-lg font-semibold font-sans" data-bs-toggle="modal" data-bs-target="#activar_taller{{ $publicacion->id }}">Activar taller</button>
+                                                @endif
                                             </div>
-                                            <div class="col-lg-3 col-md-3 col-3 p-4">
-                                                    {{-- Otras partes de la tarjeta --}}
-                                                    
-                                                    @if ($publicacion->estatus)
-                                                        {{-- Mostrar botón de Desactivar si el estado es true --}}
-                                                        <button type="button" class="bg-gradient-to-r from-gray-500 to-gray-800 hover:from-gray-600 hover:to-gray-800 text-white px-4 py-2 rounded-lg mr-2 font-semibold font-sans" data-bs-toggle="modal" data-bs-target="#desactivar_taller{{ $publicacion->id }}">Desactivar taller</button>
-                                                    @else
-                                                        {{-- Mostrar botón de Activar si el estado es false --}}
-                                                        <button type="button" class="bg-gradient-to-r from-gray-500 to-gray-800 hover:from-gray-600 hover:to-gray-800 text-white px-4 py-2 rounded-lg mr-2 font-semibold font-sans" data-bs-toggle="modal" data-bs-target="#activar_taller{{ $publicacion->id }}">Activar taller</button>
-                                                    @endif
-                                            </div>
-                                        </div>
+                                        </div>                                        
                                     </div>
                                 </div>
                             </div>
