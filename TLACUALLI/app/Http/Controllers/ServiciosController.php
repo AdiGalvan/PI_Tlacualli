@@ -42,7 +42,6 @@ class ServiciosController extends Controller
             ->where('estatus', true)
             ->with('usuario')
             ->get();
-
         return view('partials.servicios.servicios', compact('servicios', 'usuario'));
     }
 

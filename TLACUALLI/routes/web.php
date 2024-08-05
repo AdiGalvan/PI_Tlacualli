@@ -159,7 +159,7 @@ Route::group(['middleware' => 'auth'], function () {
     //SOLICITUDES
     Route::get('/mis_solicitudes', [SolicitudesController::class, 'indexMisSolicitudes'])->name('mis_solicitudes');
 
-    Route::post('/registrarSolicitud', [SolicitudesController::class, 'store'])->name('registroSolicitud');
+    Route::post('/registrarSolicitud/{servicioId}/{proveedorId}', [SolicitudesController::class, 'store'])->name('registroSolicitud');
 });
 
 //RUTAS QUE NO NECESITAN AUTENTICACIÓN
