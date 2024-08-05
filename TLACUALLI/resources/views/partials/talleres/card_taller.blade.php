@@ -120,12 +120,25 @@
                                     <p><span class="text-dark font-sans">Precio: $ {{ $publicacion->costo }}</span></p>
                                 </div>
                                 <div class="flex-shrink-0 px-5">
+                                    @auth
                                     <form action="{{ route('taller.registrar', $publicacion->id) }}" method="POST">
                                          @csrf
                                         <button data-modal-hide="default-modal" type="submit" onclick="showSweetAlert()" class="bg-gradient-to-r from-green-500 to-green-800 text-white font-sans font-bold px-4 py-2 rounded-md text-md">
                                             Agregar
                                         </button>
                                     </form>
+                                    @else
+                                    <button data-popover-target="popover-right{{ $publicacion->id }}" data-popover-placement="right" type="button" class="bg-gradient-to-r from-green-500 to-green-800 text-white font-sans font-bold px-4 py-2 rounded-md text-md">Agregar</button>
+                                    <div data-popover id="popover-right{{ $publicacion->costo }}" role="tooltip" class="absolute z-10 invisible inline-block w-64 text-sm text-gray-500 transition-opacity duration-300 bg-white border border-gray-200 rounded-lg shadow-sm opacity-0 dark:text-gray-400 dark:border-gray-600 dark:bg-gray-800">
+                                        <div class="px-3 py-2 bg-green-900 border-b border-green-200 rounded-t-lg dark:border-green-600 dark:bg-green-700 ">
+                                            <h3 class=" text-white dark:text-white font-sans font-bold text-base text-center">Inicia sesión</h3>
+                                        </div>
+                                        <div class="px-3 py-2">
+                                            <p class="font-sans font-light text-base text-center text-black">Recuerda iniciar sesión para poder agregar un taller.</p>
+                                        </div>
+                                        <div data-popper-arrow></div>
+                                    </div>
+                                    @endguest
                                 </div>
                             </div>
                         </div>
