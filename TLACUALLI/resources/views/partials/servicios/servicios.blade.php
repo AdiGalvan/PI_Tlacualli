@@ -31,7 +31,6 @@
     </div>
 </div>
 
-{{ $usuario->roles->id}}
 
 
 <div class="container mt-3">
