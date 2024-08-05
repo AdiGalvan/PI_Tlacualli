@@ -1,6 +1,6 @@
 
 @extends('layouts.template')
-@section('titulo','Mis_Talleres')
+@section('titulo','Solicitudes')
 @section('contenido')
 
 <div class="container mt-">
@@ -110,9 +110,9 @@
                             <th class="px-6 py-3 text-left text-1xl">Cliente</th>
                             <th class="px-6 py-3 text-left text-1xl">Correo</th>
                             <th class="px-6 py-3 text-left text-1xl">Nombre del Servicio</th>
-                            <th class="px-6 py-3 text-left text-1xl">Notas</th>
+                            <th class="px-6 py-3 text-left text-1xl">Notas del Servicio</th>
                             <th class="px-6 py-3 text-left text-1xl">Costo</th>
-                            <th class="px-6 py-3 text-left text-1xl">Fecha de Publicación</th>
+                            <th class="px-6 py-3 text-left text-1xl">Fecha de Servicio</th>
                             <th class="px-6 py-3 text-left text-1xl">Acción</th>
                         </tr>
                     </thead>
