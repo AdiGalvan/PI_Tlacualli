@@ -34,11 +34,14 @@
                 {{-- <a class="btn btn-light" href="#" data-bs-toggle="tooltip" data-bs-html="true" aria-label="Compare" onclick="toggleLike(this)">
                     <i id="heart-icon" class="bi bi-heart"></i>
                 </a> --}}
+        </div>
+        <div class="flex items-center justify-between mt-2 px-2">
             <span class="text-md font-bold font-sans text-gray-900 dark:text-white">$ {{ $publicacion->costo }}</span>
             <svg class="w-[35px] h-[35px] text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12.01 6.001C6.5 1 1 8 5.782 13.001L12.011 20l6.23-7C23 8 17.5 1 12.01 6.002Z"/>
             </svg>
         </div>
+        
         <hr class="my-3 border-gray-900 dark:bg-gray-900">
         <div class="flex items-center justify-between">
             <button data-modal-target="default-modal{{ $publicacion->id }}" data-modal-toggle="default-modal{{ $publicacion->id }}" class="bg-gradient-to-r from-green-500 to-green-800 text-white font-sans font-bold px-4 py-2 rounded-md text-md" type="button">

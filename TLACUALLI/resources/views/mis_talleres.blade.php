@@ -84,9 +84,9 @@
 
 <div class="mt-5 flex justify-center">
     <div class="w-full lg:w-10/12">  
-        <h2 class="mb-6 text-green-900 font-sans font-black text-4xl text-center mt-5 w-full">Mis Talleres</h2>
+        <h2 class="mb-6 text-green-900 font-sans font-black text-4xl text-center w-full">Mis Talleres</h2>
         <div class="flex justify-end space-x-4 px-5 mb-6">
-            <button type="button" class="bg-gradient-to-r from-green-500 to-green-800 text-white font-sans font-bold px-4 py-2 rounded-md text-md" onclick="window.location.href='{{ url('/talleres') }}'">Regresar</button>
+            <button type="button" class="bg-gradient-to-r from-gray-500 to-gray-800 text-white font-sans font-bold px-4 py-2 rounded-md text-md" onclick="window.location.href='{{ url('/talleres') }}'">Regresar</button>
             <button type="button" class="bg-gradient-to-r from-green-500 to-green-800 text-white font-sans font-bold px-4 py-2 rounded-md text-md" data-bs-toggle="modal" data-bs-target="#registrar_taller"> Agregar taller</button>
         </div>
         
