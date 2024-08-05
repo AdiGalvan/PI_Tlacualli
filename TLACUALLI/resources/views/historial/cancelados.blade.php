@@ -1,4 +1,4 @@
-<h2 class="mb-6 text-3xl text-center font-semibold font-sans text-dark uppercase dark:text-white mt-5 w-full">Historial de Ordenes</h2>
+<h2 class="text-green-900 font-sans font-black text-4xl pt-4 pb-4 flex justify-center">Órdenes de productos cancelados</h2>
                 @if(!$mis_ordenes_can->isEmpty())
                     <table class="min-w-full bg-white shadow-1xl rounded-lg overflow-hidden font-sans">
                         <thead class="bg-green-900 text-white ">
@@ -29,11 +29,11 @@
                             </tbody>
                     </table>
                     @else
-                        <p class="mb-6 text-l text-center font-semibold font-sans text-dark uppercase dark:text-white mt-5 w-full">No tienes ordenes concluidas</p>
+                        <p class="mb-6 text-2xl text-center font-light font-sans text-black  dark:text-white mt-5 w-full">No tienes órdenes canceladas</p>
                     @endif
                         
 
-                    <h2 class="mb-6 text-3xl text-center font-semibold font-sans text-dark uppercase dark:text-white mt-5 w-full">Historial de talleres</h2>
+                    <h2 class="text-green-900 font-sans font-black text-4xl pt-4 pb-4 flex justify-center">Talleres cancelados</h2>
 
                     @if(!$mis_inscritos_can->isEmpty())
                     <table class="min-w-full bg-white shadow-1xl rounded-lg overflow-hidden font-sans">
@@ -67,10 +67,10 @@
                                 </tbody>
                     </table>
                     @else
-                    <p class="mb-6 text-l text-center font-semibold font-sans text-dark uppercase dark:text-white mt-5 w-full">No tienes talleres concluidos</p>
+                    <p class="mb-6 text-2xl text-center font-light font-sans text-black  dark:text-white mt-5 w-full">No tienes talleres cancelados</p>
                     @endif
 
-                    <h2 class="mb-6 text-3xl text-center font-semibold font-sans text-dark uppercase dark:text-white mt-5 w-full">Historial de Servicios</h2>
+                    <h2 class="text-green-900 font-sans font-black text-4xl pt-4 pb-4 flex justify-center">Servicios cancelados</h2>
 
                     @if(!$mis_solicitudes_can->isEmpty())
                     <table class="min-w-full bg-white shadow-1xl rounded-lg overflow-hidden font-sans">
@@ -104,5 +104,5 @@
                                 </tbody>
                     </table>
                     @else
-                    <p class="mb-6 text-l text-center font-semibold font-sans text-dark uppercase dark:text-white mt-5 w-full">No tienes servicios concluidos</p>
+                    <p class="mb-6 text-2xl text-center font-light font-sans text-black  dark:text-white mt-5 w-full">No tienes servicios cancelados</p>
                     @endif

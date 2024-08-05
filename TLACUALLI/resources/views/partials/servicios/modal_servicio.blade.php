@@ -17,30 +17,29 @@
                         <div class="ps-lg-8 mt-6 mt-lg-0">
                             <h2 class="mb-1 h1 font-sans font-black text-green-900 text-2x1 text-center">{{ $servicio->nombre }}</h2>
                             <span class="font-sans font-bold text-2xl">{{ $servicio->usuario->nombre_usuario }}</span>
-                            <table class="table table-borderless">
-                                <tbody>
-                                    <tr>
-                                        <td class="text-2x1 font-sans font-normal">Sobre este servicio:</td>
-                                    </tr>
-                                    <tr>
+                            <br>
+                            <br>
+                                        <p class="text-green-900 font-sans font-bold pb-2 text-base">Sobre este servicio:</p>
+                                   
+                                    
                                         @if ($servicio->notas)
-                                            <td>{{ $servicio->notas }}</td>    
+                                            <p class="text-lg font-sans font-light">{{ $servicio->notas }}</p>    
                                         @else
-                                            <td>Sin notas</td>
+                                            <p class="text-lg font-sans font-light">Sin notas</p>
                                         @endif
                                         
-                                    </tr>
-                                </tbody>
-                            </table> 
+                                 <br>
+                                 <br>
                             <form method="POST" action="{{ route('registroSolicitud', [$servicio->id,$servicio->id_usuario]) }}">
                                 @csrf
                                 <div class="mb-3">
                                     <label for="fecha_servicio" class="text-green-900 font-sans font-bold pb-2 text-base">Fecha de Servicio</label>
-                                    <input type="date" class="font-sans font-light px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 w-full" id="fecha_servicio" name="fecha_servicio" required>
+                                    <input type="date" class="font-sans font-light px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 w-full" id="fecha_servicio" name="fecha_servicio">
+                                    <p class="text-red-600 font-sans font-bold mt-1">{{ $errors->first('fecha_servicio') }}</p>
                                 </div>
                                 <div class="mb-3">
                                     <label for="instrucciones" class="text-green-900 font-sans font-bold pb-2 text-base">Instrucciones (opcional)</label>
-                                    <textarea class="font-sans font-light px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 w-full" id="instrucciones" name="instrucciones" rows="3" required></textarea>
+                                    <textarea class="font-sans font-light px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 w-full" id="instrucciones" name="instrucciones" rows="3"></textarea>
                                 </div>
                                 <div class="flex justify-end">
                                     <button type="submit" class="bg-gradient-to-r from-green-500 to-green-800 hover:from-green-600 hover:to-green-800 text-white px-4 py-2 rounded-lg mr-2 font-semibold font-sans">

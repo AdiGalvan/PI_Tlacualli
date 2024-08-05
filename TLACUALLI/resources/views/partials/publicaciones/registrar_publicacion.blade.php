@@ -20,22 +20,25 @@
           @csrf
     <div class="mb-3">
       <label class="text-green-900 font-sans font-bold pb-2 text-base">Título publicación</label>
-      <input type="text" class="font-sans font-light px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 w-full" id="_tp" name="_tp" required>
+      <input type="text" class="font-sans font-light px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 w-full" id="_tp" name="_tp" >
+      <p class="text-red-600 font-sans font-bold mt-1">{{ $errors->first('_tp') }}</p>
     </div>
 
     <div class="mb-3" hidden>
-      <label class="text-green-900 font-sans font-bold pb-2 text-base">Tipo de publición</label>
-      <select class="font-sans font-light px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 w-full" id="_tipo" name="_tipo" required>
+      <label class="text-green-900 font-sans font-bold pb-2 text-base">Tipo de publicación</label>
+      <select class="font-sans font-light px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 w-full" id="_tipo" name="_tipo" >
         <option value="">Selecciona una opcion</option>
         <option value="1" selected>Artículo</option>
         <option value="3">Servicio</option>
         <option value="4">Anuncio</option>
       </select>
+      <p class="text-red-600 font-sans font-bold mt-1">{{ $errors->first('_tipo') }}</p>
     </div> 
 
     <div class="mb-3">
       <label class="text-green-900 font-sans font-bold pb-2 text-base">Descripción</label>
-      <input type="text" class="font-sans font-light px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 w-full" id="_des" name="_des" required>
+      <input type="text" class="font-sans font-light px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 w-full" id="_des" name="_des" >
+      <p class="text-red-600 font-sans font-bold mt-1">{{ $errors->first('_des') }}</p>
     </div>
 
     <!--  INPUT FILE -->
@@ -52,6 +55,7 @@
 
   <!-- Nombre del archivo seleccionado   -->
   <span id="fileName" class="ml-4 text-gray-700 font-sans font-light">Ningún archivo seleccionado</span>
+  <p class="text-red-600 font-sans font-bold mt-1">{{ $errors->first('_cont') }}</p>
 </div>
 
 <!-- FIN INPUT FILE -->
@@ -59,9 +63,9 @@
     <div class="modal-footer">
       <button type="submit" class="bg-gradient-to-r from-green-500 to-green-800 hover:from-green-600 hover:to-green-800 text-white px-4 py-2 rounded-lg mr-2 font-semibold font-sans"
       onclick="validarCampos()"><i class="bi bi-check-lg"></i> Agregar</button>
-      <button type="button" class="bg-gradient-to-r from-gray-500 to-gray-800 hover:from-gray-600 hover:to-gray-800 text-white px-4 py-2 rounded-lg mr-2 font-semibold font-sans" data-bs-dismiss="modal" data-bs-dismiss="modal"><i class="bi bi-x-lg"></i> Cancelar</button>
+      <button type="button" class="bg-gradient-to-r from-gray-500 to-gray-800 hover:from-gray-600 hover:to-gray-800 text-white px-4 py-2 rounded-lg mr-2 font-semibold font-sans" data-bs-dismiss="modal" data-bs-dismiss="modal"> Cancelar</button>
      </div>
-
+    
 </form>
 
  
@@ -77,7 +81,7 @@
 </div>
 </div>
 
-<script>
+<!-- <script>
   function validarCampos() {
       var titulo = document.getElementById('_tp').value;
       var tipo = document.getElementById('_tipo').value;
@@ -92,7 +96,7 @@
 
       }
   }
-</script>
+</script> -->
 
 <!-- SCRIPT INPUT FILE -->
 <script>

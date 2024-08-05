@@ -35,11 +35,13 @@
           @csrf
           <div class="mb-3 pr-2 ps-2">
             <label for="nombre_usuario" class="text-green-900 font-sans font-bold pb-2 text-lg">Correo</label>
-            <input type="text" class="font-sans font-light text-base px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 w-full" name="correo" id="correo" required/>
+            <input type="text" class="font-sans font-light text-base px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 w-full" name="correo" id="correo"/>
+            <p class="text-red-600 font-sans font-bold mt-1">{{ $errors->first('correo') }}</p>
           </div>
           <div class="mb-3 pr-2 ps-2">
             <label for="contraseña" class="text-green-900 font-sans font-bold pb-2 text-lg">Contraseña</label>
-            <input type="password" class="font-sans font-light text-base px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 w-full" name="contraseña" id="contraseña" required/>
+            <input type="password" class="font-sans font-light text-base px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 w-full" name="contraseña" id="contraseña"/>
+            <p class="text-red-600 font-sans font-bold mt-1">{{ $errors->first('contraseña') }}</p>
           </div>
           <a href="/registrar" id=""><p class="text-green-800 font-sans font-semibold text-sm text-center underline">¿Eres nuevo? Regístrate para iniciar sesión</p></a>
       </div>

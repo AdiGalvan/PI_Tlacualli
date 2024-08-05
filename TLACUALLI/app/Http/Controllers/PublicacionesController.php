@@ -313,6 +313,12 @@ class PublicacionesController extends Controller
                 '_tipo'                 => 'required|numeric'
                 //'id_usuario_revision'   => 'required',
                 //'fecha_revision'        => 'date',
+            ],
+            [
+                '_des' => 'El campo de descripción es obligatorio.',
+                '_tp' => 'El campo de título es obligatorio.',
+                '_cont' => 'El campo de archivo es obligatorio.',
+                '_tipo' => 'El campo de tipo es obligatorio.',
             ]);
 
             //Subir el archivo imagen
