@@ -244,9 +244,9 @@
                     </button>
                     @include('partials.productos.registrar_producto', ['producto' => $producto ?? new stdClass()])
                     @if ($producto->estatus)
-                        <button type="button" class="bg-gradient-to-r from-gray-500 to-gray-800 hover:from-gray-600 hover:to-gray-800 text-white px-4 py-2 rounded-lg font-semibold font-sans" data-bs-toggle="modal" data-bs-target="#desactivar_producto{{ $producto->id }}">Desactivar</button>
+                        <button type="button" class="bg-gradient-to-r from-yellow-500 to-yellow-800 hover:bg-yellow-600 text-white px-4 py-2 rounded-md font-sans font-bold " data-bs-toggle="modal" data-bs-target="#desactivar_producto{{ $producto->id }}">Desactivar</button>
                     @else
-                        <button type="button" class="bg-gradient-to-r from-gray-500 to-gray-800 hover:from-gray-600 hover:to-gray-800 text-white px-4 py-2 rounded-lg font-semibold font-sans" data-bs-toggle="modal" data-bs-target="#activar_producto{{ $producto->id }}">Activar</button>
+                        <button type="button" class="bg-gradient-to-r from-blue-600 to-blue-900 hover:bg-blue-800 text-white px-4 py-2 rounded-md font-sans font-bold " data-bs-toggle="modal" data-bs-target="#activar_producto{{ $producto->id }}">Activar</button>
                     @endif
                 </div>
             </td>

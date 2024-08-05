@@ -120,7 +120,7 @@
               <div class="col-lg-6 mt-3">
                     <p  class="h4 font-sans"><span>Nombre del creador:</span> {{ $publicacion->usuario->nombre }} {{ $publicacion->usuario->apellido_paterno }} {{ $publicacion->usuario->apellido_materno }}</p>
                     <br>
-                    <p class="font-sans h4"><span>Descipción:</span> {{ $publicacion->descripcion }}</p>
+                    <p class="font-sans h4"><span>Descripción:</span> {{ $publicacion->descripcion }}</p>
                     <div class="ps-lg-8 mt-6 mt-lg-0">
                         <div class="mb-4">
                             <hr class="my-6">
@@ -140,10 +140,10 @@
                                             <div class="col-lg-4 col-md-4 col-6">
                                                 @if ($publicacion->estatus)
                                                     {{-- Mostrar botón de Desactivar si el estado es true --}}
-                                                    <button type="button" class="me-2 bg-gradient-to-r from-gray-500 to-gray-800 hover:from-gray-600 hover:to-gray-800 text-white px-4 py-2 rounded-lg font-semibold font-sans" data-bs-toggle="modal" data-bs-target="#desactivar_taller{{ $publicacion->id }}">Desactivar taller</button>
+                                                    <button type="button" class="me-2 bg-gradient-to-r from-yellow-500 to-yellow-800 hover:bg-yellow-600 text-white px-4 py-2 rounded-lg font-semibold font-sans" data-bs-toggle="modal" data-bs-target="#desactivar_taller{{ $publicacion->id }}">Desactivar taller</button>
                                                 @else
                                                     {{-- Mostrar botón de Activar si el estado es false --}}
-                                                    <button type="button" class="me-4 bg-gradient-to-r from-gray-500 to-gray-800 hover:from-gray-600 hover:to-gray-800 text-white px-4 py-2 rounded-lg font-semibold font-sans" data-bs-toggle="modal" data-bs-target="#activar_taller{{ $publicacion->id }}">Activar taller</button>
+                                                    <button type="button" class="me-4 bg-gradient-to-r from-blue-600 to-blue-900 hover:bg-blue-800 text-white px-4 py-2 rounded-lg font-semibold font-sans" data-bs-toggle="modal" data-bs-target="#activar_taller{{ $publicacion->id }}">Activar taller</button>
                                                 @endif
                                             </div>
                                         </div>                                        
