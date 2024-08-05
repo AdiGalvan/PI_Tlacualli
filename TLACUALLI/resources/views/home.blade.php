@@ -33,7 +33,7 @@
     
     <div class="row mb-4 mt-5">
         <div class="col-12 text-center">
-            <h2>Preguntas Frecuentes</h2>
+            <h2>Preguntas Frecuentes </h2>
         </div>
     </div>
 

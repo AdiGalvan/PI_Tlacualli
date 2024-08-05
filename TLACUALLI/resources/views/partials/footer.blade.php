@@ -20,10 +20,10 @@
                   <h2 class="mb-6 text-sm font-semibold text-white uppercase dark:text-white">Explorar</h2>
                   <ul class="text-white dark:text-gray-400 font-medium">
                       <li class="mb-4">
-                          <a href="https://flowbite.com/" class="hover:underline">Inicio</a>
+                          <a href="https://tlacualli.sicfi.com.mx" class="hover:underline">Inicio</a>
                       </li>
                       <li>
-                          <a href="https://tailwindcss.com/" class="hover:underline">Nosotros</a>
+                          <a href="https://tlacualli.sicfi.com.mx" class="hover:underline">Nosotros</a>
                       </li>
                   </ul>
               </div>

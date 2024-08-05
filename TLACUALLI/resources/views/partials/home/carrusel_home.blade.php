@@ -12,11 +12,11 @@
                 <div class="relative bg-cover bg-center-left h-full" style="background-image: url('/images/carousel/carousel_1.jpg');">
                     <div class="absolute inset-0 bg-black bg-opacity-50 h-full flex items-center justify-center">
                         <div class="text-center">
-                            <h1 class="text-4xl md:text-5xl text-yellow-300 font-black font-sans tracking-wider mb-3 mt-5">
-                                Únete a nuestra comunidad
+                            <h1 class=" md:text-6xl text-white font-black font-sans tracking-wider mb-3 mt-5">
+                                Únete a la comunidad
                             </h1>
-                            <h1 class="text-4xl md:text-5xl text-yellow-300 font-black font-sans tracking-wider">
-                                TLACUALLI
+                            <h1 class="md:text-6xl text-white font-black font-sans tracking-wider">
+                                Tlacualli
                             </h1>
                         </div>
                     </div>
@@ -28,7 +28,7 @@
                 <div class="relative z-10 ">
                     <div class="flex justify-start bg-black bg-opacity-50 h-screen ">
                         <div class="text-left xl:w-1/3 ">
-                            <h4 class="text-3xl md:text-5xl text-yellow-300 font-extrabold font-sans tracking-wider ml-10 mt-3">No tires tus residuos orgánicos...</h4>
+                            <h4 class="text-3xl md:text-5xl text-white font-extrabold font-sans tracking-wider ml-10 mt-3">No tires tus residuos orgánicos</h4>
                         </div>
                     </div>
                 </div>
@@ -39,7 +39,7 @@
                 <div class="relative z-10">
                     <div class="flex justify-start bg-black bg-opacity-50 h-screen ">
                         <div class="text-start xl:w-1/3">
-                            <h4 class="text-3xl md:text-5xl text-white font-extrabold font-sans tracking-wider ml-10 mt-3">Dales una segunda oportunidad...</h4>
+                            <h4 class="text-3xl md:text-5xl text-white font-extrabold font-sans tracking-wider ml-10 mt-3">Dales una segunda oportunidad</h4>
                         </div>
                     </div>
                 </div>
@@ -50,7 +50,7 @@
                 <div class="relative z-10">
                     <div class="flex justify-start bg-black bg-opacity-50 h-screen">
                         <div class="text-left xl:w-1/3 ">
-                            <h4 class="text-3xl md:text-5xl text-yellow-300 font-extrabold font-sans tracking-wider ml-10 mt-3">Conviértelos en composta...</h4>
+                            <h4 class="text-3xl md:text-5xl text-white font-extrabold font-sans tracking-wider ml-10 mt-3">Conviértelos en composta</h4>
                         </div>
                     </div>
                 </div>
