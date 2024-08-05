@@ -4,11 +4,11 @@
   </div> 
   <div class="max-w-xl mx-auto">
     <div class="w-full text-start">
-      <h2 class="text-3xl md:text-4xl font-black text-yellow-600 dark:text-white font-sans">Contáctanos</h2>
+      <h2 class="text-3xl md:text-4xl font-black text-yellow-600 dark:text-white font-sans text-center">Contáctanos</h2>
     </div>
-    <h5 class="mb-2 text-xl md:text-2xl font-bold tracking-tight text-gray-900 dark:text-white">¡Estaremos felices de atenderte!</h5>
-    <span class="mb-3 font-normal text-lg text-black">Horario de atención: lunes a viernes de 09:00 a.m a 17:00 p.m.</span>
-    <p class="mb-3 font-normal text-lg text-black">Respondemos en un plazo máximo de 24 horas.</p>
+    <h5 class="mb-2 text-xl md:text-2xl font-bold tracking-tight text-gray-900 dark:text-white text-center">¡Estaremos felices de atenderte!</h5>
+    <span class="mb-3 font-normal text-lg text-black text-center">Horario de atención: lunes a viernes de 09:00 a 17:00.</span>
+    <p class="mb-3 font-normal text-lg text-black text-center">Respondemos en un plazo máximo de 24 horas.</p>
     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-5">
       <span class="flex items-center">
         <svg class="w-12 h-12 text-4xl text-green-600 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
@@ -35,7 +35,7 @@
         </svg>
         <div class="ml-2">
           <p class="text-lg font-extrabold font-sans">E-mail</p>
-          <p class="text-lg">tlacualli@gmail.com.mx</p>
+          <p class="text-lg">contacto@tlacualli.com.mx</p>
         </div>
       </span>
       <span class="flex items-center">
