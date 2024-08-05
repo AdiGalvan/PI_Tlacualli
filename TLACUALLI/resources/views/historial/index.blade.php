@@ -10,7 +10,7 @@
                 <button class="nav-link active text-uppercase fw-bold bg-success text-light" id="datos-personales-tab" data-bs-toggle="tab" data-bs-target="#datos-personales" type="button" role="tab" aria-controls="datos-personales" aria-selected="true">Pedidos Pendientes</button>
             </li>
             <li class="nav-item" role="presentation">
-                <button class="nav-link text-uppercase fw-bold text-muted" id="direccion-personal-tab" data-bs-toggle="tab" data-bs-target="#direccion-personal" type="button" role="tab" aria-controls="direccion-personal" aria-selected="false">Pedidos concluidos</button>
+                <button class="nav-link text-uppercase fw-bold text-muted" id="direccion-personal-tab" data-bs-toggle="tab" data-bs-target="#direccion-personal" type="button" role="tab" aria-controls="direccion-personal" aria-selected="false">Historial de pedidos</button>
             </li>
             <li class="nav-item" role="presentation">
                 <button class="nav-link text-uppercase fw-bold text-muted" id="direccion-fiscal-tab" data-bs-toggle="tab" data-bs-target="#direccion-fiscal" type="button" role="tab" aria-controls="direccion-fiscal" aria-selected="false">Pedidos Cancelados</button>
@@ -34,7 +34,7 @@
                 <!-- Dirección Personal -->
                 <div class="row">
                     <div class="d-flex align-items-center pb-4">
-                            <h2 class="mr-3 font-sans font-bold text-green-900 text-2xl pb-2">Pedidos Concluidos</h2>
+                            <h2 class="mr-3 font-sans font-bold text-green-900 text-2xl pb-2">Historial de pedidos</h2>
                             <div class="flex-grow-1 border-top border-secondary" style="margin-left: 20px;"></div>
                     </div>
                 </div>

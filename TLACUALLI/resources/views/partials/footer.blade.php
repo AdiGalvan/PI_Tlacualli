@@ -31,10 +31,10 @@
                   <h2 class="mb-6 text-sm font-semibold text-white uppercase dark:text-white">Contacto</h2>
                   <ul class="text-white dark:text-gray-400 font-medium">
                       <li class="mb-4">
-                          <a href="https://github.com/themesberg/flowbite" class="hover:underline ">tlacualli@gmail.com</a>
+                          <a href="#" class="hover:underline ">contacto@tlacualli.com.mx</a>
                       </li>
                       <li>
-                          <a href="https://discord.gg/4eeurUVvTy" class="hover:underline">Tlacualli.com</a>
+                          <a href="#" class="hover:underline">Tel. (576) 895 1023</a>
                       </li>
                   </ul>
               </div>
@@ -53,7 +53,7 @@
       </div>
       <hr class="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8" />
       <div class="sm:flex sm:items-center sm:justify-between">
-          <span class="text-sm text-white font-sans sm:text-center dark:text-gray-400">© 2023 <a href="https://flowbite.com/" class="hover:underline">Tlacualli™</a>. Todos los derechos reservados.
+          <span class="text-sm text-white font-sans sm:text-center dark:text-gray-400">© 2023 <a href="#" class="hover:underline">Tlacualli™</a>. Todos los derechos reservados.
           </span>
           <div class="flex mt-4 sm:justify-center sm:mt-0">
               <a href="#" class="text-white hover:text-gray-900 dark:hover:text-white">

@@ -4,7 +4,7 @@
 @section('contenido')
 
 <div class="container mt-">
-    <h2 class="mb-6 text-3xl text-center font-semibold font-sans text-dark uppercase dark:text-white mt-5 w-full">Productos Ordenados</h2>
+    <h2 class="text-green-900 font-sans font-black text-4xl pt-4 pb-4 flex justify-center">Productos Ordenados</h2>
         @if(!$mis_ordenes->isEmpty())
         <table class="min-w-full bg-white shadow-1xl rounded-lg overflow-hidden font-sans">
             <thead class="bg-green-900 text-white ">
@@ -47,11 +47,11 @@
                 </tbody>
         </table>
         @else
-            <p class="mb-6 text-l text-center font-semibold font-sans text-dark uppercase dark:text-white mt-5 w-full">No tienes ordenes pendientes</p>
+            <p class="mb-6 text-2xl text-center font-light font-sans text-black  dark:text-white mt-5 w-full">No tienes órdenes de productos pendientes</p>
         @endif
             
 
-        <h2 class="mb-6 text-3xl text-center font-semibold font-sans text-dark uppercase dark:text-white mt-5 w-full">Talleres Solicitados</h2>
+        <h2 class="text-green-900 font-sans font-black text-4xl pt-4 pb-4 flex justify-center">Talleres Solicitados</h2>
 
         @if(!$mis_inscritos->isEmpty())
         <table class="min-w-full bg-white shadow-1xl rounded-lg overflow-hidden font-sans">
@@ -97,10 +97,10 @@
                     </tbody>
         </table>
         @else
-        <p class="mb-6 text-l text-center font-semibold font-sans text-dark uppercase dark:text-white mt-5 w-full">No tienes solicitudes de talleres pendientes</p>
+        <p class="mb-6 text-2xl text-center font-light font-sans text-black  dark:text-white mt-5 w-full">No tienes solicitudes de talleres pendientes</p>
         @endif
 
-        <h2 class="mb-6 text-3xl text-center font-semibold font-sans text-dark uppercase dark:text-white mt-5 w-full">Servicios Solicitados</h2>
+        <h2 class="text-green-900 font-sans font-black text-4xl pt-4 pb-4 flex justify-center">Servicios Solicitados</h2>
 
         @if(!$mis_solicitudes->isEmpty())
         <table class="min-w-full bg-white shadow-1xl rounded-lg overflow-hidden font-sans">
@@ -146,7 +146,7 @@
                     </tbody>
         </table>
         @else
-        <p class="mb-6 text-l text-center font-semibold font-sans text-dark uppercase dark:text-white mt-5 w-full">No tienes solicitudes de talleres pendientes</p>
+        <p class="mb-6 text-2xl text-center font-light font-sans text-black  dark:text-white mt-5 w-full">No tienes solicitudes de servicios pendientes</p>
         @endif
 </div>
 @endsection

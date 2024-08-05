@@ -187,13 +187,21 @@ class ServiciosController extends Controller
                 '_ns'       => 'required',
                 '_descS'    => 'required',
                 '_costoS'   => 'required|numeric',
-            ]);
+                '_notaS'    => 'required'],
+
+                [
+                    '_ns'       => 'El campo de nombre de servicio es obligatorio.',
+                    '_descS'    => 'El campo de resumen es obligatorio.',
+                    '_costoS'   => 'El campo de costo es obligatorio.',
+                    '_notaS'    => 'El campo de descripción es obligatorio.',
+                ],
+            );
             // Insertar el servicio
             $servicio = new Publicaciones();
             $servicio->nombre = $validator['_ns'];
             $servicio->descripcion = $validator['_descS'];
             $servicio->costo = $validator['_costoS'];
-            $servicio->notas = $request['_notaS'];
+            $servicio->notas = $validator['_notaS'];
             $servicio->fecha_publicacion = Carbon::now()->toDateString();
             $servicio->id_usuario = $usuarioId;
             $servicio->id_tipo = 3;
@@ -267,8 +275,15 @@ class ServiciosController extends Controller
                 '_ns'       => 'required',
                 '_descS'    => 'required',
                 '_costoS'   => 'required|numeric',
-                '_notaS'    => 'nullable',
+                '_notaS'    => 'required',
                 '_contS'    => 'nullable',
+            ],
+        
+            [
+                '_ns'       => 'El campo de nombre de servicio es obligatorio.',
+                '_descS'    => 'El campo de resumen es obligatorio.',
+                '_costoS'   => 'El campo de costo es obligatorio.',
+                '_notaS'    => 'El campo de descripción es obligatorio.',
             ]);
 
             $servicio->nombre = $validator['_ns'];
