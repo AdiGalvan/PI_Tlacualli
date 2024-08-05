@@ -155,6 +155,8 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::put('/desactivarServicio/{id}', [ServiciosController::class, 'offStatus'])->name('desactivarServicio');
 
+    Route::put('/activarServicio/{id}', [ServiciosController::class, 'onStatus'])->name('activarServicio');
+
     //-------------------------------------------------------------------------------------//
     //SOLICITUDES
     Route::get('/mis_solicitudes', [SolicitudesController::class, 'indexMisSolicitudes'])->name('mis_solicitudes');

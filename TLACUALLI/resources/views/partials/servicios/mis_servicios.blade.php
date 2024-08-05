@@ -42,7 +42,7 @@
                 <th>Descripción</th>
                 {{-- <th>Tipos de servicio</th> --}}
                 <th>Costo</th>
-                <th>Fecha</th>
+                <th>Fecha de publicación</th>
                 <th>Acciones</th>
             </tr>
         </thead>
@@ -64,11 +64,19 @@
                 <td>{{ $servicio->fecha_publicacion }}</td>
                 <td>
                     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#actualizar_servicio{{ $servicio->id }}">Editar</button> 
+                    @if($servicio->estatus==1)
                     <form action="{{ route('desactivarServicio', $servicio->id) }}" method="POST" style="display: inline;">
                         @csrf
                         @method ('PUT')
-                        <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
+                        <button type="submit" class="btn btn-danger btn-sm">Desactivar</button>
                     </form>
+                    @else
+                    <form action="{{ route('activarServicio', $servicio->id) }}" method="POST" style="display: inline;">
+                        @csrf
+                        @method ('PUT')
+                        <button type="submit" class="btn btn-danger btn-sm">Activar</button>
+                    </form>
+                    @endif
                 </td>
             </tr>
             @include('partials.servicios.registrar_servicio', ['servicio' => $servicio])
