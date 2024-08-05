@@ -15,12 +15,12 @@
                 <div class="row">
                     <div class="col">
                         <div class="ps-lg-8 mt-6 mt-lg-0">
-                            <h2 class="mb-1 h1">{{ $servicio->nombre }}</h2>
-                            <span class="fw-bold text-dark">{{ $servicio->usuario->nombre_usuario }}</span>
+                            <h2 class="mb-1 h1 font-sans font-black text-green-900 text-2x1 text-center">{{ $servicio->nombre }}</h2>
+                            <span class="font-sans font-bold text-2xl">{{ $servicio->usuario->nombre_usuario }}</span>
                             <table class="table table-borderless">
                                 <tbody>
                                     <tr>
-                                        <td>Sobre este servicio:</td>
+                                        <td class="text-2x1 font-sans font-normal">Sobre este servicio:</td>
                                     </tr>
                                     <tr>
                                         @if ($servicio->notas)
@@ -35,15 +35,15 @@
                             <form method="POST" action="{{ route('registroSolicitud', [$servicio->id,$servicio->id_usuario]) }}">
                                 @csrf
                                 <div class="mb-3">
-                                    <label for="fecha_servicio" class="form-label">Fecha de Servicio</label>
-                                    <input type="date" class="form-control" id="fecha_servicio" name="fecha_servicio" required>
+                                    <label for="fecha_servicio" class="text-green-900 font-sans font-bold pb-2 text-base">Fecha de Servicio</label>
+                                    <input type="date" class="font-sans font-light px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 w-full" id="fecha_servicio" name="fecha_servicio" required>
                                 </div>
                                 <div class="mb-3">
-                                    <label for="instrucciones" class="form-label">Instrucciones (opcional)</label>
-                                    <textarea class="form-control" id="instrucciones" name="instrucciones" rows="3" required></textarea>
+                                    <label for="instrucciones" class="text-green-900 font-sans font-bold pb-2 text-base">Instrucciones (opcional)</label>
+                                    <textarea class="font-sans font-light px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 w-full" id="instrucciones" name="instrucciones" rows="3" required></textarea>
                                 </div>
-                                <div class="col-lg-4 col-md-5 col-6 d-grid">
-                                    <button type="submit" class="text-white bg-green-800 hover:bg-green-900 focus:ring-4 focus:outline-none focus:ring-green-700 font-medium rounded-lg text-sm px-4 py-2 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                                <div class="flex justify-end">
+                                    <button type="submit" class="bg-gradient-to-r from-green-500 to-green-800 hover:from-green-600 hover:to-green-800 text-white px-4 py-2 rounded-lg mr-2 font-semibold font-sans">
                                         <i class="bi bi-cart-check"></i> Solicitar servicio 
                                     </button>
                                 </div>
