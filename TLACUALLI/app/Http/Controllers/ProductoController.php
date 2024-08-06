@@ -55,7 +55,7 @@ class ProductoController extends Controller
             ->find($usuarioId);
         $idRol = $usuario->roles->id;
 
-        if (Auth::check() and $idRol == 8) {
+        if (Auth::check() and ($idRol == 3 || $idRol == 4 || $idRol == 7)) {
             //Obtiene todos los talleres relacionados a este usuario
             $productos = Producto::where('proveedor_id', $usuarioId)
                 ->with('usuario')
@@ -86,21 +86,23 @@ class ProductoController extends Controller
         $usuarioId = Auth::id();
 
         if (Auth::check()) {
-            $validator = $request->validate([
-                '_np'       => 'required',
-                '_descP'    => 'required',
-                '_costoP'   => 'required|numeric',
-                '_stockP'   => 'required|numeric',
-                '_contP'    => 'required|file|max:2048',
-            ],
-            [
-                '_np' => 'El campo de nombre es obligatorio',
-                '_descP' => 'El campo de descripción es obligatorio',
-                '_costoP' => 'El campo de costo es obligatorio',
-                '_stockP' => 'El campo de stock es obligatorio',
-                '_contP' => 'El campo de imagen es obligatorio',
-               
-            ]);
+            $validator = $request->validate(
+                [
+                    '_np'       => 'required',
+                    '_descP'    => 'required',
+                    '_costoP'   => 'required|numeric',
+                    '_stockP'   => 'required|numeric',
+                    '_contP'    => 'required|file|max:2048',
+                ],
+                [
+                    '_np' => 'El campo de nombre es obligatorio',
+                    '_descP' => 'El campo de descripción es obligatorio',
+                    '_costoP' => 'El campo de costo es obligatorio',
+                    '_stockP' => 'El campo de stock es obligatorio',
+                    '_contP' => 'El campo de imagen es obligatorio',
+
+                ]
+            );
 
             // Insert de productos
             $producto = new Producto();
