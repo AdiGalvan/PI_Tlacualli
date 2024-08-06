@@ -10,7 +10,7 @@
                 <div class="w-full max-w-lg">
                     {{-- @include('partials.productos.buscar') --}}
                 </div>
-                @if ($usuario->roles->id == 8)
+                @if ($usuario->roles->id == 3 || $usuario->roles->id == 4 || $usuario->roles->id == 7)
                     <div class="float-right col-2 justify-content-end">
                         <a href="{{ route('mis_productos') }}" class="bg-gradient-to-r from-green-500 to-green-800 text-white font-sans font-bold px-4 py-2 rounded-md text-md">Mis productos</a>
                     </div>
@@ -51,7 +51,19 @@
                             <div class="flex flex-col justify-between shadow-lg">
                                 <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow-lg dark:bg-gray-800 dark:border-gray-700">
                                     <a href="#">
-                                        <img src="{{ asset('storage/' . $producto->contenido) }}" alt="" class="w-full h-48 object-cover rounded-t-lg">
+                                        @if($producto->contenido)
+                                            @php
+                                                $imagenes = json_decode($producto->contenido, true);
+                                                $primeraImagen = $imagenes[0] ?? null;
+                                            @endphp
+                                            @if($primeraImagen)
+                                                <img src="{{ asset('storage/' . $primeraImagen) }}" alt="{{ $producto->nombre }}" class="w-full h-48 object-cover rounded-t-lg">
+                                            @else
+                                                No disponible
+                                            @endif
+                                        @else
+                                            No disponible
+                                        @endif
                                     </a>
                                     <div class="px-4 py-3">
                                         <a href="#">
@@ -127,26 +139,15 @@
                 <div id="default-carousel" class="relative w-full px-3" data-carousel="slide">
                     <!-- Carousel wrapper -->
                     <div class="relative h-56 overflow-hidden md:h-96">
-                        <!-- Item 1 -->
+                         @php
+                            $imagenes = json_decode($producto->contenido, true); // Asumiendo que el JSON es un array de URLs
+                        @endphp
+                        @foreach ($imagenes as $imagen)
+                        <!-- Carousel items -->
                         <div class="hidden duration-700 ease-in-out" data-carousel-item>
-                            <img src="https://www.biojal.com/assets/images/-organicos-676x462.jpg" class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
+                            <img src="{{ asset('storage/' . $imagen) }}" class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="Imagen del producto">
                         </div>
-                        <!-- Item 2 -->
-                        <div class="hidden duration-700 ease-in-out" data-carousel-item>
-                            <img src="https://www.biojal.com/assets/images/-organicos-676x462.jpg" class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
-                        </div>
-                        <!-- Item 3 -->
-                        <div class="hidden duration-700 ease-in-out" data-carousel-item>
-                            <img src="https://www.biojal.com/assets/images/-organicos-676x462.jpg" class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
-                        </div>
-                        <!-- Item 4 -->
-                        <div class="hidden duration-700 ease-in-out" data-carousel-item>
-                            <img src="https://www.biojal.com/assets/images/-organicos-676x462.jpg" class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
-                        </div>
-                        <!-- Item 5 -->
-                        <div class="hidden duration-700 ease-in-out" data-carousel-item>
-                            <img src="https://www.biojal.com/assets/images/-organicos-676x462.jpg" class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
-                        </div>
+                        @endforeach
                     </div>
                 </div>    
               </div>
@@ -198,9 +199,22 @@
                                 
                                 <div class="mt-3 row justify-content-start g-2 align-items-center">
                                     <div class="col-lg-4 col-md-5 col-6 d-grid">
+                                        @auth
                                         <div class="flex items-center p-4 md:p-5 border-t border-gray-200 rounded-b dark:border-gray-600">
                                             <button type="submit" class="bg-gradient-to-r from-green-500 to-green-800 text-white font-sans font-bold px-4 py-2 rounded-md text-md">Agregar</button>
                                         </div>
+                                        @else
+                                        <button data-popover-target="popover-right{{ $producto->id }}" data-popover-placement="right" type="button" class="bg-gradient-to-r from-green-500 to-green-800 text-white font-sans font-bold px-4 py-2 rounded-md text-md">Agregar</button>
+                                        <div data-popover id="popover-right{{ $producto->id }}" role="tooltip" class="absolute z-10 invisible inline-block w-64 text-sm text-gray-500 transition-opacity duration-300 bg-white border border-gray-200 rounded-lg shadow-sm opacity-0 dark:text-gray-400 dark:border-gray-600 dark:bg-gray-800">
+                                            <div class="px-3 py-2 bg-green-900 border-b border-green-200 rounded-t-lg dark:border-green-600 dark:bg-green-700 ">
+                                                <h3 class=" text-white dark:text-white font-sans font-bold text-base text-center">Inicia sesión</h3>
+                                            </div>
+                                            <div class="px-3 py-2">
+                                                <p class="font-sans font-light text-base text-center text-black">Recuerda iniciar sesión para poder agregar productos.</p>
+                                            </div>
+                                            <div data-popper-arrow></div>
+                                        </div>
+                                        @endguest
                                     </div>
                                 </div>
                             </form>

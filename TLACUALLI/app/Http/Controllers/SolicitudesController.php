@@ -29,27 +29,26 @@ class SolicitudesController extends Controller
         }
     }
 
-    public function store(Request $request)
+    public function store(Request $request, $servicioId, $proveedorId)
     {
         $usuarioId = Auth::id();
 
         if (Auth::check()) {
             $validator = $request->validate([
-                '_descS'       => 'required',
+                'fecha_servicio' => 'required|date',
+                'instrucciones'  => 'string',
             ]);
-
-            $servicioId = $request->input('servicio_id');
-            $proveedorId = $request->input('proveedor_id');
 
             $solicitud = new Solicitudes();
             $solicitud->id_cliente = $usuarioId;
-            $solicitud->id_proveedor = $proveedorId;
-            $solicitud->descripcion = $validator['_descS'];
-            $solicitud->id_publicacion = $servicioId;
+            $solicitud->id_proveedor = $proveedorId; // ID del proveedor desde la ruta
+            $solicitud->descripcion = $validator['instrucciones']; // Descripción desde el formulario
+            $solicitud->id_publicacion = $servicioId; // ID del servicio desde la ruta
             $solicitud->id_tipo = 2;
-            $solicitud->fecha = Carbon::now();
+            $solicitud->fecha = $validator['fecha_servicio']; // Fecha del servicio desde el formulario
             $solicitud->estatus = 0;
             $solicitud->save();
+
             return redirect()->back()->with('success', 'Servicio solicitado exitosamente.');
         } else {
             abort(404, 'Página no encontrada');

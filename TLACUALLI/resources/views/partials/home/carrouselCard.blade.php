@@ -8,7 +8,7 @@
                     </div>
                         <p class="text-xl font-thin text-gray-700 text-center font-sans mt-3">¿Te gustaría aprender más acerca del compostaje? Puedes visitar nuestra sección de publicaciones.</p>
                 </div>
-                <div class="flex overflow-x-auto space-x-4">
+                <div class="flex overflow-x-auto space-x-4 justify-center">
                     <div class="flex-none w-96 p-2">
                         <div class="bg-white border border-gray-300 rounded-lg shadow-2xl">
                             <img class="w-full h-48 object-cover rounded-t-lg" src="https://horacioguerra.com/wp-content/uploads/2023/10/para-que-sirve-la-composta.jpg" alt="">
@@ -16,7 +16,10 @@
                                 <a href="#">
                                 <h5 class="mb-2 text-xl font-black font-sans text-yellow-400 no-underline">¿Por qué es tan importante la composta?</h5>
                                 </a>
-                                <p class="mb-3 font-sans text-sm text-black">Sirve como abono para plantas, jardines y áreas verdes</p>
+                                <p class="mb-3 font-sans  font-light text-base text-black text-justify">Sirve como abono para plantas, jardines y áreas verdes.</p>
+                                <br>
+                                <br>
+                                <br>
                             </div>
                         </div>
                     </div>
@@ -25,9 +28,12 @@
                             <img class="w-full h-48 object-cover  rounded-t-lg" src="https://www.ecobutik.com/cdn/shop/articles/3380x300_2_380x.png?v=1495740074" alt=""> 
                             <div class="p-5">
                                 <a href="#">
-                                    <h5 class="mb-2 text-xl font-black font-sans text-yellow-400 no-underline">¿Por qué es tan importante la composta?</h5>
+                                    <h5 class="mb-2 text-xl font-black font-sans text-yellow-400 no-underline">Lombricomposta</h5>
                                 </a>
-                                <p class="mb-3 font-sans text-sm text-black">Sirve como abono para plantas, jardines y áreas verdes</p>
+                                <p class="mb-3 font-sans font-light text-sm text-black text-justify">La lombricomposta es un método de compostaje que utiliza lombrices para descomponer materia orgánica, convirtiéndola en un abono natural y altamente nutritivo para plantas..</p>
+                            <br>
+                            <br>
+                          
                             </div>
                         </div>
                     </div>
@@ -36,14 +42,13 @@
                             <img class="w-full h-48 object-cover  rounded-t-lg" src="https://www.deraizchile.cl/cdn/shop/articles/Persona_compostando.jpg?v=1699745775" alt=""> 
                             <div class="p-5">
                                 <a href="#">
-                                <h5 class="mb-2 text-xl font-black font-sans text-yellow-400 no-underline">¿Por qué es tan importante la composta?</h5>
+                                <h5 class="mb-2 text-xl font-black font-sans text-yellow-400 no-underline">Huertos Urbanos</h5>
                                 </a>
-                                <p class="mb-3 font-sans text-sm text-black">Sirve como abono para plantas, jardines y áreas verdes</p>
+                                <p class="mb-3 font-sans font-light text-sm text-black text-justify">Los huertos urbanos son espacios dedicados al cultivo de plantas y alimentos dentro de entornos urbanos, como ciudades o áreas metropolitanas. Estos huertos pueden encontrarse en diversos lugares como balcones, terrazas, jardines comunitarios, techos de edificios y espacios públicos.</p>
                             </div>
+                            
                         </div>
-                    </div>
-                </div>
-                <div class="text-start mt-3">
+                        <div class="text-end mt-3 ">
                     <a href="/publicaciones" class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-gradient-to-r from-green-500 to-green-800 rounded-lg hover:bg-green-800 no-underline mt-3">
                         Más publicaciones
                         <svg class="rtl:rotate-180 w-3.5 h-3.5 ml-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
@@ -51,6 +56,10 @@
                         </svg>
                     </a>
                 </div>
+                    </div>
+                    
+                </div>
+                
             </div>
         </div>
     </div>

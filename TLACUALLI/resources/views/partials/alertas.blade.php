@@ -169,7 +169,7 @@
     @endif
 @endforeach
 
-@if($errors->first('_ca') || $errors->first('_ni') || $errors->first('_cp') || $errors->first('_edo') || $errors->first('_ne') || $errors->first('_col') || $errors->first('_mun')||$errors->first('_ca_fiscal')||$errors->first('_ni_fiscal')||$errors->first('_cp_fiscal')||$errors->first('_edo_fiscal')||$errors->first('_ne_fiscal')||$errors->first('_col_fiscal')||$errors->first('_mun_fiscal'))
+{{-- @if($errors->first('_ca') || $errors->first('_ni') || $errors->first('_cp') || $errors->first('_edo') || $errors->first('_ne') || $errors->first('_col') || $errors->first('_mun')||$errors->first('_ca_fiscal')||$errors->first('_ni_fiscal')||$errors->first('_cp_fiscal')||$errors->first('_edo_fiscal')||$errors->first('_ne_fiscal')||$errors->first('_col_fiscal')||$errors->first('_mun_fiscal'))
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             var notyf = new Notyf({
@@ -196,6 +196,38 @@
             notyf.open({
                 type: 'error',
                 message: 'Para guardar una dirección, todos los campos son requeridos.',
+            });
+        });
+    </script>
+@endif --}}
+
+@if ($errors->any())
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var notyf = new Notyf({
+                duration: 5000,
+                position: {
+                    x: 'right',
+                    y: 'bottom',
+                },
+                dismissible: true,
+                types: [
+                    {
+                        type: 'error',
+                        className: 'notyf__toast--custom',
+                        background: colors_notyf.error,
+                        icon: {
+                            className: 'material-icons notyf__icon-custom',
+                            tagName: 'i',
+                            text: 'priority_high'
+                        }
+                    }
+                ]
+            });
+
+            notyf.open({
+                type: 'error',
+                message: 'Existe uno o más errores en tu formulario, favor de revisarlo.',
             });
         });
     </script>

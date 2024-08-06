@@ -17,6 +17,7 @@ class CreateUsuariosTable extends Migration
             $table->string('nombre', 50)->nullable();
             $table->string('apellido_paterno', 50)->nullable();
             $table->string('apellido_materno', 50)->nullable();
+            $table->integer('tipo_persona')->nullable();
             $table->foreignId('id_direccion_envios')->nullable()->constrained('direcciones');
             $table->string('RFC', 13)->nullable();
             $table->foreignId('id_direccion_fiscal')->nullable()->constrained('direcciones');
@@ -39,6 +40,7 @@ class CreateUsuariosTable extends Migration
                 'nombre' => 'Colectivo nanakatl',
                 'id_sexo' => 3,
                 'id_rol' => 3,
+                'tipo_persona' => 2,
             ],
             [
                 'nombre_usuario' => 'Hagamos Composta',
@@ -48,6 +50,7 @@ class CreateUsuariosTable extends Migration
                 'nombre' => 'Hagamos Composta',
                 'id_sexo' => 3,
                 'id_rol' => 3,
+                'tipo_persona' => 2,
             ]
         ]);
     }

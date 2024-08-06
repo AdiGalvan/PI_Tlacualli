@@ -42,7 +42,6 @@ class ServiciosController extends Controller
             ->where('estatus', true)
             ->with('usuario')
             ->get();
-
         return view('partials.servicios.servicios', compact('servicios', 'usuario'));
     }
 
@@ -61,7 +60,6 @@ class ServiciosController extends Controller
         }
         //Busca todas las publicaciones de tipo taller, activas y con los datos del publicador
         $servicios = Publicaciones::where('id_tipo', 3)
-            ->where('estatus', true)
             ->where('id_usuario', Auth::id())
             ->with('usuario')
             ->get();
@@ -189,13 +187,21 @@ class ServiciosController extends Controller
                 '_ns'       => 'required',
                 '_descS'    => 'required',
                 '_costoS'   => 'required|numeric',
-            ]);
+                '_notaS'    => 'required'],
+
+                [
+                    '_ns'       => 'El campo de nombre de servicio es obligatorio.',
+                    '_descS'    => 'El campo de resumen es obligatorio.',
+                    '_costoS'   => 'El campo de costo es obligatorio.',
+                    '_notaS'    => 'El campo de descripción es obligatorio.',
+                ],
+            );
             // Insertar el servicio
             $servicio = new Publicaciones();
             $servicio->nombre = $validator['_ns'];
             $servicio->descripcion = $validator['_descS'];
             $servicio->costo = $validator['_costoS'];
-            $servicio->notas = $request['_notaS'];
+            $servicio->notas = $validator['_notaS'];
             $servicio->fecha_publicacion = Carbon::now()->toDateString();
             $servicio->id_usuario = $usuarioId;
             $servicio->id_tipo = 3;
@@ -203,22 +209,7 @@ class ServiciosController extends Controller
             $servicio->contenido = '';
             $servicio->save(); // Guardar primero para obtener el ID
 
-
-            if ($request->hasFile('_contS')) {
-                $file = $request->file('_contS');
-                $filename = $usuarioId . '_3_imagenservicio_' . $servicio->id . '.' . $file->getClientOriginalExtension();
-                $filePath = $file->storeAs('uploads', $filename, 'public');
-
-                // Actualizar la publicación con la ruta del archivo
-                $servicio->contenido = $filePath;
-                $servicio->save(); // Guardar nuevamente para actualizar la ruta
-            } else {
-                // Si falla la subida, eliminar la publicación creada
-                $servicio->delete();
-                return redirect()->back()->with('success', 'Error al subir el archivo.');
-            }
-
-            return redirect()->back()->with('success', 'Serv creada exitosamente.');
+            return redirect()->back()->with('success', 'Servicio registrado exitosamente.');
         } else {
             abort(404, 'Página no encontrada');
         }
@@ -284,8 +275,15 @@ class ServiciosController extends Controller
                 '_ns'       => 'required',
                 '_descS'    => 'required',
                 '_costoS'   => 'required|numeric',
-                '_notaS'    => 'nullable',
+                '_notaS'    => 'required',
                 '_contS'    => 'nullable',
+            ],
+        
+            [
+                '_ns'       => 'El campo de nombre de servicio es obligatorio.',
+                '_descS'    => 'El campo de resumen es obligatorio.',
+                '_costoS'   => 'El campo de costo es obligatorio.',
+                '_notaS'    => 'El campo de descripción es obligatorio.',
             ]);
 
             $servicio->nombre = $validator['_ns'];
@@ -293,24 +291,6 @@ class ServiciosController extends Controller
             $servicio->costo = $validator['_costoS'];
             $servicio->notas = $validator['_notaS'];
             $servicio->updated_at = Carbon::now()->toDateString();
-
-            // Subir el archivo si se proporciona uno nuevo
-            if ($request->hasFile('_contS')) {
-                $file = $request->file('_contS');
-                $filename = $servicio->id_usuario . '_2_imagenservicio_' . $servicio->id . '.' . $file->getClientOriginalExtension();
-                $filePath = $file->storeAs('uploads', $filename, 'public');
-
-                // Borra la imagen antigua si existe
-                if ($servicio->contenido) {
-                    Storage::disk('public')->delete($servicio->contenido);
-                }
-
-                $servicio->contenido = $filePath;
-            } else {
-                // Mantener la imagen antigua si no se subió una nueva
-                $servicio->contenido = $request->input('_contS');
-            }
-
             $servicio->save();
 
             return redirect()->back()->with('success', 'Servicio actualizado exitosamente.');
@@ -352,7 +332,21 @@ class ServiciosController extends Controller
             $servicio->updated_at = Carbon::now();
             $servicio->save();
 
-            return redirect()->back();
+            return redirect()->back()->with('off', 'Servicio desactivado exitosamente.');
+        } else {
+            abort(400, 'Servicio no encontrado');
+        }
+    }
+
+    public function onStatus($id)
+    {
+        if (Auth::check()) {
+            $servicio = Publicaciones::findOrFail($id);
+            $servicio->estatus = 1;
+            $servicio->updated_at = Carbon::now();
+            $servicio->save();
+
+            return redirect()->back()->with('on', 'Servicio activado exitosamente.');
         } else {
             abort(400, 'Servicio no encontrado');
         }

@@ -10,12 +10,12 @@ class Producto extends Model
     use HasFactory;
 
     protected $fillable = [
-        'nombre', 
-        'descripcion', 
-        'costo', 
+        'nombre',
+        'descripcion',
+        'costo',
         'contenido',
-        'stock', 
-        'estatus', 
+        'stock',
+        'estatus',
         'proveedor_id'
     ];
 
@@ -24,6 +24,8 @@ class Producto extends Model
         return $this->hasOne(Usuarios::class, 'id', 'id_usuario');
     }
 
-
-
+    public function proveedor()
+    {
+        return $this->hasOne(Usuarios::class, 'id', 'proveedor_id');
+    }
 }

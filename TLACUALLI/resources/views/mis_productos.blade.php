@@ -232,7 +232,15 @@
             <td class="px-6 py-4 text-base font-semibold text-center">{{ $producto->stock }}</td>
             <td class="px-6 py-4 flex items-center justify-center">
                 @if($producto->contenido)
-                    <img src="{{ asset('storage/' . $producto->contenido) }}" alt="{{ $producto->nombre }}" class="w-24 h-24 object-cover">
+                    @php
+                        $imagenes = json_decode($producto->contenido, true);
+                        $primeraImagen = $imagenes[0] ?? null;
+                    @endphp
+                    @if($primeraImagen)
+                        <img src="{{ asset('storage/' . $primeraImagen) }}" alt="{{ $producto->nombre }}" class="w-24 h-24 object-cover">
+                    @else
+                        No disponible
+                    @endif
                 @else
                     No disponible
                 @endif

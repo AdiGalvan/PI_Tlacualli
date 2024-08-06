@@ -33,7 +33,7 @@
     
     <div class="row mb-4 mt-5">
         <div class="col-12 text-center">
-            <h2>Preguntas Frecuentes</h2>
+            <h2>Preguntas Frecuentes </h2>
         </div>
     </div>
 
@@ -170,12 +170,6 @@
             <h2 class="text-4xl font-black text-yellow-500 dark:text-white font-ui-sans-serif">Publicaciones</h2>
         </div>
     </div> -->
-    @auth
-        Autenticado
-        @endauth
-        @guest
-        No autenticado
-        @endguest
 
 
     @include('partials.home.carrouselCard')

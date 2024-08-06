@@ -18,6 +18,8 @@ use App\Http\Controllers\NotificacionesController;
 
 use App\Http\Controllers\SolicitudesController;
 
+use App\Http\Controllers\HistorialController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -155,11 +157,19 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::put('/desactivarServicio/{id}', [ServiciosController::class, 'offStatus'])->name('desactivarServicio');
 
+    Route::put('/activarServicio/{id}', [ServiciosController::class, 'onStatus'])->name('activarServicio');
+
     //-------------------------------------------------------------------------------------//
     //SOLICITUDES
     Route::get('/mis_solicitudes', [SolicitudesController::class, 'indexMisSolicitudes'])->name('mis_solicitudes');
 
-    Route::post('/registrarSolicitud', [SolicitudesController::class, 'store'])->name('registroSolicitud');
+    Route::post('/registrarSolicitud/{servicioId}/{proveedorId}', [SolicitudesController::class, 'store'])->name('registroSolicitud');
+
+    // Ruta para ver notificaciones
+    Route::get('/historial', [HistorialController::class, 'index'])->name('historial');
+    Route::put('/cancelar-orden/{id}', [HistorialController::class, 'cancelar_orden'])->name('cancelarOrden');
+    Route::put('/cancelar-taller/{id}', [HistorialController::class, 'cancelar_taller'])->name('cancelarRelacion');
+    Route::put('/cancelar-solicitud/{id}', [HistorialController::class, 'cancelar_servicio'])->name('cancelarServicio');
 });
 
 //RUTAS QUE NO NECESITAN AUTENTICACIÓN

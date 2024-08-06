@@ -104,12 +104,7 @@
 <div class="mt-5 flex justify-center">
     <div class="w-full lg:w-10/12">  
         <h2 class="text-green-900 font-sans font-black text-4xl text-center">Mis Publicaciones</h2>
-            @auth
-                Autenticado
-                @endauth
-                @guest
-                No autenticado
-            @endguest
+        
         <div class="flex justify-end space-x-4 px-5 mb-6">
             <button type="button" class="bg-gradient-to-r from-gray-500 to-gray-800 text-white font-sans font-bold px-4 py-2 rounded-md text-md" onclick="window.location.href='{{ url('/publicaciones') }}'">Regresar</button>
             @auth

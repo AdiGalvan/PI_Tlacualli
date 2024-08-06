@@ -3,19 +3,12 @@
 @section('contenido')
 
 <p></p>
-<center><h1>Mis servicios</h1></center>
+<h1 class="text-green-900 font-sans font-black text-4xl pt-4 pb-4 flex justify-center"> Mis Servicios</h1>
 <p></p>
-<div class="container mt-3">
-    <form class="d-flex" role="search" action="" method="GET">
-        <input class="form-control me-2" type="text" name="cliente" placeholder="Buscar por Cliente" aria-label="Buscar">
-        {{-- <input class="form-control me-2" type="text" name="proveedor" placeholder="Buscar por Proveedor" aria-label="Buscar"> --}}
-        <input class="form-control me-2" type="date" name="fecha" placeholder="Buscar por Fecha" aria-label="Buscar">
-        <button class="btn btn-success" type="submit">Buscar</button>
-    </form>
-</div>
+
 
 <div class="container mt-4 d-flex justify-content-end">
-    <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#registrar_servicio">Registrar servicio</button>
+    <button type="button" class="bg-gradient-to-r from-green-500 to-green-800 hover:bg-green-600 text-white px-4 py-2 rounded-md"" data-bs-toggle="modal" data-bs-target="#registrar_servicio">Registrar servicio</button>
 </div>
 
 <div class="container mt-3">
@@ -33,42 +26,51 @@
     </div>
     @endif
 
-    <table class="table table-striped">
-        <thead>
+    <div class="md:container md:mx-auto mb-20">
+    <table class="min-w-full bg-white shadow-2xl rounded-lg overflow-hidden">
+        <thead class="bg-green-900 text-white ">
             <tr>
-                <th>ID</th>
-                <th>Clientes</th>
-                <th>Nombre</th>
-                <th>Descripción</th>
+                <th class="px-6 py-3 text-left text-base">ID</th>
+                <th class="px-6 py-3 text-left text-base">Clientes</th>
+                <th class="px-6 py-3 text-left text-base">Nombre</th>
+                <th class="px-6 py-3 text-left text-base">Descripción</th>
                 {{-- <th>Tipos de servicio</th> --}}
-                <th>Costo</th>
-                <th>Fecha</th>
-                <th>Acciones</th>
+                <th class="px-6 py-3 text-left text-base">Costo</th>
+                <th class="px-6 py-3 text-left text-base">Fecha de publicación</th>
+                <th class="px-6 py-3 text-left text-base">Acciones</th>
             </tr>
         </thead>
         
         <tbody>
             @foreach($servicios as $servicio)
             <tr>
-                <td>{{ $servicio->id }}</td>
-                <td>{{ $servicio->cliente }}</td>
-                <td>{{ $servicio->nombre }}</td>
-                <td>{{ $servicio->descripcion }}</td>
-                <td>
+                <td class="px-6 py-4 text-base font-semibold">{{ $servicio->id }}</td>
+                <td class="px-6 py-4 text-base font-medium">{{ $servicio->cliente }}</td>
+                <td class="px-6 py-4 text-base font-medium">{{ $servicio->nombre }}</td>
+                <td class="px-6 py-4 text-base font-medium">{{ $servicio->descripcion }}</td>
+                <td class="px-6 py-4 text-base font-medium">
                     @if ( $servicio->costo == 0 )
                         Gratuito
                     @else
                         ${{ $servicio->costo }}
                     @endif
                 </td>
-                <td>{{ $servicio->fecha_publicacion }}</td>
-                <td>
-                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#actualizar_servicio{{ $servicio->id }}">Editar</button> 
+                <td class="px-6 py-4 text-base font-medium">{{ $servicio->fecha_publicacion }}</td>
+                <td class="px-6 py-4 text-base font-semibold">
+                    <button type="button" class="bg-gradient-to-r from-green-500 to-green-800 hover:bg-green-600 text-white px-4 py-2 rounded-md" data-bs-toggle="modal" data-bs-target="#actualizar_servicio{{ $servicio->id }}">Editar</button> 
+                    @if($servicio->estatus==1)
                     <form action="{{ route('desactivarServicio', $servicio->id) }}" method="POST" style="display: inline;">
                         @csrf
                         @method ('PUT')
-                        <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
+                        <button type="submit" class="bg-gradient-to-r from-yellow-500 to-yellow-800 hover:bg-yellow-600 text-white px-4 py-2 rounded-md">Desactivar</button>
                     </form>
+                    @else
+                    <form action="{{ route('activarServicio', $servicio->id) }}" method="POST" style="display: inline;">
+                        @csrf
+                        @method ('PUT')
+                        <button type="submit" class="bg-gradient-to-r from-blue-600 to-blue-900 hover:bg-blue-800 text-white px-4 py-2 rounded-md">Activar</button>
+                    </form>
+                    @endif
                 </td>
             </tr>
             @include('partials.servicios.registrar_servicio', ['servicio' => $servicio])
@@ -76,7 +78,7 @@
         </tbody>
     </table>
 </div>
-
+</div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
 
 @include('partials.servicios.registrar_servicio')

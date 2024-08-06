@@ -43,8 +43,11 @@ class NotificacionesController extends Controller
             ->with(['cliente', 'servicio']) // Asegúrate de que esta relación está bien definida en el modelo Solicitud
             ->get();
 
-
-        return view('notificaciones.index', ['mis_ordenes' => $mis_ordenes, 'mis_inscritos' => $mis_inscritos, 'mis_solicitudes' => $mis_solicitudes]);
+        if (Auth::user()->id_rol != 1 && Auth::user()->id_rol != 2) {
+            return view('notificaciones.index', ['mis_ordenes' => $mis_ordenes, 'mis_inscritos' => $mis_inscritos, 'mis_solicitudes' => $mis_solicitudes]);
+        } else {
+            return redirect('/');
+        }
     }
 
     public function concluir_producto($id, $id2)

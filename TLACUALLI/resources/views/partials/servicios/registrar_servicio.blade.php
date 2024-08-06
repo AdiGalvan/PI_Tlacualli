@@ -2,36 +2,37 @@
 <div class="modal fade" id="registrar_servicio" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
-      <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalLabel">Nuevo servicio</h1>
+      <!-- modal header -->
+      <div class="flex justify-center pt-4 pb-2">
+        <h1 class="text-green-900 font-sans font-black text-3xl text-center" id="exampleModalLabel">Nuevo servicio</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
         <form method="POST" action="/registroServicio" id="registroServicio" enctype="multipart/form-data">
           @csrf
           <div class="mb-3">
-            <label class="form-label">Nombre del servicio</label>
-            <input type="text" class="form-control" id="_ns" name="_ns" required>
+            <label class="text-green-900 font-sans font-bold pb-2 text-base">Nombre del servicio</label>
+            <input type="text" class="font-sans font-light px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 w-full" id="_ns" name="_ns" >
+            <p class="text-red-600 font-sans font-bold mt-1">{{ $errors->first('_ns') }}</p>
           </div>
           <div class="mb-3">
-            <label class="form-label">Descripción</label>
-            <input type="text" class="form-control" id="_descS" name="_descS" required>
+            <label class="text-green-900 font-sans font-bold pb-2 text-base">Resumen de servicio</label>
+            <input type="text" class="font-sans font-light px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 w-full" id="_descS" name="_descS" >
+            <p class="text-red-600 font-sans font-bold mt-1">{{ $errors->first('_descS') }}</p>
           </div>
           <div class="mb-3">
-            <label class="form-label">Costo por servicio</label>
-            <input type="number" class="form-control" id="_costoS" name="_costoS" required>
+            <label class="text-green-900 font-sans font-bold pb-2 text-base">Costo por servicio</label>
+            <input type="number" class="font-sans font-light px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 w-full" id="_costoS" name="_costoS" >
+            <p class="text-red-600 font-sans font-bold mt-1">{{ $errors->first('_costoS') }}</p>
           </div>
           <div class="mb-3">
-            <label class="form-label">Nota (opcional)</label>
-            <input type="text" class="form-control" id="_notaS" name="_notaS">
-          </div>
-          <div class="mb-3">
-            <label class="form-label">Contenido (Imagen JPG o PNG)</label>
-            <input type="file" class="form-control" id="_contS" name="_contS" accept="image/jpeg, image/png" required>
-          </div>
+              <label for="_notaS" class="text-green-900 font-sans font-bold pb-2 text-base">Descripción</label>
+              <textarea class="font-sans font-light px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 w-full" id="_notaS" name="_notaS" rows="3"></textarea>
+              <p class="text-red-600 font-sans font-bold mt-1">{{ $errors->first('_notaS') }}</p>
+            </div> 
           <div class="modal-footer">
-            <button type="button" class="btn btn-outline-success" onclick="validarCampos()"><i class="bi bi-check-lg"></i> Agregar</button>
-            <button type="button" class="btn btn-outline-warning" data-bs-dismiss="modal"><i class="bi bi-x-lg"></i> Cancelar</button>
+            <button type="submit" class="bg-gradient-to-r from-green-500 to-green-800 hover:from-green-600 hover:to-green-800 text-white px-4 py-2 rounded-lg mr-2 font-semibold font-sans" onclick="validarCampos()"><i class="bi bi-check-lg"></i> Agregar</button>
+            <button type="button" class="bg-gradient-to-r from-gray-500 to-gray-800 hover:from-gray-600 hover:to-gray-800 text-white px-4 py-2 rounded-lg mr-2 font-semibold font-sans" data-bs-dismiss="modal"><i class="bi bi-x-lg"></i> Cancelar</button>
           </div>
         </form>
       </div>
@@ -42,8 +43,9 @@
 <div class="modal fade" id="actualizar_servicio{{ $servicio->id ?? '' }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
-      <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalLabel">Actualizar servicio</h1>
+      <!-- modal header -->
+      <div class="flex justify-center pt-4 pb-2">
+        <h1 class="text-green-900 font-sans font-black text-2xl text-center" id="exampleModalLabel">Actualizar servicio</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
@@ -51,37 +53,28 @@
           @csrf
           @method('PUT')
           <div class="mb-3">
-            <label class="form-label">Nombre del servicio</label>
-            <input type="text" class="form-control" id="_ns" name="_ns" required value="{{ !empty($servicio->nombre) ? $servicio->nombre : '' }}">
+            <label class="text-green-900 font-sans font-bold pb-2 text-base">Nombre del servicio</label>
+            <input type="text" class="font-sans font-light px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 w-full" id="_ns" name="_ns"  value="{{ !empty($servicio->nombre) ? $servicio->nombre : '' }}">
+            <p class="text-red-600 font-sans font-bold mt-1">{{ $errors->first('_ns') }}</p>
           </div>
           <div class="mb-3">
-            <label class="form-label">Descripción</label>
-            <input type="text" class="form-control" id="_descS" name="_descS" required value="{{ !empty($servicio->descripcion) ? $servicio->descripcion : '' }}">
+            <label class="text-green-900 font-sans font-bold pb-2 text-base">Resumen de servicio</label>
+            <input type="text" class="font-sans font-light px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 w-full" id="_descS" name="_descS"  value="{{ !empty($servicio->descripcion) ? $servicio->descripcion : '' }}">
+            <p class="text-red-600 font-sans font-bold mt-1">{{ $errors->first('_descS') }}</p>
           </div>
           <div class="mb-3">
-            <label class="form-label">Costo por servicio</label>
-            <input type="number" class="form-control" id="_costoS" name="_costoS" required value="{{ !empty($servicio->costo) ? $servicio->costo : '' }}">
+            <label class="text-green-900 font-sans font-bold pb-2 text-base">Costo por servicio</label>
+            <input type="number" class="font-sans font-light px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 w-full" id="_costoS" name="_costoS"  value="{{ !empty($servicio->costo) ? $servicio->costo : '' }}">
+            <p class="text-red-600 font-sans font-bold mt-1">{{ $errors->first('_costoS') }}</p>
           </div>
           <div class="mb-3">
-            <label class="form-label">Nota (opcional)</label>
-            <input type="text" class="form-control" id="_notaS" name="_notaS" value="{{ !empty($servicio->nota) ? $servicio->nota : '' }}">
-          </div>
-          <div class="mb-3">
-            <label class="form-label">Contenido (Imagen JPG o PNG)</label>
-            <!-- Mostrar la imagen actual -->
-            @if (!empty($servicio->contenido))
-              <div class="mb-3">
-                <img src="{{ asset('storage/' . $servicio->contenido) }}" alt="Imagen del servicio" class="img-fluid" style="max-height: 200px;">
-              </div>
-              <!-- Campo oculto para enviar el nombre de la imagen existente -->
-              <input type="hidden" name="_contS" value="{{ $servicio->contenido }}">
-            @endif
-            <!-- Campo para subir una nueva imagen -->
-            <input type="file" class="form-control" id="_contS" name="_contS" accept="image/jpeg, image/png">
-          </div>          
+              <label for="_notaS" class="text-green-900 font-sans font-bold pb-2 text-base">Descripción</label>
+              <textarea class="font-sans font-light px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 w-full" id="_notaS" name="_notaS" rows="3">{{ !empty($servicio->notas) ? $servicio->notas : '' }}</textarea>
+              <p class="text-red-600 font-sans font-bold mt-1">{{ $errors->first('_notaS') }}</p>
+            </div>        
           <div class="modal-footer">
-            <button type="submit" class="btn btn-outline-success"><i class="bi bi-check-lg"></i> Agregar</button>
-            <button type="button" class="btn btn-outline-warning" data-bs-dismiss="modal"><i class="bi bi-x-lg"></i> Cancelar</button>
+            <button type="submit" class="bg-gradient-to-r from-green-500 to-green-800 hover:from-green-600 hover:to-green-800 text-white px-4 py-2 rounded-lg mr-2 font-semibold font-sans"><i class="bi bi-check-lg"></i> Agregar</button>
+            <button type="button" class="bg-gradient-to-r from-gray-500 to-gray-800 hover:from-gray-600 hover:to-gray-800 text-white px-4 py-2 rounded-lg mr-2 font-semibold font-sans" data-bs-dismiss="modal"><i class="bi bi-x-lg"></i> Cancelar</button>
           </div>
         </form>
       </div>
@@ -89,45 +82,6 @@
   </div>
 </div>
 
-<script>
-  function validarCampos() {
-    var nombreServicio = document.getElementById('_ns').value.length;
-    var descripcionServicio = document.getElementById('_descS').value.length;
-    var costoServicio = document.getElementById('_costoS').value.length;
-    var notaServicio = document.getElementById('_notaS').value.length;
-    var contenidoServicio = document.getElementById('_contS').files.length;
-
-    if (nombreServicio === 0) {
-      alert("Por favor, ingrese el nombre del servicio.");
-    } else if (descripcionServicio === 0) {
-      alert("Por favor, ingrese la descripción.");
-    } else if (costoServicio === 0) {
-      alert("Por favor, ingrese el costo.");
-    } else if (contenidoServicio === 0) {
-      alert("Por favor, suba una imagen.");
-    } else {
-      showSweetAlertServicio();
-    }
-  }
-
-  function showSweetAlertServicio() {
-    const swalWithBootstrapButtons = Swal.mixin({
-      customClass: {
-        confirmButton: "btn btn-outline-success",
-        cancelButton: "btn btn-outline-danger me-3" 
-      },
-      buttonsStyling: false
-    });
-    
-    swalWithBootstrapButtons.fire({
-      title: "¡Agregado!",
-      text: "El servicio fue agregado correctamente.",
-      icon: "success"
-    });
-    
-    document.getElementById('registroServicio').submit();
-  }  
-</script>
 
 
 
