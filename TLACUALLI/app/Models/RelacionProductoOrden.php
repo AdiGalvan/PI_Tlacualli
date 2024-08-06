@@ -16,6 +16,7 @@ class RelacionProductoOrden extends Model
         'id_producto',
         'cantidad',
         'subtotal',
+        'estatus',
         'conclusion' // Agrega el nuevo campo conclusion
     ];
 

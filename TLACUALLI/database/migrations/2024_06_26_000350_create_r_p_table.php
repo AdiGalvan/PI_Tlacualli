@@ -14,6 +14,7 @@ class CreateRPTable extends Migration
             $table->foreignId('id_producto')->constrained('productos');
             $table->integer('cantidad')->nullable();
             $table->float('subtotal')->nullable();
+            $table->boolean('estatus')->default(0);
             $table->boolean('conclusion')->default(1);
             $table->timestamps();
         });
