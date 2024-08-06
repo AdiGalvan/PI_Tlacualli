@@ -43,11 +43,13 @@ class HistorialController extends Controller
             ->with(['cliente', 'servicio.usuario']) // Asegúrate de que esta relación está bien definida en el modelo Solicitudes
             ->get();
 
-        $mis_ordenes_con = RelacionProductoOrden::whereHas('orden', function ($query) use ($usuarioId) {
-            $query->where('estatus', 0) // Orden activa
-                ->where('conclusion', 0) // Orden no concluida
-                ->where('id_cliente', $usuarioId); // Orden del cliente autenticado
-        })
+        $mis_ordenes_con = RelacionProductoOrden::where('estatus', 0)
+            ->where('conclusion', 0)
+            ->whereHas('orden', function ($query) use ($usuarioId) {
+                $query->where('estatus', 0) // Orden activa
+                    ->where('conclusion', 0) // Orden no concluida
+                    ->where('id_cliente', $usuarioId); // Orden del cliente autenticado
+            })
             ->with(['producto.proveedor', 'orden.usuario']) // Cargar relaciones
             ->get();
 
@@ -67,11 +69,8 @@ class HistorialController extends Controller
             ->with(['cliente', 'servicio.usuario']) // Asegúrate de que esta relación está bien definida en el modelo Solicitudes
             ->get();
 
-        $mis_ordenes_can = RelacionProductoOrden::whereHas('orden', function ($query) use ($usuarioId) {
-            $query->where('estatus', 1) // Orden activa
-                ->where('conclusion', 0) // Orden no concluida
-                ->where('id_cliente', $usuarioId); // Orden del cliente autenticado
-        })
+        $mis_ordenes_can = RelacionProductoOrden::where('estatus', 1)
+            ->where('conclusion', 0)
             ->with(['producto.proveedor', 'orden.usuario']) // Cargar relaciones
             ->get();
 
