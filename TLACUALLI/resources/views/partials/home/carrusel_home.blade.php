@@ -12,10 +12,11 @@
                 <div class="relative bg-cover bg-center-left h-full" style="background-image: url('/images/carousel/carousel_1.jpg');">
                     <div class="absolute inset-0 bg-black bg-opacity-50 h-full flex items-center justify-center">
                         <div class="text-center">
-                            <h1 class=" md:text-6xl text-white font-black font-sans tracking-wider mb-3 mt-5">
+                            <h1 class=" text-3xl md:text-5xl text-white font-extrabold font-sans tracking-wider ml-10 mt-3">
                                 Únete a la comunidad
+                                
                             </h1>
-                            <h1 class="md:text-6xl text-white font-black font-sans tracking-wider">
+                            <h1 class="text-3xl md:text-5xl text-white font-extrabold font-sans tracking-wider ml-10 mt-3">
                                 Tlacualli
                             </h1>
                         </div>

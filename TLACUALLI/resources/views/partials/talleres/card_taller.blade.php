@@ -6,7 +6,7 @@
     </a>
     <div class="px-4 py-3">
         <a href="#">
-            <h5 class="text-xl font-semibold font-sans tracking-tight text-green-900 text-center dark:text-white">{{ $publicacion->nombre }}</h5>
+            <h5 class="text-xl font-bold font-sans tracking-tight text-green-900  dark:text-white">{{ $publicacion->nombre }}</h5>
             <div class="flex justify-end mt-2.5 mb-3">
                 <div class="flex items-center space-x-1 rtl:space-x-reverse">
                    <svg class="w-4 h-4 text-yellow-300" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
@@ -27,10 +27,10 @@
                </div>
                <span class="bg-blue-100 text-blue-800 text-xs font-semibold font-sans px-2.5 py-0.5 rounded dark:bg-blue-200 dark:text-blue-800 ms-3">4.0</span>
            </div>
-            <p class="mt-2 font-sans font-bold">{{ $publicacion->descripcion }}</p>
+            <p class="mt-2 font-sans font-bold text-sm text-justify">{{ $publicacion->descripcion }}</p>
         </a>
-        <div class="flex items-center justify-between">
-            <p class="text-xs font-sans text-gray-900 dark:text-white">Creador: {{ $publicacion->usuario->nombre }} {{ $publicacion->usuario->apellido_paterno }} {{ $publicacion->usuario->apellido_materno }}</p>
+        <div class="flex items-center justify-between pt-2">
+            <p class="text-sm font-sans text-gray-900 dark:text-white text-justify">Creador: {{ $publicacion->usuario->nombre }} {{ $publicacion->usuario->apellido_paterno }} {{ $publicacion->usuario->apellido_materno }}</p>
                 {{-- <a class="btn btn-light" href="#" data-bs-toggle="tooltip" data-bs-html="true" aria-label="Compare" onclick="toggleLike(this)">
                     <i id="heart-icon" class="bi bi-heart"></i>
                 </a> --}}
@@ -101,7 +101,7 @@
         <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
             <!-- Modal header -->
             <div class="flex items-center justify-between  md:p-5 border-b rounded-t dark:border-gray-600">
-                <h2 class="h2 font-sans text-2xl font-black tracking-tight text-green-900 text-center dark:text-white">{{ $publicacion->nombre }}</h2>
+                <h2 class="h2 font-sans text-2xl font-black tracking-tight text-green-900 text-center dark:text-white ps-2 pt-2">{{ $publicacion->nombre }}</h2>
                 <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-hide="default-modal{{ $publicacion->id }}">
                     <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
@@ -124,10 +124,10 @@
                         </div>
                     </div>
                     <br><br>
-                    <p class="text-lg font-sans font-bold mt-4"><span>Nombre del creador:</span></p>
-                    <span class="text-md font-sans font-light">{{ $publicacion->usuario->nombre }} {{ $publicacion->usuario->apellido_paterno }} {{ $publicacion->usuario->apellido_materno }}</span>
-                    <p class="text-lg font-sans font-bold mt-3"><span>Descripción:</span></p>
-                    <span class="text-md font-sans font-light">{{ $publicacion->descripcion }}</span>
+                    <p class="text-lg font-sans font-bold mt-4 ps-4"><span>Nombre del creador:</span></p>
+                    <span class="text-md font-sans font-light ps-4">{{ $publicacion->usuario->nombre }} {{ $publicacion->usuario->apellido_paterno }} {{ $publicacion->usuario->apellido_materno }}</span>
+                    <p class="text-lg font-sans font-bold mt-3 ps-4"><span>Descripción:</span></p>
+                    <p class="text-sm font-sans font-bold pb-4 ps-4"><span class="text-md font-sans font-light">{{ $publicacion->descripcion }}</span></p>
                     
                     <div class="ps-lg-8 mt-6 mt-lg-0">
                         <div class="mb-4">
