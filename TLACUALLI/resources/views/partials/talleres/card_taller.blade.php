@@ -53,26 +53,37 @@
 <!-- Script para inicializar el mapa -->
 <script>
     function initMap() {
+        // Configuración de coordenadas y zoom
         var latitud = 20.547141; // Latitud de ejemplo
         var longitud = -100.274468; // Longitud de ejemplo
         var zoom = 15; // Nivel de zoom
 
-        var mapOptions = {
-            center: {lat: latitud, lng: longitud},
-            zoom: zoom
-        };
+        // Seleccionar todos los elementos del mapa
+        var maps = document.querySelectorAll('[id^="map"]');
 
-        // Crear mapa
-        var map = new google.maps.Map(document.getElementById('map'), mapOptions);
+        maps.forEach(function(mapElement) {
+            var mapOptions = {
+                center: {lat: latitud, lng: longitud},
+                zoom: zoom
+            };
 
-        // Crear marcador
-        var marker = new google.maps.Marker({
-            position: {lat: latitud, lng: longitud},
-            map: map,
-            title: 'Ubicación específica',
-            icon: 'http://maps.google.com/mapfiles/ms/icons/red-dot.png' // Icono del marcador
+            // Crear mapa
+            var map = new google.maps.Map(mapElement, mapOptions);
+
+            // Crear marcador
+            var marker = new google.maps.Marker({
+                position: {lat: latitud, lng: longitud},
+                map: map,
+                title: 'Ubicación específica',
+                icon: 'http://maps.google.com/mapfiles/ms/icons/red-dot.png' // Icono del marcador
+            });
         });
     }
+
+    // Cargar el mapa cuando el documento esté listo
+    document.addEventListener('DOMContentLoaded', function() {
+        initMap();
+    });
 </script>
 
 
@@ -102,7 +113,7 @@
               <div class="col-lg-6 justify-content-end mb-3">
                 <br>    
                 <div class="container d-flex">
-                    <div id="map" style="width: 100%; height: 400px;"></div>   
+                    <div id="map{{ $publicacion->id }}" style="width: 100%; height: 400px;"></div>   
                 </div>                  
               </div>
                 <div class="col-lg-6">
