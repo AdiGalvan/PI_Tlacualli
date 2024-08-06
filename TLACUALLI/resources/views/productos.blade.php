@@ -67,9 +67,9 @@
                                     </a>
                                     <div class="px-4 py-3">
                                         <a href="#">
-                                            <h5 class="text-xl font-semibold font-sans tracking-tight text-gray-900 dark:text-white">{{ $producto->nombre }}</h5>
+                                            <h5 class="text-xl font-semibold font-sans tracking-tight text-green-900 text-center dark:text-white">{{ $producto->nombre }}</h5>
                                         </a>
-                                        <div class="flex items-center mt-2.5 mb-3">
+                                        <div class="flex items-center mt-2.5 mb-3 justify-end">
                                             <div class="flex items-center space-x-1">
                                                 @for ($i = 0; $i < 5; $i++)
                                                     <svg class="w-4 h-4 text-yellow-300" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
@@ -79,14 +79,14 @@
                                             </div>
                                             <span class="bg-blue-100 text-blue-800 text-xs font-semibold font-sans px-2.5 py-0.5 rounded dark:bg-blue-200 dark:text-blue-800 ms-3">5.0</span>
                                         </div>
-                                        <div class="flex items-center justify-between">
+                                        <div class="flex items-center justify-end">
                                             <span class="text-md font-bold font-sans text-gray-900 dark:text-white">$ {{ $producto->costo }}</span>
-                                            <svg class="w-[35px] h-[35px] text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                                           {{--  <svg class="w-[35px] h-[35px] text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
                                                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12.01 6.001C6.5 1 1 8 5.782 13.001L12.011 20l6.23-7C23 8 17.5 1 12.01 6.002Z"/>
-                                            </svg>
+                                            </svg> --}}
                                         </div>
                                         <hr class="my-3 border-gray-900 dark:bg-gray-900">
-                                        <div class="flex items-center justify-between">
+                                        <div class="flex items-center justify-end">
                                             {{-- <button data-modal-target="default-modal{{ $producto->id }}" data-modal-toggle="default-modal{{ $producto->id }}" class="bg-gradient-to-r from-green-500 to-green-800 text-white font-sans font-bold px-4 py-2 rounded-md text-md" type="button">
                                                 Más Información
                                             </button> --}}
@@ -125,6 +125,7 @@
         <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
             <!-- Modal header -->
             <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
+                <h2 class="text-2xl font-bold font-sans tracking-tight text-green-900 text-center dark:text-white">{{ $producto->nombre }}</h2>
                 {{-- <h5 class="text-lg font-medium text-gray-900 dark:text-white">Modal Title</h5> --}}
                 <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-hide="default-modal{{ $producto->id }}">
                     <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
@@ -148,61 +149,57 @@
                             <img src="{{ asset('storage/' . $imagen) }}" class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="Imagen del producto">
                         </div>
                         @endforeach
-                    </div>
+                    </div> 
                 </div>    
               </div>
               <div class="col-lg-6">
                   <div class="ps-lg-8 mt-6 mt-lg-0">
-                      <h2 class="mb-1 h1 font-sans">{{ $producto->nombre }}</h2>
                       <div class="mb-4">
-                          <div class="flex items-center mt-2.5 mb-3">
-                                <div class="flex items-center space-x-1 rtl:space-x-reverse">
-                                    <svg class="w-4 h-4 text-yellow-300" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
-                                        <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
-                                    </svg>
-                                    <svg class="w-4 h-4 text-yellow-300" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
-                                        <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
-                                    </svg>
-                                    <svg class="w-4 h-4 text-yellow-300" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
-                                        <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
-                                    </svg>
-                                    <svg class="w-4 h-4 text-yellow-300" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
-                                        <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
-                                    </svg>
-                                    <svg class="w-4 h-4 text-gray-200 dark:text-gray-600" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
-                                        <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
-                                    </svg>
-                                </div>
-                                <span class="bg-blue-100 font-sans text-blue-800 text-xs font-semibold px-2.5 py-0.5 rounded dark:bg-blue-200 dark:text-blue-800 ms-3">5.0</span>
-                                <div class="ms-2 badge bg-success font-sans">30 comentarios</div>
+                        <div class="flex items-center justify-between mt-2.5 mb-3 px-5">
+                            <!-- Comentarios Text -->
+                            <div class="badge bg-success font-sans mr-2">30 comentarios</div>
+                            
+                            <!-- Stars and Rating -->
+                            <div class="flex items-center space-x-0.5 rtl:space-x-reverse">
+                                <svg class="w-4 h-4 text-yellow-300" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
+                                    <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
+                                </svg>
+                                <svg class="w-4 h-4 text-yellow-300" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
+                                    <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
+                                </svg>
+                                <svg class="w-4 h-4 text-yellow-300" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
+                                    <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
+                                </svg>
+                                <svg class="w-4 h-4 text-yellow-300" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
+                                    <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
+                                </svg>
+                                <svg class="w-4 h-4 text-gray-200 dark:text-gray-600" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
+                                    <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
+                                </svg>
+                                <!-- Rating -->
+                                <span class="bg-blue-100 font-sans text-blue-800 text-xs font-semibold px-2.5 py-0.5 rounded dark:bg-blue-200 dark:text-blue-800 ms-2 ">4.0</span>
                             </div>
-                          <div class="fs-4">
-                              <span class="fw-bold text-dark font-sans">$ {{ $producto->costo }}</span>
+                        </div>
+                        
+                        <div class="text-right fs-4 px-5">
+                            <span class="fw-bold text-dark font-sans">$ {{ $producto->costo }}</span>
+                        </div>
+                        <br>
+                          <div class="flex items-center">
+                            <p class="text-lg font-sans font-bold mr-2">Descripción:</p>
+                            <p class="text-md font-sans font-light">{{ $producto->descripcion }}</p>
                           </div>
-                          <br>
-                          <p class="font-sans">{{ $producto->descripcion }}</p>
-                          <hr class="my-6">
-                          {{-- <div class="mb-4">
-                              <button type="button" class="btn btn-outline-secondary">250g</button>
-                              <button type="button" class="btn btn-outline-secondary">500g</button>
-                              <button type="button" class="btn btn-outline-secondary">1kg</button>
-                          </div> --}}
+                        
                           {{-- Form para agregaar producto --}}
                           <form action="/carrito/agregar/{{ $producto->id }}" method="POST">
                                 @csrf <!-- Añade un token CSRF para la seguridad -->
-                                
-                                <div class="input-group input-spinner">
-                                    <input type="button" value="-" class="button-minus btn btn-sm" data-field="quantity">
-                                    <input type="number" step="1" min="1" max="{{ $producto->stock }}" value="1" name="cantidad" class="quantity-field form-control-sm form-input">
-                                    <input type="button" value="+" class="button-plus btn btn-sm" data-field="quantity">
-                                </div>
-                                
                                 <div class="mt-3 row justify-content-start g-2 align-items-center">
-                                    <div class="col-lg-4 col-md-5 col-6 d-grid">
+                                    <div class="{{-- col-lg-4 col-md-5 col-6 d-grid --}}">
                                         @auth
-                                        <div class="flex items-center p-4 md:p-5 border-t border-gray-200 rounded-b dark:border-gray-600">
+                                        <div class="flex{{--  items-center --}} justify-end p-4 md:p-5 border-t border-gray-200 rounded-b dark:border-gray-600">
                                             <button type="submit" class="bg-gradient-to-r from-green-500 to-green-800 text-white font-sans font-bold px-4 py-2 rounded-md text-md">Agregar</button>
                                         </div>
+                                        
                                         @else
                                         <button data-popover-target="popover-right{{ $producto->id }}" data-popover-placement="right" type="button" class="bg-gradient-to-r from-green-500 to-green-800 text-white font-sans font-bold px-4 py-2 rounded-md text-md">Agregar</button>
                                         <div data-popover id="popover-right{{ $producto->id }}" role="tooltip" class="absolute z-10 invisible inline-block w-64 text-sm text-gray-500 transition-opacity duration-300 bg-white border border-gray-200 rounded-lg shadow-sm opacity-0 dark:text-gray-400 dark:border-gray-600 dark:bg-gray-800">
