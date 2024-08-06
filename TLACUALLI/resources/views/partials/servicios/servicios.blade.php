@@ -7,13 +7,14 @@
 <h1 class="text-green-900 font-sans font-black text-4xl pt-4 pb-4 flex justify-center">Servicios</h1>
 <p></p>
 <div class="bg-white w-full max-w-4xl mx-auto mt-8 rounded-lg p-6 shadow-lg">
-    <form class="flex flex-col md:flex-row md:gap-4 gap-4" role="search" action="" method="GET">
-        <input  class="border border-gray-300 rounded-md px-3 py-2 w-full md:w-auto" type="text" name="cliente" placeholder="Buscar por Cliente" aria-label="Buscar" hiddden>
-        <input class="border border-gray-300 rounded-md px-3 py-2 w-full md:w-auto" type="text" name="proveedor" placeholder="Buscar por Proveedor" aria-label="Buscar">
-        <input class="border border-gray-300 rounded-md px-3 py-2 w-full md:w-auto" type="date" name="fecha" aria-label="Buscar">
+    <form class="flex flex-col md:flex-row md:gap-4 gap-4" role="search" action="/mis_servicios/search" method="GET">
+        <div class="flex flex-grow">
+            <input class="border border-gray-300 rounded-md px-3 py-2 w-full" type="text" name="proveedor" placeholder="Buscar por Proveedor" aria-label="Buscar">
+        </div>
         <button class="bg-gradient-to-r from-green-500 to-green-800 hover:bg-green-600 text-white px-4 py-2 rounded-md w-full md:w-auto" type="submit">Buscar</button>
     </form>
 </div>
+
 
 
 

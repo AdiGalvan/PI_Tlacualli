@@ -91,48 +91,42 @@ class ServiciosController extends Controller
     public function search(Request $request)
     {
         // Obtener los datos de búsqueda del formulario
-        $cliente = $request->input('cliente');
         $proveedor = $request->input('proveedor');
-        $fecha = $request->input('fecha');
 
-        // Consulta base de solicitudes
-        $query = DB::table('solicitudes')
-            ->join('usuarios as clientes', 'solicitudes.id_cliente', '=', 'clientes.id')
-            ->join('usuarios as proveedores', 'solicitudes.id_proveedor', '=', 'proveedores.id')
-            ->join('publicaciones', 'solicitudes.id_publicacion', '=', 'publicaciones.id')
-            ->select(
-                'solicitudes.id',
-                'clientes.nombre_usuario as cliente',
-                'proveedores.nombre_usuario as proveedor',
-                'solicitudes.descripcion',
-                'publicaciones.descripcion as tipo_servicio',
-                'solicitudes.fecha'
-            )
-            ->where('solicitudes.estatus', 1); // Filtrar por estatus activo
+        $usuarioId = Auth::id();
 
-        // Aplicar filtros según los datos recibidos del formulario
-        if (!empty($cliente)) {
-            $query->where('clientes.nombre_usuario', 'LIKE', "%$cliente%");
+        if (Auth::check()) {
+            $usuario = Usuarios::with('roles')
+                ->find($usuarioId);
+        } else {
+            //Si no está autenticado se crea una clase generica para que pueda visualizar todos los talleres activos
+            $usuario = new \stdClass();
+            $usuario->roles = new \stdClass();
+            $usuario->roles->id = null;
         }
 
+        // Busca todas las publicaciones de tipo taller, activas y con los datos del publicador
+        $query = Publicaciones::where('id_tipo', 3)
+            ->where('estatus', true)
+            ->with('usuario');
+
+        // Aplicar filtro según el dato recibido del formulario
         if (!empty($proveedor)) {
-            $query->where('proveedores.nombre_usuario', 'LIKE', "%$proveedor%");
-        }
-
-        if (!empty($fecha)) {
-            $query->whereDate('solicitudes.fecha', $fecha);
+            $query->whereHas('usuario', function ($q) use ($proveedor) {
+                $q->where('nombre_usuario', 'LIKE', "%$proveedor%");
+            });
         }
 
         // Obtener los resultados de la consulta
-        $solicitudes = $query->orderBy('solicitudes.id')->get();
+        $servicios = $query->get();
 
         // Si no se encuentran resultados, devolver un mensaje de sesión
-        if ($solicitudes->isEmpty()) {
-            return redirect('/mis_servicios')->with('noResults', 'No se encontraron resultados para la búsqueda especificada.');
+        if ($servicios->isEmpty()) {
+            return redirect('/servicios')->with('error', 'No se encontraron resultados para la búsqueda especificada.');
         }
 
         // Devolver la vista con los resultados encontrados
-        return view('servicios.mis_servicios', compact('solicitudes'));
+        return view('partials.servicios.servicios', compact('servicios', 'usuario'));
     }
 
 
@@ -183,11 +177,13 @@ class ServiciosController extends Controller
         if (Auth::check()) {
 
             // Validaciones
-            $validator = $request->validate([
-                '_ns'       => 'required',
-                '_descS'    => 'required',
-                '_costoS'   => 'required|numeric',
-                '_notaS'    => 'required'],
+            $validator = $request->validate(
+                [
+                    '_ns'       => 'required',
+                    '_descS'    => 'required',
+                    '_costoS'   => 'required|numeric',
+                    '_notaS'    => 'required'
+                ],
 
                 [
                     '_ns'       => 'El campo de nombre de servicio es obligatorio.',
@@ -271,20 +267,22 @@ class ServiciosController extends Controller
             $servicio = Publicaciones::findOrFail($id);
 
             // Validaciones
-            $validator = $request->validate([
-                '_ns'       => 'required',
-                '_descS'    => 'required',
-                '_costoS'   => 'required|numeric',
-                '_notaS'    => 'required',
-                '_contS'    => 'nullable',
-            ],
-        
-            [
-                '_ns'       => 'El campo de nombre de servicio es obligatorio.',
-                '_descS'    => 'El campo de resumen es obligatorio.',
-                '_costoS'   => 'El campo de costo es obligatorio.',
-                '_notaS'    => 'El campo de descripción es obligatorio.',
-            ]);
+            $validator = $request->validate(
+                [
+                    '_ns'       => 'required',
+                    '_descS'    => 'required',
+                    '_costoS'   => 'required|numeric',
+                    '_notaS'    => 'required',
+                    '_contS'    => 'nullable',
+                ],
+
+                [
+                    '_ns'       => 'El campo de nombre de servicio es obligatorio.',
+                    '_descS'    => 'El campo de resumen es obligatorio.',
+                    '_costoS'   => 'El campo de costo es obligatorio.',
+                    '_notaS'    => 'El campo de descripción es obligatorio.',
+                ]
+            );
 
             $servicio->nombre = $validator['_ns'];
             $servicio->descripcion = $validator['_descS'];
