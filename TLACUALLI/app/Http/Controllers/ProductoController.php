@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Producto;
 use App\Models\Usuarios;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
@@ -177,10 +178,8 @@ class ProductoController extends Controller
         $usuarioId = Auth::id();
 
         if (Auth::check()) {
-            // Busca y valida los datos y existencia de dicho producto
             $producto = Producto::findOrFail($id);
 
-            // Validaciones
             $validator = $request->validate([
                 '_np'       => 'required',
                 '_descP'    => 'required',
@@ -188,29 +187,53 @@ class ProductoController extends Controller
                 '_stockP'   => 'required|numeric',
             ]);
 
-            // Actualización de campos
             $producto->nombre = $validator['_np'];
             $producto->descripcion = $validator['_descP'];
             $producto->costo = $validator['_costoP'];
             $producto->stock = $validator['_stockP'];
 
-            if ($request->hasFile('_contP')) {
-                $file = $request->file('_contP');
-                $filename = $usuarioId . 'imagenproducto' . $producto->id . '.' . $file->getClientOriginalExtension();
-                $filePath = $file->storeAs('uploads', $filename, 'public');
+            // Manejo de eliminación de imágenes
+            if ($request->has('eliminarImagenes')) {
+                $imagenesAEliminar = $request->input('eliminarImagenes');
+                $contenidoExistente = json_decode($producto->contenido, true);
 
-                // Actualizar la publicación con la ruta del archivo
-                $producto->contenido = $filePath;
-                $producto->save();
-            } else {
-                $usuario = Usuarios::with('productos')
-                    ->find($usuarioId);
-                $imagen = $usuario->productos->contenido;
-                // Mantener la imagen existente si no se sube una nueva
-                $producto->contenido = $imagen;
-                // dd($producto);
-                $producto->save();
+                foreach ($imagenesAEliminar as $imagen) {
+                    if (($clave = array_search($imagen, $contenidoExistente)) !== false) {
+                        unset($contenidoExistente[$clave]);
+                        // Eliminar la imagen del almacenamiento
+                        if (empty($contenidoExistente)) {
+                            return redirect()->back()->withErrors(['_contP' => 'El producto debe tener al menos una imagen.']);
+                        }
+                        if (Storage::disk('public')->exists($imagen)) {
+                            Storage::disk('public')->delete($imagen);
+                        }
+                    }
+                }
+                $contenidoExistente = array_values($contenidoExistente);
+                $producto->contenido = json_encode($contenidoExistente);
             }
+
+            // Manejo de nuevas imágenes
+            if ($request->hasFile('_contP')) {
+                $imagenesNuevas = $request->file('_contP');
+                $contenidoExistente = json_decode($producto->contenido, true) ?? [];
+
+                foreach ($imagenesNuevas as $imagenNueva) {
+                    $filename = $usuarioId . 'imagenproducto' . uniqid() . '.' . $imagenNueva->getClientOriginalExtension();
+                    $filePath = $imagenNueva->storeAs('uploads', $filename, 'public');
+                    $contenidoExistente[] = $filePath;
+                }
+
+                $producto->contenido = json_encode($contenidoExistente);
+            }
+
+            // Validación para evitar que el producto se quede sin imágenes
+            if (empty(json_decode($producto->contenido))) {
+                return redirect()->back()->withErrors(['_contP' => 'El producto debe tener al menos una imagen.']);
+            }
+
+            $producto->save();
+
             return redirect()->back()->with('update', 'Producto actualizado exitosamente.');
         } else {
             abort(404, 'Página no encontrada');

@@ -62,7 +62,6 @@
 
 <!-- INICIO MODAL DE ACTUALIZACIÓN DE PRODUCTO-->
 @if($productos->isEmpty())
-
 @else
 <div class="modal fade" id="actualizar_producto{{ $producto->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
@@ -73,45 +72,46 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <form method="POST" action="{{ !empty($producto->id) ? route('actualizarProducto', $producto->id) : '' }}" id="actualizar_producto" enctype="multipart/form-data">
+        <form method="POST" action="{{ route('actualizarProducto', $producto->id) }}" id="actualizar_producto" enctype="multipart/form-data">
           @csrf
           @method('PUT')
           <div class="mb-3">
             <label class="text-green-900 font-sans font-bold pb-2 text-base">Nombre del producto</label>
-            <input type="text" class="font-sans font-light px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 w-full" id="_np" name="_np"  value="{{ !empty($producto->nombre) ?  $producto->nombre : '' }}">
+            <input type="text" class="font-sans font-light px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 w-full" id="_np" name="_np" value="{{ $producto->nombre }}">
             <p class="text-red-600 font-sans font-bold mt-1">{{ $errors->first('_np') }}</p>
           </div>
           <div class="mb-3">
             <label class="text-green-900 font-sans font-bold pb-2 text-base">Descripción</label>
-            <input type="text" class="font-sans font-light px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 w-full" id="_descP" name="_descP"  value="{{ !empty($producto->descripcion) ?  $producto->descripcion : '' }}">
+            <input type="text" class="font-sans font-light px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 w-full" id="_descP" name="_descP" value="{{ $producto->descripcion }}">
             <p class="text-red-600 font-sans font-bold mt-1">{{ $errors->first('_descP') }}</p>
           </div>
           <div class="mb-3">
             <label class="text-green-900 font-sans font-bold pb-2 text-base">Costo unitario</label>
-            <input type="number" class="font-sans font-light px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 w-full" id="_costoP" name="_costoP"  value="{{ !empty($producto->costo) ?  $producto->costo : '' }}">
+            <input type="number" class="font-sans font-light px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 w-full" id="_costoP" name="_costoP" value="{{ $producto->costo }}">
             <p class="text-red-600 font-sans font-bold mt-1">{{ $errors->first('_costoP') }}</p>
           </div>
           <div class="mb-3">
             <label class="text-green-900 font-sans font-bold pb-2 text-base">Stock</label>
-            <input type="number" class="font-sans font-light px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 w-full" id="_stockP" name="_stockP"  value="{{ !empty($producto->stock) ?  $producto->stock : '' }}">
+            <input type="number" class="font-sans font-light px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 w-full" id="_stockP" name="_stockP" value="{{ $producto->stock }}">
             <p class="text-red-600 font-sans font-bold mt-1">{{ $errors->first('_stockP') }}</p>
           </div>
           <div class="mb-3">
-            <label class="text-green-900 font-sans font-bold pb-2 text-base">Contenido (Imagen JPG o PNG)</label>
-            <!-- Mostrar la imagen actual -->
+            <label class="text-green-900 font-sans font-bold pb-2 text-base">Contenido (Imágenes JPG o PNG)</label>
             @if (!empty($producto->contenido))
-              <div class="mb-3">
-                <img src="{{ asset('storage/' . $producto->contenido) }}" alt="Imagen de producto" class="img-fluid" style="max-height: 200px;">
-              </div>
-              <!-- Campo oculto para enviar el nombre de la imagen existente -->
-              <input type="hidden" name="_contP" value="{{ $producto->contenido }}">
+              @foreach(json_decode($producto->contenido) as $imagen)
+                <div class="mb-3">
+                  <img src="{{ asset('storage/' . $imagen) }}" alt="Imagen de producto" class="img-fluid" style="max-height: 200px;">
+                  <label class="flex items-center mt-2">
+                    <input type="checkbox" name="eliminarImagenes[]" value="{{ $imagen }}"> Eliminar imagen
+                  </label>
+                </div>
+              @endforeach
             @endif
-            <!-- Campo para subir una nueva imagen -->
-            <input type="file" class="font-sans font-light px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 w-full" id="_contP" name="_contP" accept="image/jpeg, image/png">
+            <input type="file" class="font-sans font-light px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 w-full" id="_contP[]" name="_contP[]" accept="image/jpeg, image/png" multiple>
             <p class="text-red-600 font-sans font-bold mt-1">{{ $errors->first('_contP') }}</p>
           </div>
           <div class="modal-footer">
-            <button type="submit" class="bg-gradient-to-r from-green-500 to-green-800 hover:from-green-600 hover:to-green-800 text-white px-4 py-2 rounded-lg mr-2 font-semibold font-sans" ><i class="bi bi-check-lg"></i> Agregar</button>
+            <button type="submit" class="bg-gradient-to-r from-green-500 to-green-800 hover:from-green-600 hover:to-green-800 text-white px-4 py-2 rounded-lg mr-2 font-semibold font-sans"><i class="bi bi-check-lg"></i> Actualizar</button>
             <button type="button" class="bg-gradient-to-r from-gray-500 to-gray-800 hover:from-gray-600 hover:to-gray-800 text-white px-4 py-2 rounded-lg mr-2 font-semibold font-sans" data-bs-dismiss="modal"><i class="bi bi-x-lg"></i> Cancelar</button>
           </div>
         </form>
