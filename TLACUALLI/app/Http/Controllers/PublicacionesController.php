@@ -94,12 +94,15 @@ class PublicacionesController extends Controller
                     '_nt' => 'required|max:50',
                     '_contT' => 'required|file|max:2048', // Ruta de la imagen
                     '_costoT' => 'numeric',
+                    '_fechaInicioT' => 'required|date',
                 ],
                 [
-                    '_descT' => 'El campo de descripción es obligatorio.',
-                    '_nt' => 'El campo de nombre es obligatorio.',
-                    '_contT' => 'El campo de archivo es obligatorio.',
-                    '_costoT' => 'El campo de costo es obligatorio.',
+                    '_descT.required' => 'El campo de descripción es obligatorio.',
+                    '_nt.required' => 'El campo de nombre es obligatorio.',
+                    '_contT.required' => 'El campo de archivo es obligatorio.',
+                    '_costoT.numeric' => 'El campo de costo debe ser un número.',
+                    '_fechaInicioT.required' => 'El campo de fecha de inicio es obligatorio.',
+                    '_fechaInicioT.date' => 'El campo de fecha de inicio debe ser una fecha válida.',
                 ]
             );
 
@@ -110,6 +113,7 @@ class PublicacionesController extends Controller
             $taller->contenido = ''; // Inicializar con una cadena vacía
             $taller->fecha_publicacion = Carbon::now()->toDateString();
             $taller->costo = $validator['_costoT'];
+            $taller->fecha_revision = $validator['_fechaInicioT']; // Almacenar la fecha de inicio
             $taller->id_usuario = $usuarioId;
             $taller->id_tipo = 2; // Tipo 2 porque son talleres
             $taller->estatus = true;
@@ -171,12 +175,14 @@ class PublicacionesController extends Controller
                 '_nt' => 'required|max:50',
                 '_contT' => 'nullable|file|max:2048', // Cambiado a nullable para permitir no cambiar el archivo
                 '_costoT' => 'numeric',
+                '_fechaInicioT' => 'required|date',
             ]);
 
             // Actualización de campos
             $publicacion->descripcion = $validator['_descT'];
             $publicacion->nombre = $validator['_nt'];
             $publicacion->costo = $validator['_costoT'];
+            $publicacion->fecha_revision = $validator['_fechaInicioT']; // Actualizar la fecha de inicio
 
             // Subir el archivo si se proporciona uno nuevo
             if ($request->hasFile('_contT')) {

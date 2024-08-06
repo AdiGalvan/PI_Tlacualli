@@ -78,6 +78,9 @@
                     <i id="heart-icon" class="bi bi-heart"></i>
                 </a> --}}
         </div>
+        <div class="flex items-center justify-between">
+            <p class="text-xs font-sans text-gray-900 dark:text-white">Fecha de inicio: {{ $publicacion->fecha_revision }}</p>
+        </div>
         <div class="flex items-center justify-end mt-2 px-2">
             <span class="text-md font-bold font-sans text-gray-900 dark:text-white">$ {{ $publicacion->costo }}</span>
         </div>
@@ -119,6 +122,8 @@
                     <p  class="h4 font-sans"><span>Nombre del creador:</span> {{ $publicacion->usuario->nombre }} {{ $publicacion->usuario->apellido_paterno }} {{ $publicacion->usuario->apellido_materno }}</p>
                     <br>
                     <p class="font-sans h4"><span>Descripción:</span> {{ $publicacion->descripcion }}</p>
+                    <br>
+                    <p class="font-sans h4"><span>Fecha de inicio:</span> {{ $publicacion->fecha_revision }}</p>
                     <div class="ps-lg-8 mt-6 mt-lg-0">
                         <div class="mb-4">
                             <hr class="my-6">
@@ -132,16 +137,16 @@
                                             <div class="col-lg-4 col-md-4 col-6">
                                                 <!-- Botón "Actualizar información" en una línea separada -->
                                                 <button type="button" class="bg-gradient-to-r from-green-500 to-green-800 hover:from-green-600 hover:to-green-800 text-white px-4 py-2 rounded-lg font-semibold font-sans" data-bs-toggle="modal" data-bs-target="#actualizar_taller{{ $publicacion->id }}">
-                                                    <i class="bi bi-pencil-square"></i> Actualizar información
+                                                    <i class="bi bi-pencil-square"></i> Actualizar
                                                 </button>
                                             </div>
                                             <div class="col-lg-4 col-md-4 col-6">
                                                 @if ($publicacion->estatus)
                                                     {{-- Mostrar botón de Desactivar si el estado es true --}}
-                                                    <button type="button" class="me-2 bg-gradient-to-r from-yellow-500 to-yellow-800 hover:bg-yellow-600 text-white px-4 py-2 rounded-lg font-semibold font-sans" data-bs-toggle="modal" data-bs-target="#desactivar_taller{{ $publicacion->id }}">Desactivar taller</button>
+                                                    <button type="button" class="me-2 bg-gradient-to-r from-yellow-500 to-yellow-800 hover:bg-yellow-600 text-white px-4 py-2 rounded-lg font-semibold font-sans" data-bs-toggle="modal" data-bs-target="#desactivar_taller{{ $publicacion->id }}">Desactivar</button>
                                                 @else
                                                     {{-- Mostrar botón de Activar si el estado es false --}}
-                                                    <button type="button" class="me-4 bg-gradient-to-r from-blue-600 to-blue-900 hover:bg-blue-800 text-white px-4 py-2 rounded-lg font-semibold font-sans" data-bs-toggle="modal" data-bs-target="#activar_taller{{ $publicacion->id }}">Activar taller</button>
+                                                    <button type="button" class="me-4 bg-gradient-to-r from-blue-600 to-blue-900 hover:bg-blue-800 text-white px-4 py-2 rounded-lg font-semibold font-sans" data-bs-toggle="modal" data-bs-target="#activar_taller{{ $publicacion->id }}">Activar</button>
                                                 @endif
                                             </div>
                                         </div>                                        
@@ -324,7 +329,13 @@
                         <label class="text-green-900 font-sans font-bold pb-2 text-base">Costo</label>
                         <input type="number" class="font-sans font-light px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 w-full" id="_costoT" name="_costoT" required value="{{ !empty($publicacion->costo) ?  $publicacion->costo : '' }}">
                     </div>
-  
+                    
+                    <div class="mb-3">
+                          <label class="form-label">Fecha de inicio del taller</label>
+                          <input type="date" class="font-sans font-light px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 w-full" id="_fechaInicioT" name="_fechaInicioT" required value="{{ !empty($publicacion->fecha_revision) ?  $publicacion->fecha_revision : '' }}">
+                      </div>
+
+                    
                     <div class="modal-footer">
                         <button type="submit" class="bg-gradient-to-r from-green-500 to-green-800 hover:from-green-600 hover:to-green-800 text-white px-4 py-2 rounded-lg mr-2 font-semibold font-sans"><i class="bi bi-check-lg"></i> Actualizar</button>
                         <button type="button" class="bg-gradient-to-r from-gray-500 to-gray-800 hover:from-gray-600 hover:to-gray-800 text-white px-4 py-2 rounded-lg mr-2 font-semibold font-sans" data-bs-dismiss="modal"><i class="bi bi-x-lg"></i> Cancelar</button>
