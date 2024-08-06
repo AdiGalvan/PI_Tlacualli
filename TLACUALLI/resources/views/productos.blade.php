@@ -51,7 +51,19 @@
                             <div class="flex flex-col justify-between">
                                 <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow-lg dark:bg-gray-800 dark:border-gray-700">
                                     <a href="#">
-                                        <img src="{{ asset('storage/' . $producto->contenido) }}" alt="" class="w-full h-48 object-cover rounded-t-lg">
+                                        @if($producto->contenido)
+                                            @php
+                                                $imagenes = json_decode($producto->contenido, true);
+                                                $primeraImagen = $imagenes[0] ?? null;
+                                            @endphp
+                                            @if($primeraImagen)
+                                                <img src="{{ asset('storage/' . $primeraImagen) }}" alt="{{ $producto->nombre }}" class="w-full h-48 object-cover rounded-t-lg">
+                                            @else
+                                                No disponible
+                                            @endif
+                                        @else
+                                            No disponible
+                                        @endif
                                     </a>
                                     <div class="px-4 py-3">
                                         <a href="#">
@@ -127,26 +139,15 @@
                 <div id="default-carousel" class="relative w-full px-3" data-carousel="slide">
                     <!-- Carousel wrapper -->
                     <div class="relative h-56 overflow-hidden md:h-96">
-                        <!-- Item 1 -->
+                         @php
+                            $imagenes = json_decode($producto->contenido, true); // Asumiendo que el JSON es un array de URLs
+                        @endphp
+                        @foreach ($imagenes as $imagen)
+                        <!-- Carousel items -->
                         <div class="hidden duration-700 ease-in-out" data-carousel-item>
-                            <img src="https://www.biojal.com/assets/images/-organicos-676x462.jpg" class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
+                            <img src="{{ asset('storage/' . $imagen) }}" class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="Imagen del producto">
                         </div>
-                        <!-- Item 2 -->
-                        <div class="hidden duration-700 ease-in-out" data-carousel-item>
-                            <img src="https://www.biojal.com/assets/images/-organicos-676x462.jpg" class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
-                        </div>
-                        <!-- Item 3 -->
-                        <div class="hidden duration-700 ease-in-out" data-carousel-item>
-                            <img src="https://www.biojal.com/assets/images/-organicos-676x462.jpg" class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
-                        </div>
-                        <!-- Item 4 -->
-                        <div class="hidden duration-700 ease-in-out" data-carousel-item>
-                            <img src="https://www.biojal.com/assets/images/-organicos-676x462.jpg" class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
-                        </div>
-                        <!-- Item 5 -->
-                        <div class="hidden duration-700 ease-in-out" data-carousel-item>
-                            <img src="https://www.biojal.com/assets/images/-organicos-676x462.jpg" class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
-                        </div>
+                        @endforeach
                     </div>
                 </div>    
               </div>
