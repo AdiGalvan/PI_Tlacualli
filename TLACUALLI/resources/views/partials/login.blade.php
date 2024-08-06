@@ -19,8 +19,13 @@
         @auth
         <center>
         <a href="/perfil"><button type="button" class="text-green-700 hover:text-white border border-green-700 border-4 hover:bg-green-800 focus:ring-2 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 dark:border-green-500 dark:text-green-500 dark:hover:text-white dark:hover:bg-green-600 dark:focus:ring-green-800" >Ver perfil</button> </a>
+        
+        @if (Auth::user()->id_rol == 1 || Auth::user()->id_rol == 2 || Auth::user()->id_rol == 7)
         <a href="/historial"><button type="button" class="text-green-700 hover:text-white border border-green-700 border-4 hover:bg-green-800 focus:ring-2 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 dark:border-green-500 dark:text-green-500 dark:hover:text-white dark:hover:bg-green-600 dark:focus:ring-green-800" >Ver historial</button> </a>
+        @endif
+        @if (Auth::user()->id_rol != 1 && Auth::user()->id_rol != 2)
         <a href="/notificaciones"><button type="button" class="text-green-700 hover:text-white border border-green-700 border-4 hover:bg-green-800 focus:ring-2 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 dark:border-green-500 dark:text-green-500 dark:hover:text-white dark:hover:bg-green-600 dark:focus:ring-green-800" >Ver solicitudes</button> </a>
+        @endif
 </center>
         <form method="POST" action="/logout">
           @csrf

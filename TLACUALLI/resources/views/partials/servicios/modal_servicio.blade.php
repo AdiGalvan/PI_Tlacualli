@@ -42,9 +42,22 @@
                                     <textarea class="font-sans font-light px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 w-full" id="instrucciones" name="instrucciones" rows="3"></textarea>
                                 </div>
                                 <div class="flex justify-end">
+                                    @auth
                                     <button type="submit" class="bg-gradient-to-r from-green-500 to-green-800 hover:from-green-600 hover:to-green-800 text-white px-4 py-2 rounded-lg mr-2 font-semibold font-sans">
-                                        <i class="bi bi-cart-check"></i> Solicitar servicio 
+                                        <i class="bi bi-cart-check"></i> Solicitar servicio
                                     </button>
+                                    @else
+                                    <button data-popover-target="popover-right{{ $servicio->id }}" data-popover-placement="right" type="button" class="bg-gradient-to-r from-green-500 to-green-800 text-white font-sans font-bold px-4 py-2 rounded-md text-md">Solicitar servicio</button>
+                                    <div data-popover id="popover-right{{ $servicio->id }}" role="tooltip" class="absolute z-10 invisible inline-block w-64 text-sm text-gray-500 transition-opacity duration-300 bg-white border border-gray-200 rounded-lg shadow-sm opacity-0 dark:text-gray-400 dark:border-gray-600 dark:bg-gray-800">
+                                        <div class="px-3 py-2 bg-green-900 border-b border-green-200 rounded-t-lg dark:border-green-600 dark:bg-green-700 ">
+                                            <h3 class=" text-white dark:text-white font-sans font-bold text-base text-center">Inicia sesión</h3>
+                                        </div>
+                                        <div class="px-3 py-2">
+                                            <p class="font-sans font-light text-base text-center text-black">Recuerda iniciar sesión para poder solicitar un servicio.</p>
+                                        </div>
+                                        <div data-popper-arrow></div>
+                                    </div>
+                                    @endguest
                                 </div>
                             </form> 
                         </div>

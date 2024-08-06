@@ -91,7 +91,11 @@ class HistorialController extends Controller
             ->with(['cliente', 'servicio.usuario']) // Asegúrate de que esta relación está bien definida en el modelo Solicitudes
             ->get();
 
-        return view('historial.index', ['mis_ordenes' => $mis_ordenes, 'mis_inscritos' => $mis_inscritos, 'mis_solicitudes' => $mis_solicitudes, 'mis_ordenes_con' => $mis_ordenes_con, 'mis_inscritos_con' => $mis_inscritos_con, 'mis_solicitudes_con' => $mis_solicitudes_con, 'mis_ordenes_can' => $mis_ordenes_can, 'mis_inscritos_can' => $mis_inscritos_can, 'mis_solicitudes_can' => $mis_solicitudes_can]);
+        if (Auth::user()->id_rol == 1 || Auth::user()->id_rol == 2 || Auth::user()->id_rol == 7) {
+            return view('historial.index', ['mis_ordenes' => $mis_ordenes, 'mis_inscritos' => $mis_inscritos, 'mis_solicitudes' => $mis_solicitudes, 'mis_ordenes_con' => $mis_ordenes_con, 'mis_inscritos_con' => $mis_inscritos_con, 'mis_solicitudes_con' => $mis_solicitudes_con, 'mis_ordenes_can' => $mis_ordenes_can, 'mis_inscritos_can' => $mis_inscritos_can, 'mis_solicitudes_can' => $mis_solicitudes_can]);
+        } else {
+            return redirect('/');
+        }
     }
 
     public function cancelar_taller($id)

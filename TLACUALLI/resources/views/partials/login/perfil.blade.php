@@ -32,11 +32,13 @@
                             <p class="border-b border-gray-300 pb-2 font-sans font-light text-lg" >{{ $usuario->nombre }}</p>
                             <p class="text-red-600 font-sans font-bold mt-1">{{ $errors->first('_nu') }}</p>
                         </div>
+                        @if($usuario->tipo_persona==1)
                         <div class="mb-3" id="apellido_p">
                             <label class="text-green-900 font-sans font-bold pb-2 text-lg">Apellido paterno</label>
                             <p class="border-b border-gray-300 pb-2 font-sans font-light text-lg" >{{ $usuario->apellido_paterno }}</p>
                             <p class="text-red-600 font-sans font-bold mt-1">{{ $errors->first('_ap') }}</p>
                         </div>
+                        @endif
                         <div class="mb-3">
                             <label class="text-green-900 font-sans font-bold pb-2 text-lg">Fecha de nacimiento </label>
                             <p class="border-b border-gray-300 pb-2 font-sans font-light text-lg" >{{ $usuario->fecha_nacimiento }}</p>
@@ -61,11 +63,13 @@
                             <p class="border-b border-gray-300 pb-2 font-sans font-light text-lg" >{{ $usuario->roles->nombre }}</p>
                             <p class="text-red-600 font-sans font-bold mt-1">{{ $errors->first('_rol') }}</p>
                         </div>
+                        @if($usuario->tipo_persona==1)
                         <div class="mb-3" id="apellido_m">
                             <label class="text-green-900 font-sans font-bold pb-2 text-lg">Apellido materno</label>
                             <p class="border-b border-gray-300 pb-2 font-sans font-light text-lg" >{{ $usuario->apellido_materno }}</p>
                             <p class="text-red-600 font-sans font-bold mt-1">{{ $errors->first('_am') }}</p>
                         </div>
+                        @endif
                         <div class="mb-3">
                             <label class="text-green-900 font-sans font-bold pb-2 text-lg">Sexo </label>
                             <p class="border-b border-gray-300 pb-2 font-sans font-light text-lg" >{{ $usuario->sexos->nombre }}</p>

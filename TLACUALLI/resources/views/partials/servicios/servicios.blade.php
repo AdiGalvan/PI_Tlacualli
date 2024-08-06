@@ -21,7 +21,7 @@
     {{-- Contenedor para los botones --}}
     <div class="d-flex gap-2">
 
-        @if ($usuario->roles->id == 3)
+        @if ($usuario->roles->id == 3 || $usuario->roles->id == 7)
             {{-- Son los servicios que yo como procesador de residuos publico y puedo dar al publico --}}
             <a href="{{ route('mis_servicios') }}" class="bg-gradient-to-r from-green-500 to-green-800 hover:bg-green-600 text-white px-4 py-2 rounded-md">Mis servicios</a> 
         @endif
@@ -31,7 +31,6 @@
     </div>
 </div>
 
-{{ $usuario->roles->id}}
 
 
 <div class="container mt-3">

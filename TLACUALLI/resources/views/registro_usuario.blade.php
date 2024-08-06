@@ -70,7 +70,7 @@
     <div class="col-md-6">
         <div class="mb-3">
             <label class="text-green-900 font-sans font-bold pb-2 text-lg">Tipo de Persona *</label>
-            <select class="font-sans font-light text-base px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-400 w-full" id="_rol" name="_rol" onchange="toggleApellidos(this)">
+            <select class="font-sans font-light text-base px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-400 w-full" id="_tip_per" name="_tip_per" onchange="toggleApellidos(this)">
                 <option value="" @if (null == old('_rol')) selected @endif>Selecciona una opción</option>
                 <option value="1" @if (1 == old('_rol')) selected @endif>Persona Física</option>
                 <option value="2" @if (2 == old('_rol')) selected @endif>Persona Moral</option>
@@ -83,7 +83,9 @@
             <select class="font-sans font-light text-base px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-400 w-full" id="_rol" name="_rol">
                 <option value="" @if (null == old('_rol')) selected @endif>Selecciona una opción</option>
                 @foreach($roles as $_rol)
-                <option value="{{$_rol->id}}" @if ($_rol->id == old('_rol')) selected @endif>{{$_rol->nombre}}</option>
+                @if (!in_array($_rol->id, [5, 7, 8, 9]))
+                <option value="{{$_rol->id}}" @if ($_rol->id == old('_rol')) selected @endif>{{$_rol->nombre}}</option>   
+                @endif
                 @endforeach
             </select>
             <p class="text-red-600 font-sans font-bold mt-1">{{ $errors->first('_rol') }}</p>

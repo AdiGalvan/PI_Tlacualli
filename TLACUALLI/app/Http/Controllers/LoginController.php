@@ -397,6 +397,7 @@ class LoginController extends Controller
             'nombre' => $req->input('_nu'),
             'apellido_paterno' => $req->input('_ap'),
             'apellido_materno' => $req->input('_am'),
+            'tipo_persona' => $req->input('_tip_per'),
             'id_direccion_envios' => $direccionId,
             'fecha_nacimiento' => $req->input('_fn'),
             'RFC' => $req->input('_rfc'),
