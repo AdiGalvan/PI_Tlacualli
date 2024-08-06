@@ -329,7 +329,7 @@ class PublicacionesController extends Controller
             if ($request->hasFile('_cont')) {
                 $file = $request->file('_cont');
 
-                $filename = $usuarioId . '_1_articulo_' . $validator['_tp'];
+                $filename = $usuarioId . '_1_articulo_' . $validator['_tp'] . '.' . $file->getClientOriginalExtension();
 
                 $filePath = $file->storeAs('uploads', $filename, 'public');
             } else {
