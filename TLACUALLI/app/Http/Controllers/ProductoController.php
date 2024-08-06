@@ -92,15 +92,16 @@ class ProductoController extends Controller
                     '_descP'    => 'required',
                     '_costoP'   => 'required|numeric',
                     '_stockP'   => 'required|numeric',
-                    '_contP'    => 'required|file|max:2048',
+                    '_contP.*'  => 'required|file|max:2048',
                 ],
                 [
-                    '_np' => 'El campo de nombre es obligatorio',
-                    '_descP' => 'El campo de descripción es obligatorio',
-                    '_costoP' => 'El campo de costo es obligatorio',
-                    '_stockP' => 'El campo de stock es obligatorio',
-                    '_contP' => 'El campo de imagen es obligatorio',
-
+                    '_np.required' => 'El campo de nombre es obligatorio',
+                    '_descP.required' => 'El campo de descripción es obligatorio',
+                    '_costoP.required' => 'El campo de costo es obligatorio',
+                    '_stockP.required' => 'El campo de stock es obligatorio',
+                    '_contP.required' => 'El campo de imagen es obligatorio',
+                    '_contP.*.file' => 'Cada archivo debe ser una imagen',
+                    '_contP.*.max' => 'Cada imagen no debe exceder los 2MB',
                 ]
             );
 
@@ -112,26 +113,36 @@ class ProductoController extends Controller
             $producto->stock = $validator['_stockP'];
             $producto->estatus = 1;
             $producto->proveedor_id = $usuarioId;
+            $producto->contenido = '';
+            $producto->save();
+
+            $rutasImagenes = [];
 
             if ($request->hasFile('_contP')) {
-                $file = $request->file('_contP');
-                $filename = $usuarioId . 'imagenproducto' . $producto->id . '.' . $file->getClientOriginalExtension();
-                $filePath = $file->storeAs('uploads', $filename, 'public');
-
-                // Actualizar la publicación con la ruta del archivo
-                $producto->contenido = $filePath;
-                $producto->save();
+                $files = $request->file('_contP');
+                $counter = 1;
+                foreach ($files as $file) {
+                    $filename = $usuarioId . 'imagenproducto' . $producto->id . '_' . $counter . '.' . $file->getClientOriginalExtension();
+                    $filePath = $file->storeAs('uploads', $filename, 'public');
+                    $rutasImagenes[] = $filePath;
+                    $counter++;
+                }
             } else {
-                // Si falla la subida, eliminar la publicación creada
+                // Si falla la subida, eliminar el producto creado
                 $producto->delete();
-                return redirect()->back()->with('success', 'Error al subir el producto.');
+                return redirect()->back()->with('error', 'Error al subir las imágenes del producto.');
             }
+
+            // Guardar las rutas de las imágenes como JSON en el campo contenido
+            $producto->contenido = json_encode($rutasImagenes);
+            $producto->save();
 
             return redirect()->back()->with('success', 'Producto creado exitosamente.');
         } else {
             abort(404, 'Página no encontrada');
         }
     }
+
     /**
      * Display the specified resource.
      */
