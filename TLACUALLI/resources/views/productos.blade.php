@@ -112,7 +112,7 @@
                 </div>
             </div>
         </div>
-        @include('partials.publicaciones.paginacion')
+        {{ $productos->links('vendor.pagination.centered') }} 
     </div>
 </div>
 @include('partials.productos.script_productos')

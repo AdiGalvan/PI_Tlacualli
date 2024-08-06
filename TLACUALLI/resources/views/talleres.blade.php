@@ -104,9 +104,6 @@
                     <h2 class="mb-6 text-green-900 font-sans font-black text-2xl text-center w-full">Talleres </h2>
                     @include('partials.talleres.carrusel')
                     <br>
-                   {{--  @include('partials.publicaciones.carrusel') --}}
-                    <br>
-                    {{-- @include('partials.talleres.carrusel') --}}
                 </div>
             </div>
             <div class="lg:col-span-3 w-full p-5">
@@ -128,20 +125,18 @@
                         </button>
                     </div>
                     @else
-                        @foreach($publicaciones->chunk(1) as $chunk)
-                            <div class="flex flex-wrap mx-2 mb-4">
-                                @foreach($chunk as $publicacion)
-                                    <div class="w-full sm:w-1/2 md:w-1/3 p-2">
-                                        @include('partials.talleres.card_taller', ['publicacion' => $publicacion])
-                                    </div>
-                                @endforeach
+                        @foreach($publicaciones as $publicacion)
+                            <div class="w-full sm:w-1/2 md:w-1/3 p-2">
+                                @include('partials.talleres.card_taller', ['publicacion' => $publicacion])
                             </div>
                         @endforeach
                     @endif
+                    
                 </div>
+                {{ $publicaciones->links('vendor.pagination.centered') }}
             </div>
         </div>
-        @include('partials.publicaciones.paginacion')
+         <!-- Agregar la paginación aquí -->
     </div>
 </div>
 @include('partials.productos.script_productos')

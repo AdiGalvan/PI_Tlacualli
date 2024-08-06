@@ -42,9 +42,10 @@ class PublicacionesController extends Controller
         //Busca todas las publicaciones de tipo taller, activas y con los datos del publicador
         $publicaciones = Publicaciones::where('id_tipo', 2)
             ->where('estatus', true)
+            ->whereDate('fecha_revision', '>=', now())
             ->with('usuario')
             ->orderBy('created_at', 'desc')
-            ->get();
+            ->paginate(6);
         //Envia talleres a la vista de talleres
         return view('talleres', compact('publicaciones', 'usuario'));
     }
@@ -52,24 +53,25 @@ class PublicacionesController extends Controller
     public function misTalleresIndex()
     {
         $usuarioId = Auth::id();
-        $usuario = Usuarios::with('roles')
-            ->find($usuarioId);
+        $usuario = Usuarios::with('roles')->find($usuarioId);
         $idRol = $usuario->roles->id;
 
-        if (Auth::check() and ($idRol == 6 || $idRol == 7)) {
-            //Obtiene todos los talleres relacionados a este usuario
+        if (Auth::check() && ($idRol == 6 || $idRol == 7)) {
+            // Obtiene todos los talleres relacionados a este usuario con paginación
             $publicaciones = Publicaciones::where('id_usuario', $usuarioId)
                 ->where('id_tipo', 2)
                 ->with('usuario')
                 ->orderBy('created_at', 'desc')
-                ->get();
-            //Envia talleres a la vista de talleres
+                ->paginate(8); // Ajusta el número de elementos por página según sea necesario
+
+            // Envía talleres a la vista de talleres
             return view('mis_talleres', compact('publicaciones'));
         } else {
-            //Si no esta autenticado lo manda al home
+            // Si no está autenticado lo manda al home
             abort(404, 'Página no encontrada');
         }
     }
+
 
     /**
      * Show the form for creating a new resource.
@@ -260,7 +262,7 @@ class PublicacionesController extends Controller
 
     public function publicacionesIndex()
     {
-        //Verifica si el usuario está autenticado, si está autenticado se le habilita la opcion
+        // Verifica si el usuario está autenticado, si está autenticado se le habilita la opcion
         // para ir a sus talleres 
         $usuarioId = Auth::id();
 
@@ -268,20 +270,17 @@ class PublicacionesController extends Controller
             $usuario = Usuarios::with('roles')
                 ->find($usuarioId);
         } else {
-            //Si no está autenticado se crea una clase generica para que pueda visualizar todos los talleres activos
+            // Si no está autenticado se crea una clase generica para que pueda visualizar todos los talleres activos
             $usuario = new \stdClass();
             $usuario->roles = new \stdClass();
             $usuario->roles->id = null;
         }
-        //Busca todas las publicaciones de tipo taller, activas y con los datos del publicador
+
+        // Busca todas las publicaciones de tipo taller, activas y con los datos del publicador, con paginación
         $publicaciones = Publicaciones::where('id_tipo', 1)
             ->where('estatus', 1)
             ->orderBy('created_at', 'desc')
-            ->get()
-            ->map(function ($publicacion) {
-                $publicacion->fecha_creacion = Carbon::parse($publicacion->created_at)->format('Y-m-d');
-                return $publicacion;
-            });
+            ->paginate(5); // Ajusta el número de elementos por página según sea necesario
 
         return view('publicaciones', compact('publicaciones', 'usuario'));
     }
@@ -299,7 +298,7 @@ class PublicacionesController extends Controller
                 ->where('id_tipo', 1)
                 ->with('usuario')
                 ->orderBy('created_at', 'desc')
-                ->get();
+                ->paginate(5);
 
             //Envia talleres a la vista de talleres
             return view('mis_publicaciones', compact('publicaciones'));

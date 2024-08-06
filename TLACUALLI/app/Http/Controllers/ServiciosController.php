@@ -41,7 +41,7 @@ class ServiciosController extends Controller
         $servicios = Publicaciones::where('id_tipo', 3)
             ->where('estatus', true)
             ->with('usuario')
-            ->get();
+            ->paginate(10);
         return view('partials.servicios.servicios', compact('servicios', 'usuario'));
     }
 
@@ -62,7 +62,7 @@ class ServiciosController extends Controller
         $servicios = Publicaciones::where('id_tipo', 3)
             ->where('id_usuario', Auth::id())
             ->with('usuario')
-            ->get();
+            ->paginate(10);
 
         return view('partials.servicios.mis_servicios', compact('servicios'));
     }
@@ -99,7 +99,7 @@ class ServiciosController extends Controller
             $usuario = Usuarios::with('roles')
                 ->find($usuarioId);
         } else {
-            //Si no está autenticado se crea una clase generica para que pueda visualizar todos los talleres activos
+            // Si no está autenticado se crea una clase genérica para que pueda visualizar todos los talleres activos
             $usuario = new \stdClass();
             $usuario->roles = new \stdClass();
             $usuario->roles->id = null;
@@ -118,7 +118,10 @@ class ServiciosController extends Controller
         }
 
         // Obtener los resultados de la consulta
-        $servicios = $query->get();
+        $servicios = $query->paginate(10); // Ajusta el número de elementos por página según sea necesario
+
+        // Añadir los parámetros de búsqueda a los enlaces de paginación
+        $servicios->appends($request->except('page'));
 
         // Si no se encuentran resultados, devolver un mensaje de sesión
         if ($servicios->isEmpty()) {
