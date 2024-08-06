@@ -4,6 +4,7 @@
 @section('contenido')
 
 <div class="container mt-">
+    @if (Auth::user()->id_rol == 3 || Auth::user()->id_rol == 4|| Auth::user()->id_rol == 7)
     <h2 class="text-green-900 font-sans font-black text-4xl pt-4 pb-4 flex justify-center">Productos Ordenados</h2>
         @if(!$mis_ordenes->isEmpty())
         <table class="min-w-full bg-white shadow-1xl rounded-lg overflow-hidden font-sans">
@@ -55,8 +56,9 @@
         @else
             <p class="mb-6 text-2xl text-center font-light font-sans text-black  dark:text-white mt-5 w-full">No tienes órdenes de productos pendientes</p>
         @endif
-            
+    @endif   
 
+    @if (Auth::user()->id_rol == 6 || Auth::user()->id_rol == 7)
         <h2 class="text-green-900 font-sans font-black text-4xl pt-4 pb-4 flex justify-center">Talleres Solicitados</h2>
 
         @if(!$mis_inscritos->isEmpty())
@@ -109,7 +111,9 @@
         @else
         <p class="mb-6 text-2xl text-center font-light font-sans text-black  dark:text-white mt-5 w-full">No tienes solicitudes de talleres pendientes</p>
         @endif
+    @endif
 
+    @if (Auth::user()->id_rol == 3 || Auth::user()->id_rol == 7)
         <h2 class="text-green-900 font-sans font-black text-4xl pt-4 pb-4 flex justify-center">Servicios Solicitados</h2>
 
         @if(!$mis_solicitudes->isEmpty())
@@ -162,5 +166,6 @@
         @else
         <p class="mb-6 text-2xl text-center font-light font-sans text-black  dark:text-white mt-5 w-full">No tienes solicitudes de servicios pendientes</p>
         @endif
+    @endif
 </div>
 @endsection
