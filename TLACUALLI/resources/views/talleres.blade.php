@@ -92,9 +92,12 @@
                     {{-- @include('partials.talleres.buscar') --}}
                 </div>
                 @if ($usuario->roles->id == 6 || $usuario->roles->id == 7)
-                <div class="col-2 justify-content-end">
-                    <a href="{{ route('mis_talleres') }}" class="bg-gradient-to-r from-green-500 to-green-800 text-white font-sans font-bold px-4 py-2 rounded-md text-md">Mis talleres</a>
-                </div>
+                <div class="col-12 col-sm-6 col-md-4 col-lg-2 d-flex justify-content-center justify-content-lg-end">
+    <a href="{{ route('mis_talleres') }}" class="bg-gradient-to-r from-green-500 to-green-800 text-white font-sans font-bold px-4 py-2 rounded-md text-md">
+        Mis talleres
+    </a>
+</div>
+
                 @endif
             </div>
         </div>

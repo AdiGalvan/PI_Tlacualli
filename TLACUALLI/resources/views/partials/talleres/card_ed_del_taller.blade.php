@@ -41,7 +41,7 @@
 
 
 
- {{-- Ejemplo de card producto en Taildwin --}}
+ {{-- Ejemplo de card taller (vista previa) en Taildwin --}}
 <div class="max-w-lg mx-auto bg-white border border-gray-200 rounded-lg shadow-lg dark:bg-gray-800 dark:border-gray-700">
     <a href="#">
         <img src="{{ asset('storage/' . $publicacion->contenido) }}" alt="" class="card-img-top rounded-t-lg " style="height: 200px; object-fit: fit;">
@@ -49,7 +49,7 @@
     <div class="px-4 py-3">
         
         <a href="#">
-            <h5 class="text-xl font-semibold font-sans tracking-tight text-green-900 text-center dark:text-white">{{ $publicacion->nombre }}</h5>
+            <h5 class="text-xl font-semibold font-sans tracking-tight text-green-900  dark:text-white">{{ $publicacion->nombre }}</h5>
             <div class="flex justify-end mt-2.5 mb-3">
                 <div class="flex items-center space-x-1 rtl:space-x-reverse">
                    <svg class="w-4 h-4 text-yellow-300" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
@@ -70,10 +70,10 @@
                </div>
                <span class="bg-blue-100 text-blue-800 text-xs font-semibold font-sans px-2.5 py-0.5 rounded dark:bg-blue-200 dark:text-blue-800 ms-3">4.0</span>
            </div>
-            <p class="mt-2 font-sans font-bold">{{ $publicacion->descripcion }}</p>
+            <p class="mt-2 font-sans font-bold text-lg text-justify">{{ $publicacion->descripcion }}</p>
         </a>
-        <div class="flex items-center justify-between">
-            <p class="text-xs font-sans text-gray-900 dark:text-white">Creador: {{ $publicacion->usuario->nombre }} {{ $publicacion->usuario->apellido_paterno }} {{ $publicacion->usuario->apellido_materno }}</p>
+        <div class="flex items-center justify-between pt-2">
+            <p class="text-sm font-sans text-gray-900 dark:text-white text-justify">Creador: {{ $publicacion->usuario->nombre }} {{ $publicacion->usuario->apellido_paterno }} {{ $publicacion->usuario->apellido_materno }}</p>
                 {{-- <a class="btn btn-light" href="#" data-bs-toggle="tooltip" data-bs-html="true" aria-label="Compare" onclick="toggleLike(this)">
                     <i id="heart-icon" class="bi bi-heart"></i>
                 </a> --}}
@@ -96,14 +96,14 @@
 
 
 
-<!-- MODAL TAILDWIN -->
+<!-- MODAL TALLER "MÁS INFORMACIÓN" TAILDWIN -->
 <div id="default-modal{{ $publicacion->id }}" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
     <div class="relative p-4 w-full max-w-3xl max-h-full">
         <!-- Modal content -->
         <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
             <!-- Modal header -->
             <div class="flex items-center justify-between  md:p-5 border-b rounded-t dark:border-gray-600">
-                <h2 class="h2 font-sans">{{ $publicacion->nombre }}</h2>
+                <h2 class="text-xl font-black font-sans tracking-tight text-green-900 text-center dark:text-white ps-4 pt-2 pb-2">{{ $publicacion->nombre }}</h2>
                 <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-hide="default-modal{{ $publicacion->id }}">
                     <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
@@ -118,37 +118,54 @@
                     <div id="map" style="width: 100%; height: 400px;"></div>   
                 </div>                  
               </div>
+
+             
+
               <div class="col-lg-6 mt-3">
-                    <p  class="h4 font-sans"><span>Nombre del creador:</span> {{ $publicacion->usuario->nombre }} {{ $publicacion->usuario->apellido_paterno }} {{ $publicacion->usuario->apellido_materno }}</p>
+
+              <div class="flex justify-end">
+                                <p class="font-sans font-light text-lg pr-6 pb-4"><span class="text-dark font-sans font-bold text-lg pr-4 pb-4">Precio: </span>$ {{ $publicacion->costo }}</p>
+                            </div>
+
+              <p class="font-sans font-light text-lg ps-4"><span class="mt-2 font-sans font-bold">Descripción:</span> {{ $publicacion->descripcion }}</p>
                     <br>
-                    <p class="font-sans h4"><span>Descripción:</span> {{ $publicacion->descripcion }}</p>
-                    <br>
-                    <p class="font-sans h4"><span>Fecha de inicio:</span> {{ $publicacion->fecha_revision }}</p>
+
+                    
+                    <p class="text-lg font-sans font-light ps-4"><span class="mt-2 font-sans font-bold">Creador:</span> {{ $publicacion->usuario->nombre }} {{ $publicacion->usuario->apellido_paterno }} {{ $publicacion->usuario->apellido_materno }}</p>
+
+                    <p class="text-lg font-sans font-light ps-4"><span class="mt-2 font-sans font-bold">Fecha de inicio:</span> {{ $publicacion->fecha_revision }}</p>
+
                     <div class="ps-lg-8 mt-6 mt-lg-0">
                         <div class="mb-4">
                             <hr class="my-6">
-                            <div class="h5 mt-5">
-                                <p><span class="text-dark font-sans">Precio: $ {{ $publicacion->costo }}</span></p>
-                            </div>
+                          
                             <div class="flex items-center justify-between">
                                 <div class="flex-shrink-0 px-2 mt-3">
                                       <div class="container mt-2">
                                         <div class="row">
-                                            <div class="col-lg-4 col-md-4 col-6">
-                                                <!-- Botón "Actualizar información" en una línea separada -->
-                                                <button type="button" class="bg-gradient-to-r from-green-500 to-green-800 hover:from-green-600 hover:to-green-800 text-white px-4 py-2 rounded-lg font-semibold font-sans" data-bs-toggle="modal" data-bs-target="#actualizar_taller{{ $publicacion->id }}">
-                                                    <i class="bi bi-pencil-square"></i> Actualizar
-                                                </button>
-                                            </div>
-                                            <div class="col-lg-4 col-md-4 col-6">
-                                                @if ($publicacion->estatus)
-                                                    {{-- Mostrar botón de Desactivar si el estado es true --}}
-                                                    <button type="button" class="me-2 bg-gradient-to-r from-yellow-500 to-yellow-800 hover:bg-yellow-600 text-white px-4 py-2 rounded-lg font-semibold font-sans" data-bs-toggle="modal" data-bs-target="#desactivar_taller{{ $publicacion->id }}">Desactivar</button>
-                                                @else
-                                                    {{-- Mostrar botón de Activar si el estado es false --}}
-                                                    <button type="button" class="me-4 bg-gradient-to-r from-blue-600 to-blue-900 hover:bg-blue-800 text-white px-4 py-2 rounded-lg font-semibold font-sans" data-bs-toggle="modal" data-bs-target="#activar_taller{{ $publicacion->id }}">Activar</button>
-                                                @endif
-                                            </div>
+
+                                        <div class="flex flex-wrap gap-4">
+    <div class="flex-1 min-w-[150px]">
+        <!-- Botón "Actualizar información" -->
+        <button type="button" class="w-full bg-gradient-to-r from-green-500 to-green-800 hover:from-green-600 hover:to-green-800 text-white px-4 py-2 rounded-lg font-semibold" data-bs-toggle="modal" data-bs-target="#actualizar_taller{{ $publicacion->id }}">
+            Editar
+        </button>
+    </div>
+    <div class="flex-1 min-w-[150px]">
+        @if ($publicacion->estatus)
+            {{-- Mostrar botón de Desactivar si el estado es true --}}
+            <button type="button" class="w-full bg-gradient-to-r from-yellow-500 to-yellow-800 hover:bg-yellow-600 text-white px-4 py-2 rounded-lg font-semibold" data-bs-toggle="modal" data-bs-target="#desactivar_taller{{ $publicacion->id }}">
+                Desactivar
+            </button>
+        @else
+            {{-- Mostrar botón de Activar si el estado es false --}}
+            <button type="button" class="w-full bg-gradient-to-r from-blue-600 to-blue-900 hover:bg-blue-800 text-white px-4 py-2 rounded-lg font-semibold" data-bs-toggle="modal" data-bs-target="#activar_taller{{ $publicacion->id }}">
+                Activar
+            </button>
+        @endif
+    </div>
+</div>
+
                                         </div>                                        
                                     </div>
                                 </div>
