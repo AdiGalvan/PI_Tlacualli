@@ -91,7 +91,7 @@
                 <div class="w-full max-w-lg">
                     {{-- @include('partials.talleres.buscar') --}}
                 </div>
-                @if ($usuario->roles->id == 6)
+                @if ($usuario->roles->id == 6 || $usuario->roles->id == 7)
                 <div class="col-2 justify-content-end">
                     <a href="{{ route('mis_talleres') }}" class="bg-gradient-to-r from-green-500 to-green-800 text-white font-sans font-bold px-4 py-2 rounded-md text-md">Mis talleres</a>
                 </div>
@@ -101,7 +101,7 @@
         <div class="grid grid-cols-1 lg:grid-cols-4 gap-2">
             <div class="lg:col-span-1 w-full p-2">
                 <div class="sticky top-0 p-3">
-                    <h2 class="text-lg text-center font-semibold font-sans text-dark uppercase dark:text-white w-full">Talleres </h2>
+                    <h2 class="mb-6 text-green-900 font-sans font-black text-2xl text-center w-full">Talleres </h2>
                     @include('partials.talleres.carrusel')
                     <br>
                    {{--  @include('partials.publicaciones.carrusel') --}}

@@ -202,7 +202,7 @@
 
 <div class="md:container md:mx-auto mb-30 mt-5"> <!-- CONTAINER TABLE -->
     <div class="flex items-center justify-center mb-6 space-x-4">
-        <h2 class=" text-green-900 font-sans font-black text-4xl text-center w-full">Tabla Productos</h2>
+        <h2 class="text-green-900 font-sans font-black text-4xl text-center w-full">Tabla Productos</h2>
     </div>
     <div class="flex justify-end space-x-4 px-5 mb-6">
         <button type="button" class="bg-gradient-to-r from-gray-500 to-gray-800 text-white font-sans font-bold px-4 py-2 rounded-md text-md" onclick="window.location.href='{{ url('/productos') }}'">Regresar</button>
@@ -232,7 +232,15 @@
             <td class="px-6 py-4 text-base font-semibold text-center">{{ $producto->stock }}</td>
             <td class="px-6 py-4 flex items-center justify-center">
                 @if($producto->contenido)
-                    <img src="{{ asset('storage/' . $producto->contenido) }}" alt="{{ $producto->nombre }}" class="w-24 h-24 object-cover">
+                    @php
+                        $imagenes = json_decode($producto->contenido, true);
+                        $primeraImagen = $imagenes[0] ?? null;
+                    @endphp
+                    @if($primeraImagen)
+                        <img src="{{ asset('storage/' . $primeraImagen) }}" alt="{{ $producto->nombre }}" class="w-24 h-24 object-cover">
+                    @else
+                        No disponible
+                    @endif
                 @else
                     No disponible
                 @endif
@@ -244,9 +252,9 @@
                     </button>
                     @include('partials.productos.registrar_producto', ['producto' => $producto ?? new stdClass()])
                     @if ($producto->estatus)
-                        <button type="button" class="bg-gradient-to-r from-gray-500 to-gray-800 hover:from-gray-600 hover:to-gray-800 text-white px-4 py-2 rounded-lg font-semibold font-sans" data-bs-toggle="modal" data-bs-target="#desactivar_producto{{ $producto->id }}">Desactivar</button>
+                        <button type="button" class="bg-gradient-to-r from-yellow-500 to-yellow-800 hover:bg-yellow-600 text-white px-4 py-2 rounded-md font-sans font-bold " data-bs-toggle="modal" data-bs-target="#desactivar_producto{{ $producto->id }}">Desactivar</button>
                     @else
-                        <button type="button" class="bg-gradient-to-r from-gray-500 to-gray-800 hover:from-gray-600 hover:to-gray-800 text-white px-4 py-2 rounded-lg font-semibold font-sans" data-bs-toggle="modal" data-bs-target="#activar_producto{{ $producto->id }}">Activar</button>
+                        <button type="button" class="bg-gradient-to-r from-blue-600 to-blue-900 hover:bg-blue-800 text-white px-4 py-2 rounded-md font-sans font-bold " data-bs-toggle="modal" data-bs-target="#activar_producto{{ $producto->id }}">Activar</button>
                     @endif
                 </div>
             </td>

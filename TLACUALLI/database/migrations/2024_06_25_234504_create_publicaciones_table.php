@@ -27,7 +27,7 @@ class CreatePublicacionesTable extends Migration
         DB::table('publicaciones')->insert([
             [
                 'descripcion' => 'Recolección de residuos orgánicos a domicilio',
-                'nombre' => 'Colectivo nanakatl',
+                'nombre' => 'Recoleccion de RO',
                 'contenido' => 'Lorem ipsum...',
                 'fecha_publicacion' => '2024-07-08',
                 'id_usuario' => 1,
@@ -35,7 +35,7 @@ class CreatePublicacionesTable extends Migration
             ],
             [
                 'descripcion' => 'Solicitud de cubetas',
-                'nombre' => 'Hagamos Composta',
+                'nombre' => 'Cubetas para composta',
                 'contenido' => 'Lorem ipsum...',
                 'fecha_publicacion' => '2024-12-08',
                 'id_usuario' => 2,

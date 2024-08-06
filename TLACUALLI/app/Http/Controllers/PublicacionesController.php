@@ -56,7 +56,7 @@ class PublicacionesController extends Controller
             ->find($usuarioId);
         $idRol = $usuario->roles->id;
 
-        if (Auth::check() and $idRol == 6) {
+        if (Auth::check() and ($idRol == 6 || $idRol == 7)) {
             //Obtiene todos los talleres relacionados a este usuario
             $publicaciones = Publicaciones::where('id_usuario', $usuarioId)
                 ->where('id_tipo', 2)
@@ -88,18 +88,20 @@ class PublicacionesController extends Controller
 
         if (Auth::check()) {
             // Validaciones
-            $validator = $request->validate([
-                '_descT' => 'required',
-                '_nt' => 'required|max:50',
-                '_contT' => 'required|file|max:2048', // Ruta de la imagen
-                '_costoT' => 'numeric',
-            ],
-            [
-                '_descT' => 'El campo de descripción es obligatorio.',
-                '_nt' => 'El campo de nombre es obligatorio.',
-                '_contT' => 'El campo de archivo es obligatorio.',
-                '_costoT' => 'El campo de costo es obligatorio.',
-            ]);
+            $validator = $request->validate(
+                [
+                    '_descT' => 'required',
+                    '_nt' => 'required|max:50',
+                    '_contT' => 'required|file|max:2048', // Ruta de la imagen
+                    '_costoT' => 'numeric',
+                ],
+                [
+                    '_descT' => 'El campo de descripción es obligatorio.',
+                    '_nt' => 'El campo de nombre es obligatorio.',
+                    '_contT' => 'El campo de archivo es obligatorio.',
+                    '_costoT' => 'El campo de costo es obligatorio.',
+                ]
+            );
 
             // Insert de publicación para obtener el ID
             $taller = new Publicaciones();
@@ -285,7 +287,7 @@ class PublicacionesController extends Controller
             ->find($usuarioId);
         $idRol = $usuario->roles->id;
 
-        if (Auth::check() and $idRol == 5) {
+        if (Auth::check() and ($idRol == 5 || $idRol == 7)) {
             //Obtiene todos los talleres relacionados a este usuario
             $publicaciones = Publicaciones::where('id_usuario', $usuarioId)
                 ->where('id_tipo', 1)
@@ -306,20 +308,28 @@ class PublicacionesController extends Controller
 
         if (Auth::check()) {
             //Validaciones
-            $validator = $request->validate([
-                '_des'                  => 'required',
-                '_tp'                   => 'required|max:50',
-                '_cont'                 => 'required|file|max:2048', //Ruta de la imagen
-                '_tipo'                 => 'required|numeric'
-                //'id_usuario_revision'   => 'required',
-                //'fecha_revision'        => 'date',
-            ]);
+            $validator = $request->validate(
+                [
+                    '_des'                  => 'required',
+                    '_tp'                   => 'required|max:50',
+                    '_cont'                 => 'required|file|max:2048', //Ruta de la imagen
+                    '_tipo'                 => 'required|numeric'
+                    //'id_usuario_revision'   => 'required',
+                    //'fecha_revision'        => 'date',
+                ],
+                [
+                    '_des' => 'El campo de descripción es obligatorio.',
+                    '_tp' => 'El campo de título es obligatorio.',
+                    '_cont' => 'El campo de archivo es obligatorio.',
+                    '_tipo' => 'El campo de tipo es obligatorio.',
+                ]
+            );
 
             //Subir el archivo imagen
             if ($request->hasFile('_cont')) {
                 $file = $request->file('_cont');
 
-                $filename = $usuarioId . '_1_articulo_' . $validator['_tp'];
+                $filename = $usuarioId . '_1_articulo_' . $validator['_tp'] . '.' . $file->getClientOriginalExtension();
 
                 $filePath = $file->storeAs('uploads', $filename, 'public');
             } else {

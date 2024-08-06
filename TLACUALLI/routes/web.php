@@ -54,7 +54,7 @@ Route::get('/servicios', [ServiciosController::class, 'index'])->name('servicios
 // Route::post('guardarForm/servicios', [ServiciosController::class, 'store'])->name('servicios.store');
 // Route::post('servicios/{id}/confirm', [ServiciosController::class, 'update'])->name('servicios.update');
 // Route::get('/servicios/{id}/edit', [ServiciosController::class, 'edit'])->name('servicios.edit');
-// Route::get('/mis_servicios/search', [ServiciosController::class, 'search'])->name('servicios.search');
+Route::get('/mis_servicios/search', [ServiciosController::class, 'search'])->name('servicios.search');
 // Route::get('/servicios/{id}/eliminar', [ServiciosController::class, 'editForm'])->name('servicios.editForm'); //mostrar formulario para eliminar
 // Route::post('/servicios/{id}/eliminar', [ServiciosController::class, 'softDelete'])->name('servicios.softDelete'); //eliminación lógica
 

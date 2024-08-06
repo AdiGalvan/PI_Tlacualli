@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Models;
+
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Notifications\Notifiable;
@@ -19,6 +20,7 @@ class Usuarios extends Authenticatable
         'nombre',
         'apelldo_paterno',
         'apellido_materno',
+        'tipo_persona',
         'RFC',
         'telefono',
         'descripcion',
@@ -51,7 +53,7 @@ class Usuarios extends Authenticatable
     }
 
     //Direccion personal
-    public function direccion() 
+    public function direccion()
     {
         return $this->hasOne(Direcciones::class, 'id', 'id_direccion_envios');
     }

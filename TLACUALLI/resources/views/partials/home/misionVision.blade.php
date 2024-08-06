@@ -1,4 +1,4 @@
-<div class="relative w-screen h-full bg-cover bg-center" style="background-image: url('/images/fondo.jpg');">
+<div class="relative w-screen h-full bg-cover bg-center" {{-- style="background-image: url('/images/fondo.jpg'); --}}">
     <div class="container mx-auto px-1 ">
         <div class="grid grid-cols-1 gap-4 mt-5">
             <div class="w-full text-center mt-0">

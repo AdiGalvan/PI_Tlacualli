@@ -37,17 +37,17 @@
     <script src="https://cdn.jsdelivr.net/npm/flowbite@2.4.1/dist/flowbite.min.js"></script>
 
 </head> --}}
-<div class="accordion mt-3" id="accordionExample{{ $index }}" data-accordion="collapse">
+<div class="accordion mt-3 shadow-lg font-sans" id="accordionExample{{ $index }}" data-accordion="collapse">
   <h2 id="accordion-collapse-heading-{{ $index }}">
     <button type="button" class="flex items-center justify-between w-full p-3 font-medium text-black bg-white border border-b-0 border-gray-300 rounded-t-lg focus:ring-2 focus:ring-gray-200 dark:focus:ring-gray-600 dark:border-gray-600 dark:text-gray-300 gap-2" data-accordion-target="#accordion-collapse-body-{{ $index }}" aria-expanded="true" aria-controls="accordion-collapse-body-{{ $index }}">
         <div class="flex items-center">
-            <img src="{{ asset('images/pdf.png') }}" alt="" class="mr-2" style="max-height: 20px;">
+            <img src="{{ asset('images/pdf.png') }}" alt="" class="px-4" style="max-height: 20px;">
             <div class="px-3 mt-3 mb-3 text-black">
-                <strong>{{ $publicacion->nombre }}</strong><br>
+                <strong class="text-green-900 font-sans font-black text-md text-center w-full">{{ $publicacion->nombre }}</strong><br>
                 Documento
             </div>
         </div>
-        <div class="px-5 mt-3 mb-3 text-black">
+        <div class="mt-3 mb-3 text-black">
             Fecha:<br>
             {{ $publicacion->fecha_publicacion }}
         </div>   

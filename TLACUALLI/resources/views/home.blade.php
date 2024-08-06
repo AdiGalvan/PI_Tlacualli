@@ -170,12 +170,6 @@
             <h2 class="text-4xl font-black text-yellow-500 dark:text-white font-ui-sans-serif">Publicaciones</h2>
         </div>
     </div> -->
-    @auth
-        Autenticado
-        @endauth
-        @guest
-        No autenticado
-        @endguest
 
 
     @include('partials.home.carrouselCard')

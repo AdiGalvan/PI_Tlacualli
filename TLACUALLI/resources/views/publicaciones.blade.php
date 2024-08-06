@@ -70,19 +70,13 @@
 <div class="mt-5 flex justify-center">
     <div class="w-full lg:w-10/12">  
         <h2 class="text-green-900 font-sans font-black text-4xl text-center">Publicaciones</h2>
-            @auth
-                Autenticado
-                @endauth
-                @guest
-                No autenticado
-            @endguest
         
             <div class="flex flex-wrap mb-4 justify-end px-5">
                 <div class="w-full flex items-center space-x-4 justify-end">
                     <div class="w-full max-w-lg">
                       {{--   @include('partials.publicaciones.buscar') --}}
                     </div>
-                    @if ($usuario->roles->id == 5)
+                    @if ($usuario->roles->id == 5 || $usuario->roles->id == 7)
                         <a href="{{ route('mis_publicaciones') }}" class="bg-gradient-to-r from-green-500 to-green-800 text-white font-sans font-bold px-4 py-2 rounded-md text-md"> Mis publicaciones</a>
                     @endif
                 </div>

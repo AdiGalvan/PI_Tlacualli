@@ -33,11 +33,14 @@
             <input type="text" class="font-sans font-light text-base px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-400 w-full" id="_nu" name="_nu" value="{{ $usuario -> nombre }}">
             <p class="text-red-600 font-sans font-bold mt-1">{{ $errors->first('_nu') }}</p>
         </div>
-        <div class="mb-3" id="apellido_p">
-            <label class="text-green-900 font-sans font-bold pb-2 text-lg">Apellido paterno</label>
-            <input type="text" class="font-sans font-light text-base px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-400 w-full" id="_ap" name="_ap" value="{{ $usuario -> apellido_paterno }}">
-            <p class="text-red-600 font-sans font-bold mt-1">{{ $errors->first('_ap') }}</p>
+        
+        @if($usuario->tipo_persona==1)
+        <div class="mb-3" id="apellido_m">
+            <label class="text-green-900 font-sans font-bold pb-2 text-lg">Apellido materno</label>
+            <input type="text" class="font-sans font-light text-base px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-400 w-full" id="_am" name="_am" value="{{ $usuario -> apellido_materno }}">
+            <p class="text-red-600 font-sans font-bold mt-1">{{ $errors->first('_am') }}</p>
         </div>
+        @endif
          <div class="mb-3">
             <label class="text-green-900 font-sans font-bold pb-2 text-lg">Fecha de nacimiento *</label>
             <input type="date" class="font-sans font-light text-base px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-400 w-full" id="_fn" name="_fn" value="{{ $usuario -> fecha_nacimiento }}">
@@ -45,7 +48,7 @@
         </div>
         <div class="mb-3">
             <label class="text-green-900 font-sans font-bold pb-2 text-lg">Correo *</label>
-            <input type="email" class="font-sans font-light text-base px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-400 w-full" id="_email" name="_email" value="{{ $usuario -> correo }}">
+            <input disabled type="email" class="font-sans font-light text-base px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-400 w-full" id="_email" name="_email" value="{{ $usuario -> correo }}">
             <p class="text-red-600 font-sans font-bold mt-1">{{ $errors->first('_email') }}</p>
         </div>
         <div class="mb-3" hidden>
@@ -53,17 +56,11 @@
             <input type="file" class="font-sans font-light text-base px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-400 w-full" id="_av" name="_av" disabled>
             <p class="text-red-600 font-sans font-bold mt-1">{{ $errors->first('_av') }}</p>
         </div>
-       
-        <div class="mb-3">
-            <label class="text-green-900 font-sans font-bold pb-2 text-lg">Teléfono</label>
-            <input type="text" class="font-sans font-light text-base px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-400 w-full" id="_tel" name="_tel" value="{{ $usuario -> telefono }}">
-            <p class="text-red-600 font-sans font-bold mt-1">{{ $errors->first('_tel') }}</p>
-        </div>
     </div> <!-- div final de la primera columna -->
 
     <!-- SEGUNDA COLUMNA -->
     <div class="col-md-6">
-        <div class="mb-3">
+        <div class="mb-3" hidden>
             <label class="text-green-900 font-sans font-bold pb-2 text-lg">Rol *</label>
             <select class="font-sans font-light text-base px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-400 w-full" id="_rol" name="_rol" onchange="toggleApellidos(this)">
                 <option value="" @if (null == old('_rol')) selected @endif>Selecciona una opción</option>
@@ -73,12 +70,13 @@
             </select>
             <p class="text-red-600 font-sans font-bold mt-1">{{ $errors->first('_rol') }}</p>
         </div>
-        
-        <div class="mb-3" id="apellido_m">
-            <label class="text-green-900 font-sans font-bold pb-2 text-lg">Apellido materno</label>
-            <input type="text" class="font-sans font-light text-base px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-400 w-full" id="_am" name="_am" value="{{ $usuario -> apellido_materno }}">
-            <p class="text-red-600 font-sans font-bold mt-1">{{ $errors->first('_am') }}</p>
+        @if($usuario->tipo_persona==1)
+        <div class="mb-3" id="apellido_p">
+            <label class="text-green-900 font-sans font-bold pb-2 text-lg">Apellido paterno</label>
+            <input type="text" class="font-sans font-light text-base px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-400 w-full" id="_ap" name="_ap" value="{{ $usuario -> apellido_paterno }}">
+            <p class="text-red-600 font-sans font-bold mt-1">{{ $errors->first('_ap') }}</p>
         </div>
+        @endif
         <div class="mb-3">
             <label class="text-green-900 font-sans font-bold pb-2 text-lg">Sexo *</label>
             <select class="font-sans font-light text-base px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-400 w-full" id="_sx" name="_sx">
@@ -93,6 +91,11 @@
             <label class="text-green-900 font-sans font-bold pb-2 text-lg">RFC</label>
             <input type="text" class="font-sans font-light text-base px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-400 w-full" id="_rfc" name="_rfc" value="{{ $usuario -> RFC }}"> 
             <p class="text-red-600 font-sans font-bold mt-1">{{ $errors->first('_rfc') }}</p>
+        </div>
+        <div class="mb-3">
+            <label class="text-green-900 font-sans font-bold pb-2 text-lg">Teléfono</label>
+            <input type="text" class="font-sans font-light text-base px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-400 w-full" id="_tel" name="_tel" value="{{ $usuario -> telefono }}">
+            <p class="text-red-600 font-sans font-bold mt-1">{{ $errors->first('_tel') }}</p>
         </div>
     </div> <!-- div final de la segunda columna -->
 </div>
