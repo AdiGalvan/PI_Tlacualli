@@ -24,8 +24,6 @@
                     @include('partials.productos.carrusel')
                     <br>
                     @include('partials.publicaciones.carrusel')
-                    <br>
-                    @include('partials.talleres.carrusel')
                 </div>
             </div>
             <div class="lg:col-span-3 w-full p-5">
@@ -112,7 +110,7 @@
                 </div>
             </div>
         </div>
-        @include('partials.publicaciones.paginacion')
+        {{ $productos->links('vendor.pagination.centered') }} 
     </div>
 </div>
 @include('partials.productos.script_productos')

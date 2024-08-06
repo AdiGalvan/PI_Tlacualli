@@ -51,6 +51,12 @@
       <input type="number" class="font-sans font-light px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 w-full" id="_costoT" name="_costoT" placeholder="Ingrese el costo de su taller (0 en caso de ser gratuito)" value="{{ old('_costoT') }}">
       <p class="text-red-600 font-sans font-bold mt-1">{{ $errors->first('_costoT') }}</p>
     </div>
+
+    <div class="mb-3">
+        <label class="text-green-900 font-sans font-bold pb-2 text-base">Fecha de inicio del taller</label>
+        <input type="date" class="font-sans font-light px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 w-full" id="_fechaInicioT" name="_fechaInicioT" value="{{ old('_fechaInicioT') }}">
+        <p class="text-red-600 font-sans font-bold mt-1">{{ $errors->first('_fechaInicioT') }}</p>
+    </div>
     
     <div class="modal-footer">
       <button type="submit" class="bg-gradient-to-r from-green-500 to-green-800 hover:from-green-600 hover:to-green-800 text-white px-4 py-2 rounded-lg mr-2 font-semibold font-sans" onclick="validarCampos()"><i class="bi bi-check-lg"></i> Agregar</button>

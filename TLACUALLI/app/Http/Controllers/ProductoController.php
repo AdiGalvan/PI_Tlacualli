@@ -38,7 +38,7 @@ class ProductoController extends Controller
         }
 
         $productos = Producto::where('estatus', 1)
-            ->get();
+            ->paginate(6);
 
         return view('productos', compact('productos', 'usuario'));
         // $productos = Producto::paginate();
@@ -60,7 +60,7 @@ class ProductoController extends Controller
             //Obtiene todos los talleres relacionados a este usuario
             $productos = Producto::where('proveedor_id', $usuarioId)
                 ->with('usuario')
-                ->get();
+                ->paginate(8);
             //Envia talleres a la vista de talleres
             return view('mis_productos', compact('productos'));
         } else {
