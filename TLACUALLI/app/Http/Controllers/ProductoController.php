@@ -38,7 +38,7 @@ class ProductoController extends Controller
         }
 
         $productos = Producto::where('estatus', 1)
-            ->paginate(9);
+            ->paginate(6);
 
         return view('productos', compact('productos', 'usuario'));
         // $productos = Producto::paginate();

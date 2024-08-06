@@ -1,5 +1,5 @@
 @extends('layouts.template')
-@section('titulo','Servicios')
+@section('titulo','Mis_Servicios')
 @section('contenido')
 
 <p></p>

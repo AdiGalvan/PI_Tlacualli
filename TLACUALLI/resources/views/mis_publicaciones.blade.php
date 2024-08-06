@@ -98,7 +98,7 @@
 
 
 @extends('layouts.template')
-@section('titulo','Publicaciones')
+@section('titulo','Mis_Publicaciones')
 @section('contenido')
 
 <div class="mt-5 flex justify-center">

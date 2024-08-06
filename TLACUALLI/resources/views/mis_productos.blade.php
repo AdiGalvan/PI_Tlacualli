@@ -131,7 +131,7 @@
 
 
 @extends('layouts.template')
-@section('titulo','TablaProductos')
+@section('titulo','Mis_Productos')
 @section('contenido')
 
 {{-- <div class="md:container md:mx-auto mb-36">
