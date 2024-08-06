@@ -20,7 +20,7 @@
         <div class="grid grid-cols-1 lg:grid-cols-4 gap-2">
             <div class="lg:col-span-1 w-full p-2">
                 <div class="sticky top-0 p-3">
-                    <h2 class="text-lg text-center font-semibold font-sans text-dark uppercase dark:text-white w-full">Promociones</h2>
+                    <h2 class="mb-6 text-green-900 font-sans font-black text-2xl text-center mt-3 w-full">Información</h2>
                     @include('partials.productos.carrusel')
                     <br>
                     @include('partials.publicaciones.carrusel')
@@ -48,7 +48,7 @@
                         </div>
                     @else
                         @foreach ($productos as $producto)
-                            <div class="flex flex-col justify-between">
+                            <div class="flex flex-col justify-between shadow-lg">
                                 <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow-lg dark:bg-gray-800 dark:border-gray-700">
                                     <a href="#">
                                         @if($producto->contenido)

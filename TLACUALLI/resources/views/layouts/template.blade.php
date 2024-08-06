@@ -82,12 +82,12 @@
     <script src="{{ $js }}" id="js"></script>
     
 </head>
-<section class="bg-gray-200 dark:bg-yellow-100">
+<section class="bg-image">
 @include('partials.navbar')
    
 <!-- rgb(228, 217, 201)  -->
 
-<body style="background-color: rgb(255, 255, 255)">
+<body {{-- style="background-color: rgb(255, 255, 255)" --}} class="bg-image">
     {{-- Estructura base: navbar, alertas y el resto del contenido --}}
     @yield('contenido') 
 
@@ -100,6 +100,14 @@
     @include('partials.footer')
 </footer>
 </section>
+<style>
+    .bg-image {
+        background-image: url('/images/fondo.jpg');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+    }
+</style>
 </html>
 
 
