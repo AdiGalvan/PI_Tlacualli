@@ -60,8 +60,10 @@
      @endguest
     @include('partials.login')
     @auth
+    <div class="mx-1">
     <x-cart-dropdown />
     @endauth
+    </div>
     </div>
     <div class="hidden w-full md:block md:w-auto" id="navbar-default">
       <ul class="font-medium flex flex-col p-4 md:p-0 bg-gray-50 md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:bg-transparent dark:bg-gray-800 md:dark:bg-gray-900">
