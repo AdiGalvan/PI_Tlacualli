@@ -40,7 +40,7 @@
 </head> --}}
 <div class="accordion mt-3 shadow-lg font-sans" id="accordionExample{{ $index }}" data-accordion="collapse">
   <h2 id="accordion-collapse-heading-{{ $index }}">
-    <button type="button" class="flex items-center justify-between w-full p-3 font-medium text-black bg-white border border-b-0 border-gray-300 rounded-t-lg focus:ring-2 focus:ring-gray-200 dark:focus:ring-gray-600 dark:border-gray-600 dark:text-gray-300 gap-2" data-accordion-target="#accordion-collapse-body-{{ $index }}" aria-expanded="true" aria-controls="accordion-collapse-body-{{ $index }}">
+    <button type="button" class="flex items-center justify-between w-full p-3 font-medium text-black bg-white border border-b-0 border-gray-300 rounded-t-lg focus:ring-2 focus:ring-gray-200 dark:focus:ring-gray-600 dark:border-gray-600 dark:text-gray-300 gap-2" data-accordion-target="#accordion-collapse-body-{{ $index }}" aria-expanded="false" aria-controls="accordion-collapse-body-{{ $index }}">
         <div class="flex items-center">
             <img src="{{ asset('images/pdf.png') }}" alt="" class="pr-2" style="max-height: 20px;">
            
