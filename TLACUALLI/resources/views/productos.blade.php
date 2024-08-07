@@ -248,15 +248,12 @@
                                   <tbody>
                                       <tr>
                                           <td>Código del Producto:</td>
-                                          <td>FBB00255</td>
+                                          <td>{{ (intval($producto->costo) + 3) . '-' . (intval($producto->costo) + 138) . '-' . $producto->id }}
+</td>
                                       </tr>
                                       <tr>
                                           <td>Stock:</td>
                                           <td>{{ $producto->stock }}</td>
-                                      </tr>
-                                      <tr>
-                                          <td>Categoría:</td>
-                                          <td>Abonos</td>
                                       </tr>
                                   </tbody>
                               </table>
