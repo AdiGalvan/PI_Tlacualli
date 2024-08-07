@@ -26,7 +26,7 @@
     </div>
     @endif
 
-    <div class="md:container md:mx-auto mb-20">
+    <div class="md:container md:mx-auto mb-20 overflow-x-auto">
     @if($servicios->isEmpty())
         <div id="alert-2" class="flex items-center p-4 mb-4 text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400" role="alert">
             <svg class="flex-shrink-0 w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
@@ -47,8 +47,6 @@
     <table class="min-w-full bg-white shadow-2xl rounded-lg overflow-hidden">
         <thead class="bg-green-900 text-white ">
             <tr>
-                <th class="px-6 py-3 text-left text-base">ID</th>
-                <th class="px-6 py-3 text-left text-base">Clientes</th>
                 <th class="px-6 py-3 text-left text-base">Nombre</th>
                 <th class="px-6 py-3 text-left text-base">Descripción</th>
                 {{-- <th>Tipos de servicio</th> --}}
@@ -61,8 +59,6 @@
         <tbody>
             @foreach($servicios as $servicio)
             <tr>
-                <td class="px-6 py-4 text-base font-semibold">{{ $servicio->id }}</td>
-                <td class="px-6 py-4 text-base font-medium">{{ $servicio->cliente }}</td>
                 <td class="px-6 py-4 text-base font-medium">{{ $servicio->nombre }}</td>
                 <td class="px-6 py-4 text-base font-medium">{{ $servicio->descripcion }}</td>
                 <td class="px-6 py-4 text-base font-medium">
