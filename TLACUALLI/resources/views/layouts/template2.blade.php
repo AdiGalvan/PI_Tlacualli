@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -83,29 +82,32 @@
     <script src="{{ $js }}" id="js"></script>
     
 </head>
+<section class="bg-image">
+@include('partials.navbar')
+   
+<!-- rgb(228, 217, 201)  -->
 
-<body class="flex flex-col h-screen bg-image">
-    <header class="">
-        @include('partials.navbar')
-    </header>
-    <main class="flex-1 ">
-        @yield('contenido')
-    </main>
-    <footer class="">
-        @include('partials.footer')
-    </footer>
+<body {{-- style="background-color: rgb(255, 255, 255)" --}} class="bg-image">
+    {{-- Estructura base: navbar, alertas y el resto del contenido --}}
+    @yield('contenido') 
+
     {{-- Notificacion de notyf --}}
     <script src="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.js"></script>
     @include('partials.alertas')
+
 </body>
+<footer>
+    @include('partials.footer')
+</footer>
+</section>
 <style>
     .bg-image {
         background-image: url('/images/fondo.jpg');
         background-size: cover;
         background-position: center;
         background-repeat: no-repeat;
-        min-height: 100vh; /* Asegura que el fondo cubra toda la ventana */
     }
 </style>
-
 </html>
+
+

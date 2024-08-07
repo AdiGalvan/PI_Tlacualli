@@ -35,6 +35,12 @@
                     <i id="heart-icon" class="bi bi-heart"></i>
                 </a> --}}
         </div>
+        <div class="flex items-center justify-between">
+            <p class="text-xs font-sans text-gray-900 dark:text-white">Fecha de inicio: {{ $publicacion->fecha_revision}}</p>
+                {{-- <a class="btn btn-light" href="#" data-bs-toggle="tooltip" data-bs-html="true" aria-label="Compare" onclick="toggleLike(this)">
+                    <i id="heart-icon" class="bi bi-heart"></i>
+                </a> --}}
+        </div>
         <div class="flex items-center justify-end mt-2 px-2">
             <span class="text-md font-bold font-sans text-gray-900 dark:text-white">$ {{ $publicacion->costo }}</span>
         </div>
@@ -124,10 +130,14 @@
                         </div>
                     </div>
                     <br><br>
+
                     <p class="text-lg font-sans font-bold mt-4 ps-4"><span>Nombre del creador:</span></p>
                     <span class="text-md font-sans font-light ps-4">{{ $publicacion->usuario->nombre }} {{ $publicacion->usuario->apellido_paterno }} {{ $publicacion->usuario->apellido_materno }}</span>
                     <p class="text-lg font-sans font-bold mt-3 ps-4"><span>Descripción:</span></p>
                     <p class="text-sm font-sans font-bold pb-4 ps-4"><span class="text-md font-sans font-light">{{ $publicacion->descripcion }}</span></p>
+                    <p class="text-lg font-sans font-bold mt-3 ps-4"><span>Fecha de inicio:</span></p>
+                    <p class="text-sm font-sans font-bold pb-4 ps-4"><span class="text-md font-sans font-light">{{ $publicacion->fecha_revision }}</span></p>
+
                     
                     <div class="ps-lg-8 mt-6 mt-lg-0">
                         <div class="mb-4">

@@ -98,7 +98,7 @@
 
 
 @extends('layouts.template')
-@section('titulo','Publicaciones')
+@section('titulo','Mis_Publicaciones')
 @section('contenido')
 
 <div class="mt-5 flex justify-center">
@@ -142,7 +142,7 @@
                 @endforeach
             </div>
         @endif
-        @include('partials.talleres.paginacion')
+        {{ $publicaciones->links('vendor.pagination.centered') }}
     </div>
 </div>
 @include('partials.publicaciones.registrar_publicacion')

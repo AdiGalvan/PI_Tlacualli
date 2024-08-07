@@ -78,6 +78,9 @@
                     <i id="heart-icon" class="bi bi-heart"></i>
                 </a> --}}
         </div>
+        <div class="flex items-center justify-between">
+            <p class="text-xs font-sans text-gray-900 dark:text-white">Fecha de inicio: {{ $publicacion->fecha_revision }}</p>
+        </div>
         <div class="flex items-center justify-end mt-2 px-2">
             <span class="text-md font-bold font-sans text-gray-900 dark:text-white">$ {{ $publicacion->costo }}</span>
         </div>
@@ -126,8 +129,12 @@
 
               <p class="font-sans font-light text-lg ps-4"><span class="mt-2 font-sans font-bold">Descripción:</span> {{ $publicacion->descripcion }}</p>
                     <br>
+
                     
                     <p class="text-lg font-sans font-light ps-4"><span class="mt-2 font-sans font-bold">Creador:</span> {{ $publicacion->usuario->nombre }} {{ $publicacion->usuario->apellido_paterno }} {{ $publicacion->usuario->apellido_materno }}</p>
+
+                    <p class="text-lg font-sans font-light ps-4"><span class="mt-2 font-sans font-bold">Fecha de inicio:</span> {{ $publicacion->fecha_revision }}</p>
+
                     <div class="ps-lg-8 mt-6 mt-lg-0">
                         <div class="mb-4">
                             <hr class="my-6">
@@ -136,6 +143,7 @@
                                 <div class="flex-shrink-0 px-2 mt-3">
                                       <div class="container mt-2">
                                         <div class="row">
+
                                         <div class="flex flex-wrap gap-4">
     <div class="flex-1 min-w-[150px]">
         <!-- Botón "Actualizar información" -->
@@ -338,7 +346,13 @@
                         <label class="text-green-900 font-sans font-bold pb-2 text-base">Costo</label>
                         <input type="number" class="font-sans font-light px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 w-full" id="_costoT" name="_costoT" required value="{{ !empty($publicacion->costo) ?  $publicacion->costo : '' }}">
                     </div>
-  
+                    
+                    <div class="mb-3">
+                          <label class="form-label">Fecha de inicio del taller</label>
+                          <input type="date" class="font-sans font-light px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 w-full" id="_fechaInicioT" name="_fechaInicioT" required value="{{ !empty($publicacion->fecha_revision) ?  $publicacion->fecha_revision : '' }}">
+                      </div>
+
+                    
                     <div class="modal-footer">
                         <button type="submit" class="bg-gradient-to-r from-green-500 to-green-800 hover:from-green-600 hover:to-green-800 text-white px-4 py-2 rounded-lg mr-2 font-semibold font-sans"><i class="bi bi-check-lg"></i> Actualizar</button>
                         <button type="button" class="bg-gradient-to-r from-gray-500 to-gray-800 hover:from-gray-600 hover:to-gray-800 text-white px-4 py-2 rounded-lg mr-2 font-semibold font-sans" data-bs-dismiss="modal"><i class="bi bi-x-lg"></i> Cancelar</button>

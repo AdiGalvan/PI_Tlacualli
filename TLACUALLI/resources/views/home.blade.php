@@ -1,4 +1,4 @@
-@extends('layouts.template')
+@extends('layouts.template2')
 @section('titulo','Inicio')
 @section('contenido')
 

@@ -115,7 +115,7 @@
                 @endforeach
             </div>
         @endif
-        @include('partials.talleres.paginacion')
+        {{ $publicaciones->links('vendor.pagination.centered') }}
     </div>
 </div>
 @include('partials.talleres.registrar_taller')
