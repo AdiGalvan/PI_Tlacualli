@@ -17,9 +17,8 @@ class CarritoController extends Controller
 
         // Validar la cantidad recibida
         $request->validate([
-            'cantidad' => 'required|integer|min:1'
+            'cantidad' . $id_producto => 'required|integer|min:1'
         ]);
-
         // Verificar si el producto existe y está activo
         $producto = Producto::where('estatus', 1)->where('id', $id_producto)->first();
 
@@ -44,7 +43,7 @@ class CarritoController extends Controller
         }
 
         // Obtener la cantidad solicitada
-        $cantidadSolicitada = $request->input('cantidad');
+        $cantidadSolicitada = $request->input('cantidad' . $id_producto);
 
         // Verificar si la cantidad solicitada no supera el stock disponible
         if ($cantidadSolicitada > $producto->stock) {

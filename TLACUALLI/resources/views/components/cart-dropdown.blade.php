@@ -32,7 +32,19 @@
             @forelse($carrito as $producto)
                 <tr>
                     <td class="px-4 py-2">
-                        <img class="w-12 h-12 object-cover rounded" src="{{ asset('storage/' . $producto->contenido) }}" alt="{{ $producto->nombre }}">
+                        @if($producto->contenido)
+                            @php
+                                $imagenes = json_decode($producto->contenido, true);
+                                $primeraImagen = $imagenes[0] ?? null;
+                            @endphp
+                            @if($primeraImagen)
+                                <img src="{{ asset('storage/' . $primeraImagen) }}" alt="{{ $producto->nombre }}" class="w-12 h-12 object-cover rounded">
+                            @else
+                                No disponible
+                            @endif
+                        @else
+                            No disponible
+                        @endif
                     </td>
                     <td class="px-4 py-2 font-sans font-semibold text-gray-900 dark:text-gray-200">{{ $producto->nombre }}</td>
                     <td class="px-4 py-2 font-sans font-semibold text-gray-900 dark:text-gray-200">{{ $producto->pivot->cantidad }}</td>

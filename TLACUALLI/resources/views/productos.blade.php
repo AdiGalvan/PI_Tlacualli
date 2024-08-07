@@ -191,13 +191,33 @@
                           {{-- Form para agregaar producto --}}
                           <form action="/carrito/agregar/{{ $producto->id }}" method="POST">
                                 @csrf <!-- Añade un token CSRF para la seguridad -->
+                                <div>
+                                    <p class="text-lg font-sans font-bold mr-2">Cantidad:</p>
+                                    <div class="input-group input-spinner">
+                                        <input type="button" value="-" class="button-minus btn btn-sm" data-field="cantidad{{ $producto->id }}">
+                                        <input type="number" step="1" max="{{ $producto->stock }}" min="1" value="1" name="cantidad{{ $producto->id }}" class="quantity-field form-control-sm form-input">
+                                        <input type="button" value="+" class="button-plus btn btn-sm" data-field="cantidad{{ $producto->id }}">
+                                    </div>
+                                </div>
                                 <div class="mt-3 row justify-content-start g-2 align-items-center">
                                     <div class="{{-- col-lg-4 col-md-5 col-6 d-grid --}}">
                                         @auth
+                                        @if($producto->proveedor_id==Auth::id())
+                                        <button data-popover-target="popover-right{{ $producto->id }}" data-popover-placement="right" type="button" class="bg-gradient-to-r from-green-500 to-green-800 text-white font-sans font-bold px-4 py-2 rounded-md text-md">Agregar</button>
+                                        <div data-popover id="popover-right{{ $producto->id }}" role="tooltip" class="absolute z-10 invisible inline-block w-64 text-sm text-gray-500 transition-opacity duration-300 bg-white border border-gray-200 rounded-lg shadow-sm opacity-0 dark:text-gray-400 dark:border-gray-600 dark:bg-gray-800">
+                                            <div class="px-3 py-2 bg-green-900 border-b border-green-200 rounded-t-lg dark:border-green-600 dark:bg-green-700 ">
+                                                <h3 class=" text-white dark:text-white font-sans font-bold text-base text-center">Atención usuario</h3>
+                                            </div>
+                                            <div class="px-3 py-2">
+                                                <p class="font-sans font-light text-base text-center text-black">No puedes agregar tus propios productos al carrito.</p>
+                                            </div>
+                                            <div data-popper-arrow></div>
+                                        </div>
+                                        @else
                                         <div class="flex{{--  items-center --}} justify-end p-4 md:p-5 border-t border-gray-200 rounded-b dark:border-gray-600">
                                             <button type="submit" class="bg-gradient-to-r from-green-500 to-green-800 text-white font-sans font-bold px-4 py-2 rounded-md text-md">Agregar</button>
                                         </div>
-                                        
+                                        @endif
                                         @else
                                         <button data-popover-target="popover-right{{ $producto->id }}" data-popover-placement="right" type="button" class="bg-gradient-to-r from-green-500 to-green-800 text-white font-sans font-bold px-4 py-2 rounded-md text-md">Agregar</button>
                                         <div data-popover id="popover-right{{ $producto->id }}" role="tooltip" class="absolute z-10 invisible inline-block w-64 text-sm text-gray-500 transition-opacity duration-300 bg-white border border-gray-200 rounded-lg shadow-sm opacity-0 dark:text-gray-400 dark:border-gray-600 dark:bg-gray-800">
@@ -248,5 +268,35 @@
     </div>
 </div>
 @endforeach
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const buttonsMinus = document.querySelectorAll('.button-minus');
+    const buttonsPlus = document.querySelectorAll('.button-plus');
+
+    buttonsMinus.forEach(button => {
+        button.addEventListener('click', function () {
+            const input = document.querySelector(`input[name="${this.dataset.field}"]`);
+            const currentValue = parseInt(input.value);
+            const minValue = parseInt(input.min);
+            if (currentValue > minValue) {
+                input.value = currentValue - 1;
+            }
+        });
+    });
+
+    buttonsPlus.forEach(button => {
+        button.addEventListener('click', function () {
+            const input = document.querySelector(`input[name="${this.dataset.field}"]`);
+            const currentValue = parseInt(input.value);
+            const maxValue = parseInt(input.max);
+            if (currentValue < maxValue) {
+                input.value = currentValue + 1;
+            }
+        });
+    });
+});
+
+</script>
 @endsection
 
