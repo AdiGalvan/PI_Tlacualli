@@ -200,7 +200,7 @@
 @endsection
   --}}
 
-<div class="md:container md:mx-auto mb-30 mt-5"> <!-- CONTAINER TABLE -->
+<div class="md:container md:mx-auto mb-30 mt-5" > <!-- CONTAINER TABLE -->
     <div class="flex items-center justify-center mb-6 space-x-4">
         <h2 class="text-green-900 font-sans font-black text-4xl text-center w-full">Tabla Productos</h2>
     </div>
@@ -226,10 +226,10 @@
             </button>
         </div>
         @else
+    <div class="overflow-x-auto">
     <table class="min-w-full bg-white shadow-lg rounded-lg overflow-hidden font-sans">
     <thead class="bg-green-900 text-white">
         <tr>
-            <th class="px-6 py-3 text-left text-xl">ID</th>
             <th class="px-6 py-3 text-center text-xl">Nombre</th>
             <th class="px-6 py-3 text-center text-xl">Descripción</th>
             <th class="px-6 py-3 text-center text-xl">Costo</th>
@@ -242,7 +242,6 @@
     <tbody class="divide-y divide-gray-500">
         @foreach ($productos as $producto)
         <tr>
-            <td class="px-6 py-4 text-base font-black">{{ $producto->id }}</td>
             <td class="px-6 py-4 text-base font-semibold text-center">{{ $producto->nombre }}</td>
             <td class="px-6 py-4 text-base font-semibold text-center">{{ $producto->descripcion }}</td>
             <td class="px-6 py-4 text-base font-semibold text-center">{{ $producto->costo }}</td>
@@ -279,6 +278,7 @@
         @endforeach
     </tbody>
 </table>
+    </div>
 @endif
 
     </div>  
