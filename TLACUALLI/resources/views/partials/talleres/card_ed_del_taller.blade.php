@@ -82,7 +82,7 @@
             <span class="text-md font-bold font-sans text-gray-900 dark:text-white">$ {{ $publicacion->costo }}</span>
         </div>
         <hr class="my-3 border-gray-900 dark:bg-gray-900">
-        <div class="flex items-center justify-between">
+        <div class="flex items-center justify-end">
             <button data-modal-target="default-modal{{ $publicacion->id }}" data-modal-toggle="default-modal{{ $publicacion->id }}" class="bg-gradient-to-r from-green-500 to-green-800 text-white font-sans font-bold px-4 py-2 rounded-md text-md" type="button">
                 Más Información
             </button>

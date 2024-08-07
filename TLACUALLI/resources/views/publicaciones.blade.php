@@ -77,8 +77,10 @@
                       {{--   @include('partials.publicaciones.buscar') --}}
                     </div>
                     @if ($usuario->roles->id == 5 || $usuario->roles->id == 7)
+                    <div class="col-12 col-sm-6 col-md-4 col-lg-2 d-flex justify-content-center justify-content-lg-end pt-4">
                         <a href="{{ route('mis_publicaciones') }}" class="bg-gradient-to-r from-green-500 to-green-800 text-white font-sans font-bold px-4 py-2 rounded-md text-md"> Mis publicaciones</a>
                     @endif
+                          </div>
                 </div>
             </div>
         
@@ -89,7 +91,7 @@
             </svg>
             <span class="sr-only">Info</span>
             <div class="ms-3 text-sm font-medium">
-            Lo sentimmos! Por el momento no hay publicaciones disponibles
+            ¡Lo sentimos! Por el momento no hay publicaciones disponibles.
             </div>
             <button type="button" class="ms-auto -mx-1.5 -my-1.5 bg-red-50 text-red-500 rounded-lg focus:ring-2 focus:ring-red-400 p-1.5 hover:bg-red-200 inline-flex items-center justify-center h-8 w-8 dark:bg-gray-800 dark:text-red-400 dark:hover:bg-gray-700" data-dismiss-target="#alert-2" aria-label="Close">
             <span class="sr-only">Close</span>
