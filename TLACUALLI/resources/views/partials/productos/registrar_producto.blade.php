@@ -16,9 +16,9 @@
             <p class="text-red-600 font-sans font-bold mt-1">{{ $errors->first('_np') }}</p>
           </div>
           <div class="mb-3">
-            <label class="text-green-900 font-sans font-bold pb-2 text-base">Descripción</label>
-            <input type="text" class="font-sans font-light px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 w-full" id="_descP" name="_descP" value="{{ old('_descP') }}">
-            <p class="text-red-600 font-sans font-bold mt-1">{{ $errors->first('_descP') }}</p>
+              <label for="_descP" class="text-green-900 font-sans font-bold pb-2 text-base">Descripción</label>
+              <textarea class="font-sans font-light px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 w-full" id="_descP" name="_descP" rows="3">{{ old('_descP') }}</textarea>
+              <p class="text-red-600 font-sans font-bold mt-1">{{ $errors->first('_descP') }}</p>
           </div>
           <div class="mb-3">
             <label class="text-green-900 font-sans font-bold pb-2 text-base">Costo unitario</label>
@@ -81,10 +81,11 @@
             <p class="text-red-600 font-sans font-bold mt-1">{{ $errors->first('_np') }}</p>
           </div>
           <div class="mb-3">
-            <label class="text-green-900 font-sans font-bold pb-2 text-base">Descripción</label>
-            <input type="text" class="font-sans font-light px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 w-full" id="_descP" name="_descP" value="{{ $producto->descripcion }}">
+            <label for="_descP" class="text-green-900 font-sans font-bold pb-2 text-base">Descripción</label>
+            <textarea class="font-sans font-light px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 w-full" id="_descP" name="_descP" rows="3">{{ old('_descP', $producto->descripcion) }}</textarea>
             <p class="text-red-600 font-sans font-bold mt-1">{{ $errors->first('_descP') }}</p>
-          </div>
+        </div>
+
           <div class="mb-3">
             <label class="text-green-900 font-sans font-bold pb-2 text-base">Costo unitario</label>
             <input type="number" class="font-sans font-light px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 w-full" id="_costoP" name="_costoP" value="{{ $producto->costo }}">

@@ -22,10 +22,11 @@
 
    
     <div class="mb-3">
-      <label class="text-green-900 font-sans font-bold pb-2 text-base">Descripción</label>
-      <input type="text" class="font-sans font-light px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 w-full" id="_descT" name="_descT"  placeholder="Ingrese la descripción de su taller" value="{{ old('_descT') }}">
-      <p class="text-red-600 font-sans font-bold mt-1">{{ $errors->first('_descT') }}</p>
+        <label for="_descT" class="text-green-900 font-sans font-bold pb-2 text-base">Descripción</label>
+        <textarea class="font-sans font-light px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 w-full" id="_descT" name="_descT" placeholder="Ingrese la descripción de su taller" rows="3">{{ old('_descT') }}</textarea>
+        <p class="text-red-600 font-sans font-bold mt-1">{{ $errors->first('_descT') }}</p>
     </div>
+
 
    <!-- INPUT FILE -->
 <div class="mb-3">
